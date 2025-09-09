@@ -1,0 +1,123 @@
+* {
+    margin: 0;
+}
+
+#texto-topo-gsp {
+    margin-top: 5px;
+    color: gray;
+}
+
+.ul-topo {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.ul-meio-topo{
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+}
+
+.search-wrapper {
+    display: flex;
+    align-items: center;
+    width: 100%; /* ou o tamanho desejado */
+    max-width: 600px; /* limite opcional */
+  }
+  
+  .br-pesq {
+    flex: 1;
+    padding: 15px;
+    padding-right: 100px;
+    font-size: 15px;
+    font-weight: 300;
+    font-family: Roboto, sans-serif;
+    border-radius: 30px 0px 0px 30px;
+    border: 1px solid #dadada;
+    background: #fff;
+    color: rgb(102, 102, 102);
+    font-weight: 300;
+    height: 50px;
+    margin-right: 0; /* importante remover o antigo margin */
+    box-sizing: border-box;
+  }
+  
+  .search-button {
+    border: none;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    background-color: #B20000;
+    color: white;
+    height: 50px;
+    padding: 0 20px;
+    cursor: pointer;
+  }
+.campo-preto {
+    background-color: black;
+    width: 250px;
+    height: 80px;
+    border-top-right-radius: 100px;
+    border-bottom-right-radius: 100px;
+    
+}
+
+.ul-midias {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    margin-right: 50px;
+}
+
+.img-midias {
+    width: 25px;
+}
+
+.logo-sp {
+    margin-top: 20px;
+    margin-left: 10px;
+}
+
+.logo-etec {
+    margin-top: 30px;
+    margin-left: 20px;
+    width: 300px;
+}
+
+nav {
+    background-color: #B20000;
+    margin-top: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-color: black;
+    border-style: solid;
+    border-width: 1px;
+}
+
+.nav-bar {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.li-nav-bar {
+    margin: 0 20px;
+}
+
+.a-nav-bar {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s;
+    cursor: pointer;
+}
+
+.a-nav-bar:hover {
+    color: rgb(153, 153, 153);
+}
