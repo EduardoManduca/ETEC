@@ -26,6 +26,7 @@
     align-items: center;
     width: 100%; /* ou o tamanho desejado */
     max-width: 600px; /* limite opcional */
+    margin-left: 600px;
   }
   
   .br-pesq {
