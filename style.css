@@ -143,6 +143,7 @@ nav {
     border-radius: 4px;
     box-sizing: border-box;
     margin-top: -10%;
+    margin-left:25%
 }
 
 .title {
@@ -151,6 +152,7 @@ nav {
     font-weight: bold;
     display: block;
     margin-top: 7.5%;
+    margin-left:25%
 }
 
 .botao {
