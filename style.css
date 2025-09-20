@@ -122,3 +122,52 @@ nav {
 .a-nav-bar:hover {
     color: rgb(153, 153, 153);
 }
+
+.login {
+    border: 2px solid #000; /* Define a borda */
+    border-radius: 8px; /* Bordas arredondadas */
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5); /* Sombra */
+    padding: 70%, 30%;
+    border-left: auto;
+    border-right: auto;
+    width: 300px;
+    height: 300px;
+    margin-left: 42.5%;
+    margin-top: 5%;
+}
+
+.cadastro {
+    width: 50%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: -10%;
+}
+
+.title {
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    display: block;
+    margin-top: 7.5%;
+}
+
+.botao {
+    width: 50%;
+    background-color: #1a1313;
+    color: white;
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: 25%;
+}
+
+.titulo{
+    text-align: center;
+    font-family: Arial, sans-serif;
+    margin-bottom: 20px;
+    margin-top:5% 
+}
