@@ -124,7 +124,7 @@ nav {
 }
 
 .login {
-    border: 2px solid #000; /* Define a borda */
+    border: 0px solid #000; /* Define a borda */
     border-radius: 8px; /* Bordas arredondadas */
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5); /* Sombra */
     padding: 70%, 30%;
@@ -142,8 +142,8 @@ nav {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
-    margin-top: -10%;
-    margin-left:25%
+    margin-left:25%;
+    margin-top: -20%;
 }
 
 .title {
@@ -155,8 +155,8 @@ nav {
     margin-left:25%
 }
 
-.botao {
-    width: 50%;
+.enter  {
+    width: 35%;
     background-color: #1a1313;
     color: white;
     padding: 8px;
@@ -164,12 +164,26 @@ nav {
     border-radius: 4px;
     cursor: pointer;
     font-size: 16px;
-    margin-left: 25%;
+    margin-left: 15%;
 }
 
 .titulo{
     text-align: center;
+    color: #005C6D;
     font-family: Arial, sans-serif;
     margin-bottom: 20px;
     margin-top:5% 
+}
+
+.cancel {
+    background-color: #f44336;
+    margin-right: 10px;
+    width: 35%;
+    color: white;
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: 5%;
 }

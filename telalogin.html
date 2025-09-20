@@ -63,11 +63,12 @@
   <div class="login">
     <h2 class="titulo">Login</h2>
     <form action="processar_login.php" method="post">
-        <label for="username" class="title">Digite seu login:</label><br>
+        <label for="username" class="title">ID / Nome:</label><br>
         <input type="text" id="username" name="username" required class="cadastro"><br><br>
-        <label for="password" class="title">Digite sua senha:</label><br>
+        <label for="password" class="title">Senha:</label><br>
         <input type="password" id="password" name="password" required class="cadastro"><br><br>
-        <input type="submit" value="Entrar" class="botao">
+        <input type="button" value="Cancelar" class="cancel" onclick="document.getElementById('username').value=''; document.getElementById('password').value=''; return false;">
+        <input type="submit" value="Entrar" class="enter">
     </form>
 
   </div>
