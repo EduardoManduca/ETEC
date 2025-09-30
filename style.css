@@ -5,6 +5,7 @@
 #texto-topo-gsp {
     margin-top: 5px;
     color: gray;
+    margin-right: 10px;
 }
 
 .ul-topo {
@@ -76,7 +77,15 @@
 }
 
 .img-midias {
-    width: 25px;
+    width: 30px;
+    filter: grayscale(100%); /* deixa cinza */
+    opacity: 0.8;           /* mais suave */
+    transition: all 0.3s;
+}
+
+.img-midias:hover {
+    filter: grayscale(0%);  /* volta colorido no hover */
+    opacity: 1;
 }
 
 .logo-sp {
@@ -121,4 +130,34 @@ nav {
 
 .a-nav-bar:hover {
     color: rgb(153, 153, 153);
+}
+
+.controles-acessibilidade {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-left: 1px solid gray;
+    padding-left: 15px;
+    margin-left: 15px;
+}
+
+.controles-acessibilidade button {
+    background: none;
+    border: 2px solid rgb(255, 255, 255);
+    border-radius: 50%;
+    color: gray;
+    cursor: pointer;
+    font-weight: bold;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    transition: all 0.3s;
+}
+
+.controles-acessibilidade button:hover {
+    background-color: gray;
+    color: white;
 }
