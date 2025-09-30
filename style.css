@@ -122,3 +122,15 @@ nav {
 .a-nav-bar:hover {
     color: rgb(153, 153, 153);
 }
+
+.campos{
+    display: flex;
+    flex-direction: column;
+    color: #005C6D
+}
+
+.opcoes{
+    display: inline-block;
+    width: 200px;
+    max-width: 100%;
+}
