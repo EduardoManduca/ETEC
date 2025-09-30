@@ -161,3 +161,9 @@ nav {
     background-color: gray;
     color: white;
 }
+
+.titulo {
+    padding-top: 10px;
+    padding-left: 10px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
+}
