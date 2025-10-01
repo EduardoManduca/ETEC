@@ -167,3 +167,50 @@ nav {
     padding-left: 10px;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
 }
+
+#Laboratórios {
+    padding-right: 60px;
+    padding-bottom: 3px;
+    border-color: gray;
+    background-color: lightgray;
+    border-radius: 5px;
+}
+
+.label{
+    margin-left: 15px;
+    color: rgb(40, 115, 158);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#input-data {
+    border-color: gray;
+    background-color: lightgray;
+    border-radius: 5px;
+}
+
+#lista-1 {
+    margin-top: 30px;
+    list-style: none;
+    display: flex;
+    gap: 80px;
+    
+}
+
+.item-lista-1 {
+    display: inline-block;
+}
+
+#input-horario {
+    border-color: gray;
+    background-color: lightgray;
+    border-radius: 5px;
+    padding-right: 42px;
+}
+
+#kits {
+    padding-right: 70px;
+    padding-bottom: 3px;
+    border-color: gray;
+    background-color: lightgray;
+    border-radius: 5px;
+}
