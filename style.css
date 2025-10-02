@@ -82,13 +82,16 @@
 
 .img-midias {
     width: 30px;
-    filter: grayscale(100%); /* deixa cinza */
-    opacity: 0.8;           /* mais suave */
+    filter: grayscale(100%);
+    /* deixa cinza */
+    opacity: 0.8;
+    /* mais suave */
     transition: all 0.3s;
 }
 
 .img-midias:hover {
-    filter: grayscale(0%);  /* volta colorido no hover */
+    filter: grayscale(0%);
+    /* volta colorido no hover */
     opacity: 1;
 }
 
@@ -169,7 +172,7 @@ nav {
 .titulo {
     padding-top: 10px;
     padding-left: 10px;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 #Laboratórios {
@@ -180,7 +183,7 @@ nav {
     border-radius: 5px;
 }
 
-.label{
+.label {
     margin-left: 15px;
     color: rgb(40, 115, 158);
     font-family: Arial, Helvetica, sans-serif;
@@ -197,7 +200,7 @@ nav {
     list-style: none;
     display: flex;
     gap: 80px;
-    
+
 }
 
 .item-lista-1 {
@@ -237,18 +240,91 @@ footer {
     width: 150px;
 }
 
-h1 {
+#cadastro {
     margin-top: 20px;
-    font-size: 80px;
-    font-family: Arial, Helvetica, sans-serif;
     color: #005C6D;
     margin-left: 20px;
-    text-decoration: underline;
+    padding-top: 3.5%;
+    font-size: 250%;
+}
+
+input::placeholder {
+    font-size: 20px;
+    color: black;
+}
+
+
+.div-cadastro {
+    width: 300px;
+    margin: 80px auto;
+    padding: 90px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(59, 53, 53, 0.822);
+    background-color: #fff;
+    text-align: center;
+}
+
+.titulo-cadastro {
+    font-size: 250%;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #005C6D;
+    margin-bottom: 20px;
+    padding-top: 10px;
+}
+
+.form-field input,
+select {
+    background-color: #F5F5F5;
+    width: 80%;
+    padding: 5%;
+    padding-left: 20px;
+    font-size: medium; /*Tamanho da letra ao escrever nos campos de texto*/
+    border: 0;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+input::placeholder {
+    font-size: 16px;
+    color: black;
+}
+
+#funcao {
+    font-size: 100%;
+}
+
+.label-funcao {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 175%;
+    font-weight: bold;
+    text-align: center;
+}
+
+.btn {
+    border-radius: 20px;
+    padding: 10px 0;
+    font-size: 100%;
+    width: 70%;
+    color: white;
+    border: 0;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.btn-confirmar {
+    background-color: #333333;
+}
+
+.btn-cancelar {
+    background-color: #B20000;
 }
 
 h2 {
     margin-left: 20px;
-    font-family: Arial, Helvetica, sans-serif; 
+    font-family: Arial, Helvetica, sans-serif;
     color: #333333;
 }
 
@@ -271,82 +347,26 @@ p {
 }
 
 .barra-container {
-    width: 80%; /* largura total da barra */
-    height: 10px; /* altura da barra fina */
-    background-color: #aa0000; /* cor da linha de fundo */
-    border-radius: 5px; /* bordas arredondadas da linha de fundo */
+    width: 80%;
+    /* largura total da barra */
+    height: 10px;
+    /* altura da barra fina */
+    background-color: #aa0000;
+    /* cor da linha de fundo */
+    border-radius: 5px;
+    /* bordas arredondadas da linha de fundo */
     margin-top: 10px;
     margin-left: 10px;
     position: relative;
-  }
+}
 
-  .links-menu {
+.links-menu {
     color: #005C6D;
     text-decoration: none;
     transition: transform 0.3s ease;
     display: inline-block;
-  }
+}
 
-  .links-menu:hover {
+.links-menu:hover {
     transform: scale(1.05);
-  }
-header {
-    text-align: left;
-    margin: 0.5% 0;
-    color: #005C6D;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin-left: 1%;
-}
-
-table {
-    width: 50%;
-    border-collapse: collapse;
-    margin-left: 25%;
-    font-family: Arial, sans-serif;
-    background-color: #888888;
-    height: 50%;
-    align-items: 50%;
-    display: flexbox;
-    place-items: center;
-}
-
-th {
-    padding: 12px;
-    border: 1px solid #ddd;
-}
-
-td {
-    padding: 12px;
-    border-bottom: 1px solid #ddd;
-}
-
-tr {
-    height: 200%;
-}
-
-th,
-td {
-    text-align: center;
-}
-
-.item {
-    padding: 50px;
-    border: 1px solid #ddd;
-    transition: background-color 0.3s;
-    cursor: pointer;
-}
-
-
-.item:hover {
-    background-color: #e0e0e0;
-
-}
-
-.dleft {
-    font-weight: bold;
-}
-
-#h1-estoque {
-    text-decoration: none;
-    font-size: 50px;
 }
