@@ -214,3 +214,75 @@ nav {
     background-color: lightgray;
     border-radius: 5px;
 }
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #000000;
+    padding: 10px 0;
+    text-align: center;
+}
+
+
+#img-rodape {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 150px;
+}
+
+h1 {
+    margin-top: 20px;
+    font-size: 80px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #005C6D;
+    margin-left: 20px;
+    text-decoration: underline;
+}
+
+h2 {
+    margin-left: 20px;
+    font-family: Arial, Helvetica, sans-serif; 
+    color: #333333;
+}
+
+p {
+    margin-top: 20px;
+    margin-left: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#agendamentos-p {
+    padding-top: 10px;
+}
+
+.links {
+    background-color: lightgray;
+    width: 500px;
+    margin-left: 10px;
+    height: 120px;
+    border-radius: 10px;
+}
+
+.barra-container {
+    width: 80%; /* largura total da barra */
+    height: 10px; /* altura da barra fina */
+    background-color: #aa0000; /* cor da linha de fundo */
+    border-radius: 5px; /* bordas arredondadas da linha de fundo */
+    margin-top: 10px;
+    margin-left: 10px;
+    position: relative;
+  }
+
+  .links-menu {
+    color: #005C6D;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+    display: inline-block;
+  }
+
+  .links-menu:hover {
+    transform: scale(1.05);
+  }
