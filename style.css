@@ -15,7 +15,7 @@
     justify-content: space-between;
 }
 
-.ul-meio-topo{
+.ul-meio-topo {
     list-style: none;
     display: flex;
     justify-content: space-between;
@@ -24,12 +24,14 @@
 .search-wrapper {
     display: flex;
     align-items: center;
-    width: 100%; /* ou o tamanho desejado */
-    max-width: 600px; /* limite opcional */
+    width: 100%;
+    /* ou o tamanho desejado */
+    max-width: 600px;
+    /* limite opcional */
     margin-left: 600px;
-  }
-  
-  .br-pesq {
+}
+
+.br-pesq {
     flex: 1;
     padding: 15px;
     padding-right: 100px;
@@ -42,11 +44,12 @@
     color: rgb(102, 102, 102);
     font-weight: 300;
     height: 50px;
-    margin-right: 0; /* importante remover o antigo margin */
+    margin-right: 0;
+    /* importante remover o antigo margin */
     box-sizing: border-box;
-  }
-  
-  .search-button {
+}
+
+.search-button {
     border: none;
     border-top-right-radius: 30px;
     border-bottom-right-radius: 30px;
@@ -55,14 +58,15 @@
     height: 50px;
     padding: 0 20px;
     cursor: pointer;
-  }
+}
+
 .campo-preto {
     background-color: black;
     width: 250px;
     height: 80px;
     border-top-right-radius: 100px;
     border-bottom-right-radius: 100px;
-    
+
 }
 
 .ul-midias {
@@ -121,4 +125,60 @@ nav {
 
 .a-nav-bar:hover {
     color: rgb(153, 153, 153);
+}
+
+header {
+    text-align: left;
+    margin: 0.5% 0;
+    color: #005C6D;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-left: 1%;
+}
+
+table {
+    width: 50%;
+    border-collapse: collapse;
+    margin-left: 25%;
+    font-family: Arial, sans-serif;
+    background-color: #888888;
+    height: 50%;
+    align-items: 50%;
+    display: flexbox;
+    place-items: center;
+}
+
+th {
+    padding: 12px;
+    border: 1px solid #ddd;
+}
+
+td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+tr {
+    height: 200%;
+}
+
+th,
+td {
+    text-align: center;
+}
+
+.item {
+    padding: 50px;
+    border: 1px solid #ddd;
+    transition: background-color 0.3s;
+    cursor: pointer;
+}
+
+
+.item:hover {
+    background-color: #e0e0e0;
+
+}
+
+.dleft {
+    font-weight: bold;
 }
