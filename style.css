@@ -1,52 +1,57 @@
+/* RESET GLOBAL */
 * {
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
+/* VIEWPORT (coloque no <head> do HTML) */
+/* <meta name="viewport" content="width=device-width, initial-scale=1.0"> */
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ELEMENTOS DO TOPO */
 #texto-topo-gsp {
     margin-top: 5px;
     color: gray;
     margin-right: 10px;
 }
 
-.ul-topo {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: space-between;
-}
-
+.ul-topo,
 .ul-meio-topo {
     list-style: none;
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
 }
 
 .search-wrapper {
     display: flex;
     align-items: center;
+    justify-content: center;
     width: 100%;
-    /* ou o tamanho desejado */
     max-width: 600px;
-    /* limite opcional */
-    margin-left: 600px;
+    margin: 0 auto;
+    flex-wrap: wrap;
 }
 
 .br-pesq {
     flex: 1;
     padding: 15px;
-    padding-right: 100px;
-    font-size: 15px;
+    padding-right: 20px;
+    font-size: 1rem;
     font-weight: 300;
     font-family: Roboto, sans-serif;
-    border-radius: 30px 0px 0px 30px;
+    border-radius: 30px 0 0 30px;
     border: 1px solid #dadada;
     background: #fff;
     color: rgb(102, 102, 102);
-    font-weight: 300;
     height: 50px;
     margin-right: 0;
-    /* importante remover o antigo margin */
     box-sizing: border-box;
 }
 
@@ -67,28 +72,27 @@
     height: 80px;
     border-top-right-radius: 100px;
     border-bottom-right-radius: 100px;
-
 }
 
 .ul-midias {
     list-style: none;
-    margin: 0;
-    padding: 0;
     display: flex;
+    flex-wrap: wrap;
     gap: 10px;
     margin-top: 10px;
     margin-right: 50px;
+    justify-content: flex-end;
 }
 
 .img-midias {
     width: 30px;
-    filter: grayscale(100%); /* deixa cinza */
-    opacity: 0.8;           /* mais suave */
+    filter: grayscale(100%);
+    opacity: 0.8;
     transition: all 0.3s;
 }
 
 .img-midias:hover {
-    filter: grayscale(0%);  /* volta colorido no hover */
+    filter: grayscale(0%);
     opacity: 1;
 }
 
@@ -100,25 +104,25 @@
 .logo-etec {
     margin-top: 30px;
     margin-left: 20px;
-    width: 300px;
+    width: 100%;
+    max-width: 300px;
 }
 
 nav {
     background-color: #B20000;
     margin-top: 30px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    border-color: black;
-    border-style: solid;
-    border-width: 1px;
+    padding: 10px 0;
+    border: 1px solid black;
 }
 
 .nav-bar {
     list-style: none;
-    margin: 0;
-    padding: 0;
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
 }
 
 .li-nav-bar {
@@ -147,7 +151,7 @@ nav {
 
 .controles-acessibilidade button {
     background: none;
-    border: 2px solid rgb(255, 255, 255);
+    border: 2px solid white;
     border-radius: 50%;
     color: gray;
     cursor: pointer;
@@ -169,7 +173,7 @@ nav {
 .titulo {
     padding-top: 10px;
     padding-left: 10px;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 #Laboratórios {
@@ -180,16 +184,27 @@ nav {
     border-radius: 5px;
 }
 
-.label{
+.label {
     margin-left: 15px;
     color: rgb(40, 115, 158);
     font-family: Arial, Helvetica, sans-serif;
 }
 
-#input-data {
+#input-data,
+#input-horario,
+#kits {
     border-color: gray;
     background-color: lightgray;
     border-radius: 5px;
+}
+
+#input-horario {
+    padding-right: 42px;
+}
+
+#kits {
+    padding-right: 70px;
+    padding-bottom: 3px;
 }
 
 #lista-1 {
@@ -197,38 +212,32 @@ nav {
     list-style: none;
     display: flex;
     gap: 80px;
-    
+    flex-wrap: wrap;
 }
 
 .item-lista-1 {
     display: inline-block;
 }
 
-#input-horario {
-    border-color: gray;
-    background-color: lightgray;
-    border-radius: 5px;
-    padding-right: 42px;
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
 }
 
-#kits {
-    padding-right: 70px;
-    padding-bottom: 3px;
-    border-color: gray;
-    background-color: lightgray;
-    border-radius: 5px;
+main {
+    flex: 1; /* ocupa o espaço disponível */
 }
 
 footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
     background-color: #000000;
     padding: 10px 0;
     text-align: center;
+    color: white;
+    width: 100%;
 }
-
 
 #img-rodape {
     display: block;
@@ -239,7 +248,7 @@ footer {
 
 h1 {
     margin-top: 20px;
-    font-size: 80px;
+    font-size: 5vw;
     font-family: Arial, Helvetica, sans-serif;
     color: #005C6D;
     margin-left: 20px;
@@ -248,7 +257,7 @@ h1 {
 
 h2 {
     margin-left: 20px;
-    font-family: Arial, Helvetica, sans-serif; 
+    font-family: Arial, Helvetica, sans-serif;
     color: #333333;
 }
 
@@ -264,32 +273,34 @@ p {
 
 .links {
     background-color: lightgray;
-    width: 500px;
+    width: 90%;
+    max-width: 500px;
     margin-left: 10px;
     height: 120px;
     border-radius: 10px;
 }
 
 .barra-container {
-    width: 80%; /* largura total da barra */
-    height: 10px; /* altura da barra fina */
-    background-color: #aa0000; /* cor da linha de fundo */
-    border-radius: 5px; /* bordas arredondadas da linha de fundo */
+    width: 80%;
+    height: 10px;
+    background-color: #aa0000;
+    border-radius: 5px;
     margin-top: 10px;
     margin-left: 10px;
     position: relative;
-  }
+}
 
-  .links-menu {
+.links-menu {
     color: #005C6D;
     text-decoration: none;
     transition: transform 0.3s ease;
     display: inline-block;
-  }
+}
 
-  .links-menu:hover {
+.links-menu:hover {
     transform: scale(1.05);
-  }
+}
+
 header {
     text-align: left;
     margin: 0.5% 0;
@@ -299,34 +310,23 @@ header {
 }
 
 table {
-    width: 50%;
+    width: 90%;
+    max-width: 800px;
     border-collapse: collapse;
-    margin-left: 25%;
+    margin: 0 auto;
     font-family: Arial, sans-serif;
     background-color: #888888;
-    height: 50%;
-    align-items: 50%;
-    display: flexbox;
-    place-items: center;
+    height: auto;
 }
 
-th {
+th, td {
     padding: 12px;
     border: 1px solid #ddd;
-}
-
-td {
-    padding: 12px;
-    border-bottom: 1px solid #ddd;
+    text-align: center;
 }
 
 tr {
-    height: 200%;
-}
-
-th,
-td {
-    text-align: center;
+    height: auto;
 }
 
 .item {
@@ -336,10 +336,8 @@ td {
     cursor: pointer;
 }
 
-
 .item:hover {
     background-color: #e0e0e0;
-
 }
 
 .dleft {
@@ -349,4 +347,83 @@ td {
 #h1-estoque {
     text-decoration: none;
     font-size: 50px;
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 768px) {
+    .br-pesq {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+
+    .search-wrapper {
+        flex-direction: column;
+        align-items: stretch;
+        max-width: 90%;
+    }
+
+    .search-button {
+        border-radius: 0 0 30px 30px;
+        height: 45px;
+        margin-top: 5px;
+    }
+
+    h1 {
+        font-size: 6vw;
+    }
+
+    .logo-etec {
+        max-width: 200px;
+    }
+
+    .nav-bar {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #lista-1 {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .links {
+        width: 100%;
+        margin: 10px;
+    }
+
+    table {
+        width: 100%;
+    }
+
+    footer {
+        position: relative;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 7vw;
+    }
+
+    .br-pesq,
+    .search-button {
+        width: 100%;
+        border-radius: 10px;
+        margin-bottom: 10px;
+    }
+
+    .search-wrapper {
+        align-items: center;
+    }
+
+    .ul-topo,
+    .ul-meio-topo {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .ul-midias {
+        justify-content: center;
+        margin-right: 0;
+    }
 }
