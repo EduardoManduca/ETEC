@@ -1,3 +1,41 @@
+:root {
+    /* Cores retiradas do Guia de estilo Site CPS:
+    https://cps.sp.gov.br/guia-estilo/cores.php */
+
+    /* Cores principais */
+    --vermelho-base: #B20000;
+    --vermelho-escuro-10: #7E0000;
+    --azul-base: #005C6D;
+    --primario-titulos-hover: #004854;
+    --azul-destaque-base: #00C1CF;
+    --secundario-hover: #00D8E8;
+
+    /* Cores Auxiliares */
+    --verde-base: #A0C340;
+    --blueberry-base: #4C7EFF;
+    --crayola-base: #FFC24C;
+    --violeta-base: #8A29E6;
+    --coral-base: #FF4C4D;
+    --pink-base: #FF4CA2;
+
+    /* Cores Neutras */
+    --cinza-texto-base: #666666;
+    --cinza-claro: #DADADA;
+    --cinza-hover: #E6E6E6;
+    --prata-base: #F8F8F8;
+
+    /* Cores de Feedback */
+    --cancelado: #D32719;
+    --cancelado-outline: #F95B4D;
+    --cancelado-light: #FDD5D1;
+    --andamento: #B78718;
+    --andamento-outline: #DFB77B;
+    --andamento-light: #FFF5EA;
+    --concluido: #3ACF1F;
+    --concluido-outline: #80E96D;
+    --concluido-light: #E8FBE4;
+}
+
 * {
     margin: 0;
 }
@@ -40,9 +78,9 @@
     font-weight: 300;
     font-family: Roboto, sans-serif;
     border-radius: 30px 0px 0px 30px;
-    border: 1px solid #dadada;
+    border: 1px solid var(--cinza-claro);
     background: #fff;
-    color: rgb(102, 102, 102);
+    color: var(--cinza-texto-base);
     font-weight: 300;
     height: 50px;
     margin-right: 0;
@@ -54,7 +92,7 @@
     border: none;
     border-top-right-radius: 30px;
     border-bottom-right-radius: 30px;
-    background-color: #B20000;
+    background-color: var(--vermelho-base);
     color: white;
     height: 50px;
     padding: 0 20px;
@@ -104,7 +142,7 @@
 }
 
 nav {
-    background-color: #B20000;
+    background-color: var(--vermelho-base);
     margin-top: 30px;
     padding-top: 10px;
     padding-bottom: 10px;
@@ -133,7 +171,7 @@ nav {
 }
 
 .a-nav-bar:hover {
-    color: rgb(153, 153, 153);
+    color: #999999;
 }
 
 .controles-acessibilidade {
@@ -176,13 +214,13 @@ nav {
     padding-right: 60px;
     padding-bottom: 3px;
     border-color: gray;
-    background-color: lightgray;
+    background-color: #d3d3d3;
     border-radius: 5px;
 }
 
 .label{
     margin-left: 15px;
-    color: rgb(40, 115, 158);
+    color: #28739e;
     font-family: Arial, Helvetica, sans-serif;
 }
 
