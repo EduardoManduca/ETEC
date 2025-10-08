@@ -7,6 +7,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="images/logo-cps.png">
+    <script src="script.js" defer></script>
 </head>
 <body>
 
@@ -64,14 +65,15 @@
         </script>
     <div class="login">
         <h2 class="titulo-login">Login</h2>
-        <form action="processar_login.php" method="post"> 
+        <!-- <form action="processar_login.php" method="post">  -->
             <label for="username" class="title-login">ID / Nome:</label><br>
             <input type="text" id="username" name="username" required class="cadastro"><br><br>
             <label for="password" class="title-login">Senha:</label><br>
             <input type="password" id="password" name="password" required class="cadastro"><br><br>
-            <input type="button" value="Cancelar" class="cancel" onclick="document.getElementById('username').value=''; document.getElementById('password').value=''; return false;">
-            <input type="submit" value="Entrar" class="enter">
-        </form>
+            <input type="button" value="Cancelar" class="cancel" onclick="window.location.href='Code_Tela_Inicial.html'">
+            <input type="submit" value="Entrar" class="enter" onclick="logincheck()">
+            
+        <!-- </form> -->
     </main>
     <footer>
         <img id="img-rodape" src="images/logo-sp.png" alt="">
