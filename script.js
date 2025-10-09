@@ -1,9 +1,22 @@
 logincheck = () => {
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
+
     if (username === 'admin' && password === 'password123') {
-        alert('Login bem-sucedido!');
-        window.location.href = 'tela_Inicial.html'; // Redireciona para a página inicial
-    }else {
-        alert('Nome de usuário ou senha incorretos. Tente novamente.');
-    }}
+        openModal('success-modal'); // modal de login bem succedido.
+
+        setTimeout(() => {
+            window.location.href = 'tela_Inicial.html';
+        }, 3000); // Redirecionar paraa tela inicial após 3 segundos.
+    } else {
+        openModal('error-modal'); // modal de login após login incorreto.
+    }
+}
+
+function openModal(id) {
+    document.getElementById(id).style.display = 'flex';
+}
+
+function closeModal(id) {
+    document.getElementById(id).style.display = 'none';
+}
