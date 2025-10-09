@@ -48,11 +48,15 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
 }
+.controles-tamanho {
+    margin-top: -5px;
+}
 
 /* ELEMENTOS DO TOPO */
 #texto-topo-gsp {
     margin-top: 5px;
     color: gray;
+    font-size: smaller;
     margin-right: 10px;
 }
 
@@ -66,14 +70,46 @@ body {
     padding: 0;
 }
 
+.ul-meio-topo {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    margin: 0;
+    padding: 0;
+    gap: 20px;
+}
+
+.logo-etec {
+    height: 80px;
+}
+
 .search-wrapper {
     display: flex;
     align-items: center;
     justify-content: center;
+    max-width: 435px;
     width: 100%;
-    max-width: 600px;
-    margin: 0 auto;
-    flex-wrap: wrap;
+    padding: 5px;
+    margin-top: 2%;
+    margin-left: 35%;
+    border-radius: 5px;
+}
+
+.br-pesq {
+    padding: 8px;
+    width: 100%;
+    outline: none;
+}
+
+.search-button {
+    background-color: #a00;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    color: white;
+    border-radius: 0 5px 5px 0;
 }
 
 .br-pesq {
@@ -106,7 +142,7 @@ body {
 
 .campo-preto {
     background-color: black;
-    width: 250px;
+    width: 300px;
     height: 80px;
     border-top-right-radius: 100px;
     border-bottom-right-radius: 100px;
@@ -117,13 +153,13 @@ body {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    margin-top: 10px;
-    margin-right: 50px;
+    margin-top: 30px;
+    margin-right: 20px;
     justify-content: flex-end;
 }
 
 .img-midias {
-    width: 30px;
+    width: 25px;
     filter: grayscale(100%);
     opacity: 0.8;
     transition: all 0.3s;
@@ -132,16 +168,17 @@ body {
 .img-midias:hover {
     filter: grayscale(0%);
     opacity: 1;
+    transform: scale(1.1);
 }
 
 .logo-sp {
     margin-top: 20px;
-    margin-left: 10px;
+    margin-left: 50px;
 }
 
 .logo-etec {
     margin-top: 30px;
-    margin-left: 20px;
+    margin-left: 50px;
     width: 100%;
     max-width: 300px;
 }
@@ -266,8 +303,16 @@ nav {
     padding: 0;
 }
 
+.a-nav-bar:hover {
+    transform: sclae(1.05);
+}
+
 .li-nav-bar {
     margin: 0 20px;
+}
+
+.li-nav-bar:hover {
+    transform: scale(1.05);
 }
 
 .a-nav-bar {
@@ -281,11 +326,9 @@ nav {
     color: #999999;
 }
 
-
 .controles-acessibilidade {
     display: flex;
     align-items: center;
-    gap: 10px;
     border-left: 1px solid gray;
     padding-left: 15px;
     margin-left: 15px;
@@ -572,52 +615,72 @@ tr {
         margin-right: 0;
     }
 }
+
 /* Modal telalogin.html COMEÇO */
 .modal {
-  display: none;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.4);
-  z-index: 9999;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 9999;
+}
+
+#tabela-kits-materiais {
+    margin-bottom: 2.5%;
 }
 
 .modal-content {
-  background: #fff;
-  padding: 2rem;
-  border-radius: 12px;
-  text-align: center;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-  animation: pop 0.3s ease;
+    background: #fff;
+    padding: 2rem;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    animation: pop 0.3s ease;
 }
 
 .modal-content h3 {
-  color: #005C6D;
-  margin-bottom: 10px;
+    color: #005C6D;
+    margin-bottom: 10px;
+}
+
+#governo-sp {
+    margin-top: 5px;
+    font-style: italic;
+    color: #333;
+    font-size: small;
 }
 
 .modal-content button {
-  background: #e14d4d;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 14px;
-  margin-top: 10px;
-  transition: opacity 0.2s, transform 0.2s;
+    background: #e14d4d;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 10px;
+    transition: opacity 0.2s, transform 0.2s;
 }
 
 .modal-content button:hover {
-  opacity: 0.9;
-  transform: scale(1.03);
+    opacity: 0.9;
+    transform: scale(1.03);
 }
 
 @keyframes pop {
-  from { transform: scale(0.7); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
+    from {
+        transform: scale(0.7);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
+
 /* --- Modal telalogin.html FINAL--- */
 
 /* ------- telalogin.html COMEÇO------- */
@@ -637,13 +700,17 @@ tr {
     margin: 5% auto;
 }
 
+#paragrafo-login {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
 #titulo-login {
     text-align: center;
     color: #005C6D;
     font-family: "Poppins", Arial, sans-serif;
     font-size: 24px;
     font-weight: 600;
-    margin-bottom: 20px;
 }
 
 .title-login {
@@ -653,6 +720,7 @@ tr {
     align-self: flex-start;
     margin-top: 10px;
     color: #333;
+    margin-bottom: 5px;
 }
 
 .cadastro {
@@ -662,8 +730,6 @@ tr {
     border: 1px solid #ccc;
     border-radius: 8px;
     box-sizing: border-box;
-    margin-top: 5px;
-    margin-bottom: 10px;
     transition: border-color 0.2s, box-shadow 0.2s;
 }
 
@@ -696,7 +762,7 @@ tr {
 }
 
 #cancel {
-    background-color: #e14d4d;
+    background-color: #B20000;
 }
 
 #cancel:hover {

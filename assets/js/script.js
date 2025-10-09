@@ -1,8 +1,8 @@
 logincheck = () => {
     const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
+    const senha = document.getElementById('password').value;
 
-    if (username === 'admin' && password === 'password123') {
+    if (username === 'admin' && senha === 'password123') {
         openModal('success-modal'); // modal de login bem succedido.
 
         setTimeout(() => {
@@ -11,8 +11,8 @@ logincheck = () => {
     } else {
         openModal('error-modal'); // modal de login após login incorreto.
     }
-}
 
+}
 function openModal(id) {
     document.getElementById(id).style.display = 'flex';
 }
@@ -20,3 +20,4 @@ function openModal(id) {
 function closeModal(id) {
     document.getElementById(id).style.display = 'none';
 }
+
