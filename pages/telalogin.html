@@ -76,9 +76,7 @@
     <nav>
         <ul class="nav-bar">
             <li class="li-nav-bar"></li>
-
             <li class="li-nav-bar"></li>
-
             <li class="li-nav-bar"></li>
         </ul>
     </nav>
@@ -96,22 +94,21 @@
             new window.VLibras.Widget('https://vlibras.gov.br/app');
         </script>
         <div id="login">
-            <h2 id="titulo-login">Login</h2>
+            <h2 id="titulo-login">Login</h2> 
             <p id="paragrafo-login">Por favor, insira seu ID e senha para acessar sua conta.</p>
-            <!-- <form action="processar_login.php" method="post">  -->
             <label for="username" class="title-login">ID / Nome:</label>
-            <input type="text" name="username" placeholder="Insira seu ID/Nome" class="cadastro"><br><br>
+            <input type="text" name="username" placeholder="Insira seu ID/Nome" require class="cadastro"><br>
             <label for="password" class="title-login">Senha:</label>
-            <input type="password" id="password" name="password" placeholder="Insira sua senha" required
-                class="cadastro"><br><br>
+            <input type="password" id="password" name="password" placeholder="Insira sua senha" required class="cadastro"><br><br>
             <input type="submit" value="Entrar" id="enter" onclick="logincheck()"> <!--Botão Entrar-->
-            <input type="button" value="Cancelar" id="cancel" onclick="window.location.href='Code_Tela_Inicial.html'">
-            <!--Botão Cancelar-->
+            <input type="button" value="Cancelar" id="cancel"
+                onclick="window.location.href='/code/Code_Tela_Inicial.html'"> <!--Botão Cancelar-->
         </div>
-        <!-- </form> -->
     </main>
     <footer>
-        <img id="img-rodape" src="/images/logo-sp.png" alt="">
+        <a href="https://www.sp.gov.br/sp">
+            <img id="img-rodape" src="/images/logo-sp.png" alt="">
+        </a>
     </footer>
 
     </div>

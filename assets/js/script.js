@@ -1,23 +1,13 @@
-logincheck = () => {
+function logincheck() {
     const username = document.getElementById('username').value;
     const senha = document.getElementById('password').value;
 
     if (username === 'admin' && senha === 'password123') {
-        openModal('success-modal'); // modal de login bem succedido.
-
+        openModal('success-modal');
         setTimeout(() => {
             window.location.href = 'tela_Inicial.html';
-        }, 3000); // Redirecionar paraa tela inicial após 3 segundos.
+        }, 3000);
     } else {
-        openModal('error-modal'); // modal de login após login incorreto.
+        openModal('error-modal');
     }
-
 }
-function openModal(id) {
-    document.getElementById(id).style.display = 'flex';
-}
-
-function closeModal(id) {
-    document.getElementById(id).style.display = 'none';
-}
-
