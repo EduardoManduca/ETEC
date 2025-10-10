@@ -1,7 +1,13 @@
+@font-face {
+    font-family: 'RobotoSlab';
+    src: url('/font/RobotoSlab-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
 :root {
     /* Cores retiradas do Guia de estilo Site CPS:
     https://cps.sp.gov.br/guia-estilo/cores.php */
-
     /* Cores principais */
     --vermelho-base: #B20000;
     --vermelho-escuro-10: #7E0000;
@@ -34,6 +40,9 @@
     --concluido: #3ACF1F;
     --concluido-outline: #80E96D;
     --concluido-light: #E8FBE4;
+
+    /* Fonte Roboto */
+    --font-primary: 'RobotoSlab', serif;
 }
 
 * {
@@ -45,8 +54,9 @@
 /* VIEWPORT (coloque no <head> do HTML) */
 /* <meta name="viewport" content="width=device-width, initial-scale=1.0"> */
 
-body {
-    font-family: Arial, Helvetica, sans-serif;
+* {
+    font-family: var(--font-primary);
+    /*Tudo como Roboto Regular (Adicionar bold, light manualmente)*/
 }
 
 .controles-tamanho {
@@ -111,7 +121,6 @@ body {
     padding-right: 20px;
     font-size: 1rem;
     font-weight: 300;
-    font-family: Roboto, sans-serif;
     border-radius: 30px 0px 0px 30px;
     border: 1px solid var(--cinza-claro);
     background: #fff;
@@ -204,16 +213,6 @@ nav {
     padding-bottom: 10%;
 }
 
-@media (max-width: 768px) {
-    #laboratorio-div {
-        flex-direction: column;
-        align-items: stretch;
-        max-width: 90%;
-        margin: auto;
-        gap: 20px;
-    }
-}
-
 .campos-div {
     height: 25px;
     background-color: #D9D9D9;
@@ -259,30 +258,10 @@ nav {
     background-position: 5px center;
     background-image: url("images/search_icon.png");
     font-size: medium;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    /*Alterar depois a fonte*/
     height: 28px;
     padding: 4px 6px 4px 30px;
     border: 1px solid #ccc;
     border-radius: 3px;
-}
-
-@media (max-width: 768px) {
-    #div-search {
-        flex-direction: column;
-        gap: 18px;
-        margin: 0 3%;
-    }
-
-    .grupo {
-        min-width: 0;
-        width: 100%;
-    }
-
-    .campo-search {
-        width: 100%;
-        max-width: 480px;
-    }
 }
 
 /* AGENDAMENTO_LAB.HTML FINAL*/
@@ -295,16 +274,16 @@ nav {
     gap: 20px;
     margin: 0;
     padding: 0;
-    ;
+    background: var(--vermelho-base);
 }
 
 .li-nav-bar {
     margin: 0 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .li-nav-bar:hover {
-    opacity: 0.8;
-    transform: scale(1.2);
+    transform: scale(1.1);
 }
 
 .a-nav-bar {
@@ -346,7 +325,6 @@ nav {
 .titulo {
     padding-top: 10px;
     padding-left: 10px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 #Laboratórios {
@@ -360,7 +338,6 @@ nav {
 .label {
     margin-left: 15px;
     color: #28739e;
-    font-family: Arial, Helvetica, sans-serif;
 }
 
 #input-data,
@@ -425,22 +402,17 @@ footer {
 h1 {
     margin-top: 20px;
     font-size: 5vw;
-    font-family: Arial, Helvetica, sans-serif;
     color: #005C6D;
     margin-left: 20px;
     text-decoration: underline;
 }
 
 h2 {
-    margin-left: 20px;
-    font-family: Arial, Helvetica, sans-serif;
     color: #333333;
 }
 
 p {
-    margin-top: 20px;
-    margin-left: 20px;
-    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 15px;
 }
 
 #agendamentos-p {
@@ -456,8 +428,45 @@ p {
     border-radius: 10px;
 }
 
+#mensagem-div-index {
+
+    text-align: center;
+    justify-items: center;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+
+.container-servicos {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    text-align: center;
+    gap: 10px;
+    margin-left: 120px;
+    margin-right: 120px;
+    margin-top: 70px;
+}
+
+.div-servicos {
+    background: #DADADA;
+    color: #333333;
+    flex: 1;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 20px 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.35);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.div-servicos:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
 .barra-container {
-    width: 80%;
+    width: 70%;
     height: 10px;
     background-color: #aa0000;
     border-radius: 5px;
@@ -481,7 +490,6 @@ header {
     text-align: left;
     margin: 0.5% 0;
     color: #005C6D;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin-left: 1%;
 }
 
@@ -490,7 +498,6 @@ table {
     max-width: 800px;
     border-collapse: collapse;
     margin: 0 auto;
-    font-family: Arial, sans-serif;
     background-color: #888888;
     height: auto;
 }
@@ -524,85 +531,6 @@ tr {
 #h1-estoque {
     text-decoration: none;
     font-size: 50px;
-}
-
-/* RESPONSIVIDADE */
-@media (max-width: 768px) {
-    .br-pesq {
-        padding: 10px;
-        font-size: 0.9rem;
-    }
-
-    .search-wrapper {
-        flex-direction: column;
-        align-items: stretch;
-        max-width: 90%;
-    }
-
-    .search-button {
-        border-radius: 0 0 30px 30px;
-        height: 45px;
-        margin-top: 5px;
-    }
-
-    h1 {
-        font-size: 6vw;
-    }
-
-    .logo-etec {
-        max-width: 200px;
-    }
-
-    .nav-bar {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    #lista-1 {
-        flex-direction: column;
-        gap: 20px;
-    }
-
-    .links {
-        width: 100%;
-        margin: 10px;
-    }
-
-    table {
-        width: 100%;
-    }
-
-    footer {
-        position: relative;
-    }
-}
-
-@media (max-width: 480px) {
-    h1 {
-        font-size: 7vw;
-    }
-
-    .br-pesq,
-    .search-button {
-        width: 100%;
-        border-radius: 10px;
-        margin-bottom: 10px;
-    }
-
-    .search-wrapper {
-        align-items: center;
-    }
-
-    .ul-topo,
-    .ul-meio-topo {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .ul-midias {
-        justify-content: center;
-        margin-right: 0;
-    }
 }
 
 /* Modal telalogin.html COMEÇO */
@@ -699,13 +627,11 @@ tr {
 #titulo-login {
     text-align: center;
     color: #005C6D;
-    font-family: "Poppins", Arial, sans-serif;
     font-size: 24px;
     font-weight: 600;
 }
 
 .title-login {
-    font-family: "Poppins", Arial, sans-serif;
     font-size: 18px;
     font-weight: 500;
     align-self: flex-start;
@@ -759,10 +685,104 @@ tr {
     opacity: 0.8;
 }
 
-@media (max-width: 600px) {
+/* Para tablets e telas menores (<= 1024px) */
+@media (max-width: 1024px) {
+    .search-wrapper {
+        margin-left: auto;
+        margin-right: auto;
+        width: 90%;
+        max-width: 500px;
+    }
+
+    .ul-meio-topo {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .container-servicos {
+        margin-left: 20px;
+        margin-right: 20px;
+        flex-wrap: wrap;
+    }
+
+    #container-principal,
+    #laboratorio-div {
+        max-width: 95%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #div-search {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .campo-search {
+        width: 100%;
+    }
+}
+/* Para tablets em modo retrato e celulares grandes (<= 768px) */
+@media (max-width: 768px) {
+
+    .ul-topo,
+    .ul-meio-topo {
+        justify-content: center;
+    }
+
+    .logo-sp,
+    .logo-etec {
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+
+    .ul-midias {
+        justify-content: center;
+        margin-right: 0;
+    }
+
+    .nav-bar {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #lista-1 {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    #mensagem-div-index {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+
+    .container-servicos {
+        flex-direction: column;
+        align-items: center;
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+
+    .div-servicos {
+        width: 100%;
+        max-width: 400px;
+    }
+
+    h1 {
+        font-size: 8vw;
+        text-align: center;
+        margin-left: 0;
+    }
+
+    .tabela-responsiva-wrapper {
+        width: 100%;
+        overflow-x: auto;
+    }
+
     #login {
         width: 90%;
-        min-height: 45vh;
+        min-height: auto;
         padding: 1.5rem;
     }
 
@@ -772,4 +792,42 @@ tr {
     }
 }
 
-/* ------- telalogin.html ------- */
+/* Para celulares (<= 480px) */
+@media (max-width: 480px) {
+
+    .ul-meio-topo,
+    .ul-topo {
+        flex-direction: column;
+    }
+
+    .search-wrapper {
+        width: 95%;
+    }
+
+    .br-pesq,
+    .search-button {
+        border-radius: 10px;
+    }
+
+    .search-wrapper>.search-button {
+        margin-top: 10px;
+        width: 100%;
+    }
+
+    .search-wrapper {
+        flex-direction: column;
+    }
+
+    h1 {
+        font-size: 2.2rem;
+    }
+
+    #h1-estoque {
+        font-size: 38px;
+    }
+
+    .modal-content {
+        margin-top: 0;
+        padding: 1.5rem;
+    }
+}

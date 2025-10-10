@@ -60,36 +60,45 @@
         </li>
     </ul>
 
-    <nav>
-        <ul class="nav-bar">
-            <li>|</li>
-            <li class="li-nav-bar"><a class="a-nav-bar" href="/pages/agendamento_lab.html">Agendamentos</a></li>
-            <li>|</li>
-            <li class="li-nav-bar"><a class="a-nav-bar" href="/pages/estoque.html">Estoque</a></li>
-            <li>|</li>
-            <li class="li-nav-bar"><a class="a-nav-bar" href="/pages/kits_e_materiais.html">Kits e Materiais </a></li>
-            <li>|</li>
-        </ul>
-    </nav>
+<nav>
+    <ul class="nav-bar">
+        <li class="li-nav-bar"><a class="a-nav-bar" href="/pages/agendamento_lab.html">Agendamentos</a></li>
+        <div class="barra-div-nav">|</div>
+        <li class="li-nav-bar"><a class="a-nav-bar" href="/pages/estoque.html">Estoque</a></li>
+        <div class="barra-div-nav">|</div>
+        <li class="li-nav-bar"><a class="a-nav-bar" href="/pages/kits_e_materiais.html">Kits e Materiais</a></li>
+    </ul>
+</nav>
     <main>
-        <h1 id="h1-menu">Bem-Vindo!</h1>
-
-        <br>
-
-        <h2>Agendamento de laboratórios, visualização de itens disponíveis no estoque <br>
-            e visualização dos kits.</h2>
-
-        <br>
-
-        <div class="barra-container">
-            <div class="barra-preenchida"></div>
+        <div id="mensagem-div-index">
+            <h1>Bem-Vindo!</h1>
+            <br>
+            <h2>Agendamento de laboratórios, visualização de itens disponíveis no estoque e visualização dos kits.</h2>
+            <br>
+            <div class="barra-container">
+                <br>
+                <h2 style="margin-top: 10px;">Serviços disponíveis</h2>
+            </div>
         </div>
-
-        <div class="links">
-            <p id="agendamentos-p">-Agendamentos: <a class="links-menu"
-                    href="/pages/agendamento_lab.html">agendamentos</a></p>
-            <p>-Estoques: <a class="links-menu" href="/pages/estoque.html">estoques</a></p>
-            <p>-Kits e Materias: <a class="links-menu" href="/pages/kits_e_materiais.html">kits e Materiais</a></p>
+            <div class="container-servicos" style="cursor:pointer" onclick="window.location.href='/pages/agendamento_lab.html'">
+                <div class="div-servicos">
+                    <h2 class="h2-div-servicos">Agendamentos</h2>
+                    <p>Reserve laboratórios e espaços da ETEC com praticidade.</p>
+                </div>
+        <div class="div-servicos" style="cursor:pointer" onclick="window.location.href='/pages/estoque.html'">
+            <h2>Estoque</h2>
+            <p>Veja os itens disponíveis e organize o uso dos materiais.</p>
+        </div>
+        <div class="div-servicos" style="cursor:pointer;" onclick="window.location.href='/pages/kits_e_materiais.html'">
+            <h2>Kits e Materiais</h2>
+            <p>Consulte kits montados e os materiais incluidos.</p>
+        </div>
+        <!-- <div class="links">
+                <p id="agendamentos-p">-Agendamentos: <a class="links-menu"
+                        href="/pages/agendamento_lab.html">agendamentos</a></p>
+                <p>-Estoques: <a class="links-menu" href="/pages/estoque.html">estoques</a></p>
+                <p>-Kits e Materias: <a class="links-menu" href="/pages/kits_e_materiais.html">kits e Materiais</a></p>
+            </div> -->
         </div>
 
         <!-- VLibras Widget -->
@@ -107,7 +116,7 @@
     </main>
     <footer>
         <a href="https://www.sp.gov.br/sp">
-        <img id="img-rodape" src="/images/logo-sp.png" alt="">
+            <img id="img-rodape" src="/images/logo-sp.png" alt="">
         </a>
     </footer>
 
