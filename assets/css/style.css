@@ -302,6 +302,11 @@ nav {
     margin: 0 20px;
 }
 
+.li-nav-bar:hover {
+    opacity: 0.8;
+    transform: scale(1.2);
+}
+
 .a-nav-bar {
     color: white;
     text-decoration: none;
@@ -618,6 +623,8 @@ tr {
 .modal-content {
     background: #fff;
     padding: 2rem;
+    margin-top: 20%;
+    justify-content: center;
     border-radius: 12px;
     text-align: center;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
