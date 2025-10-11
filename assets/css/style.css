@@ -223,6 +223,11 @@ nav {
     cursor: pointer;
 }
 
+.img-servicos {
+    max-width: 150px;
+    opacity: 0.85;
+}
+
 #div-search {
     display: flex;
     gap: 13.4rem;
@@ -442,10 +447,31 @@ p {
     justify-content: center;
     align-items: stretch;
     text-align: center;
-    gap: 10px;
-    margin-left: 120px;
-    margin-right: 120px;
-    margin-top: 70px;
+    gap: 30px;
+    margin-left: 60px;
+    margin-right: 60px;
+    margin-top: 40px;
+}
+
+.container-servicos-2 {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    text-align: center;
+    margin-left: 286px;
+    margin-right: 286px;
+    margin-top: 20px;
+    gap: 0;
+}
+
+.h2-div-servicos {
+    color: var(--primario-titulos-hover);
+    text-align: center;
+    font-size: xx-large;
+}
+
+#servicos-h2 {
+    color: var(--primario-titulos-hover);
 }
 
 .div-servicos {
@@ -454,25 +480,49 @@ p {
     flex: 1;
     margin-left: 10px;
     margin-right: 10px;
-    padding: 20px 20px;
+    padding: 30px 20px;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.35);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.div-servicos:hover {
-    transform: scale(1.05);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+.div-servicos-2 {
+    background: #DADADA;
+    color: #333333;
+    flex: 1;
+    margin-left: 50px;
+    margin-right: 50px;
+    padding: 30px 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.35);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+.botao-servicos {
+    background-color: var(--vermelho-base);
+    border: none;
+    color: white;
+    padding: 2%;
+    margin-top: 20px;
+    padding-inline: 25px;
+    border-radius: 5px;
+}
+
+.botao-servicos:hover {
+    background-color: var(--vermelho-escuro-10);
+    cursor: pointer;
+}
+
+
 .barra-container {
-    width: 70%;
+    width: 750px;
     height: 10px;
     background-color: #aa0000;
     border-radius: 5px;
     margin-top: 10px;
     margin-left: 10px;
     position: relative;
+    justify-self: center;
 }
 
 .links-menu {
@@ -721,6 +771,7 @@ tr {
         width: 100%;
     }
 }
+
 /* Para tablets em modo retrato e celulares grandes (<= 768px) */
 @media (max-width: 768px) {
 

@@ -60,45 +60,65 @@
         </li>
     </ul>
 
-<nav>
-    <ul class="nav-bar">
-        <li class="li-nav-bar"><a class="a-nav-bar" href="/pages/agendamento_lab.html">Agendamentos</a></li>
-        <div class="barra-div-nav">|</div>
-        <li class="li-nav-bar"><a class="a-nav-bar" href="/pages/estoque.html">Estoque</a></li>
-        <div class="barra-div-nav">|</div>
-        <li class="li-nav-bar"><a class="a-nav-bar" href="/pages/kits_e_materiais.html">Kits e Materiais</a></li>
-    </ul>
-</nav>
+    <nav>
+        <ul class="nav-bar">
+            <li class="li-nav-bar"><a class="a-nav-bar" href="/pages/agendamento_lab.html">Agendamentos</a></li>
+            <div class="barra-div-nav">|</div>
+            <li class="li-nav-bar"><a class="a-nav-bar" href="/pages/estoque.html">Estoque</a></li>
+            <div class="barra-div-nav">|</div>
+            <li class="li-nav-bar"><a class="a-nav-bar" href="/pages/kits_e_materiais.html">Kits e Materiais</a></li>
+        </ul>
+    </nav>
     <main>
         <div id="mensagem-div-index">
-            <h1>Bem-Vindo!</h1>
             <br>
-            <h2>Agendamento de laboratórios, visualização de itens disponíveis no estoque e visualização dos kits.</h2>
             <br>
-            <div class="barra-container">
-                <br>
-                <h2 style="margin-top: 10px;">Serviços disponíveis</h2>
+            <h2 class="h2-div-servicos" style="margin-top: 10px;">Serviços disponíveis</h2><br>
+            <div class="barra-container"></div>
+        </div>  
+        <div class="container-servicos">
+            <div class="div-servicos">
+                <img src="/images/agendamento.png" class="img-servicos">
+                <h2>Agendamentos</h2>
+                <p>Reserve laboratórios e espaços da ETEC com praticidade.</p>
+                <button class="botao-servicos"
+                    onclick="window.location.href='/pages/agendamento_lab.html'">Acessar</button>
+            </div>
+            <div class="div-servicos">
+                <img src="/images/estoque.png" class="img-servicos">
+                <h2>Estoque</h2>
+                <p>Veja os itens disponíveis e organize o uso dos materiais.</p>
+                <button class="botao-servicos" onclick="window.location.href='/pages/estoque.html'">Consultar</button>
+            </div>
+            <div class="div-servicos">
+                <img src="/images/kit_materiais.png" class="img-servicos">
+                <h2>Kits e Materiais</h2>
+                <p>Consulte kits montados e os materiais incluidos.</p>
+                <button class="botao-servicos"
+                    onclick="window.location.href='/pages/kits_e_materiais.html'">Detalhes</button>
             </div>
         </div>
-            <div class="container-servicos" style="cursor:pointer" onclick="window.location.href='/pages/agendamento_lab.html'">
-                <div class="div-servicos">
-                    <h2 class="h2-div-servicos">Agendamentos</h2>
-                    <p>Reserve laboratórios e espaços da ETEC com praticidade.</p>
-                </div>
-        <div class="div-servicos" style="cursor:pointer" onclick="window.location.href='/pages/estoque.html'">
-            <h2>Estoque</h2>
-            <p>Veja os itens disponíveis e organize o uso dos materiais.</p>
-        </div>
-        <div class="div-servicos" style="cursor:pointer;" onclick="window.location.href='/pages/kits_e_materiais.html'">
-            <h2>Kits e Materiais</h2>
-            <p>Consulte kits montados e os materiais incluidos.</p>
-        </div>
-        <!-- <div class="links">
-                <p id="agendamentos-p">-Agendamentos: <a class="links-menu"
-                        href="/pages/agendamento_lab.html">agendamentos</a></p>
-                <p>-Estoques: <a class="links-menu" href="/pages/estoque.html">estoques</a></p>
-                <p>-Kits e Materias: <a class="links-menu" href="/pages/kits_e_materiais.html">kits e Materiais</a></p>
-            </div> -->
+        <!-- segunda parte -->
+        <br>
+        <h2 class="h2-div-servicos">Acesso Rápido</h2>
+        <br><div class="barra-container"></div><br>
+        <div class="container-servicos-2">
+            <div class="div-servicos-2">
+                <h2>Meus Agendamentos</h2>
+                <p><!--Mostrar o número da sala de agendamento - kits, data, etc...
+                    Sala xxx - Lab X
+                    Data: xx/xx/xxxx - xx:xxh -->
+                </p>
+                <button class="botao-servicos"
+                    onclick="window.location.href='/pages/agendamento_lab.html'">Acessar</button>
+            </div>
+            <div class="div-servicos-2">
+                <h2>Última atualização do Estoque</h2>
+                <p><!--Mostrar última atualização do estoque
+                    - XXXXXXXXX
+                --></p>
+                <button class="botao-servicos" onclick="window.location.href='/pages/estoque.html'">Ver tudo</button>
+            </div>
         </div>
 
         <!-- VLibras Widget -->
