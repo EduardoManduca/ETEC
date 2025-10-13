@@ -1,23 +1,15 @@
 function logincheck() {
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
+    const errorMessage = document.getElementById('errorMessage');
 
-    if (username === 'admin' && password === 'password123') {
-        document.getElementById('success-modal').style.display = 'block';
+    const correctUsername = 'admin';
+    const correctPassword = 'password123';
 
-        setTimeout(() => {
-            window.location.href = '/pages/index.html';
-        }, 3000);
+    if (username === correctUsername && password === correctPassword) {
+        errorMessage.style.display = 'none';
+        window.location.href = '/pages/index.html';
     } else {
-        // Mostra modal de erro
-        document.getElementById('error-modal').style.display = 'block';
+        errorMessage.style.display = 'block';
     }
-}
-
-function closeModal(id) {
-    document.getElementById(id).style.display = 'none';
-}
-
-function ErrorReport() {
-    // error
 }

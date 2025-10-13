@@ -45,28 +45,129 @@
     --font-primary: 'RobotoSlab', serif;
 }
 
+/* ARQUIVOS NO GERAL */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* VIEWPORT (coloque no <head> do HTML) */
-/* <meta name="viewport" content="width=device-width, initial-scale=1.0"> */
-
 * {
     font-family: var(--font-primary);
-    /*Tudo como Roboto Regular (Adicionar bold, light manualmente)*/
 }
+
+.nav-bar {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    border: 1px solid #141414;
+    background: #BA1A1A;
+    padding: 0;
+}
+
+.li-nav-bar {
+    width: 200px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-left: 1px solid #141414;
+}
+
+.li-nav-bar:last-child {
+    border-right: 1px solid #141414;
+}
+
+.li-nav-bar:hover {
+    background-color: #7E0000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.a-nav-bar {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 10px 0;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+
+.controles-acessibilidade {
+    display: flex;
+    align-items: center;
+    border-left: 1px solid #757575;
+    padding-left: 15px;
+    margin-left: 15px;
+}
+
+.controles-acessibilidade button {
+    background: none;
+    border: 2px solid white;
+    border-radius: 50%;
+    color: #757575;
+    cursor: pointer;
+    font-weight: bold;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    transition: all 0.3s;
+}
+
+.controles-acessibilidade button:hover {
+    transform: scale(1.2);
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+footer {
+    margin-top: 3%;
+    background-color: black;
+    padding: 40px;
+    text-align: center;
+    width: 100%;
+}
+
+#img-rodape {
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    width: auto;
+}
+
+h1 {
+    color: #1A6C7C;
+    padding: 1%;
+    text-align: center;
+}
+
+p {
+    margin-top: 15px;
+}
+
 
 .controles-tamanho {
     margin-top: -5px;
 }
 
-/* ELEMENTOS DO TOPO */
 #texto-topo-gsp {
     margin-top: 5px;
-    color: gray;
+    color: #5C5C5C;
     font-size: smaller;
     margin-right: 10px;
 }
@@ -104,14 +205,6 @@
     border-radius: 5px;
 }
 
-.search-button {
-    background-color: #a00;
-    border: none;
-    padding: 8px 12px;
-    cursor: pointer;
-    color: white;
-    border-radius: 0 5px 5px 0;
-}
 
 .br-pesq {
     flex: 1;
@@ -122,9 +215,8 @@
     font-size: 1rem;
     font-weight: 300;
     border-radius: 30px 0px 0px 30px;
-    border: 1px solid var(--cinza-claro);
-    background: #fff;
-    color: var(--cinza-texto-base);
+    border: 1px solid #D1D1D1;
+    background: white;
     font-weight: 300;
     height: 50px;
     margin-right: 0;
@@ -135,15 +227,14 @@
     border: none;
     border-top-right-radius: 30px;
     border-bottom-right-radius: 30px;
-    background-color: var(--vermelho-base);
-    color: white;
+    background-color: #BA1A1A;
     height: 50px;
     padding: 0 20px;
     cursor: pointer;
 }
 
 .campo-preto {
-    background-color: black;
+    background-color: #141414;
     width: 300px;
     height: 80px;
     border-top-right-radius: 100px;
@@ -186,14 +277,9 @@
     max-width: 300px;
 }
 
-nav {
-    background-color: var(--vermelho-base);
-    margin-top: 30px;
-    padding: 10px 0;
-    border: 1px solid black;
-}
+/* ARQUIVOS NO GERAL */
 
-/* AGENDAMENTO_LAB.HTML COMEÇO */
+/* Agendamento_lab.html */
 #container-principal {
     margin-left: 3%;
     max-width: 60%;
@@ -221,11 +307,6 @@ nav {
     padding: 4px 6px 4px;
     width: 100%;
     cursor: pointer;
-}
-
-.img-servicos {
-    max-width: 150px;
-    opacity: 0.85;
 }
 
 #div-search {
@@ -269,179 +350,9 @@ nav {
     border-radius: 3px;
 }
 
-/* AGENDAMENTO_LAB.HTML FINAL*/
+/* Agendamento_lab.html */
 
-.nav-bar {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 20px;
-    margin: 0;
-    padding: 0;
-    background: var(--vermelho-base);
-}
-
-.li-nav-bar {
-    margin: 0 20px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.li-nav-bar:hover {
-    transform: scale(1.1);
-}
-
-.a-nav-bar {
-    color: white;
-    text-decoration: none;
-    transition: color 0.3s;
-    cursor: pointer;
-}
-
-.controles-acessibilidade {
-    display: flex;
-    align-items: center;
-    border-left: 1px solid gray;
-    padding-left: 15px;
-    margin-left: 15px;
-}
-
-.controles-acessibilidade button {
-    background: none;
-    border: 2px solid white;
-    border-radius: 50%;
-    color: gray;
-    cursor: pointer;
-    font-weight: bold;
-    width: 35px;
-    height: 35px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
-    transition: all 0.3s;
-}
-
-.controles-acessibilidade button:hover {
-    transform: scale(1.2);
-    color: white;
-}
-
-.titulo {
-    padding-top: 10px;
-    padding-left: 10px;
-}
-
-#Laboratórios {
-    padding-right: 60px;
-    padding-bottom: 3px;
-    border-color: gray;
-    background-color: #d3d3d3;
-    border-radius: 5px;
-}
-
-.label {
-    margin-left: 15px;
-    color: #28739e;
-}
-
-#input-data,
-#input-horario,
-#kits {
-    border-color: gray;
-    background-color: lightgray;
-    border-radius: 5px;
-}
-
-#input-horario {
-    padding-right: 42px;
-}
-
-#kits {
-    padding-right: 70px;
-    padding-bottom: 3px;
-}
-
-#lista-1 {
-    margin-top: 30px;
-    list-style: none;
-    display: flex;
-    gap: 80px;
-    flex-wrap: wrap;
-}
-
-.item-lista-1 {
-    display: inline-block;
-}
-
-html,
-body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-}
-
-main {
-    flex: 1;
-    /* ocupa o espaço disponível */
-}
-
-footer {
-    margin-top: 3%;
-    background-color: #000000;
-    padding: 40px;
-    text-align: center;
-    width: 100%;
-}
-
-#img-rodape {
-    display: flex;
-    margin-left: auto;
-    margin-right: auto;
-    width: auto;
-}
-
-
-h1 {
-    margin-top: 20px;
-    font-size: 5vw;
-    color: #005C6D;
-    margin-left: 20px;
-    text-decoration: underline;
-}
-
-h2 {
-    color: #333333;
-}
-
-p {
-    margin-top: 15px;
-}
-
-#agendamentos-p {
-    padding-top: 10px;
-}
-
-.links {
-    background-color: lightgray;
-    width: 90%;
-    max-width: 500px;
-    margin-left: 10px;
-    height: 120px;
-    border-radius: 10px;
-}
-
-#mensagem-div-index {
-
-    text-align: center;
-    justify-items: center;
-    margin-left: 15%;
-    margin-right: 15%;
-}
-
-
+/* index.html */
 .container-servicos {
     display: flex;
     justify-content: center;
@@ -450,7 +361,7 @@ p {
     gap: 30px;
     margin-left: 60px;
     margin-right: 60px;
-    margin-top: 40px;
+    margin-top: 20px;
 }
 
 .container-servicos-2 {
@@ -464,10 +375,9 @@ p {
     gap: 0;
 }
 
-.h2-div-servicos {
+.h1-div-servicos {
     color: var(--primario-titulos-hover);
     text-align: center;
-    font-size: xx-large;
 }
 
 #servicos-h2 {
@@ -513,7 +423,6 @@ p {
     cursor: pointer;
 }
 
-
 .barra-container {
     width: 750px;
     height: 10px;
@@ -525,37 +434,90 @@ p {
     justify-self: center;
 }
 
-.links-menu {
-    color: #005C6D;
-    text-decoration: none;
-    transition: transform 0.3s ease;
-    display: inline-block;
+.img-servicos {
+    max-width: 150px;
+    opacity: 0.85;
 }
 
-.links-menu:hover {
-    transform: scale(1.05);
-}
+/* index.html */
 
-header {
-    text-align: left;
-    margin: 0.5% 0;
-    color: #005C6D;
-    margin-left: 1%;
-}
+/* Tabelas em kits_e_materias && estoque */
 
 table {
     width: 90%;
     max-width: 800px;
     border-collapse: collapse;
     margin: 0 auto;
-    background-color: #888888;
+    background-color: #D1D1D1;
     height: auto;
 }
+
+#div-search-kit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    margin: auto;
+    margin-bottom: 1.4%;
+}
+
+#search-input {
+    width: 100%;
+    padding: 10px 45px 10px 15px;
+    border: 2px solid #D1D1D1;
+    border-radius: 25px;
+    outline: none;
+    font-size: medium;
+    transition: all 0.3s ease;
+}
+
+.search-botao {
+    position: absolute;
+    right: 5px;
+    background-color: #BA1A1A;
+    border: none;
+    color: white;
+    font-size: 16px;
+    padding: 7px 10px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#search-input::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    appearance: none;
+    display: none;
+}
+
+.clear-search {
+    position: absolute;
+    right: 55px;
+    padding-block: 10px;
+    background: none;
+    border: none;
+    color: #757575;
+    font-size: x-large;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: none;
+}
+
+.clear-search:hover {
+    color: #BA1A1A;
+    transform: scale(1.2);
+}
+
+.search-botao:hover {
+    background-color: #7E0000;
+}
+
 
 th,
 td {
     padding: 12px;
-    border: 1px solid #ddd;
+    border: 1px solid white;
     text-align: center;
 }
 
@@ -563,15 +525,20 @@ tr {
     height: auto;
 }
 
+thead {
+    background-color: #BA1A1A;
+    color: white;
+}
+
 .item {
     padding: 50px;
-    border: 1px solid #ddd;
+    border: 1px solid white;
     transition: background-color 0.3s;
     cursor: pointer;
 }
 
 .item:hover {
-    background-color: #e0e0e0;
+    background-color: #B2B2B2;
 }
 
 .dleft {
@@ -583,78 +550,12 @@ tr {
     font-size: 50px;
 }
 
-/* Modal telalogin.html COMEÇO */
-.modal {
-    display: none;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.4);
-    z-index: 9999;
-}
+/* Tabelas em kits_e_materias && estoque */
 
-#tabela-kits-materiais {
-    margin-bottom: 2.5%;
-}
-
-.modal-content {
-    background: #fff;
-    padding: 2rem;
-    margin-top: 20%;
-    justify-content: center;
-    border-radius: 12px;
-    text-align: center;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-    animation: pop 0.3s ease;
-}
-
-.modal-content h3 {
-    color: #005C6D;
-    margin-bottom: 10px;
-}
-
-#governo-sp {
-    margin-top: 5px;
-    font-style: italic;
-    color: #333;
-    font-size: small;
-}
-
-.modal-content button {
-    background: #e14d4d;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 14px;
-    margin-top: 10px;
-    transition: opacity 0.2s, transform 0.2s;
-}
-
-.modal-content button:hover {
-    opacity: 0.9;
-    transform: scale(1.03);
-}
-
-@keyframes pop {
-    from {
-        transform: scale(0.7);
-        opacity: 0;
-    }
-
-    to {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
-
-/* --- Modal telalogin.html FINAL--- */
 
 /* ------- telalogin.html COMEÇO------- */
 #login {
-    background-color: #F5F5F5;
+    background-color: #F0F0F0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -662,11 +563,18 @@ tr {
     min-height: 50vh;
     width: 100%;
     padding: 2rem;
-    border: 1px solid #ddd;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid #C2C2C2;
     border-radius: 20px;
     max-width: 400px;
     margin: 5% auto;
+}
+
+#errorMessage {
+    color: #BA1A1A;
+    font-weight: bold;
+    font-size: 0.9em;
+    display: none;
+    padding-top: 5px;
 }
 
 #paragrafo-login {
@@ -676,7 +584,7 @@ tr {
 
 #titulo-login {
     text-align: center;
-    color: #005C6D;
+    color: #1A6C7C;
     font-size: 24px;
     font-weight: 600;
 }
@@ -686,7 +594,7 @@ tr {
     font-weight: 500;
     align-self: flex-start;
     margin-top: 10px;
-    color: #333;
+    color: #141414;
     margin-bottom: 5px;
 }
 
@@ -694,15 +602,15 @@ tr {
     width: 100%;
     font-size: 15px;
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #C2C2C2;
     border-radius: 8px;
     box-sizing: border-box;
     transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 .cadastro:focus {
-    border-color: #005C6D;
-    box-shadow: 0 0 6px rgba(0, 92, 109, 0.3);
+    border-color: #757575;
+    box-shadow: 0 0 3px #5C5C5C;
     outline: none;
 }
 
@@ -715,44 +623,121 @@ tr {
     border-radius: 30px;
     cursor: pointer;
     font-size: 15px;
-    transition: transform 0.2s, opacity 0.2s;
     margin: 8px;
 }
 
 #enter {
-    background-color: #333333;
+    background-color: #3D3D3D;
 }
 
 #enter:hover {
-    opacity: 0.8;
+    background-color: #292929;
 }
 
 #cancel {
-    background-color: #B20000;
+    background-color: #BA1A1A;
 }
 
 #cancel:hover {
-    opacity: 0.8;
+    background-color: #7E0000;
 }
 
-/* Para tablets e telas menores (<= 1024px) */
+/* telalogin.html */
+
+/* RESPONSIVIDADE */
+
 @media (max-width: 1024px) {
     .search-wrapper {
-        margin-left: auto;
-        margin-right: auto;
-        width: 90%;
-        max-width: 500px;
-    }
-
-    .ul-meio-topo {
-        flex-wrap: wrap;
-        justify-content: center;
+        margin-left: 20%;
+        width: 60%;
     }
 
     .container-servicos {
+        margin-left: 30px;
+        margin-right: 30px;
+    }
+
+    .container-servicos-2 {
+        margin-left: 100px;
+        margin-right: 100px;
+    }
+
+    #container-principal,
+    #laboratorio-div {
+        max-width: 85%;
+    }
+
+    #div-search {
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .nav-bar {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .li-nav-bar,
+    .li-nav-bar:last-child {
+        border-right: none;
+        border-bottom: 1px solid #141414;
+        width: 100%;
+        text-align: center;
+    }
+
+    .a-nav-bar {
+        padding: 15px 20px;
+    }
+
+    .ul-meio-topo {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        padding: 10px 0;
+    }
+
+    .search-wrapper {
+        width: 90%;
+        max-width: 400px;
+        margin: 10px auto;
+        padding: 0;
+    }
+
+    .br-pesq {
+        height: 45px;
+        padding: 10px;
+        padding-left: 15px;
+    }
+
+    .search-button {
+        height: 45px;
+    }
+
+    .logo-sp,
+    .logo-etec {
+        margin: 10px 0;
+        text-align: center;
+    }
+
+    .ul-midias {
+        justify-content: center;
+        margin-right: 0;
+        margin-top: 15px;
+    }
+
+    .container-servicos,
+    .container-servicos-2 {
+        flex-direction: column;
         margin-left: 20px;
         margin-right: 20px;
-        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .div-servicos,
+    .div-servicos-2 {
+        margin: 0;
     }
 
     #container-principal,
@@ -760,125 +745,81 @@ tr {
         max-width: 95%;
         margin-left: auto;
         margin-right: auto;
+        padding: 10px;
     }
 
     #div-search {
         flex-direction: column;
-        gap: 20px;
+        gap: 1rem;
+        align-items: stretch;
     }
 
-    .campo-search {
+    .grupo {
         width: 100%;
-    }
-}
-
-/* Para tablets em modo retrato e celulares grandes (<= 768px) */
-@media (max-width: 768px) {
-
-    .ul-topo,
-    .ul-meio-topo {
-        justify-content: center;
+        max-width: 100%;
     }
 
-    .logo-sp,
-    .logo-etec {
-        margin-left: auto;
-        margin-right: auto;
-        display: block;
-    }
-
-    .ul-midias {
-        justify-content: center;
-        margin-right: 0;
-    }
-
-    .nav-bar {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    #lista-1 {
-        flex-direction: column;
-        align-items: center;
-        gap: 20px;
-    }
-
-    #mensagem-div-index {
-        margin-left: 5%;
-        margin-right: 5%;
-    }
-
-    .container-servicos {
-        flex-direction: column;
-        align-items: center;
-        margin-left: 15px;
-        margin-right: 15px;
-    }
-
-    .div-servicos {
+    .campo-search,
+    .campos-div {
         width: 100%;
-        max-width: 400px;
-    }
-
-    h1 {
-        font-size: 8vw;
-        text-align: center;
-        margin-left: 0;
-    }
-
-    .tabela-responsiva-wrapper {
-        width: 100%;
-        overflow-x: auto;
     }
 
     #login {
         width: 90%;
-        min-height: auto;
+        margin: 15% auto;
         padding: 1.5rem;
     }
 
-    #enter,
-    #cancel {
+    .tabela-responsiva-wrapper {
+        overflow-x: auto;
+        margin: 20px 5px;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .tabela-responsiva-wrapper table {
         width: 100%;
+        min-width: 600px;
+    }
+
+    h1,
+    #h1-estoque {
+        font-size: 1.8rem;
+        text-align: center;
+        padding: 15px;
+    }
+
+    .h1-div-servicos {
+        font-size: 1.5rem;
     }
 }
 
-/* Para celulares (<= 480px) */
 @media (max-width: 480px) {
 
-    .ul-meio-topo,
-    .ul-topo {
-        flex-direction: column;
+    .container-servicos,
+    .container-servicos-2 {
+        margin-left: 15px;
+        margin-right: 15px;
     }
 
-    .search-wrapper {
-        width: 95%;
+    .div-servicos,
+    .div-servicos-2 {
+        padding: 25px 15px;
     }
 
-    .br-pesq,
-    .search-button {
-        border-radius: 10px;
+    #login {
+        padding: 1.5rem 1rem;
     }
 
-    .search-wrapper>.search-button {
-        margin-top: 10px;
-        width: 100%;
-    }
-
-    .search-wrapper {
-        flex-direction: column;
-    }
-
-    h1 {
-        font-size: 2.2rem;
-    }
-
+    h1,
     #h1-estoque {
-        font-size: 38px;
+        font-size: 1.6rem;
     }
 
-    .modal-content {
-        margin-top: 0;
-        padding: 1.5rem;
+    .h1-div-servicos {
+        font-size: 1.3rem;
+    }
+
+    .logo-etec {
+        max-width: 250px;
     }
 }
