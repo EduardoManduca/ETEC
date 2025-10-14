@@ -1,14 +1,18 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agendamentos</title>
     <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/darkMode.css">
     <link rel="icon" href="/images/logo-cps.png">
 </head>
+
 <body>
-        <ul class="ul-topo">
+
+    <ul class="ul-topo">
         <li class="li-topo">
             <div class="campo-preto">
                 <a href="https://www.sp.gov.br/sp">
@@ -38,8 +42,8 @@
                             alt=""></button>
                     <button class="controles-tamanho" title="Diminuir texto"><img src="/images/i-small-font.png"
                             alt=""></button>
-                    <button class="controles-tamanho" title="Alternar modo claro/escuro"><img
-                            src="/images/i-contrast.png" alt=""></button>
+                    <button id="theme-toggle" onclick="toggleTheme()" class="controles-tamanho"
+                        title="Alternar modo claro/escuro"><img src="/images/i-contrast.png" alt=""></button>
                     <button class="controles-tamanho" title="Mostrar aviso"><img src="/images/i-error-report.png"
                             alt=""></button>
                 </li>
@@ -48,7 +52,7 @@
     </ul>
     <hr>
     <ul class="ul-meio-topo">
-        <a href="">
+        <a href="menu_tecnico.html">
             <li class="li-meio-topo"><img class="logo-etec" src="/images/logo-etec.png" alt=""></li>
         </a>
         <li class="search-wrapper">
@@ -59,50 +63,43 @@
 
     <nav>
         <ul class="nav-bar">
-            <li class="li-nav-bar"><a class="a-nav-bar" href="">Agendamentos</a></li>
+            <li class="li-nav-bar"><a class="a-nav-bar" href="agendamentos_tecnico.html">Status dos Agendamentos</a>
+            </li>
             <li class="li-nav-bar"><a class="a-nav-bar" href="">Estoque</a></li>
             <li class="li-nav-bar"><a class="a-nav-bar" href="">Kits e Materiais</a></li>
         </ul>
-
-    <h1>Status dos Agendamentos</h1>
-
-            <div class="tabela-responsiva-wrapper">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Laborátorio</th>
-                        <th>Professor</th>
-                        <th>Horário</th>
-                        <th>Kit</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="item"></td>
-                        <td class="item"></td>
-                        <td class="item"></td>
-                    </tr>
-                    <tr>
-                        <td class="item"></td>
-                        <td class="item"></td>
-                        <td class="item"></td>
-                    </tr>
-                    <tr>
-                        <td class="item"></td>
-                        <td class="item"></td>
-                        <td class="item"></td>
-                    </tr>
-                    <tr>
-                        <td class="item"></td>
-                        <td class="item"></td>
-                        <td class="item"></td>
-                    </tr>
-                </tbody>
-            </table>
+    </nav>
+    <main>
+        <h1 class="h1-div-servicos">Serviços disponíveis</h1>
+        <div class="barra-container"></div>
+        <div class="container-servicos">
+            <div class="div-servicos">
+                <img src="/images/prancheta.png" class="img-servicos">
+                <h2>Status dos Agendamentos</h2>
+                <p>Informações sobre os agendamentos e vizualização de seu status(disponível, ocupado ou em manutenção).
+                </p>
+                <button class="botao-servicos"
+                    onclick="window.location.href='/pages/pages_tecnico/agendamentos_tecnico.html'">Acessar</button>
+            </div>
+            <div class="div-servicos">
+                <img src="/images/estoque.png" class="img-servicos">
+                <h2>Estoque</h2>
+                <p>Veja os itens disponíveis e organize o uso dos materiais.</p>
+                <button class="botao-servicos" onclick="window.location.href='/pages/estoque.html'">Consultar</button>
+            </div>
+            <div class="div-servicos">
+                <img src="/images/kit_materiais.png" class="img-servicos">
+                <h2>Kits e Materiais</h2>
+                <p>Consulte kits montados e os materiais incluidos.</p>
+                <button class="botao-servicos"
+                    onclick="window.location.href='/pages/kits_e_materiais.html'">Detalhes</button>
+            </div>
         </div>
+        <!-- segunda parte -->
+        <h1 class="h1-div-servicos">Acesso Rápido</h1>
+        <div class="barra-container"></div>
 
-         <!-- VLibras Widget -->
+        <!-- VLibras Widget -->
         <div vw class="enabled">
             <div vw-access-button class="active"></div>
             <div vw-plugin-wrapper>
@@ -114,11 +111,13 @@
         <script>
             new window.VLibras.Widget('https://vlibras.gov.br/app');
         </script>
-
-        <footer>
+    </main>
+    <footer>
         <a href="https://www.sp.gov.br/sp">
             <img id="img-rodape" src="/images/logo-sp.png" alt="">
         </a>
     </footer>
+    <script src="/assets/js/script.js"></script>
 </body>
+
 </html>

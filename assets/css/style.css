@@ -823,6 +823,22 @@ thead {
     }
 }
 
+.status {
+    width: 50px;
+}
+
+#barra-container-status {
+    width: 40%;
+    height: 10px;
+    background-color: #aa0000;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-left: 10px;
+    position: relative;
+    justify-self: center;
+}
+
+
 @media (max-width: 480px) {
 
     .container-servicos,

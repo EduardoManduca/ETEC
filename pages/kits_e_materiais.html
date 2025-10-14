@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kits e Materiais</title>
     <link rel="stylesheet" href="/assets/css/style.css">
-    <script src="/assets/js/script.js"></script>
+    <link rel="stylesheet" href="/assets/css/darkMode.css">
     <link rel="icon" href="/images/logo-cps.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
@@ -42,8 +42,8 @@
                             alt=""></button>
                     <button class="controles-tamanho" title="Diminuir texto"><img src="/images/i-small-font.png"
                             alt=""></button>
-                    <button class="controles-tamanho" title="Alternar modo claro/escuro"><img
-                            src="/images/i-contrast.png" alt=""></button>
+                    <button id="theme-toggle" onclick="toggleTheme()" class="controles-tamanho"
+                        title="Alternar modo claro/escuro"><img src="/images/i-contrast.png" alt=""></button>
                     <button class="controles-tamanho" title="Mostrar aviso"><img src="/images/i-error-report.png"
                             alt=""></button>
                 </li>
@@ -62,13 +62,13 @@
         </li>
     </ul>
 
-        <nav>
-            <ul class="nav-bar">
-                <li class="li-nav-bar"><a class="a-nav-bar" href="/pages/agendamento_lab.html">Agendamentos</a></li>
-                <li class="li-nav-bar"><a class="a-nav-bar" href="/pages/index.html">Home</a></li>
-                <li class="li-nav-bar"><a class="a-nav-bar" href="/pages/estoque.html">Estoque</a></li>
-            </ul>
-        </nav>
+    <nav>
+        <ul class="nav-bar">
+            <li class="li-nav-bar"><a class="a-nav-bar" href="/pages/agendamento_lab.html">Agendamentos</a></li>
+            <li class="li-nav-bar"><a class="a-nav-bar" href="/pages/index.html">Home</a></li>
+            <li class="li-nav-bar"><a class="a-nav-bar" href="/pages/estoque.html">Estoque</a></li>
+        </ul>
+    </nav>
     <main>
         <div vw class="enabled">
             <div vw-access-button class="active"></div>
@@ -150,6 +150,7 @@
             searchInput.focus();
         });
     </script>
+    <script src="/assets/js/script.js"></script>
 </body>
 
 </html>
