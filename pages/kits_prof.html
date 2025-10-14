@@ -11,11 +11,10 @@
 </head>
 
 <body>
-
     <ul class="ul-topo">
         <li class="li-topo">
             <div class="campo-preto">
-                <a href="https://www.sp.gov.br/sp">
+                <a href="https://www.sp.gov.br/sp" target="_blank">
                     <img class="logo-sp" src="/images/logo-sp.png" alt="logo-sp">
                 </a>
             </div>
@@ -52,7 +51,7 @@
     </ul>
     <hr>
     <ul class="ul-meio-topo">
-        <a href="/pages/index.html">
+        <a href="index.html">
             <li class="li-meio-topo"><img class="logo-etec" src="/images/logo-etec.png" alt=""></li>
         </a>
         <li class="search-wrapper">
@@ -63,61 +62,36 @@
 
     <nav>
         <ul class="nav-bar">
-            <li class="li-nav-bar"><a class="a-nav-bar" href="/pages/agendamento_lab.html">Agendamentos</a></li>
-            <li class="li-nav-bar"><a class="a-nav-bar" href="/pages/estoque.html">Estoque</a></li>
-            <li class="li-nav-bar"><a class="a-nav-bar" href="/pages/kits_e_materiais.html">Kits e Materiais</a></li>
-            <li class="li-nav-bar"><a class="a-nav-bar" href="kits_prof.html">Criar Kit</a></li>
+            <li class="li-nav-bar"><a class="a-nav-bar" href="agendamento_lab.html">Agendamentos</a>
+            </li>
+            <li class="li-nav-bar"><a class="a-nav-bar" href="estoque.html">Estoque</a></li>
+            <li class="li-nav-bar"><a class="a-nav-bar" href="kits_e_materiais.html">Kits e Materiais</a></li>
+            <li class="li-nav-bar"><a class="a-nav-bar" href="index.html">Home</a></li>
         </ul>
     </nav>
+
     <main>
-        <h1 class="h1-div-servicos">Serviços disponíveis</h1>
-        <div class="barra-container"></div>
-        <div class="container-servicos">
-            <div class="div-servicos">
-                <img src="/images/agendamento.png" class="img-servicos">
-                <h2>Agendamentos</h2>
-                <p>Reserve laboratórios e espaços da ETEC com praticidade.</p>
-                <button class="botao-servicos"
-                    onclick="window.location.href='/pages/agendamento_lab.html'">Acessar</button>
-            </div>
-            <div class="div-servicos">
-                <img src="/images/estoque.png" class="img-servicos">
-                <h2>Estoque</h2>
-                <p>Veja os itens disponíveis e organize o uso dos materiais.</p>
-                <button class="botao-servicos" onclick="window.location.href='/pages/estoque.html'">Consultar</button>
-            </div>
-            <div class="div-servicos">
-                <img src="/images/kit_materiais.png" class="img-servicos">
-                <h2>Kits e Materiais</h2>
-                <p>Consulte kits montados e os materiais incluidos.</p>
-                <button class="botao-servicos"
-                    onclick="window.location.href='/pages/kits_e_materiais.html'">Detalhes</button>
-            </div>
-        </div>
-        <!-- segunda parte -->
-        <h1 class="h1-div-servicos">Acesso Rápido</h1>
-        <div class="barra-container"></div>
-        <div class="container-servicos-2">
-            <div class="div-servicos-2">
-                <h2>Meus Agendamentos</h2>
-                <p><!--Mostrar o número da sala de agendamento - kits, data, etc...
-                    Sala xxx - Lab X
-                    Data: xx/xx/xxxx - xx:xxh 
-                    --> Em desenvolvimento...
-                </p>
-                <button class="botao-servicos"
-                    onclick="window.location.href='/pages/agendamento_lab.html'">Acessar</button>
-            </div>
-            <div class="div-servicos-2">
-                <h2>Última atualização do Estoque</h2>
-                <p><!--Mostrar última atualização do estoque
-                    - XXXXXXXXX
-                --> Em desenvolvimento...
-                </p>
-                <button class="botao-servicos" onclick="window.location.href='/pages/estoque.html'">Ver tudo</button>
+        <h1 id="h1-kits-tecnico">Kits</h1>
+        <div id="div-kit-criar">
+            <label for="nome-kit">Nome do Kit</label><br>
+            <input id="nome-kit" type="text" placeholder="Nome do Kit"><br>
+            <label for="materiais-kit">Materiais</label><label id="label-num-kit" for="num-kit">Quant.</label><br>
+            <input id="materiais-kit" type="search" placeholder="materiais"><input id="num-kit" type="number"><br> 
+            <label for="equip-kit">Equipamento</label><label id="label-num-kit-2" for="num-kit">Quant.</label><br>
+            <input id="equip-kit" type="search" placeholder="Equipamentos"><input id="num-kit" type="number"><br>
+            <label for="obs-kit">Observações</label><br>
+            <input type="text" id="obs-kit" placeholder="Observações"><br>
+            <div class="button-kit-div">
+                <button class="button-kit-solicitar">Solicitar</button>
+                <button class="button-kit-limpar">Limpar</button>
             </div>
         </div>
 
+
+
+    </main>
+
+    <article>
         <!-- VLibras Widget -->
         <div vw class="enabled">
             <div vw-access-button class="active"></div>
@@ -130,7 +104,8 @@
         <script>
             new window.VLibras.Widget('https://vlibras.gov.br/app');
         </script>
-    </main>
+    </article>
+
     <footer>
         <a href="https://www.sp.gov.br/sp">
             <img id="img-rodape" src="/images/logo-sp.png" alt="">
@@ -138,5 +113,3 @@
     </footer>
     <script src="/assets/js/script.js"></script>
 </body>
-
-</html>
