@@ -77,48 +77,73 @@
     <main>
         <h1>Agendamento de Laboratórios</h1> <br>
         <div id="container-principal">
-            <div id="laboratorio-div">
-                <div>
-                    <h2>Laboratório</h2>
-                    <select class="campos-div">
-                        <option>Sala1 </option>
-                        <option>Sala2</option>
-                        <option>Sala3</option>
-                    </select>
+            <div id="formulario">
+                <div id="laboratorio-div">
+                    <div>
+                        <h2>Laboratório</h2>
+                        <select class="campos-div">
+                            <option>Sala1 </option>
+                            <option>Sala2</option>
+                            <option>Sala3</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <h2>Data</h2>
+                        <input type="date" class="campos-div" name="Data">
+                    </div>
+
+                    <div>
+                        <h2>Horário</h2>
+                        <input type="time" class="campos-div" name="datetime" id="datetime-div">
+                    </div>
+
+                    <div>
+                        <h2>Adicionar Kit</h2>
+                        <select class="campos-div">
+                            <option>Kit1</option>
+                            <option>Kit2</option>
+                            <option>Kit3</option>
+                        </select>
+                    </div>
                 </div>
 
-                <div>
-                    <h2>Data</h2>
-                    <input type="date" class="campos-div" name="Data">
-                </div>
+                <div id="div-search">
+                    <div class="grupo">
+                        <h2>Materiais:</h2>
+                        <input type="text" class="campo-search" placeholder="Nome do material">
+                    </div>
 
-                <div>
-                    <h2>Horário</h2>
-                    <input type="time" class="campos-div" name="datetime" id="datetime-div">
-                </div>
-
-                <div>
-                    <h2>Adicionar Kit</h2>
-                    <select class="campos-div">
-                        <option>Kit1</option>
-                        <option>Kit2</option>
-                        <option>Kit3</option>
-                    </select>
+                    <div class="grupo">
+                        <h2>Reagentes:</h2>
+                        <input type="text" class="campo-search" placeholder="Nome do reagente">
+                    </div>
                 </div>
             </div>
 
-            <div id="div-search">
-                <div class="grupo">
-                    <h2>Materiais:</h2>
-                    <input type="text" class="campo-search" placeholder="Nome do material">
+            <div id="itens-selecao">
+                <div class="subselecao">
+                    <h2>Materiais</h2>
+                    <p>Material 1</p>
+                    <p>Material 2</p>
+                    <p>Material 3</p>
+                    <p>Material 4</p>
                 </div>
-
-                <div class="grupo">
-                    <h2>Reagentes:</h2>
-                    <input type="text" class="campo-search" placeholder="Nome do reagente">
+                <div class="subselecao">
+                    <h2>Reagentes</h2>
+                    <p>Reagente 1</p>
+                    <p>Reagente 2</p>
+                    <p>Reagente 3</p>
+                    <p>Reagente 4</p>
+                </div>
+                
+                <div class="subselecao">
+                    <h2>Kits</h2>
+                    <p>Nome do kit</p>
                 </div>
             </div>
         </div>
+
     </main>
 
     <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
