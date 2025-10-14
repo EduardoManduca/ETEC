@@ -281,17 +281,46 @@ p {
 
 /* Agendamento_lab.html */
 #container-principal {
-    margin-left: 3%;
-    max-width: 60%;
+    display: flex;
+    margin-left: 0%;
+    width: 100%;
     gap: 7%;
     padding: 1%;
 }
 
+#itens-selecao {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #DDDDDD;
+    border-radius: 10px;
+    width: 100%;
+}
+
+#formulario {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.subselecao {
+    background-color: #CCCCCC;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.subselecao p {
+    color: white;
+    margin-top: 7px;
+}
+
 #laboratorio-div {
     display: flex;
-    max-width: 60%;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
     border-radius: 20px;
-    flex-wrap: wrap;
     font-size: medium;
     font-weight: bold;
     gap: 7%;
@@ -311,6 +340,7 @@ p {
 
 #div-search {
     display: flex;
+    justify-content: space-between;
     gap: 13.4rem;
 }
 
