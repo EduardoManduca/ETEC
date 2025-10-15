@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agendamentos</title>
+    <title>Painel do Técnico</title>
     <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/admin.css">
     <link rel="stylesheet" href="/assets/css/darkMode.css">
     <link rel="icon" href="/images/logo-cps.png">
 </head>
@@ -67,61 +68,75 @@
 
     <nav>
         <ul class="nav-bar">
-            <li class="li-nav-bar"><a class="a-nav-bar" href="/pages/agendamento_lab.html">Agendamentos</a></li>
-            <li class="li-nav-bar"><a class="a-nav-bar" href="/pages/estoque.html">Estoque</a></li>
-            <li class="li-nav-bar"><a class="a-nav-bar" href="/pages/kits_e_materiais.html">Kits e Materiais</a></li>
-            <li class="li-nav-bar"><a class="a-nav-bar" href="kits_prof.html">Criar Kit</a></li>
+            <li class="li-nav-bar"><a class="a-nav-bar" href="/pages/pages_admin/HistoricoMateriais.html">Histórico de
+                    Materiais</a></li> <!--Possivelmente vai ser apenas uso do administrador -->
         </ul>
     </nav>
-    <main>
-        <h1 class="h1-div-servicos">Serviços disponíveis</h1>
-        <div class="barra-container"></div>
-        <div class="container-servicos">
-            <div class="div-servicos">
-                <img src="/images/agendamento.png" class="img-servicos">
-                <h2>Agendamentos</h2>
-                <p>Reserve laboratórios e espaços da ETEC com praticidade.</p>
-                <button class="botao-servicos"
-                    onclick="window.location.href='/pages/agendamento_lab.html'">Acessar</button>
+    <main id="main-div-TelaAdministrador">
+        <div class="container-geral">
+            <div class="container-painel">
+                <div class="div-painel-tecnico">
+                    <h1>Controle de estoque</h1><br>
+                    <img src="/images/estoque-pronto.png" class="img-servicos"><br>
+                    <button class="btn-gerenciar">Gerenciar Estoque</button>
+                </div>
+                <div class="div-painel-tecnico">
+                    <h1>Solicitações de materiais</h1><br>
+                    <img src="/images/solicitações.png" class="img-servicos"><br>
+                    <button class="btn-gerenciar">Ver Solicitações</button>
+                </div>
+                    <div class="div-painel-tecnico">
+                        <h1>Status dos Laboratórios</h1><br>
+                        <img src="/images/agendamento.png" class="img-servicos"><br>
+                        <button class="btn-gerenciar" onclick="window.location.href='/pages/pages_tecnico/agendamentos_tecnico.html'""
+                        >Visualizar</button>
+                    </div>
             </div>
-            <div class="div-servicos">
-                <img src="/images/estoque.png" class="img-servicos">
-                <h2>Estoque</h2>
-                <p>Veja os itens disponíveis e organize o uso dos materiais.</p>
-                <button class="botao-servicos" onclick="window.location.href='/pages/estoque.html'">Consultar</button>
-            </div>
-            <div class="div-servicos">
-                <img src="/images/kit_materiais.png" class="img-servicos">
-                <h2>Kits e Materiais</h2>
-                <p>Consulte kits montados e os materiais incluidos.</p>
-                <button class="botao-servicos"
-                    onclick="window.location.href='/pages/kits_e_materiais.html'">Detalhes</button>
+            <div id="container-telaadmin">
+                <h1>Calendário de uso dos laboratórios</h1>
+                 Aqui vai ser um calendário que mostra os laboratórios 
+                 e horários de um determinado dia que a pessoa deseja visualizar (por padrão: dia atual)
+                <br><br>
+                <div class="container-tabela">
+                    <h1>Últimos Agendamentos</h1>
+                    <table>
+                        <tr>
+                            <th>ID</th>
+                            <th>Professor</th>
+                            <th>Laboratório</th>
+                            <th>Data</th>
+                            <th>Horario</th>
+                            <th>Status</th>
+                            <th>Ações</th>
+                        </tr>
+                        <tr>
+                            <td>01</td>
+                            <td> Prof.Roself</td>
+                            <td>Sala XXX</td>
+                            <td>15/10/2025</td>
+                            <td>14:30</td>
+                            <td>Confirmado</td>
+                            <td>
+                                <button class="btn-editar">Editar</button>
+                                <button class="btn-excluir">Excluir</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>02</td>
+                            <td> Prof.Joseph</td>
+                            <td>Sala XXX</td>
+                            <td>18/10/2025</td>
+                            <td>17:00</td>
+                            <td>Cancelado</td>
+                            <td>
+                                <button class="btn-editar">Editar</button>
+                                <button class="btn-excluir">Excluir</button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
             </div>
         </div>
-        <!-- segunda parte -->
-        <h1 class="h1-div-servicos">Acesso Rápido</h1>
-        <div class="barra-container"></div>
-        <div class="container-servicos-2">
-            <div class="div-servicos-2">
-                <h2>Meus Agendamentos</h2>
-                <p><!--Mostrar o número da sala de agendamento - kits, data, etc...
-                    Sala xxx - Lab X
-                    Data: xx/xx/xxxx - xx:xxh 
-                    --> Em desenvolvimento...
-                </p>
-                <button class="botao-servicos"
-                    onclick="window.location.href='/pages/agendamento_lab.html'">Acessar</button>
-            </div>
-            <div class="div-servicos-2">
-                <h2>Última atualização do Estoque</h2>
-                <p><!--Mostrar última atualização do estoque
-                    - XXXXXXXXX
-                --> Em desenvolvimento...
-                </p>
-                <button class="botao-servicos" onclick="window.location.href='/pages/estoque.html'">Ver tudo</button>
-            </div>
-        </div>
-
         <!-- VLibras Widget -->
         <div vw class="enabled">
             <div vw-access-button class="active"></div>

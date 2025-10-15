@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agendamentos</title>
+    <title>Estoque</title>
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="stylesheet" href="/assets/css/darkMode.css">
     <link rel="icon" href="/images/logo-cps.png">
@@ -66,99 +66,64 @@
 
     <nav>
         <ul class="nav-bar">
+<<<<<<< HEAD:pages/estoque.html
+            <li class="li-nav-bar"><a class="a-nav-bar" href="/pages/agendamento_lab.html">Agendamentos</a></li>
             <li class="li-nav-bar"><a class="a-nav-bar" href="/pages/index.html">Home</a></li>
-            <li class="li-nav-bar"><a class="a-nav-bar" href="/pages/estoque.html">Estoque</a></li>
             <li class="li-nav-bar"><a class="a-nav-bar" href="/pages/kits_e_materiais.html">Kits e Materiais </a></li>
             <li class="li-nav-bar"><a class="a-nav-bar" href="kits_prof.html">Criar Kit</a></li>
+=======
+            <li class="li-nav-bar"><a class="a-nav-bar" href="/pages/pages_professor/TelaProfessor.html">Home</a></li>
+>>>>>>> 7dd1fe205f2adab3dececec38ca8108bc8a572cc:pages/pages_professor/estoque.html
         </ul>
     </nav>
-
-    <div vw class="enabled">
-        <div vw-access-button class="active"></div>
-        <div vw-plugin-wrapper>
-            <div class="vw-plugin-top-wrapper"></div>
-        </div>
-    </div>
     <main>
-        <h1>Agendamento de Laboratórios</h1> <br>
-        <div id="container-principal">
-            <div id="formulario">
-                <div id="laboratorio-div">
-                    <div>
-                        <h2>Laboratório</h2>
-                        <select class="campos-div">
-                            <option>Sala1 </option>
-                            <option>Sala2</option>
-                            <option>Sala3</option>
-                        </select>
-                    </div>
-
-                    <div>
-                        <h2>Data</h2>
-                        <input type="date" class="campos-div" name="Data">
-                    </div>
-
-                    <div>
-                        <h2>Horário</h2>
-                        <input type="time" class="campos-div" name="datetime" id="datetime-div">
-                    </div>
-
-                    <div>
-                        <h2>Adicionar Kit</h2>
-                        <select class="campos-div">
-                            <option>Kit1</option>
-                            <option>Kit2</option>
-                            <option>Kit3</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div id="div-search">
-                    <div class="grupo">
-                        <h2>Materiais:</h2>
-                        <input type="text" class="campo-search" placeholder="Nome do material">
-                    </div>
-
-                    <div class="grupo">
-                        <h2>Reagentes:</h2>
-                        <input type="text" class="campo-search" placeholder="Nome do reagente">
-                    </div>
-                </div>
-            </div>
-
-            <div id="itens-selecao">
-                <div class="subselecao">
-                    <h2>Materiais</h2>
-                    <p>Material 1</p>
-                    <p>Material 2</p>
-                    <p>Material 3</p>
-                    <p>Material 4</p>
-                </div>
-                <div class="subselecao">
-                    <h2>Reagentes</h2>
-                    <p>Reagente 1</p>
-                    <p>Reagente 2</p>
-                    <p>Reagente 3</p>
-                    <p>Reagente 4</p>
-                </div>
-                
-                <div class="subselecao">
-                    <h2>Kits</h2>
-                    <p>Nome do kit</p>
-                </div>
+        <!-- VLibras Widget -->
+        <div vw class="enabled">
+            <div vw-access-button class="active"></div>
+            <div vw-plugin-wrapper>
+                <div class="vw-plugin-top-wrapper"></div>
             </div>
         </div>
 
-    </main>
+        <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+        <script>
+            new window.VLibras.Widget('https://vlibras.gov.br/app');
+        </script>
 
-    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+        <h1>Estoque</h1>
+        <div class="tabela-responsiva-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Reagentes</th>
+                        <th>Kits</th>
+                        <th>Materiais</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="dleft">Estoque</td>
+                        <td class="item"></td>
+                        <td class="item"></td>
+                        <td class="item"></td>
+                    </tr>
+                    <tr>
+                        <td class="dleft">Disponível</td>
+                        <td class="item"></td>
+                        <td class="item"></td>
+                        <td class="item"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
     <footer>
         <a href="https://www.sp.gov.br/sp">
             <img id="img-rodape" src="/images/logo-sp.png" alt="">
         </a>
     </footer>
+    <script src="/assets/js/script.js"></script>
 </body>
-<script src="/assets/js/script.js"></script>
 
 </html>
-<!-- Protótipo a finalizar -->

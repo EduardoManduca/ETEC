@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tela de Login</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/admin.css">
+    <link rel="icon" href="/images/logo-cps.png">
+    <script src="/assets/js/script.js"></script>
+</head>
+
+<body>
+
+    <ul class="ul-topo">
+        <li>
+            <div class="campo-preto">
+                <a href="https://www.sp.gov.br/sp">
+                    <img class="logo-sp" src="/images/logo-sp.png" alt="logo-sp">
+                </a>
+            </div>
+        </li>
+        <li class="li-topo">
+            <ul class="ul-midias">
+                <li><a href="https://www.flickr.com/photos/governosp/" target="_blank"><img class="img-midias"
+                            src="/images/fr.png" alt=""></a></li>
+                <li><a href="https://www.linkedin.com/company/governosp/" target="_blank"><img class="img-midias"
+                            src="/images/linkedin.png" alt=""></a></li>
+                <li><a href="https://www.tiktok.com/@governosp" target="_blank"><img class="img-midias"
+                            src="/images/tiktok.png" alt=""></a></li>
+                <li><a href="https://www.youtube.com/governosp/" target="_blank"><img class="img-midias"
+                            src="/images/youtube.png" alt=""></a></li>
+                <li><a href="https://x.com/governosp/" target="_blank"><img class="img-midias" src="/images/twitter.png"
+                            alt=""></a></li>
+                <li><a href="https://www.instagram.com/governosp/" target="_blank"><img class="img-midias"
+                            src="/images/instagram.png" alt=""></a></li>
+                <li><a href="https://www.facebook.com/governosp/" target="_blank"><img class="img-midias"
+                            src="/images/facebook.png" alt=""></a></li>
+                <li id="texto-topo-gsp">/governosp</li>
+                <li class="controles-acessibilidade">
+                    <button class="controles-tamanho" id="btnAumentar" title="Aumentar texto"><img
+                            src="/images/i-big-font.png" alt=""></button>
+                    <button class="controles-tamanho" title="Diminuir texto"><img src="/images/i-small-font.png"
+                            alt=""></button>
+                    <button class="controles-tamanho" title="Alternar modo claro/escuro"><img
+                            src="/images/i-contrast.png" alt=""></button>
+                    <button class="controles-tamanho" title="Mostrar aviso" onclick="ErrorReport()"><img
+                            src="/images/i-error-report.png" alt=""></button>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <hr>
+    <ul class="ul-meio-topo">
+        <a href="/pages/telalogin.html">
+            <li class="li-meio-topo"><img class="logo-etec" src="/images/logo-etec.png" alt=""></li>
+        </a>
+    </ul>
+
+    <nav>
+        <ul class="nav-bar">
+            <li class="li-nav-bar"><a class="a-nav-bar" href="/pages/pages_admin/TelaAdministrador.html">Home</a></li>
+        </ul>
+    </nav>
+
+    <main class="login-page">
+        <div class="login-container">
+            <h2>Cadastrar Usuário</h2>
+            <p>Por favor, insira os dados para criar uma nova conta.</p>
+
+            <form class="login-form">
+                <div class="form-group">
+                    <label for="username">Nome:</label>
+                    <input type="text" id="username" name="username" placeholder="Insira o nome do usuário" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Senha:</label>
+                    <input type="password" id="password" name="password" placeholder="Crie a senha do usuário" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="dropdown-cadastro">Função:</label>
+                    <select id="dropdown-cadastro" name="funcao">
+                        <option value="professor">Professor</option>
+                        <option value="tecnico">Técnico</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-criar">Criar</button>
+            </form>
+        </div>
+    </main>
+    <!-- VLibras Widget -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
+    </main>
+    <footer>
+        <a href="https://www.sp.gov.br/sp">
+            <img id="img-rodape" src="/images/logo-sp.png" alt="">
+        </a>
+    </footer>
+
+    </div>
+</body>
+
+</html>
