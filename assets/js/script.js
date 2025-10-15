@@ -40,3 +40,36 @@ document.addEventListener('DOMContentLoaded', (event) => {
         document.body.classList.remove('dark-mode');
     }
 });
+
+  const botaoAumentar = document.getElementById("aumentar-texto");
+  const botaoDiminuir = document.getElementById("diminuir-texto");
+  const body = document.body;
+
+  let nivel = 0; // nível atual (0 = normal)
+  const maxNivel = 3; // até 3 aumentos
+  const minNivel = -3; // até 3 reduções
+  const incremento = 0.2; // 10% por nível
+
+  // Tamanho original do texto
+  const tamanhoOriginal = parseFloat(
+    window.getComputedStyle(body).fontSize
+  );
+
+  function atualizarTamanho() {
+    const novoTamanho = tamanhoOriginal * (1 + incremento * nivel);
+    body.style.fontSize = novoTamanho + "px";
+  }
+
+  botaoAumentar.addEventListener("click", () => {
+    if (nivel < maxNivel) {
+      nivel++;
+      atualizarTamanho();
+    }
+  });
+
+  botaoDiminuir.addEventListener("click", () => {
+    if (nivel > minNivel) {
+      nivel--;
+      atualizarTamanho();
+    }
+  });
