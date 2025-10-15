@@ -7,6 +7,34 @@
     flex-wrap: wrap;
 }
 
+.container-painel-admin {
+    background-color: #ffffff;
+    border-radius: 30px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.cards-inferiores {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.painel-acess-admin {
+    background-color: rgb(255, 247, 247);
+    flex: 1;
+    min-width: 160px;
+    padding: 6%;
+    border-radius: 10px;
+    text-align: center;
+    color: #333;
+    font-weight: bold;
+}
 
 th {
     background-color: #BA1A1A;
