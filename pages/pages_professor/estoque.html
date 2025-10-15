@@ -4,11 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kits e Materiais</title>
+    <title>Estoque</title>
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="stylesheet" href="/assets/css/darkMode.css">
     <link rel="icon" href="/images/logo-cps.png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 
 <body>
@@ -55,7 +54,6 @@
         <a href="/pages/index.html">
             <li class="li-meio-topo"><img class="logo-etec" src="/images/logo-etec.png" alt=""></li>
         </a>
-
         <li class="search-wrapper">
             <input type="text" class="br-pesq" placeholder="O que deseja localizar?">
             <button class="search-button">🔍</button>
@@ -64,12 +62,11 @@
 
     <nav>
         <ul class="nav-bar">
-            <li class="li-nav-bar"><a class="a-nav-bar" href="/pages/agendamento_lab.html">Agendamentos</a></li>
-            <li class="li-nav-bar"><a class="a-nav-bar" href="/pages/index.html">Home</a></li>
-            <li class="li-nav-bar"><a class="a-nav-bar" href="/pages/estoque.html">Estoque</a></li>
+            <li class="li-nav-bar"><a class="a-nav-bar" href="/pages/pages_professor/TelaProfessor.html">Home</a></li>
         </ul>
     </nav>
     <main>
+        <!-- VLibras Widget -->
         <div vw class="enabled">
             <div vw-access-button class="active"></div>
             <div vw-plugin-wrapper>
@@ -82,18 +79,12 @@
             new window.VLibras.Widget('https://vlibras.gov.br/app');
         </script>
 
-        <h1>Kits e materiais</h1>
-
-        <div id="div-search-kit">
-            <input type="search" id="search-input" placeholder="Filtrar kits e materiais...">
-            <button class="clear-search">&times;</button>
-            <button class="search-botao"><i class="fa fa-search"></i></button>
-        </div>
-
+        <h1>Estoque</h1>
         <div class="tabela-responsiva-wrapper">
-            <table id="tabela-kits-materiais">
+            <table>
                 <thead>
                     <tr>
+                        <th></th>
                         <th>Reagentes</th>
                         <th>Kits</th>
                         <th>Materiais</th>
@@ -101,29 +92,16 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td class="item">XXXXX</td>
-                        <td class="item">XXXXX</td>
-                        <td class="item">XXXXX</td>
+                        <td class="dleft">Estoque</td>
+                        <td class="item"></td>
+                        <td class="item"></td>
+                        <td class="item"></td>
                     </tr>
                     <tr>
-                        <td class="item">XXXXX</td>
-                        <td class="item">XXXXX</td>
-                        <td class="item">XXXXX</td>
-                    </tr>
-                    <tr>
-                        <td class="item">XXXXX</td>
-                        <td class="item">XXXXX</td>
-                        <td class="item">XXXXX</td>
-                    </tr>
-                    <tr>
-                        <td class="item">XXXXX</td>
-                        <td class="item">XXXXX</td>
-                        <td class="item">XXXXX</td>
-                    </tr>
-                    <tr>
-                        <td class="item">XXXXX</td>
-                        <td class="item">XXXXX</td>
-                        <td class="item">XXXXX</td>
+                        <td class="dleft">Disponível</td>
+                        <td class="item"></td>
+                        <td class="item"></td>
+                        <td class="item"></td>
                     </tr>
                 </tbody>
             </table>
@@ -134,22 +112,6 @@
             <img id="img-rodape" src="/images/logo-sp.png" alt="">
         </a>
     </footer>
-
-    <!-- Script do div-search-kit -->
-    <script>
-        const searchInput = document.getElementById('search-input');
-        const clearButton = document.querySelector('.clear-search');
-
-        searchInput.addEventListener('input', () => {
-            clearButton.style.display = searchInput.value ? 'block' : 'none';
-        });
-
-        clearButton.addEventListener('click', () => {
-            searchInput.value = '';
-            clearButton.style.display = 'none';
-            searchInput.focus();
-        });
-    </script>
     <script src="/assets/js/script.js"></script>
 </body>
 

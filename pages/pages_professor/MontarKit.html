@@ -11,7 +11,6 @@
 </head>
 
 <body>
-
     <ul class="ul-topo">
         <li class="li-topo">
             <div class="campo-preto">
@@ -52,7 +51,7 @@
     </ul>
     <hr>
     <ul class="ul-meio-topo">
-        <a href="menu_tecnico.html">
+        <a href="index.html">
             <li class="li-meio-topo"><img class="logo-etec" src="/images/logo-etec.png" alt=""></li>
         </a>
         <li class="search-wrapper">
@@ -63,39 +62,36 @@
 
     <nav>
         <ul class="nav-bar">
-            <li class="li-nav-bar"><a class="a-nav-bar" href="agendamentos_tecnico.html">Status dos Laboratórios</a>
+            <li class="li-nav-bar"><a class="a-nav-bar" href="agendamento_lab.html">Agendamentos</a>
             </li>
-            <li class="li-nav-bar"><a class="a-nav-bar" href="">Kits</a></li>
-            <li class="li-nav-bar"><a class="a-nav-bar" href="">Kits e Materiais</a></li>
+            <li class="li-nav-bar"><a class="a-nav-bar" href="/pages/pages_professor/TelaProfessor.html">Home</a></li>
         </ul>
     </nav>
+
     <main>
-        <h1 class="h1-div-servicos">Serviços disponíveis</h1>
-        <div class="barra-container"></div>
-        <div class="container-servicos">
-            <div class="div-servicos">
-                <img src="/images/prancheta.png" class="img-servicos">
-                <h2>Status dos Laboratórios</h2>
-                <p>Informações sobre os agendamentos e vizualização de seu status(disponível, ocupado ou em manutenção).
-                </p>
-                <button class="botao-servicos"
-                    onclick="window.location.href='/pages/pages_tecnico/agendamentos_tecnico.html'">Acessar</button>
-            </div>
-            <div class="div-servicos">
-                <img src="/images/estoque.png" class="img-servicos">
-                <h2>Estoque</h2>
-                <p>Veja os itens disponíveis e organize o uso dos materiais.</p>
-                <button class="botao-servicos" onclick="window.location.href='/pages/estoque.html'">Consultar</button>
-            </div>
-            <div class="div-servicos">
-                <img src="/images/kit_materiais.png" class="img-servicos">
-                <h2>Kits e Materiais</h2>
-                <p>Consulte kits montados e os materiais incluidos.</p>
-                <button class="botao-servicos"
-                    onclick="window.location.href='/pages/kits_e_materiais.html'">Detalhes</button>
+        <h1 id="h1-kits-tecnico">Kits</h1>
+        <div id="div-kit-criar">
+            <label for="nome-kit">Nome do Kit</label><br>
+            <input id="nome-kit" type="text" placeholder="Nome do Kit"><br>
+            <label for="materiais-kit">Materiais</label><br>
+            <input id="materiais-kit" type="search" placeholder="materiais">
+            <label id="label-num-kit" for="num-kit">Quant.</label>
+            <input id="num-kit" type="number"><br>
+            <label for="equip-kit">Equipamento</label><label id="label-num-kit-2" for="num-kit">Quant.</label><br>
+            <input id="equip-kit" type="search" placeholder="Equipamentos"><input id="num-kit" type="number"><br>
+            <label for="obs-kit">Observações</label><br>
+            <input type="text" id="obs-kit" placeholder="Observações"><br>
+            <div class="button-kit-div">
+                <button class="button-kit-solicitar">Solicitar</button>
+                <button class="button-kit-limpar">Limpar</button>
             </div>
         </div>
 
+
+
+    </main>
+
+    <article>
         <!-- VLibras Widget -->
         <div vw class="enabled">
             <div vw-access-button class="active"></div>
@@ -108,7 +104,8 @@
         <script>
             new window.VLibras.Widget('https://vlibras.gov.br/app');
         </script>
-    </main>
+    </article>
+
     <footer>
         <a href="https://www.sp.gov.br/sp">
             <img id="img-rodape" src="/images/logo-sp.png" alt="">
@@ -116,5 +113,3 @@
     </footer>
     <script src="/assets/js/script.js"></script>
 </body>
-
-</html>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel do Administrador</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/admin.css">
+    <link rel="stylesheet" href="/assets/css/darkMode.css">
+    <link rel="icon" href="/images/logo-cps.png">
+
+    <style>
+        /* Regra para o container principal (aplicada à tag <main>) */
+        #main-div-TelaAdministrador {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 20px;
+            width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* Agrupador para a coluna da esquerda */
+        .coluna-esquerda {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 45%;
+            /* Define a largura da coluna */
+        }
+
+        /* Ajuste no container de registro para remover a largura fixa */
+        #container-registro {
+            /* A largura foi removida daqui para que o painel ocupe 100% da .coluna-esquerda */
+            background-color: #fff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+        }
+
+        /* Estilo de exemplo para o novo painel */
+        .novo-painel {
+            background-color: #fff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+        }
+
+        /* Regra para a coluna da direita (para consistência) */
+        #container-telaadmin {
+            width: 50%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <ul class="ul-topo">
+        <li class="li-topo">
+            <div class="campo-preto">
+                <a href="https://www.sp.gov.br/sp">
+                    <img class="logo-sp" src="/images/logo-sp.png" alt="logo-sp">
+                </a>
+            </div>
+        </li>
+        <li class="li-topo">
+            <ul class="ul-midias">
+                <li class="li-midias"><a href="https://www.flickr.com/photos/governosp/" target="_blank"><img
+                            class="img-midias" src="/images/fr.png" alt=""></a></li>
+                <li class="li-midias"><a href="https://www.linkedin.com/company/governosp/" target="_blank"><img
+                            class="img-midias" src="/images/linkedin.png" alt=""></a></li>
+                <li class="li-midias"><a href="https://www.tiktok.com/@governosp" target="_blank"><img
+                            class="img-midias" src="/images/tiktok.png" alt=""></a></li>
+                <li class="li-midias"><a href="https://www.youtube.com/governosp/" target="_blank"><img
+                            class="img-midias" src="/images/youtube.png" alt=""></a></li>
+                <li class="li-midias"><a href="https://x.com/governosp/" target="_blank"><img class="img-midias"
+                            src="/images/twitter.png" alt=""></a></li>
+                <li class="li-midias"><a href="https://www.instagram.com/governosp/" target="_blank"><img
+                            class="img-midias" src="/images/instagram.png" alt=""></a></li>
+                <li class="li-midias"><a href="https://www.facebook.com/governosp/" target="_blank"><img
+                            class="img-midias" src="/images/facebook.png" alt=""></a></li>
+                <li id="texto-topo-gsp">/governosp</li>
+                <li class="controles-acessibilidade">
+                    <button class="controles-tamanho" title="Aumentar texto"><img src="/images/i-big-font.png"
+                            alt=""></button>
+                    <button class="controles-tamanho" title="Diminuir texto"><img src="/images/i-small-font.png"
+                            alt=""></button>
+                    <button id="theme-toggle" onclick="toggleTheme()" class="controles-tamanho"
+                        title="Alternar modo claro/escuro"><img src="/images/i-contrast.png" alt=""></button>
+                    <button class="controles-tamanho" title="Mostrar aviso"><img src="/images/i-error-report.png"
+                            alt=""></button>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <hr>
+    <ul class="ul-meio-topo">
+        <a href="/pages/index.html">
+            <li class="li-meio-topo"><img class="logo-etec" src="/images/logo-etec.png" alt=""></li>
+        </a>
+        <li class="search-wrapper">
+            <input type="text" class="br-pesq" placeholder="O que deseja localizar?">
+            <button class="search-button">🔍</button>
+        </li>
+    </ul>
+
+    <nav>
+        <ul class="nav-bar">
+            <li class="li-nav-bar"><a class="a-nav-bar" href="/pages/pages_admin/cadastrarUser.html">Cadastrar
+                    Usuários</a></li>
+            <li class="li-nav-bar"><a class="a-nav-bar" href="/pages/HistoricoMateriais.html">Histórico de
+                    Materiais</a></li>
+        </ul>
+    </nav>
+    <main id="main-div-TelaAdministrador">
+        <div class="coluna-esquerda">
+            <div id="container-registro">
+                <div id="div-registroUser">
+                    <h1>Registro de Usuários</h1><br>
+                    <table>
+                        <tr>
+                            <th>Nome de usuário</th>
+                            <th>Senha</th>
+                            <th>Função</th>
+                            <th>Ações</th>
+                        </tr>
+                        <tr>
+                            <td>Roself da Silva Ribeiro</td>
+                            <td>Drx03a2zneuEi</td>
+                            <td>Professor </td>
+                            <td>
+                                <button class="btn-editar">Editar</button>
+                                <button class="btn-excluir">Excluir</button>
+                            </td>
+                        </tr>
+                    </table><br>
+                    <button class="btn-gerenciar">Ver Todos</button>
+                </div>
+            </div>
+            <div class="painel-cadastrar">
+                <h1>Cadastrar Usuários</h1>
+                <p>
+                    Utilize esta opção para cadastrar novos professores e técnicos, garantindo que cada usuário
+                    tenha sua conta personalizada
+                    e acesso adequado às funcionalidades do sistema.
+                </p>
+                <button class="btn-gerenciar" onclick="window.location.href='/pages/pages_admin/CadastrarUser.html'">Cadastrar</button>
+            </div>
+
+        </div>
+        <div id="container-telaadmin">
+            <h1>Visão Geral do Laboratório</h1>
+            <div class="container-painel-admin">
+                <div class="cards-inferiores">
+                    <div class="painel-acess-admin">Reservas hoje:</div>
+                    <div class="painel-acess-admin">Kits disponíveis:</div>
+                </div>
+            </div>
+            <br><br>
+            <div class="container-tabela">
+                <h1>Últimos Agendamentos</h1>
+                <table>
+                    <tr>
+                        <th>ID</th>
+                        <th>Professor</th>
+                        <th>Laboratório</th>
+                        <th>Data</th>
+                        <th>Horario</th>
+                        <th>Status</th>
+                        <th>Ações</th>
+                    </tr>
+                    <tr>
+                        <td>01</td>
+                        <td> Prof.Roself</td>
+                        <td>Sala XXX</td>
+                        <td>15/10/2025</td>
+                        <td>14:30</td>
+                        <td>Confirmado</td>
+                        <td>
+                            <button class="btn-editar">Editar</button>
+                            <button class="btn-excluir">Excluir</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>02</td>
+                        <td> Prof.Joseph</td>
+                        <td>Sala XXX</td>
+                        <td>18/10/2025</td>
+                        <td>17:00</td>
+                        <td>Cancelado</td>
+                        <td>
+                            <button class="btn-editar">Editar</button>
+                            <button class="btn-excluir">Excluir</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+    </main>
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
+
+    <footer>
+        <a href="https://www.sp.gov.br/sp">
+            <img id="img-rodape" src="/images/logo-sp.png" alt="">
+        </a>
+    </footer>
+    <script src="/assets/js/script.js"></script>
+</body>
+
+</html>
