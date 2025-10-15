@@ -309,22 +309,8 @@ p {
     border-radius: 10px;
 }
 
-#h1-kits-tecnico {
-    margin-right: 100%;
-    font-size: 400%;
-}
 
-#num-kit {
-    width: 3%;
-}
 
-#label-num-kit {
-    margin-left: 6.5%;
-}
-
-#label-num-kit-2 {
-    margin-left: 4.75%;
-}
 
 .subselecao p {
     color: white;
@@ -573,37 +559,73 @@ thead {
     color: white;
 }
 
-.button-kit-div {
-    display: flex;
-    gap: 10px; /* espaçamento entre os botões */
-    flex-wrap: nowrap; /* garante que não quebrem */
+
+#div-kit-criar {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    width: 400px;
+    margin: 0 auto;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.button-kit-solicitar {
-    background-color: #3ACF1F;
+#h1-kits-criar {
+    text-align: center;
+    color: #004854;
+    margin-bottom: 20px;
+}
+.label-kit {
+    display: inline-block;
+    margin-top: 10px;
+    font-weight: bold;
+    color: #444;
+}
+
+input[type="text"],
+input[type="search"],
+input[type="number"] {
+    width: calc(100% - 12px);
+    padding: 6px;
+    margin-top: 4px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+#label-num-kit,
+#label-num-kit-2 {
+    margin-left: 10px;
+}
+
+.button-kit-div {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.button-kit-solicitar,
+.button-kit-limpar {
+    background-color: #7E0000;
+    color: #fff;
     border: none;
-    width: 15%;
-    height: 30px;
-    border-radius: 5%;
-    margin-left: auto;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin: 5px;
+    transition: background-color 0.2s;
+}
+
+.button-kit-solicitar:hover,
+.button-kit-limpar:hover {
+    background-color: #9c3b3b;
 }
 
 .button-kit-limpar {
-    background-color: red;
-    border: none;
-    width: 15%;
-    margin-left: auto;
-    margin-right: auto;
-    border-radius: 5%;
+    background-color: #666666;
 }
 
-#div-kit-criar {
-    background-color: lightgray;
-    display: flex;
-    flex-direction:column;
-    width: 50%;
-    margin: auto;   
-
+.button-kit-limpar:hover {
+    background-color: #8a8989;
 }
 
 .item {
