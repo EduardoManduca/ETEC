@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
   let nivel = 0; // nível atual (0 = normal)
   const maxNivel = 3; // até 3 aumentos
   const minNivel = -3; // até 3 reduções
-  const incremento = 0.2; // 10% por nível
+  const incremento = 1; // % por nível
 
   // Tamanho original do texto
   const tamanhoOriginal = parseFloat(
