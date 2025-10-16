@@ -193,45 +193,6 @@ p {
     gap: 20px;
 }
 
-.search-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    max-width: 435px;
-    width: 435%;
-    padding: 5px;
-    margin-top: 2%;
-    margin-left: 35%;
-    border-radius: 5px;
-}
-
-
-.br-pesq {
-    flex: 1;
-    outline: none;
-    padding: 15px;
-    width: 100%;
-    padding-right: 20px;
-    font-size: 1rem;
-    font-weight: 300;
-    border-radius: 30px 0px 0px 30px;
-    border: 1px solid #D1D1D1;
-    background: white;
-    font-weight: 300;
-    height: 50px;
-    margin-right: 0;
-    box-sizing: border-box;
-}
-
-.search-button {
-    border: none;
-    border-top-right-radius: 30px;
-    border-bottom-right-radius: 30px;
-    background-color: #BA1A1A;
-    height: 50px;
-    padding: 0 20px;
-    cursor: pointer;
-}
 
 .campo-preto {
     background-color: #141414;
@@ -566,7 +527,7 @@ thead {
     border-radius: 10px;
     padding: 20px;
     width: 400px;
-    margin: 0 auto;
+    margin: 20px auto;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
