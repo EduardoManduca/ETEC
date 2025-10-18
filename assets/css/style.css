@@ -536,6 +536,7 @@ thead {
     color: #004854;
     margin-bottom: 20px;
 }
+
 .label-kit {
     display: inline-block;
     margin-top: 10px;
@@ -610,9 +611,86 @@ input[type="number"] {
 }
 
 /* Tabelas em kits_e_materias && estoque */
+/* ------- estoque_tecnico.html COMEÇO -------*/
+.tabela-estoque td:hover {
+    background-color: #B2B2B2;
+    cursor: pointer;
+}
+
+.material-inputs {
+    width: 15%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border: 1px solid #C2C2C2;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    border-radius: 30px;
+
+}
+
+#nome-material{
+    margin-top: 5%;
+}
+#nome-material,
+#quantidade-material {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #C2C2C2;
+    font-size: 16px;
+}
+#nome-material:focus,
+#quantidade-material:focus {
+    border-color: #757575;
+    box-shadow: 0 0 3px #5C5C5C;
+    outline: none;
+}
+
+#add-button {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 12px;
+    border: none;
+    border-radius: 30px;
+    background-color: #3D3D3D;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#add-button:hover {
+    background-color: #292929;
+}
+
+#rem-button {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 12px;
+    border: none;
+    border-radius: 30px;
+    background-color: #BA1A1A;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-bottom: 5%;
+}
+
+#rem-button:hover {
+    background-color: #7E0000;
+}
 
 
-/* ------- telalogin.html COMEÇO------- */
+/* ------- telalogin.html COMEÇO ------- */
 #login {
     background-color: #F0F0F0;
     display: flex;
