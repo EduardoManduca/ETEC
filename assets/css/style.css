@@ -814,7 +814,7 @@ input[type="number"] {
     .br-pesq {
         height: 45px;
         padding: 10px;
-        padding-left: 15px;
+    padding-left: 15px;
     }
 
     .search-button {
@@ -882,9 +882,9 @@ input[type="number"] {
         width: 100%;
     }
 
-    .subselecao {
-        
-    }
+    /* .subselecao {
+    
+    } */
 
     #div-search {
         display: flex;

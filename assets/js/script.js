@@ -10,7 +10,7 @@ function logincheck() {
 
     if (username === correctUsername && password === correctPassword) {
         errorMessage.style.display = 'none';
-        window.location.href = '/pages/index.html';
+        window.location.href = '/pages/pages_professor/TelaProfessor.html';
     } else if (username === correctTecnico && password === correctPassword) {
         errorMessage.style.display = 'none'
         window.location.href = '/pages/pages_tecnico/menu_tecnico.html'
@@ -41,35 +41,46 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
 });
 
-  const botaoAumentar = document.getElementById("aumentar-texto");
-  const botaoDiminuir = document.getElementById("diminuir-texto");
-  const body = document.body;
+const botaoAumentar = document.getElementById("aumentar-texto");
+const botaoDiminuir = document.getElementById("diminuir-texto");
 
-  let nivel = 0; // nível atual (0 = normal)
-  const maxNivel = 3; // até 3 aumentos
-  const minNivel = -3; // até 3 reduções
-  const incremento = 0.3; // % por nível
+let nivel = 0; // nível atual
+const maxNivel = 3;
+const minNivel = -3;
+const incremento = 0.3;
 
-  // Tamanho original do texto
-  const tamanhoOriginal = parseFloat(
-    window.getComputedStyle(body).fontSize
-  );
+// Guarda os tamanhos originais em um Map para cada elemento
+const tamanhosOriginais = new Map();
 
-  function atualizarTamanho() {
+function guardarTamanhosOriginais() {
+  const todosElementos = document.querySelectorAll("*");
+  todosElementos.forEach(el => {
+    const style = window.getComputedStyle(el);
+    // Pega o font-size atual (em px) e guarda
+    tamanhosOriginais.set(el, parseFloat(style.fontSize));
+  });
+}
+
+function atualizarTamanhos() {
+  tamanhosOriginais.forEach((tamanhoOriginal, el) => {
     const novoTamanho = tamanhoOriginal * (1 + incremento * nivel);
-    body.style.fontSize = novoTamanho + "px";
+    el.style.fontSize = novoTamanho + "px";
+  });
+}
+
+botaoAumentar.addEventListener("click", () => {
+  if (nivel < maxNivel) {
+    nivel++;
+    atualizarTamanhos();
   }
+});
 
-  botaoAumentar.addEventListener("click", () => {
-    if (nivel < maxNivel) {
-      nivel++;
-      atualizarTamanho();
-    }
-  });
+botaoDiminuir.addEventListener("click", () => {
+  if (nivel > minNivel) {
+    nivel--;
+    atualizarTamanhos();
+  }
+});
 
-  botaoDiminuir.addEventListener("click", () => {
-    if (nivel > minNivel) {
-      nivel--;
-      atualizarTamanho();
-    }
-  });
+// Inicializa a captura dos tamanhos originais ao carregar a página
+guardarTamanhosOriginais();
