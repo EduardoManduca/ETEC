@@ -607,6 +607,35 @@ input[type="number"] {
     box-sizing: border-box;
 }
 
+.botao-agendamento {
+    padding: 2.5px;
+    display: flex;
+    margin: 20px;
+    width: 300px;
+    height: 50px;
+    border: 0;
+    border-radius: 50px;
+    transition: transform 0.2 ease;
+    display: inline;
+}
+#botoes-agend-lab {
+    text-align: center;
+}
+#btn-lab-conf {
+    background-color: #f32a2a;
+    color: white;
+}
+#btn-lab-conf:hover {
+    background-color: #7E0000;
+}
+#btn-lab-cancelar {
+    background-color: #141414;
+    color: white;
+}
+#btn-lab-cancelar:hover {
+    background-color: #444;
+}
+
 #label-num-kit,
 #label-num-kit-2 {
     margin-left: 10px;
@@ -903,13 +932,10 @@ input[type="number"] {
         width: 100%;
     }
 
-<<<<<<< HEAD
     /* .subselecao {
     
     } */
 
-=======
->>>>>>> 6819442c9a8123f4ea7fde3c4c8096372641ae61
     #div-search {
         display: flex;
         flex-direction: column;
