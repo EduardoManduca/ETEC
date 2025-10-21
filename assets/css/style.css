@@ -264,7 +264,7 @@ p {
     background-color: #DDDDDD;
     border-radius: 10px;
     min-width: 300px;
-    max-width: 600px;
+    max-width: 95%;
     flex-grow: 1;
 }
 
@@ -782,7 +782,6 @@ input[type="number"] {
 
     #formulario {
         width: 100%;
-        font-size: 10px;
     }
 
     #laboratorio-div {
@@ -884,7 +883,7 @@ input[type="number"] {
 
     #formulario {
         display: flex;
-        gap: 30px;
+        gap: 15px;
         width: 100%;
         margin-left: 0px;
     }
@@ -898,9 +897,10 @@ input[type="number"] {
     }
 
     #itens-selecao {
-        margin: 40px 0px 0px 0px;
+        margin-top: 10px;
         display: inline-block;
         width: 100%;
+        align-self: center;
     }
 
     #div-search {
