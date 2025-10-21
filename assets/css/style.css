@@ -275,6 +275,56 @@ p {
     border-radius: 10px;
 }
 
+.div-painel-tecnico-es {
+    background: #d4d1d1;
+    text-align: left;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Corrigido aqui */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+}
+
+/* Classe para alinhar cada h2 e botão lado a lado */
+.linha-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px; /* Espaço entre linhas */
+}
+
+/* Estilo do título */
+.h2-es-tec {
+    color: #004854;
+    font-size: 1.1rem;
+    margin: 0; /* Remove margens padrão do h2 */
+}
+
+/* Estilo do botão */
+.button-es-tec {
+    width: 30%; /* Ajuste conforme necessário */
+    background-color: #8d0000;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    padding: 6px 12px;
+    font-weight: bold;
+    color: #ffffff;
+    transition: background-color 0.2s ease;
+}
+
+/* Efeito ao passar o mouse */
+.button-es-tec:hover {
+    background-color: #f32a2a;
+}
+
+
+#container-es-tec {
+    display: flex;
+    justify-content: center;
+}
+
 .subselecao p {
     color: white;
     margin: 0px
