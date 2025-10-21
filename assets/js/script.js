@@ -1,75 +1,99 @@
+// ***** Constantes e variáveis *****
+const reagentesValor = document.getElementById('reagentes').value;
+
+
+
+
+const botaoAumentar = document.getElementById("aumentar-texto");
+const botaoDiminuir = document.getElementById("diminuir-texto");
+const body = document.body;
+
+let nivel = 0; // nível atual (0 = normal)
+const maxNivel = 3; // até 3 aumentos
+const minNivel = -3; // até 3 reduções
+const incremento = 1; // % por nível
+
+// Tamanho original do texto
+const tamanhoOriginal = parseFloat(
+  window.getComputedStyle(body).fontSize
+);
+
+
+// ***** Funções *****
+
 function logincheck() {
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
-    const errorMessage = document.getElementById('errorMessage');
+  const username = document.getElementById('username').value;
+  const password = document.getElementById('password').value;
+  const errorMessage = document.getElementById('errorMessage');
 
-    const correctUsername = 'admin';
-    const correctPassword = 'password123';
-    const correctTecnico = 'tecnico'
+  const correctUsername = 'admin';
+  const correctPassword = 'password123';
+  const correctTecnico = 'tecnico'
 
 
-    if (username === correctUsername && password === correctPassword) {
-        errorMessage.style.display = 'none';
-        window.location.href = '/pages/index.html';
-    } else if (username === correctTecnico && password === correctPassword) {
-        errorMessage.style.display = 'none'
-        window.location.href = '/pages/pages_tecnico/menu_tecnico.html'
-    } else {
-        errorMessage.style.display = 'block';
-    }
+  if (username === correctUsername && password === correctPassword) {
+    errorMessage.style.display = 'none';
+    window.location.href = '/pages/index.html';
+  } else if (username === correctTecnico && password === correctPassword) {
+    errorMessage.style.display = 'none'
+    window.location.href = '/pages/pages_tecnico/menu_tecnico.html'
+  } else {
+    errorMessage.style.display = 'block';
+  }
 }
 // função dark mode
 function toggleTheme() {
-    const body = document.body;
-    body.classList.toggle('dark-mode');
+  const body = document.body;
+  body.classList.toggle('dark-mode');
 
-    if (body.classList.contains('dark-mode')) {
-        localStorage.setItem('theme', 'dark');
-    } else {
-        localStorage.setItem('theme', 'light');
-    }
+  if (body.classList.contains('dark-mode')) {
+    localStorage.setItem('theme', 'dark');
+  } else {
+    localStorage.setItem('theme', 'light');
+  }
 }
 
 document.addEventListener('DOMContentLoaded', (event) => {
-    const savedTheme = localStorage.getItem('theme');
+  const savedTheme = localStorage.getItem('theme');
 
-    if (savedTheme === 'dark') {
-        document.body.classList.add('dark-mode');
-    } 
-    else if (savedTheme === 'light') {
-        document.body.classList.remove('dark-mode');
-    }
+  if (savedTheme === 'dark') {
+    document.body.classList.add('dark-mode');
+  }
+  else if (savedTheme === 'light') {
+    document.body.classList.remove('dark-mode');
+  }
 });
 
-  const botaoAumentar = document.getElementById("aumentar-texto");
-  const botaoDiminuir = document.getElementById("diminuir-texto");
-  const body = document.body;
 
-  let nivel = 0; // nível atual (0 = normal)
-  const maxNivel = 3; // até 3 aumentos
-  const minNivel = -3; // até 3 reduções
-  const incremento = 1; // % por nível
 
-  // Tamanho original do texto
-  const tamanhoOriginal = parseFloat(
-    window.getComputedStyle(body).fontSize
-  );
+function atualizarTamanho() {
+  const novoTamanho = tamanhoOriginal * (1 + incremento * nivel);
+  body.style.fontSize = novoTamanho + "px";
+}
 
-  function atualizarTamanho() {
-    const novoTamanho = tamanhoOriginal * (1 + incremento * nivel);
-    body.style.fontSize = novoTamanho + "px";
+botaoAumentar.addEventListener("click", () => {
+  if (nivel < maxNivel) {
+    nivel++;
+    atualizarTamanho();
   }
+});
 
-  botaoAumentar.addEventListener("click", () => {
-    if (nivel < maxNivel) {
-      nivel++;
-      atualizarTamanho();
-    }
-  });
+botaoDiminuir.addEventListener("click", () => {
+  if (nivel > minNivel) {
+    nivel--;
+    atualizarTamanho();
+  }
+});
 
-  botaoDiminuir.addEventListener("click", () => {
-    if (nivel > minNivel) {
-      nivel--;
-      atualizarTamanho();
-    }
-  });
+search = () => {
+  const input = document.getElementById('searchInput').value.toLowerCase();
+  const items = document.querySelectorAll('.item');
+}
+
+addTableRow = () => {
+  const tabela = document.getElementById("estoque");
+  const novaLinha = tabela.insertRow();
+  const novaCelula = novaLinha.insertCell();
+  novaCelula.innerHTML = "Novo valor";
+}
+

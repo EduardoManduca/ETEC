@@ -4,12 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kits e Materiais</title>
+    <title>Estoque</title>
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="stylesheet" href="/assets/css/darkMode.css">
-    <link rel="stylesheet" href="/assets/css/admin.css">
-    <link rel="icon" href="/images/logo-cps.png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src=".../.../assets/js/script.js" defer></script>
 </head>
 
 <body>
@@ -40,11 +38,11 @@
                 <li id="texto-topo-gsp">/governosp</li>
 
                 <li class="controles-acessibilidade">
-                    <button id="aumentar-texto" class="controles-tamanho" title="Aumentar texto"><img src="/images/i-big-font.png"
-                            alt=""></button>
+                    <button id="aumentar-texto" class="controles-tamanho" title="Aumentar texto"><img
+                            src="/images/i-big-font.png" alt=""></button>
 
-                    <button id="diminuir-texto" class="controles-tamanho" title="Diminuir texto"><img src="/images/i-small-font.png"
-                            alt=""></button>
+                    <button id="diminuir-texto" class="controles-tamanho" title="Diminuir texto"><img
+                            src="/images/i-small-font.png" alt=""></button>
 
                     <button id="theme-toggle" onclick="toggleTheme()" class="controles-tamanho"
                         title="Alternar modo claro/escuro"><img src="/images/i-contrast.png" alt=""></button>
@@ -80,96 +78,35 @@
             new window.VLibras.Widget('https://vlibras.gov.br/app');
         </script>
 
-        <h1>Kits e materiais</h1>
-
-        <div id="div-search-kit">
-            <input type="search" id="search-input" placeholder="Filtrar kits e materiais..." <script search()></script>
-            <button class="clear-search">&times;</button>
-            <button class="search-botao"><i class="fa fa-search"></i></button>
-        </div>
-
-        <div class="tabela-responsiva-wrapper">
-            <table id="tabela-kits-materiais">
+        <h1>Kits Requeridos</h1>
+        <div class="tabela-estoque">
+            <table id="estoque">
                 <thead>
                     <tr>
-                        <th>Kits</th>
                         <th>Materiais</th>
-                        <th>Reagentes</th>
-                        <th>Ações</th>
+                        <th>Quantidade</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>XXXXX</td>
-                        <td>XXXXX</td>
-                        <td>XXXXX</td>
                         <td>
-                            <button class="btn-editar">Editar</button>
-                            <button class="btn-excluir">Excluir</button>
+                            Beckeres 250ml
+                        </td>
+                        <td>
+                            <input type="number" value="5" id="reagentes" />
                         </td>
                     </tr>
-                    <tr>
-                        <td>XXXXX</td>
-                        <td>XXXXX</td>
-                        <td>XXXXX</td>
-                        <td>
-                            <button class="btn-editar">Editar</button>
-                            <button class="btn-excluir">Excluir</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>XXXXX</td>
-                        <td>XXXXX</td>
-                        <td>XXXXX</td>
-                        <td>
-                            <button class="btn-editar">Editar</button>
-                            <button class="btn-excluir">Excluir</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>XXXXX</td>
-                        <td>XXXXX</td>
-                        <td>XXXXX</td>
-                        <td>
-                            <button class="btn-editar">Editar</button>
-                            <button class="btn-excluir">Excluir</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>XXXXX</td>
-                        <td>XXXXX</td>
-                        <td>XXXXX</td>
-                        <td>
-                            <button class="btn-editar">Editar</button>
-                            <button class="btn-excluir">Excluir</button>
-                        </td>
+
                     </tr>
                 </tbody>
             </table>
-        </div>
-    </main>
-    <footer>
-        <a href="https://www.sp.gov.br/sp">
-            <img id="img-rodape" src="/images/logo-sp.png" alt="">
-        </a>
-    </footer>
-
-    <!-- Script do div-search-kit -->
-    <script>
-        const searchInput = document.getElementById('search-input');
-        const clearButton = document.querySelector('.clear-search');
-
-        searchInput.addEventListener('input', () => {
-            clearButton.style.display = searchInput.value ? 'block' : 'none';
-        });
-
-        clearButton.addEventListener('click', () => {
-            searchInput.value = '';
-            clearButton.style.display = 'none';
-            searchInput.focus();
-        });
-    </script>
-    <script src="/assets/js/script.js"></script>
+            </div>
+            <div class="material-inputs">
+                <input type="text" placeholder="Nome do material" id="nome-material"/>
+                <input type="number" placeholder="Quantidade" id="quantidade-material"/>
+                <input type="button" onclick="addTableRow()" value="Adicionar Item" id="add-button"/>
+                <input type="button" onclick="cancelMaterial" value="Cancelar" id="rem-button"/>
+            </div>
 </body>
 
 </html>
