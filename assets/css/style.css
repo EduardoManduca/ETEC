@@ -242,16 +242,20 @@ p {
 
 /* Agendamento_lab.html */
 #container-principal {
+    justify-content: center;
     display: flex;
+    padding: 10px;
+    flex-wrap: wrap;
     width: 100%;
-    gap: 10%;
+    gap: 30px;
 }
 
 #formulario {
     display: flex;
     flex-direction: column;
-    width: 100%;
-    margin-left: 20px;
+    flex-grow: 1;
+    width: 50%;
+    gap: 30px;
 }
 
 #itens-selecao {
@@ -259,8 +263,9 @@ p {
     flex-direction: column;
     background-color: #DDDDDD;
     border-radius: 10px;
-    width: 80%;
-    margin-right: 20px;
+    min-width: 300px;
+    max-width: 95%;
+    flex-grow: 1;
 }
 
 .subselecao {
@@ -270,8 +275,55 @@ p {
     border-radius: 10px;
 }
 
+.div-painel-tecnico-es {
+    background: #d4d1d1;
+    text-align: left;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Corrigido aqui */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+}
+
+/* Classe para alinhar cada h2 e botão lado a lado */
+.linha-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px; /* Espaço entre linhas */
+}
+
+/* Estilo do título */
+.h2-es-tec {
+    color: #004854;
+    font-size: 1.1rem;
+    margin: 0; /* Remove margens padrão do h2 */
+}
+
+/* Estilo do botão */
+.button-es-tec {
+    width: 30%; /* Ajuste conforme necessário */
+    background-color: #8d0000;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    padding: 6px 12px;
+    font-weight: bold;
+    color: #ffffff;
+    transition: background-color 0.2s ease;
+}
+
+/* Efeito ao passar o mouse */
+.button-es-tec:hover {
+    background-color: #f32a2a;
+}
 
 
+#container-es-tec {
+    display: flex;
+    justify-content: center;
+}
 
 .subselecao p {
     color: white;
@@ -286,8 +338,11 @@ p {
     border-radius: 20px;
     font-size: medium;
     font-weight: bold;
-    gap: 20px;
-    padding-bottom: 10%;
+    gap: 10px;
+}
+
+.formulario-grupo {
+    width: 100%;
 }
 
 .campos-div {
@@ -302,14 +357,13 @@ p {
 #div-search {
     display: flex;
     justify-content: space-between;
-    gap: 13.4rem;
+    gap: 40px;
 }
 
 .grupo {
     display: flex;
     flex-direction: column;
-    gap: 6px;
-    min-width: 220px;
+    width: 100%;
 }
 
 #container-principal h2 {
@@ -547,12 +601,40 @@ thead {
 input[type="text"],
 input[type="search"],
 input[type="number"] {
-    width: calc(100% - 12px);
+    width: 100%;
     padding: 6px;
-    margin-top: 4px;
     border: 1px solid #ccc;
     border-radius: 6px;
     box-sizing: border-box;
+}
+
+.botao-agendamento {
+    padding: 2.5px;
+    display: flex;
+    margin: 20px;
+    width: 300px;
+    height: 50px;
+    border: 0;
+    border-radius: 50px;
+    transition: transform 0.2 ease;
+    display: inline;
+}
+#botoes-agend-lab {
+    text-align: center;
+}
+#btn-lab-conf {
+    background-color: #f32a2a;
+    color: white;
+}
+#btn-lab-conf:hover {
+    background-color: #7E0000;
+}
+#btn-lab-cancelar {
+    background-color: #141414;
+    color: white;
+}
+#btn-lab-cancelar:hover {
+    background-color: #444;
 }
 
 #label-num-kit,
@@ -783,6 +865,12 @@ input[type="number"] {
 
 /* RESPONSIVIDADE */
 
+@media (min-width: 1024px) {
+    #formulario {
+        min-width: 655px;
+    }
+}
+
 @media (max-width: 1024px) {
     .search-wrapper {
         margin-left: 20%;
@@ -799,13 +887,21 @@ input[type="number"] {
         margin-right: 100px;
     }
 
-    #container-principal,
+    #formulario {
+        width: 100%;
+    }
+
     #laboratorio-div {
-        max-width: 85%;
+        width: 100%;
+        font-size: inherit;
+    }
+
+    #container-principal {
+        gap: 20px;
     }
 
     #div-search {
-        gap: 2rem;
+        gap: 20px;
     }
 }
 
@@ -845,7 +941,7 @@ input[type="number"] {
     .br-pesq {
         height: 45px;
         padding: 10px;
-        padding-left: 15px;
+    padding-left: 15px;
     }
 
     .search-button {
@@ -886,19 +982,62 @@ input[type="number"] {
         padding: 10px;
     }
 
-    #div-search {
+    #container-principal {
+        display: flex;
         flex-direction: column;
-        gap: 1rem;
-        align-items: stretch;
+        width: 100%;
+    }
+
+    #formulario {
+        display: flex;
+        gap: 15px;
+        width: 100%;
+        margin-left: 0px;
+    }
+
+    #laboratorio-div {
+        display: flex;
+        padding: 0px;
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+    }
+
+    #itens-selecao {
+        margin-top: 10px;
+        display: inline-block;
+        width: 100%;
+        align-self: center;
+    }
+
+    /* .subselecao {
+    
+    } */
+
+    #div-search {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+        align-self: center;
     }
 
     .grupo {
+        gap: 0px;
         width: 100%;
         max-width: 100%;
     }
 
     .campo-search,
     .campos-div {
+        margin-top: 0px;
+        width: 100%;
+    }
+
+    input[type="text"],
+    input[type="search"],
+    input[type="number"] {
+        margin-top: 0px;
         width: 100%;
     }
 

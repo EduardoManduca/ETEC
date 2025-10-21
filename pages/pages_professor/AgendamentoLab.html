@@ -73,11 +73,23 @@
         </div>
     </div>
     <main>
+        <!-- VLibras Widget -->
+        <div vw class="enabled">
+            <div vw-access-button class="active"></div>
+            <div vw-plugin-wrapper>
+                <div class="vw-plugin-top-wrapper"></div>
+            </div>
+        </div>
+
+        <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+        <script>
+            new window.VLibras.Widget('https://vlibras.gov.br/app');
+        </script>
         <h1>Agendamento de Laboratórios</h1> <br>
         <div id="container-principal">
             <div id="formulario">
                 <div id="laboratorio-div">
-                    <div>
+                    <div class="formulario-grupo">
                         <h2>Laboratório</h2>
                         <select class="campos-div">
                             <option>Sala1 </option>
@@ -86,17 +98,17 @@
                         </select>
                     </div>
 
-                    <div>
+                    <div class="formulario-grupo">
                         <h2>Data</h2>
                         <input type="date" class="campos-div" name="Data">
                     </div>
 
-                    <div>
+                    <div class="formulario-grupo">
                         <h2>Horário</h2>
                         <input type="time" class="campos-div" name="datetime" id="datetime-div">
                     </div>
 
-                    <div>
+                    <div class="formulario-grupo">
                         <h2>Adicionar Kit</h2>
                         <select class="campos-div">
                             <option>Kit1</option>
@@ -116,6 +128,10 @@
                         <h2>Reagentes:</h2>
                         <input type="text" class="campo-search" placeholder="Nome do reagente">
                     </div>
+                </div>
+                <div id="botoes-agend-lab">
+                    <input type="button" value="Confirmar" class="botao-agendamento" id="btn-lab-conf">
+                    <input type="button" value="Cancelar" class="botao-agendamento" id="btn-lab-cancelar">
                 </div>
             </div>
 
@@ -154,4 +170,3 @@
 <script src="/assets/js/script.js"></script>
 
 </html>
-<!-- Protótipo a finalizar -->

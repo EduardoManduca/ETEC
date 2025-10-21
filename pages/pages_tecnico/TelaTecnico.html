@@ -40,11 +40,11 @@
                 <li id="texto-topo-gsp">/governosp</li>
 
                 <li class="controles-acessibilidade">
-                    <button id="aumentar-texto" class="controles-tamanho" title="Aumentar texto"><img src="/images/i-big-font.png"
-                            alt=""></button>
+                    <button id="aumentar-texto" class="controles-tamanho" title="Aumentar texto"><img
+                            src="/images/i-big-font.png" alt=""></button>
 
-                    <button id="diminuir-texto" class="controles-tamanho" title="Diminuir texto"><img src="/images/i-small-font.png"
-                            alt=""></button>
+                    <button id="diminuir-texto" class="controles-tamanho" title="Diminuir texto"><img
+                            src="/images/i-small-font.png" alt=""></button>
 
                     <button id="theme-toggle" onclick="toggleTheme()" class="controles-tamanho"
                         title="Alternar modo claro/escuro"><img src="/images/i-contrast.png" alt=""></button>
@@ -64,8 +64,8 @@
 
     <nav>
         <ul class="nav-bar">
-            <li class="li-nav-bar"><a class="a-nav-bar" href="/pages/pages_admin/HistoricoMateriais.html">Histórico de
-                    Materiais</a></li> <!--Possivelmente vai ser apenas uso do administrador -->
+            <li class="li-nav-bar"><a class="a-nav-bar" href="lab_tecnico.html">Status dos Laboratórios</a></li>
+            <li class="li-nav-bar"><a class="a-nav-bar" href="estoque_tecnico.html">Controle de estoque</a></li>  
         </ul>
     </nav>
     <main id="main-div-TelaAdministrador">
@@ -74,77 +74,81 @@
                 <div class="div-painel-tecnico">
                     <h1>Controle de estoque</h1><br>
                     <img src="/images/estoque-pronto.png" class="img-servicos"><br>
-                    <button class="btn-gerenciar">Gerenciar Estoque</button>
+                    <button class="btn-gerenciar"
+                    onclick="window.location.href='/pages/pages_tecnico/estoque_tecnico.html'"
+                    >Visualizar</button>
                 </div>
                 <div class="div-painel-tecnico">
                     <h1>Solicitações de materiais</h1><br>
                     <img src="/images/solicitações.png" class="img-servicos"><br>
                     <button class="btn-gerenciar">Ver Solicitações</button>
                 </div>
-                    <div class="div-painel-tecnico">
-                        <h1>Status dos Laboratórios</h1><br>
-                        <img src="/images/agendamento.png" class="img-servicos"><br>
-                        <button class="btn-gerenciar" onclick="window.location.href='/pages/pages_tecnico/agendamentos_tecnico.html'""
+                <div class="div-painel-tecnico">
+                    <h1>Status dos Laboratórios</h1><br>
+                    <img src="/images/agendamento.png" class="img-servicos"><br>
+                    <button class="btn-gerenciar"
+                        onclick="window.location.href='/pages/pages_tecnico/lab_tecnico.html'"
                         >Visualizar</button>
-                    </div>
+                </div>
+
             </div>
-            <div id="container-telaadmin">
-                <h1>Calendário de uso dos laboratórios</h1>
-                 Aqui vai ser um calendário que mostra os laboratórios 
-                 e horários de um determinado dia que a pessoa deseja visualizar (por padrão: dia atual)
-                <br><br>
-                <div class="container-tabela">
-                    <h1>Últimos Agendamentos</h1>
-                    <table>
-                        <tr>
-                            <th>ID</th>
-                            <th>Professor</th>
-                            <th>Laboratório</th>
-                            <th>Data</th>
-                            <th>Horario</th>
-                            <th>Status</th>
-                            <th>Ações</th>
-                        </tr>
-                        <tr>
-                            <td>01</td>
-                            <td> Prof.Roself</td>
-                            <td>Sala XXX</td>
-                            <td>15/10/2025</td>
-                            <td>14:30</td>
-                            <td>Confirmado</td>
-                            <td>
-                                <button class="btn-editar">Editar</button>
-                                <button class="btn-excluir">Excluir</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>02</td>
-                            <td> Prof.Joseph</td>
-                            <td>Sala XXX</td>
-                            <td>18/10/2025</td>
-                            <td>17:00</td>
-                            <td>Cancelado</td>
-                            <td>
-                                <button class="btn-editar">Editar</button>
-                                <button class="btn-excluir">Excluir</button>
-                            </td>
-                        </tr>
-                    </table>
+            <div id=" container-telaadmin">
+                        <h1>Calendário de uso dos laboratórios</h1>
+                        Aqui vai ser um calendário que mostra os laboratórios
+                        e horários de um determinado dia que a pessoa deseja visualizar (por padrão: dia atual)
+                        <br><br>
+                        <div class="container-tabela">
+                            <h1>Últimos Agendamentos</h1>
+                            <table>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Professor</th>
+                                    <th>Laboratório</th>
+                                    <th>Data</th>
+                                    <th>Horario</th>
+                                    <th>Status</th>
+                                    <th>Ações</th>
+                                </tr>
+                                <tr>
+                                    <td>01</td>
+                                    <td> Prof.Roself</td>
+                                    <td>Sala XXX</td>
+                                    <td>15/10/2025</td>
+                                    <td>14:30</td>
+                                    <td>Confirmado</td>
+                                    <td>
+                                        <button class="btn-editar">Editar</button>
+                                        <button class="btn-excluir">Excluir</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>02</td>
+                                    <td> Prof.Joseph</td>
+                                    <td>Sala XXX</td>
+                                    <td>18/10/2025</td>
+                                    <td>17:00</td>
+                                    <td>Cancelado</td>
+                                    <td>
+                                        <button class="btn-editar">Editar</button>
+                                        <button class="btn-excluir">Excluir</button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
                 </div>
             </div>
-        </div>
-        <!-- VLibras Widget -->
-        <div vw class="enabled">
-            <div vw-access-button class="active"></div>
-            <div vw-plugin-wrapper>
-                <div class="vw-plugin-top-wrapper"></div>
+            <!-- VLibras Widget -->
+            <div vw class="enabled">
+                <div vw-access-button class="active"></div>
+                <div vw-plugin-wrapper>
+                    <div class="vw-plugin-top-wrapper"></div>
+                </div>
             </div>
-        </div>
 
-        <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-        <script>
-            new window.VLibras.Widget('https://vlibras.gov.br/app');
-        </script>
+            <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+            <script>
+                new window.VLibras.Widget('https://vlibras.gov.br/app');
+            </script>
     </main>
     <footer>
         <a href="https://www.sp.gov.br/sp">
