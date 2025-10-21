@@ -855,19 +855,61 @@ input[type="number"] {
         padding: 10px;
     }
 
-    #div-search {
+    #container-principal {
+        display: flex;
         flex-direction: column;
-        gap: 1rem;
-        align-items: stretch;
+        width: 100%;
+    }
+
+    #formulario {
+        display: flex;
+        gap: 30px;
+        width: 100%;
+        margin-left: 0px;
+    }
+
+    #laboratorio-div {
+        display: flex;
+        padding: 0px;
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+    }
+
+    #itens-selecao {
+        margin: 40px 0px 0px 0px;
+        display: inline-block;
+        width: 100%;
+    }
+
+    .subselecao {
+        
+    }
+
+    #div-search {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+        align-self: center;
     }
 
     .grupo {
+        gap: 0px;
         width: 100%;
         max-width: 100%;
     }
 
     .campo-search,
     .campos-div {
+        margin-top: 0px;
+        width: 100%;
+    }
+
+    input[type="text"],
+    input[type="search"],
+    input[type="number"] {
+        margin-top: 0px;
         width: 100%;
     }
 
