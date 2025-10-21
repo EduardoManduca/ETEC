@@ -242,16 +242,20 @@ p {
 
 /* Agendamento_lab.html */
 #container-principal {
+    justify-content: center;
     display: flex;
+    padding: 10px;
+    flex-wrap: wrap;
     width: 100%;
-    gap: 10%;
+    gap: 30px;
 }
 
 #formulario {
     display: flex;
     flex-direction: column;
-    width: 100%;
-    margin-left: 20px;
+    flex-grow: 1;
+    width: 50%;
+    gap: 30px;
 }
 
 #itens-selecao {
@@ -259,8 +263,9 @@ p {
     flex-direction: column;
     background-color: #DDDDDD;
     border-radius: 10px;
-    width: 80%;
-    margin-right: 20px;
+    min-width: 300px;
+    max-width: 600px;
+    flex-grow: 1;
 }
 
 .subselecao {
@@ -269,9 +274,6 @@ p {
     padding: 10px;
     border-radius: 10px;
 }
-
-
-
 
 .subselecao p {
     color: white;
@@ -286,8 +288,11 @@ p {
     border-radius: 20px;
     font-size: medium;
     font-weight: bold;
-    gap: 20px;
-    padding-bottom: 10%;
+    gap: 10px;
+}
+
+.formulario-grupo {
+    width: 100%;
 }
 
 .campos-div {
@@ -302,14 +307,13 @@ p {
 #div-search {
     display: flex;
     justify-content: space-between;
-    gap: 13.4rem;
+    gap: 40px;
 }
 
 .grupo {
     display: flex;
     flex-direction: column;
-    gap: 6px;
-    min-width: 220px;
+    width: 100%;
 }
 
 #container-principal h2 {
@@ -546,9 +550,8 @@ thead {
 input[type="text"],
 input[type="search"],
 input[type="number"] {
-    width: calc(100% - 12px);
+    width: 100%;
     padding: 6px;
-    margin-top: 4px;
     border: 1px solid #ccc;
     border-radius: 6px;
     box-sizing: border-box;
@@ -705,6 +708,12 @@ input[type="number"] {
 
 /* RESPONSIVIDADE */
 
+@media (min-width: 1024px) {
+    #formulario {
+        min-width: 655px;
+    }
+}
+
 @media (max-width: 1024px) {
     .search-wrapper {
         margin-left: 20%;
@@ -721,13 +730,22 @@ input[type="number"] {
         margin-right: 100px;
     }
 
-    #container-principal,
+    #formulario {
+        width: 100%;
+        font-size: 10px;
+    }
+
     #laboratorio-div {
-        max-width: 85%;
+        width: 100%;
+        font-size: inherit;
+    }
+
+    #container-principal {
+        gap: 20px;
     }
 
     #div-search {
-        gap: 2rem;
+        gap: 20px;
     }
 }
 
@@ -833,10 +851,6 @@ input[type="number"] {
         margin: 40px 0px 0px 0px;
         display: inline-block;
         width: 100%;
-    }
-
-    .subselecao {
-        
     }
 
     #div-search {
