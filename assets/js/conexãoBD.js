@@ -1,8 +1,16 @@
 const { MongoClient } = require('mongodb');
 
-const uri = "mongodb+srv://TouchBrownn:o4WuFdR7J0HczfrB@etecmaua2025.ea6cnme.mongodb.net/"; 
-const dbName = "meuProjetoDB"; 
-const collectionName = "usuarios";
+require('dotenv').config(); // Carrega as variáveis do .env
+
+// Acesse a variável
+const URL = process.env.URL;
+const name = process.env.NAME;
+const collectionName = process.env.COLLNAME;
+console.log("URL do MongoDB:", URL);
+console.log("Nome do Banco de Dados:", name);
+console.log("Nome da Coleção:", collectionName);
+
+
 // --------------------
 
 const client = new MongoClient(uri);
