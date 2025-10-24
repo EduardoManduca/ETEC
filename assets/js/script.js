@@ -1,107 +1,101 @@
 // ***** Constantes e variáveis *****
-const reagentesValor = document.getElementById('reagentes').value;
+const reagentesEl = document.getElementById('reagentes');
+const reagentesValor = reagentesEl ? reagentesEl.value : null;
 const botaoAumentar = document.getElementById("aumentar-texto");
 const botaoDiminuir = document.getElementById("diminuir-texto");
-const body = document.body;
 
-let nivel = 0; // nível atual (0 = normal)
-const maxNivel = 3; // até 3 aumentos
-const minNivel = -3; // até 3 reduções
-const incremento = 1; // % por nível
+let nivel = 0; // nível atual
+const maxNivel = 3;
+const minNivel = -3;
+const incremento = 0.3; // 30%
 
-// Tamanho original do texto
-const tamanhoOriginal = parseFloat(
-  window.getComputedStyle(body).fontSize
-);
+// Guarda tamanhos originais
+const tamanhosOriginais = new Map();
 
 
 // ***** Funções *****
 
-tamanhosOriginais.forEach((tamanhoOriginal, el) => {
-  // ***** Constantes e variáveis *****
-  // If there's an element with id 'reagentes', safely read its value.
-  let reagentesValor = null;
-  const reagentesEl = document.getElementById('reagentes');
-  if (reagentesEl) reagentesValor = reagentesEl.value;
+// Login
+function logincheck() {
+  const usernameEl = document.getElementById('username');
+  const passwordEl = document.getElementById('password');
+  const errorMessage = document.getElementById('errorMessage');
 
-  // Login / auth
-  function logincheck() {
-    const usernameEl = document.getElementById('username');
-    const passwordEl = document.getElementById('password');
-    const errorMessage = document.getElementById('errorMessage');
+  const username = usernameEl ? usernameEl.value : '';
+  const password = passwordEl ? passwordEl.value : '';
 
-    const username = usernameEl ? usernameEl.value : '';
-    const password = passwordEl ? passwordEl.value : '';
+  const correctUsername = 'admin';
+  const correctPassword = 'password123';
+  const correctTecnico = 'tecnico';
 
-    const correctUsername = 'admin';
-    const correctPassword = 'password123';
-    const correctTecnico = 'tecnico';
-
-    // Prefer explicit professor path for admin user, tecnico for technician
-    if (username === correctUsername && password === correctPassword) {
-      if (errorMessage) errorMessage.style.display = 'none';
-      window.location.href = '/pages/pages_professor/TelaProfessor.html';
-    } else if (username === correctTecnico && password === correctPassword) {
-      if (errorMessage) errorMessage.style.display = 'none';
-      window.location.href = '/pages/pages_tecnico/menu_tecnico.html';
-    } else {
-      if (errorMessage) errorMessage.style.display = 'block';
-    }
+  if (username === correctUsername && password === correctPassword) {
+    if (errorMessage) errorMessage.style.display = 'none';
+    window.location.href = '/pages/pages_professor/TelaProfessor.html';
+  } else if (username === correctTecnico && password === correctPassword) {
+    if (errorMessage) errorMessage.style.display = 'none';
+    window.location.href = '/pages/pages_tecnico/menu_tecnico.html';
+  } else {
+    if (errorMessage) errorMessage.style.display = 'block';
   }
+}
 
-  // função dark mode
-  function toggleTheme() {
-    const body = document.body;
-    body.classList.toggle('dark-mode');
 
-    if (body.classList.contains('dark-mode')) {
-      localStorage.setItem('theme', 'dark');
-    } else {
-      localStorage.setItem('theme', 'light');
-    }
-  }
+// Tema escuro
+function toggleTheme() {
+  document.body.classList.toggle('dark-mode');
+  localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+}
 
-  document.addEventListener('DOMContentLoaded', (event) => {
-    const savedTheme = localStorage.getItem('theme');
 
-    if (savedTheme === 'dark') {
-      document.body.classList.add('dark-mode');
-    } else if (savedTheme === 'light') {
-      document.body.classList.remove('dark-mode');
-    }
-
-    // Initialize font scaling originals after DOM loads
-    guardarTamanhosOriginais();
+// Guardar tamanhos originais
+function guardarTamanhosOriginais() {
+  const todosElementos = document.querySelectorAll("*");
+  todosElementos.forEach(el => {
+    const style = window.getComputedStyle(el);
+    const size = parseFloat(style.fontSize) || 16;
+    tamanhosOriginais.set(el, size);
   });
+}
 
-  // ***** Texto: Aumentar / Diminuir *****
-  const botaoAumentar = document.getElementById("aumentar-texto");
-  const botaoDiminuir = document.getElementById("diminuir-texto");
 
-  let nivel = 0; // nível atual
-  const maxNivel = 3;
-  const minNivel = -3;
-  const incremento = 0.3; // fraction per level (30%)
+// Atualizar tamanhos de fonte
+function atualizarTamanhos() {
+  tamanhosOriginais.forEach((tamanhoOriginal, el) => {
+    const novoTamanho = tamanhoOriginal * (1 + incremento * nivel);
+    el.style.fontSize = novoTamanho + "px";
+  });
+}
 
-  // Guarda os tamanhos originais em um Map para cada elemento
-  const tamanhosOriginais = new Map();
 
-  function guardarTamanhosOriginais() {
-    const todosElementos = document.querySelectorAll("*");
-    todosElementos.forEach(el => {
-      const style = window.getComputedStyle(el);
-      // Pega o font-size atual (em px) e guarda; fallback to 16
-      const size = parseFloat(style.fontSize) || 16;
-      tamanhosOriginais.set(el, size);
-    });
-  }
+// Pesquisar em lista
+function search() {
+  const inputEl = document.getElementById('searchInput');
+  const input = inputEl ? inputEl.value.toLowerCase() : '';
+  const items = document.querySelectorAll('.item');
 
-  function atualizarTamanhos() {
-    tamanhosOriginais.forEach((tamanhoOriginal, el) => {
-      const novoTamanho = tamanhoOriginal * (1 + incremento * nivel);
-      el.style.fontSize = novoTamanho + "px";
-    });
-  }
+  items.forEach(it => {
+    const text = it.textContent || '';
+    it.style.display = text.toLowerCase().includes(input) ? '' : 'none';
+  });
+}
+
+
+// Adicionar linha à tabela
+function addTableRow() {
+  const tabela = document.getElementById("estoque");
+  if (!tabela) return;
+  const novaLinha = tabela.insertRow();
+  const novaCelula = novaLinha.insertCell();
+  novaCelula.innerHTML = "Novo valor";
+}
+
+
+// ***** Eventos *****
+document.addEventListener('DOMContentLoaded', () => {
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme === 'dark') document.body.classList.add('dark-mode');
+
+  guardarTamanhosOriginais();
 
   if (botaoAumentar) {
     botaoAumentar.addEventListener("click", () => {
@@ -120,24 +114,4 @@ tamanhosOriginais.forEach((tamanhoOriginal, el) => {
       }
     });
   }
-
-  // Small helpers used elsewhere in the project
-  function search() {
-    const inputEl = document.getElementById('searchInput');
-    const input = inputEl ? inputEl.value.toLowerCase() : '';
-    const items = document.querySelectorAll('.item');
-    // Placeholder: actual filtering behavior can be implemented where needed
-    items.forEach(it => {
-      const text = it.textContent || '';
-      it.style.display = text.toLowerCase().includes(input) ? '' : 'none';
-    });
-  }
-
-  function addTableRow() {
-    const tabela = document.getElementById("estoque");
-    if (!tabela) return;
-    const novaLinha = tabela.insertRow();
-    const novaCelula = novaLinha.insertCell();
-    novaCelula.innerHTML = "Novo valor";
-  }
-})
+});
