@@ -1,0 +1,940 @@
+@font-face {
+    font-family: 'RobotoSlab';
+    src: url('/font/RobotoSlab-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+:root {
+    /* Cores retiradas do Guia de estilo Site CPS:
+    https://cps.sp.gov.br/guia-estilo/cores.php */
+    /* Cores principais */
+    --vermelho-base: #B20000;
+    --vermelho-escuro-10: #7E0000;
+    --azul-base: #005C6D;
+    --primario-titulos-hover: #004854;
+    --azul-destaque-base: #00C1CF;
+    --secundario-hover: #00D8E8;
+
+    /* Cores Auxiliares */
+    --verde-base: #A0C340;
+    --blueberry-base: #4C7EFF;
+    --crayola-base: #FFC24C;
+    --violeta-base: #8A29E6;
+    --coral-base: #FF4C4D;
+    --pink-base: #FF4CA2;
+
+    /* Cores Neutras */
+    --cinza-texto-base: #666666;
+    --cinza-claro: #DADADA;
+    --cinza-hover: #E6E6E6;
+    --prata-base: #F8F8F8;
+
+    /* Cores de Feedback */
+    --cancelado: #D32719;
+    --cancelado-outline: #F95B4D;
+    --cancelado-light: #FDD5D1;
+    --andamento: #B78718;
+    --andamento-outline: #DFB77B;
+    --andamento-light: #FFF5EA;
+    --concluido: #3ACF1F;
+    --concluido-outline: #80E96D;
+    --concluido-light: #E8FBE4;
+
+    /* Fonte Roboto */
+    --font-primary: 'RobotoSlab', serif;
+}
+
+/* ARQUIVOS NO GERAL */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+* {
+    font-family: var(--font-primary);
+}
+
+.nav-bar {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    border: 1px solid #141414;
+    background: #BA1A1A;
+    padding: 0;
+}
+
+.li-nav-bar {
+    width: 250px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-left: 1px solid #141414;
+}
+
+.li-nav-bar:last-child {
+    border-right: 1px solid #141414;
+}
+
+.li-nav-bar:hover {
+    background-color: #7E0000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.a-nav-bar {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 10px 0;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+
+.controles-acessibilidade {
+    display: flex;
+    align-items: center;
+    border-left: 1px solid #757575;
+    padding-left: 15px;
+    margin-left: 15px;
+}
+
+.controles-acessibilidade button {
+    background: none;
+    border: 2px solid white;
+    border-radius: 50%;
+    color: #757575;
+    cursor: pointer;
+    font-weight: bold;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    transition: all 0.3s;
+}
+
+.controles-acessibilidade button:hover {
+    transform: scale(1.2);
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+footer {
+    margin-top: 3%;
+    background-color: black;
+    padding: 40px;
+    text-align: center;
+    width: 100%;
+}
+
+#img-rodape {
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    width: auto;
+}
+
+h1 {
+    color: #1A6C7C;
+    padding: 1%;
+    text-align: center;
+}
+
+p {
+    margin-top: 15px;
+}
+
+
+.controles-tamanho {
+    margin-top: -5px;
+}
+
+#texto-topo-gsp {
+    margin-top: 5px;
+    color: #5C5C5C;
+    font-size: smaller;
+    margin-right: 10px;
+}
+
+.ul-topo,
+.ul-meio-topo {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+}
+
+.ul-meio-topo {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    margin: 0;
+    padding: 0;
+    gap: 20px;
+}
+
+.search-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 435px;
+    width: 435%;
+    padding: 5px;
+    margin-top: 2%;
+    margin-left: 35%;
+    border-radius: 5px;
+}
+
+
+.br-pesq {
+    flex: 1;
+    outline: none;
+    padding: 15px;
+    width: 100%;
+    padding-right: 20px;
+    font-size: 1rem;
+    font-weight: 300;
+    border-radius: 30px 0px 0px 30px;
+    border: 1px solid #D1D1D1;
+    background: white;
+    font-weight: 300;
+    height: 50px;
+    margin-right: 0;
+    box-sizing: border-box;
+}
+
+.search-button {
+    border: none;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    background-color: #BA1A1A;
+    height: 50px;
+    padding: 0 20px;
+    cursor: pointer;
+}
+
+.campo-preto {
+    background-color: #141414;
+    width: 300px;
+    height: 80px;
+    border-top-right-radius: 100px;
+    border-bottom-right-radius: 100px;
+}
+
+.ul-midias {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 30px;
+    margin-right: 20px;
+    justify-content: flex-end;
+}
+
+.img-midias {
+    width: 25px;
+    filter: grayscale(100%);
+    opacity: 1;
+    transition: all 0.3s;
+}
+
+.img-midias:hover {
+    filter: grayscale(0%);
+    opacity: 0.9;
+    transform: scale(1.2);
+}
+
+.logo-sp {
+    margin-top: 20px;
+    margin-left: 50px;
+}
+
+.logo-etec {
+    margin-top: 20px;
+    height: 85px;
+    margin-left: 30px;
+    width: 100%;
+    max-width: 300px;
+}
+
+/* ARQUIVOS NO GERAL */
+
+/* Agendamento_lab.html */
+#container-principal {
+    display: flex;
+    width: 100%;
+    gap: 10%;
+}
+
+#formulario {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-left: 20px;
+}
+
+#itens-selecao {
+    display: flex;
+    flex-direction: column;
+    background-color: #DDDDDD;
+    border-radius: 10px;
+    width: 80%;
+    margin-right: 20px;
+}
+
+.subselecao {
+    background-color: #CCCCCC;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+
+
+
+.subselecao p {
+    color: white;
+    margin: 0px
+}
+
+#laboratorio-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    border-radius: 20px;
+    font-size: medium;
+    font-weight: bold;
+    gap: 20px;
+    padding-bottom: 10%;
+}
+
+.campos-div {
+    height: 25px;
+    background-color: #D9D9D9;
+    border-radius: 4px;
+    padding: 4px 6px 4px;
+    width: 100%;
+    cursor: pointer;
+}
+
+#div-search {
+    display: flex;
+    justify-content: space-between;
+    gap: 13.4rem;
+}
+
+.grupo {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 220px;
+}
+
+#container-principal h2 {
+    margin: 0;
+    padding: 0;
+    color: #005C6D;
+}
+
+.grupo h2 {
+    margin: 0;
+    padding: 0;
+    color: #005C6D;
+}
+
+.campo-search {
+    display: block;
+    box-sizing: border-box;
+    width: 220px;
+    background-color: #D9D9D9;
+    border-radius: 4px;
+    background-repeat: no-repeat;
+    background-size: 20px;
+    background-position: 5px center;
+    background-image: url("images/search_icon.png");
+    font-size: medium;
+    height: 28px;
+    padding: 4px 6px 4px 30px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+/* Agendamento_lab.html */
+
+/* index.html */
+.container-servicos {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    text-align: center;
+    gap: 30px;
+    margin-left: 60px;
+    margin-right: 60px;
+    margin-top: 20px;
+}
+
+.container-servicos-2 {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    text-align: center;
+    margin-left: 286px;
+    margin-right: 286px;
+    margin-top: 20px;
+    gap: 0;
+}
+
+.h1-div-servicos {
+    color: var(--primario-titulos-hover);
+    text-align: center;
+}
+
+#servicos-h2 {
+    color: var(--primario-titulos-hover);
+}
+
+.div-servicos {
+    background: #DADADA;
+    color: #333333;
+    flex: 1;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 30px 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.35);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.div-servicos-2 {
+    background: #DADADA;
+    color: #333333;
+    flex: 1;
+    margin-left: 50px;
+    margin-right: 50px;
+    padding: 30px 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.35);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.botao-servicos {
+    background-color: var(--vermelho-base);
+    border: none;
+    color: white;
+    padding: 2%;
+    margin-top: 20px;
+    padding-inline: 25px;
+    border-radius: 5px;
+}
+
+.botao-servicos:hover {
+    background-color: var(--vermelho-escuro-10);
+    cursor: pointer;
+}
+
+.barra-container {
+    width: 95%;
+    height: 10px;
+    background-color: #aa0000;
+    border-radius: 5px;
+    margin-top: 10px;
+    position: relative;
+    justify-self: center;
+}
+
+.img-servicos {
+    max-width: 150px;
+    opacity: 0.85;
+}
+
+/* index.html */
+
+/* Tabelas em kits_e_materias && estoque */
+
+table {
+    width: 90%;
+    max-width: 800px;
+    border-collapse: collapse;
+    margin: 0 auto;
+    background-color: #D1D1D1;
+    height: auto;
+}
+
+#div-search-kit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    margin: auto;
+    margin-bottom: 1.4%;
+}
+
+#search-input {
+    width: 100%;
+    padding: 10px 45px 10px 15px;
+    border: 2px solid #D1D1D1;
+    border-radius: 25px;
+    outline: none;
+    font-size: medium;
+    transition: all 0.3s ease;
+}
+
+.search-botao {
+    position: absolute;
+    right: 5px;
+    background-color: #BA1A1A;
+    border: none;
+    color: white;
+    font-size: 16px;
+    padding: 7px 10px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#search-input::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    appearance: none;
+    display: none;
+}
+
+.clear-search {
+    position: absolute;
+    right: 55px;
+    padding-block: 10px;
+    background: none;
+    border: none;
+    color: #757575;
+    font-size: x-large;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: none;
+}
+
+.clear-search:hover {
+    color: #BA1A1A;
+    transform: scale(1.2);
+}
+
+.search-botao:hover {
+    background-color: #7E0000;
+}
+
+
+th,
+td {
+    padding: 12px;
+    border: 1px solid white;
+    text-align: center;
+}
+
+tr {
+    height: auto;
+}
+
+thead {
+    background-color: #BA1A1A;
+    color: white;
+}
+
+
+#div-kit-criar {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    width: 400px;
+    margin: 0 auto;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+#h1-kits-criar {
+    text-align: center;
+    color: #004854;
+    margin-bottom: 20px;
+}
+.label-kit {
+    display: inline-block;
+    margin-top: 10px;
+    font-weight: bold;
+    color: #444;
+}
+
+input[type="text"],
+input[type="search"],
+input[type="number"] {
+    width: calc(100% - 12px);
+    padding: 6px;
+    margin-top: 4px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+#label-num-kit,
+#label-num-kit-2 {
+    margin-left: 10px;
+}
+
+.button-kit-div {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.button-kit-solicitar,
+.button-kit-limpar {
+    background-color: #7E0000;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin: 5px;
+    transition: background-color 0.2s;
+}
+
+.button-kit-solicitar:hover,
+.button-kit-limpar:hover {
+    background-color: #9c3b3b;
+}
+
+.button-kit-limpar {
+    background-color: #666666;
+}
+
+.button-kit-limpar:hover {
+    background-color: #8a8989;
+}
+
+.item {
+    padding: 50px;
+    border: 1px solid white;
+    transition: background-color 0.3s;
+    cursor: pointer;
+}
+
+.item:hover {
+    background-color: #B2B2B2;
+}
+
+.dleft {
+    font-weight: bold;
+}
+
+#h1-estoque {
+    text-decoration: none;
+    font-size: 50px;
+}
+
+/* Tabelas em kits_e_materias && estoque */
+
+
+/* ------- telalogin.html COMEÇO------- */
+#login {
+    background-color: #F0F0F0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 50vh;
+    width: 100%;
+    padding: 2rem;
+    border: 1px solid #C2C2C2;
+    border-radius: 20px;
+    max-width: 400px;
+    margin: 5% auto;
+}
+
+#errorMessage {
+    color: #BA1A1A;
+    font-weight: bold;
+    font-size: 0.9em;
+    display: none;
+    padding-top: 5px;
+}
+
+#paragrafo-login {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+#titulo-login {
+    text-align: center;
+    color: #1A6C7C;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.title-login {
+    font-size: 18px;
+    font-weight: 500;
+    align-self: flex-start;
+    margin-top: 10px;
+    color: #141414;
+    margin-bottom: 5px;
+}
+
+.cadastro {
+    width: 100%;
+    font-size: 15px;
+    padding: 10px;
+    border: 1px solid #C2C2C2;
+    border-radius: 8px;
+    box-sizing: border-box;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.cadastro:focus {
+    border-color: #757575;
+    box-shadow: 0 0 3px #5C5C5C;
+    outline: none;
+}
+
+#enter,
+#cancel {
+    width: 85%;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 15px;
+    margin: 8px;
+}
+
+#enter {
+    background-color: #3D3D3D;
+}
+
+#enter:hover {
+    background-color: #292929;
+}
+
+#cancel {
+    background-color: #BA1A1A;
+}
+
+#cancel:hover {
+    background-color: #7E0000;
+}
+
+/* telalogin.html */
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 1024px) {
+    .search-wrapper {
+        margin-left: 20%;
+        width: 60%;
+    }
+
+    .container-servicos {
+        margin-left: 30px;
+        margin-right: 30px;
+    }
+
+    .container-servicos-2 {
+        margin-left: 100px;
+        margin-right: 100px;
+    }
+
+    #container-principal,
+    #laboratorio-div {
+        max-width: 85%;
+    }
+
+    #div-search {
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .nav-bar {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .li-nav-bar,
+    .li-nav-bar:last-child {
+        border-right: none;
+        border-bottom: 1px solid #141414;
+        width: 100%;
+        text-align: center;
+    }
+
+    .a-nav-bar {
+        padding: 15px 20px;
+    }
+
+    .ul-meio-topo {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        padding: 10px 0;
+    }
+
+    .search-wrapper {
+        width: 90%;
+        max-width: 400px;
+        margin: 10px auto;
+        padding: 0;
+    }
+
+    .br-pesq {
+        height: 45px;
+        padding: 10px;
+        padding-left: 15px;
+    }
+
+    .search-button {
+        height: 45px;
+    }
+
+    .logo-sp,
+    .logo-etec {
+        margin: 10px 0;
+        text-align: center;
+    }
+
+    .ul-midias {
+        justify-content: center;
+        margin-right: 0;
+        margin-top: 15px;
+    }
+
+    .container-servicos,
+    .container-servicos-2 {
+        flex-direction: column;
+        justify-content: center;
+        margin-left: 20px;
+        margin-right: 20px;
+        gap: 20px;
+    }
+
+    .div-servicos,
+    .div-servicos-2 {
+        margin: 0;
+    }
+
+    #container-principal,
+    #laboratorio-div {
+        max-width: 95%;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 10px;
+    }
+
+    #div-search {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: stretch;
+    }
+
+    .grupo {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .campo-search,
+    .campos-div {
+        width: 100%;
+    }
+
+    #login {
+        width: 90%;
+        margin: 15% auto;
+        padding: 1.5rem;
+    }
+
+    .tabela-responsiva-wrapper {
+        overflow-x: auto;
+        margin: 20px 5px;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .tabela-responsiva-wrapper table {
+        width: 100%;
+        min-width: 600px;
+    }
+
+    h1,
+    #h1-estoque {
+        font-size: 1.8rem;
+        text-align: center;
+        padding: 15px;
+    }
+
+    .h1-div-servicos {
+        font-size: 1.5rem;
+    }
+}
+
+.status {
+    width: 50px;
+}
+
+#barra-container-status {
+    width: 40%;
+    height: 10px;
+    background-color: #aa0000;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-left: 10px;
+    position: relative;
+    justify-self: center;
+}
+
+
+@media (max-width: 480px) {
+
+    .container-servicos,
+    .container-servicos-2 {
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+
+    .div-servicos,
+    .div-servicos-2 {
+        padding: 25px 15px;
+    }
+
+    #login {
+        padding: 1.5rem 1rem;
+    }
+
+    h1,
+    #h1-estoque {
+        font-size: 1.6rem;
+    }
+
+    .h1-div-servicos {
+        font-size: 1.3rem;
+    }
+
+    .logo-etec {
+        max-width: 250px;
+    }
+}

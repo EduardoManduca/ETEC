@@ -1,7 +1,0 @@
-{
-  "dependencies": {
-    "dotenv": "^17.2.3",
-    "mongodb": "^6.20.0",
-    "mongoose": "^8.19.2"
-  }
-}

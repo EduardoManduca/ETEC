@@ -85,6 +85,7 @@
                     <select id="dropdown-cadastro" name="funcao">
                         <option value="professor">Professor</option>
                         <option value="tecnico">Técnico</option>
+                        <option value="admin">Administrador</option>
                     </select>
                 </div>
                 <button type="submit" class="btn-criar">Criar</button>
@@ -102,6 +103,25 @@
     <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
     <script>
         new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
+
+    <script>
+        document.querySelector(".login-form").addEventListener("submit", async (e) => {
+            e.preventDefault(); // impede o reload da página
+
+            const login = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            const funcao = document.getElementById("dropdown-cadastro").value;
+
+            const resposta = await fetch("http://localhost:5000/signup", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ login, password, funcao })
+            });
+
+            const resultado = await resposta.json();
+            alert(resultado.message || resultado.error);
+        });
     </script>
     </main>
     <footer>
