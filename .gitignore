@@ -6,3 +6,4 @@ conexãoBD.js
 .env
 /vendor
 Gemfile.lock
+node_modules
