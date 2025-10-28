@@ -63,9 +63,9 @@
             <li class="li-nav-bar"><a class="a-nav-bar" href="/pages/pages_admin/TelaAdministrador.html">Home</a></li>
         </ul>
     </nav>
-
     <main class="login-page">
         <div class="login-container">
+            <p id="cadastrar-check" class="cadastrar-check"></p>
             <h2>Cadastrar Usuário</h2>
             <p>Por favor, insira os dados para criar uma nova conta.</p>
 
@@ -120,7 +120,17 @@
             });
 
             const resultado = await resposta.json();
-            alert(resultado.message || resultado.error);
+            const mensagem = document.getElementById("cadastrar-check");
+
+            if (resposta.ok) {
+                mensagem.textContent = resultado.message || "✅ Usuário cadastrado com sucesso!";
+                mensagem.className = "cadastrar-check sucesso";
+                mensagem.style.display = "block";
+            } else {
+                mensagem.innerHTML = resultado.error || "❌ Erro ao cadastrar usuário.";
+                mensagem.className = "cadastrar-check erro";
+            }
+
         });
     </script>
     </main>

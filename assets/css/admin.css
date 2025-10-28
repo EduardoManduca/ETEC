@@ -7,6 +7,48 @@
     flex-wrap: wrap;
 }
 
+.cadastrar-check {
+    display: none;
+    margin: 10px auto;
+    padding: 15px 20px;
+    text-align: center;
+    font-size: 16px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+    max-width: 400px;
+}
+
+.icone-alerta {
+    margin-right: 10px;
+    font-size: 20px;
+    vertical-align: middle;
+}
+
+.cadastrar-check.sucesso {
+    color: #155724;
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cadastrar-check.erro {
+    color: #721c24;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nome-usuario {
+    font-weight: bold;
+    color: #721c24;
+    text-decoration:underline;
+}
+
 .container-painel-admin {
     background-color: #ffffff;
     border-radius: 30px;
