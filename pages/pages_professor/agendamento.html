@@ -7,6 +7,7 @@
     <title>Agendamentos de Laboratório</title>
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="stylesheet" href="/assets/css/darkMode.css">
+    <link rel="stylesheet" href="/assets/css/agendamento.css">
     <link rel="icon" href="/images/logo-cps.png">
 </head>
 
@@ -120,18 +121,31 @@
 
                 <div id="div-search">
                     <div class="grupo">
-                        <div id="materiais-header">
+
+                        <div id="materiais-header" class="selecao-header">
                             <h2>Materiais:</h2>
                             <p class="esconder aviso">Selecione um material.</p>
                         </div>
-                        <input type="text" class="campo-search" placeholder="Nome do material" id="search-materiais">
-                        <button type="button" class="div-search-botao" id="lab-botao-materiais" onclick="adicionarItem('materiais')">Adicionar Material</button>
+
+                        <div id="materiais-input">    
+                            <input type="text" class="campo-search" placeholder="Nome do material" id="search-materiais">
+                            <button type="button" class="div-search-botao" id="lab-botao-materiais" onclick="adicionarItem('materiais')"></button>
+                        </div>
+
                     </div>
 
                     <div class="grupo">
-                        <h2>Reagentes:</h2>
-                        <input type="text" class="campo-search" placeholder="Nome do reagente" id="search-reagentes">
-                        <button type="button" class="div-search-botao" id="lab-botao-reagentes" onclick="adicionarItem('reagentes')">Reagente</button>
+
+                        <div id="reagentes-header" class="selecao-header">
+                            <h2>Reagentes:</h2>
+                            <p class="esconder aviso">Selecione um reagente.</p>
+                        </div>
+
+                        <div id="reagentes-input">
+                            <input type="text" class="campo-search" placeholder="Nome do reagente" id="search-reagentes">
+                            <button type="button" class="div-search-botao" id="lab-botao-reagentes" onclick="adicionarItem('reagentes')"></button>
+                        </div>
+
                     </div>
                 </div>
                 <div id="botoes-agend-lab">

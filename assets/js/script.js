@@ -133,15 +133,14 @@ function adicionarItem(tipo) {
 
   } else {
 
-    let itemAviso = document.querySelector(".aviso");
-    materiaisAviso.classList.add("exibir");
-    materiaisAviso.classList.remove("esconder");
+    let itemAviso = document.querySelector(`#${tipo}-header > .aviso`);
+    itemAviso.classList.add("exibir");
+    itemAviso.classList.remove("esconder");
 
     setTimeout(() => {
-      materiaisAviso.classList.add("esconder");
-      materiaisAviso.classList.remove("exibir");
+      itemAviso.classList.add("esconder");
+      itemAviso.classList.remove("exibir");
     }, 5000);
-    console.log(materiaisAviso.innerHTML)
-    console.log("vazio")
+    
   }
 }
