@@ -50,10 +50,15 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: var(--font-primary);
 }
 
-* {
-    font-family: var(--font-primary);
+.esconder {
+    visibility: hidden;
+}
+
+.exibir {
+    visibility: visible;
 }
 
 .nav-bar {
@@ -241,40 +246,6 @@ p {
 /* ARQUIVOS NO GERAL */
 
 /* Agendamento_lab.html */
-#container-principal {
-    justify-content: center;
-    display: flex;
-    padding: 10px;
-    flex-wrap: wrap;
-    width: 100%;
-    gap: 30px;
-}
-
-#formulario {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    width: 50%;
-    gap: 30px;
-}
-
-#itens-selecao {
-    display: flex;
-    flex-direction: column;
-    background-color: #DDDDDD;
-    border-radius: 10px;
-    min-width: 300px;
-    max-width: 95%;
-    flex-grow: 1;
-}
-
-.subselecao {
-    background-color: #CCCCCC;
-    margin: 10px;
-    padding: 10px;
-    border-radius: 10px;
-}
-
 .div-painel-tecnico-es {
     background: #d4d1d1;
     text-align: left;
@@ -325,60 +296,7 @@ p {
     justify-content: center;
 }
 
-.subselecao p {
-    color: white;
-    margin: 0px
-}
-
-#laboratorio-div {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 100%;
-    border-radius: 20px;
-    font-size: medium;
-    font-weight: bold;
-    gap: 10px;
-}
-
-.formulario-grupo {
-    width: 100%;
-}
-
-.campos-div {
-    height: 25px;
-    background-color: #D9D9D9;
-    border-radius: 4px;
-    padding: 4px 6px 4px;
-    width: 100%;
-    cursor: pointer;
-}
-
-#div-search {
-    display: flex;
-    justify-content: space-between;
-    gap: 40px;
-}
-
-.grupo {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-}
-
-#container-principal h2 {
-    margin: 0;
-    padding: 0;
-    color: #005C6D;
-}
-
-.grupo h2 {
-    margin: 0;
-    padding: 0;
-    color: #005C6D;
-}
-
-.campo-search {
+/* .campo-search {
     display: block;
     box-sizing: border-box;
     width: 220px;
@@ -393,7 +311,7 @@ p {
     padding: 4px 6px 4px 30px;
     border: 1px solid #ccc;
     border-radius: 3px;
-}
+} */
 
 /* Agendamento_lab.html */
 
@@ -606,35 +524,6 @@ input[type="number"] {
     border: 1px solid #ccc;
     border-radius: 6px;
     box-sizing: border-box;
-}
-
-.botao-agendamento {
-    padding: 2.5px;
-    display: flex;
-    margin: 20px;
-    width: 300px;
-    height: 50px;
-    border: 0;
-    border-radius: 50px;
-    transition: transform 0.2 ease;
-    display: inline;
-}
-#botoes-agend-lab {
-    text-align: center;
-}
-#btn-lab-conf {
-    background-color: #f32a2a;
-    color: white;
-}
-#btn-lab-conf:hover {
-    background-color: #7E0000;
-}
-#btn-lab-cancelar {
-    background-color: #141414;
-    color: white;
-}
-#btn-lab-cancelar:hover {
-    background-color: #444;
 }
 
 #label-num-kit,
@@ -865,12 +754,6 @@ input[type="number"] {
 
 /* RESPONSIVIDADE */
 
-@media (min-width: 1024px) {
-    #formulario {
-        min-width: 655px;
-    }
-}
-
 @media (max-width: 1024px) {
     .search-wrapper {
         margin-left: 20%;
@@ -885,23 +768,6 @@ input[type="number"] {
     .container-servicos-2 {
         margin-left: 100px;
         margin-right: 100px;
-    }
-
-    #formulario {
-        width: 100%;
-    }
-
-    #laboratorio-div {
-        width: 100%;
-        font-size: inherit;
-    }
-
-    #container-principal {
-        gap: 20px;
-    }
-
-    #div-search {
-        gap: 20px;
     }
 }
 
@@ -941,7 +807,7 @@ input[type="number"] {
     .br-pesq {
         height: 45px;
         padding: 10px;
-    padding-left: 15px;
+        padding-left: 15px;
     }
 
     .search-button {
@@ -972,73 +838,6 @@ input[type="number"] {
     .div-servicos,
     .div-servicos-2 {
         margin: 0;
-    }
-
-    #container-principal,
-    #laboratorio-div {
-        max-width: 95%;
-        margin-left: auto;
-        margin-right: auto;
-        padding: 10px;
-    }
-
-    #container-principal {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-    }
-
-    #formulario {
-        display: flex;
-        gap: 15px;
-        width: 100%;
-        margin-left: 0px;
-    }
-
-    #laboratorio-div {
-        display: flex;
-        padding: 0px;
-        flex-direction: column;
-        width: 100%;
-        gap: 10px;
-    }
-
-    #itens-selecao {
-        margin-top: 10px;
-        display: inline-block;
-        width: 100%;
-        align-self: center;
-    }
-
-    /* .subselecao {
-    
-    } */
-
-    #div-search {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        gap: 10px;
-        align-self: center;
-    }
-
-    .grupo {
-        gap: 0px;
-        width: 100%;
-        max-width: 100%;
-    }
-
-    .campo-search,
-    .campos-div {
-        margin-top: 0px;
-        width: 100%;
-    }
-
-    input[type="text"],
-    input[type="search"],
-    input[type="number"] {
-        margin-top: 0px;
-        width: 100%;
     }
 
     #login {
