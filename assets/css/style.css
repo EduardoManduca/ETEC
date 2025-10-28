@@ -50,10 +50,15 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: var(--font-primary);
 }
 
-* {
-    font-family: var(--font-primary);
+.esconder {
+    visibility: hidden;
+}
+
+.exibir {
+    visibility: visible;
 }
 
 .nav-bar {
@@ -266,6 +271,18 @@ p {
     min-width: 300px;
     max-width: 95%;
     flex-grow: 1;
+}
+
+#materiais-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+}
+
+.aviso {
+    color: var(--cancelado);
+    margin: 0px;
+    font-weight: 700;
 }
 
 .subselecao {

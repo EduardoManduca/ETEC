@@ -92,7 +92,7 @@
                     <div class="formulario-grupo">
                         <h2>Laboratório</h2>
                         <select class="campos-div">
-                            <option>Sala1 </option>
+                            <option>Sala1</option>
                             <option>Sala2</option>
                             <option>Sala3</option>
                         </select>
@@ -120,13 +120,18 @@
 
                 <div id="div-search">
                     <div class="grupo">
-                        <h2>Materiais:</h2>
-                        <input type="text" class="campo-search" placeholder="Nome do material">
+                        <div id="materiais-header">
+                            <h2>Materiais:</h2>
+                            <p class="esconder aviso">Selecione um material.</p>
+                        </div>
+                        <input type="text" class="campo-search" placeholder="Nome do material" id="search-materiais">
+                        <button type="button" class="div-search-botao" id="lab-botao-materiais" onclick="adicionarItem('materiais')">Adicionar Material</button>
                     </div>
 
                     <div class="grupo">
                         <h2>Reagentes:</h2>
-                        <input type="text" class="campo-search" placeholder="Nome do reagente">
+                        <input type="text" class="campo-search" placeholder="Nome do reagente" id="search-reagentes">
+                        <button type="button" class="div-search-botao" id="lab-botao-reagentes" onclick="adicionarItem('reagentes')">Reagente</button>
                     </div>
                 </div>
                 <div id="botoes-agend-lab">
@@ -136,24 +141,17 @@
             </div>
 
             <div id="itens-selecao">
-                <div class="subselecao">
+
+                <div class="subselecao" id="materiais">
                     <h2>Materiais</h2>
-                    <p>Material 1</p>
-                    <p>Material 2</p>
-                    <p>Material 3</p>
-                    <p>Material 4</p>
-                </div>
-                <div class="subselecao">
-                    <h2>Reagentes</h2>
-                    <p>Reagente 1</p>
-                    <p>Reagente 2</p>
-                    <p>Reagente 3</p>
-                    <p>Reagente 4</p>
                 </div>
 
-                <div class="subselecao">
+                <div class="subselecao" id="reagentes">
+                    <h2>Reagentes</h2>
+                </div>
+
+                <div class="subselecao" id="kits">
                     <h2>Kits</h2>
-                    <p>Nome do kit</p>
                 </div>
             </div>
         </div>
