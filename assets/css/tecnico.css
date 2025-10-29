@@ -1,0 +1,281 @@
+/*Geral*/
+
+.div-painel-tecnico {
+    background: #fff;
+    text-align: center;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.div-painel-tecnico img {
+    max-width: 35%;
+    height: auto;
+}
+
+.btn-editar,
+.btn-excluir {
+    color: white;
+    padding: 5px;
+    width: 70px;
+    transition: transform 0.2s ease;
+    cursor: pointer;
+    border: 0;
+    border-radius: 5px;
+}
+
+.btn-editar:hover {
+    background-color: #00AEBA;
+}
+
+.btn-excluir:hover {
+    background-color: #7E0000;
+}
+
+.btn-editar {
+    background-color: #1AC7D4;
+}
+
+.btn-excluir {
+    background-color: #BA1A1A;
+    color: white;
+}
+
+.status {
+    width: 50px;
+}
+
+#barra-container-status {
+    width: 40%;
+    height: 10px;
+    background-color: #aa0000;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-left: 10px;
+    position: relative;
+    justify-self: center;
+}
+
+
+/* Estoque técnico */
+
+.div-painel-tecnico-es {
+    background: #d4d1d1;
+    text-align: left;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    /* Corrigido aqui */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+}
+
+/* Classe para alinhar cada h2 e botão lado a lado */
+.linha-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    /* Espaço entre linhas */
+}
+
+.h2-es-tec {
+    color: #004854;
+    font-size: 1.1rem;
+    margin: 0;
+    /* Remove margens padrão do h2 */
+}
+
+.button-es-tec {
+    width: 30%;
+    /* Ajuste conforme necessário */
+    background-color: #8d0000;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    padding: 6px 12px;
+    font-weight: bold;
+    color: #ffffff;
+    transition: background-color 0.2s ease;
+}
+
+/* Efeito ao passar o mouse */
+.button-es-tec:hover {
+    background-color: #f32a2a;
+}
+
+#container-es-tec {
+    display: flex;
+    justify-content: center;
+}
+
+#div-search-kit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    margin: auto;
+    margin-bottom: 1.4%;
+}
+
+#search-input {
+    width: 100%;
+    padding: 10px 45px 10px 15px;
+    border: 2px solid #D1D1D1;
+    border-radius: 25px;
+    outline: none;
+    font-size: medium;
+    transition: all 0.3s ease;
+}
+
+#search-input::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    appearance: none;
+    display: none;
+}
+
+.clear-search {
+    position: absolute;
+    right: 55px;
+    padding-block: 10px;
+    background: none;
+    border: none;
+    color: #757575;
+    font-size: x-large;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: none;
+}
+
+.clear-search:hover {
+    color: #BA1A1A;
+    transform: scale(1.2);
+}
+
+.tabela-estoque td:hover {
+    background-color: #B2B2B2;
+    cursor: pointer;
+}
+
+.material-inputs {
+    width: 15%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border: 1px solid #C2C2C2;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    border-radius: 30px;
+
+}
+
+#nome-material {
+    margin-top: 5%;
+}
+
+#nome-material,
+#quantidade-material {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #C2C2C2;
+    font-size: 16px;
+}
+
+#nome-material:focus,
+#quantidade-material:focus {
+    border-color: #757575;
+    box-shadow: 0 0 3px #5C5C5C;
+    outline: none;
+}
+
+
+
+
+
+
+
+#add-button {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 12px;
+    border: none;
+    border-radius: 30px;
+    background-color: #3D3D3D;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#add-button:hover {
+    background-color: #292929;
+}
+
+#rem-button {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 12px;
+    border: none;
+    border-radius: 30px;
+    background-color: #BA1A1A;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-bottom: 5%;
+}
+
+#rem-button:hover {
+    background-color: #7E0000;
+}
+
+/*Tela Técnico*/
+
+#main-div-TelaTecnico {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
+    padding: 30px;
+    flex-wrap: wrap;
+}
+
+#container-telatecnico {
+    width: 50%;
+    background: #fff;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.container-painel {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    width: 50%;
+}
+
+.container-geral {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}

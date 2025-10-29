@@ -1,0 +1,404 @@
+/* Agendamento Prof */
+
+.campo-search {
+    display: block;
+    box-sizing: border-box;
+    width: 220px;
+    background-color: #D9D9D9;
+    border-radius: 4px;
+    background-repeat: no-repeat;
+    background-size: 20px;
+    background-position: 5px center;
+    background-image: url("images/search_icon.png");
+    font-size: medium;
+    height: 28px;
+    padding: 4px 6px 4px 30px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.campo-search {
+    background-color: #D9D9D9;
+    border-radius: 4px;
+}
+
+.campos-div {
+    height: 25px;
+    background-color: #D9D9D9;
+    border-radius: 4px;
+    padding: 4px 6px 4px;
+    width: 100%;
+    cursor: pointer;
+}
+
+.campo-search,
+.campos-div {
+    margin-top: 0px;
+    width: 100%;
+}
+
+/*Tela Professor*/
+
+.container-servicos {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    text-align: center;
+    gap: 30px;
+    margin-left: 60px;
+    margin-right: 60px;
+    margin-top: 20px;
+}
+
+.container-servicos-2 {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    text-align: center;
+    margin-left: 286px;
+    margin-right: 286px;
+    margin-top: 20px;
+    gap: 0;
+}
+
+.h1-div-servicos {
+    color: var(--primario-titulos-hover);
+    text-align: center;
+}
+
+.div-servicos {
+    background: #DADADA;
+    color: #333333;
+    flex: 1;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 30px 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.35);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.div-servicos-2 {
+    background: #DADADA;
+    color: #333333;
+    flex: 1;
+    margin-left: 50px;
+    margin-right: 50px;
+    padding: 30px 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.35);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.barra-container {
+    width: 95%;
+    height: 10px;
+    background-color: #aa0000;
+    border-radius: 5px;
+    margin-top: 10px;
+    position: relative;
+    justify-self: center;
+}
+
+.img-servicos {
+    max-width: 150px;
+    opacity: 0.85;
+}
+
+
+/*MontarKit*/
+#div-kit-criar {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    width: 400px;
+    margin: 20px auto;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+#h1-kits-criar {
+    text-align: center;
+    color: #004854;
+    margin-bottom: 20px;
+}
+
+.label-kit {
+    display: inline-block;
+    margin-top: 10px;
+    font-weight: bold;
+    color: #444;
+}
+
+#label-num-kit,
+#label-num-kit-2 {
+    margin-left: 10px;
+}
+
+.button-kit-div {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.button-kit-solicitar,
+.button-kit-limpar {
+    background-color: #7E0000;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin: 5px;
+    transition: background-color 0.2s;
+}
+
+.button-kit-solicitar:hover,
+.button-kit-limpar:hover {
+    background-color: #9c3b3b;
+}
+
+.button-kit-limpar {
+    background-color: #666666;
+}
+
+.button-kit-limpar:hover {
+    background-color: #8a8989;
+}
+
+/* ------- Agendamento Prof -------*/
+
+#container-principal {
+    justify-content: center;
+    display: flex;
+    padding: 10px;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 30px;
+}
+
+#formulario {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    width: 50%;
+    gap: 30px;
+    min-width: 655px;
+}
+
+#itens-selecao {
+    display: flex;
+    flex-direction: column;
+    background-color: #DDDDDD;
+    border-radius: 10px;
+    min-width: 300px;
+    max-width: 95%;
+    flex-grow: 1;
+}
+
+.div-search-botao {
+    background-image: url("../../images/plus-solid-full.svg");
+    background-size: cover;
+    height: 100%;
+    aspect-ratio: 1 / 1;
+}
+
+#reagentes-input,
+#materiais-input {
+    display: flex;
+}
+
+.botao-agendamento {
+    padding: 2.5px;
+    display: flex;
+    margin: 10px;
+    width: 300px;
+    height: 50px;
+    border: 0;
+    border-radius: 50px;
+    transition: transform 0.2 ease;
+    display: inline;
+}
+
+.campo-search {
+    background-color: #D9D9D9;
+    border-radius: 4px;
+}
+
+#botoes-agend-lab {
+    text-align: center;
+}
+
+#btn-lab-conf {
+    background-color: #f32a2a;
+    color: white;
+}
+
+
+#btn-lab-conf:hover {
+    background-color: #7E0000;
+}
+
+#btn-lab-cancelar {
+    background-color: #141414;
+    color: white;
+}
+
+#btn-lab-cancelar:hover {
+    background-color: #444;
+}
+
+.selecao-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+}
+
+.subselecao {
+    background-color: #CCCCCC;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.subselecao p {
+    color: white;
+    margin: 0px
+}
+
+#laboratorio-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    border-radius: 20px;
+    font-size: medium;
+    font-weight: bold;
+    gap: 10px;
+}
+
+.formulario-grupo {
+    width: 100%;
+}
+
+.grupo {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+#container-principal h2 {
+    margin: 0;
+    padding: 0;
+    color: #005C6D;
+}
+
+.grupo h2 {
+    margin: 0;
+    padding: 0;
+    color: #005C6D;
+}
+
+#div-search {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+@media (max-width: 1024px) {
+
+    #formulario {
+        width: 100%;
+    }
+
+    #laboratorio-div {
+        width: 100%;
+        font-size: inherit;
+    }
+
+    #container-principal {
+        gap: 20px;
+    }
+
+    #div-search {
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+
+    #container-principal,
+    #laboratorio-div {
+        max-width: 95%;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 10px;
+    }
+
+    #container-principal {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    #formulario {
+        min-width: unset;
+        gap: 15px;
+        width: 100%;
+        margin-left: 0px;
+    }
+
+    #laboratorio-div {
+        display: flex;
+        padding: 0px;
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+    }
+
+    #itens-selecao {
+        margin-top: 10px;
+        display: inline-block;
+        width: 100%;
+        align-self: center;
+    }
+
+    #div-search {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+        align-self: center;
+    }
+
+    .grupo {
+        gap: 0px;
+        width: 100%;
+        max-width: 100%;
+    }
+
+
+
+    input[type="text"],
+    input[type="search"],
+    input[type="number"] {
+        margin-top: 0px;
+        width: 100%;
+        height: 90%
+    }
+
+    #materiais-input,
+    #reagentes-input,
+    .campos-div {
+        height: 50px;
+        gap: 5px;
+        align-items: center;
+        flex-direction: row-reverse;
+    }
+
+    .div-search-botao {
+        height: 100%;
+        aspect-ratio: 1 / 1;
+        background-image: url("../../images/plus-solid-full.svg");
+        background-size: cover;
+    }
+}

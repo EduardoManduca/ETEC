@@ -1,0 +1,239 @@
+/*Cadastrar User*/
+
+
+.cadastrar-check {
+    display: none;
+    position: relative;
+    margin: 10px auto;
+    padding: 15px 20px;
+    text-align: center;
+    font-size: 16px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    transition: opacity 0.4s ease;
+    max-width: 400px;
+    overflow: hidden;
+    /* essencial pra esconder a barra quando ela esvazia */
+}
+
+.cadastrar-check.sucesso {
+    color: #155724;
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+}
+
+.cadastrar-check.erro {
+    color: #721c24;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+}
+
+.tempo-barra {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #6d6d6d, #6d6d6d);
+    border-radius: 2px;
+    width: 100%;
+    transition: width 5s linear, opacity 0.4s ease;
+    opacity: 0.8;
+}
+
+@keyframes esvaziar {
+    from {
+        width: 100%;
+    }
+
+    to {
+        width: 0;
+    }
+}
+
+.login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    flex-grow: 1;
+}
+
+.login-container {
+    background-color: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
+}
+
+.login-container h2 {
+    color: var(--azul-base);
+    margin-bottom: 10px;
+    font-size: 1.8em;
+}
+
+.login-container p {
+    color: var(--cinza-texto-base);
+    margin-bottom: 30px;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    color: var(--cinza-texto-base);
+    margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    height: 45px;
+    padding: 0 15px;
+    font-size: 1rem;
+    border: 1px solid var(--cinza-claro);
+    border-radius: 8px;
+    background-color: var(--prata-base);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--azul-base);
+    box-shadow: 0 0 0 3px rgba(0, 92, 109, 0.2);
+}
+
+.btn-criar {
+    width: 100%;
+    height: 45px;
+    background-color: var(--vermelho-base);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-criar:hover {
+    background-color: var(--vermelho-escuro-10);
+}
+
+.aviso {
+    color: var(--cancelado);
+    margin: 0px;
+    font-weight: 700;
+}
+
+#dropdown-cadastro {
+    margin-bottom: 15px;
+}
+
+/* Tela Administrador */
+
+#main-div-TelaAdministrador {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
+    padding: 30px;
+    flex-wrap: wrap;
+}
+
+#container-telaadmin {
+    width: 50%;
+    background: #fff;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+#main-div-TelaAdministrador {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
+    padding: 30px;
+    flex-wrap: wrap;
+}
+
+.cadastrar-check {
+    display: none;
+    position: relative;
+    margin: 10px auto;
+    padding: 15px 20px;
+    text-align: center;
+    font-size: 16px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    transition: opacity 0.4s ease;
+    max-width: 400px;
+    overflow: hidden;
+    /* essencial pra esconder a barra quando ela esvazia */
+}
+
+.icone-alerta {
+    margin-right: 10px;
+    color: orange;
+    font-size: 20px;
+    vertical-align: middle;
+}
+
+.cadastrar-check.sucesso {
+    color: #155724;
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+}
+
+.cadastrar-check.erro {
+    color: #721c24;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+}
+
+#container-registro {
+    background-color: #fff;
+    display: grid;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 30px;
+    flex-direction: column;
+    text-align: center;
+    border-radius: 20px;
+    padding: 30px;
+}
+
+.coluna-esquerda {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 45%;
+}
+
+.painel-cadastrar {
+    background-color: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+}
+
+#container-telaadmin {
+    width: 50%;
+    background: #fff;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
