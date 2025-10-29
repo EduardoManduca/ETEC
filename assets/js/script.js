@@ -54,11 +54,21 @@ function search() {
 
 // Adicionar linha à tabela
 function addTableRow() {
+  const material = document.getElementById("nome-material");
+  const quantidade = document.getElementById("quantidade-material");
   const tabela = document.getElementById("estoque");
   if (!tabela) return;
+  if (!material.value || !quantidade.value) {
+    alert("❌ Por favor, preencha ambos os campos.");
+    return;
+  };
   const novaLinha = tabela.insertRow();
   const novaCelula = novaLinha.insertCell();
-  novaCelula.innerHTML = "Novo valor";
+  novaCelula.innerHTML = material.value;
+  const novaCelula2 = novaLinha.insertCell();
+  novaCelula2.innerHTML = quantidade.value;
+  material.value = "";
+  quantidade.value = "";
 }
 
 
@@ -95,9 +105,9 @@ function adicionarItem(tipo) {
   let inputValor = inputCampo.value.trim();
 
   if (inputValor) {
-    
+
     inputCampo.value = "";
-    
+
     let itemListaSelecao = document.getElementById(`${tipo}`);
     let novoItem = document.createElement("p");
     novoItem.innerHTML = inputValor;
@@ -113,6 +123,6 @@ function adicionarItem(tipo) {
       itemAviso.classList.add("esconder");
       itemAviso.classList.remove("exibir");
     }, 5000);
-    
+
   }
 }
