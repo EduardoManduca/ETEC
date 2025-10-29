@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const Usuario = require("./models/Usuarios.js"); // exportação do arquivo usuario.js
 const Agendamento = require("./models/Agendamento.js") // exportação do arquivo Agendamento.js
+const Kit = require("./models/Kit.js") // exportação do arquivo Kits.js
 
 const app = express();
 app.use(cors());
@@ -99,4 +100,16 @@ app.post("/agendamentos", async (req, res) => {
 app.get("/agendamentos", async (req, res) => {
   const agendamentos = await Agendamento.find();
   res.json(agendamentos);
+});
+
+//criação de kit,
+app.post("/kits", async (req, res) => {
+  console.log("Recebido:", req.body);
+  const kit = new Kit(req.body);
+  try {
+    await kit.save();
+    res.status(201).json({ message: "Kit criado com sucesso!", kit });
+  } catch (err) {
+    res.status(400).json({ erro: err.message });
+  }
 });

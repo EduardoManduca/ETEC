@@ -342,10 +342,6 @@ input[type="number"] {
     font-weight: bold;
 }
 
-/* DARK MODE */
-
-/*  DARK MODE */
-
 @media (max-width: 768px) {
 
     input[type="text"],
