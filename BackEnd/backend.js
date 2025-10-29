@@ -3,7 +3,8 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
-const Usuario = require("./models/Usuarios.js"); // exportação da pasta usuario.js
+const Usuario = require("./models/Usuarios.js"); // exportação do arquivo usuario.js
+const Agendamento = require("./models/Agendamento.js") // exportação do arquivo Agendamento.js
 
 const app = express();
 app.use(cors());
@@ -55,19 +56,47 @@ app.post("/signup", async (req, res) => {
 
 // --- Login
 app.post("/login", async (req, res) => {
+  const { login, password } = req.body;
   try {
-    const { login, password } = req.body;
     const usuario = await Usuario.findOne({ login });
-    if (!usuario) return res.status(401).json({ error: "Usuário não encontrado." });
+    if (!usuario) return res.status(401).json({ error: "Usuário não encontrado" });
 
-    const senhaCorreta = await bcrypt.compare(password, usuario.password);
-    if (!senhaCorreta) return res.status(401).json({ error: "Senha incorreta." });
+    const senhaValida = await bcrypt.compare(password, usuario.password);
+    if (!senhaValida) return res.status(401).json({ error: "Senha incorreta" });
 
-    res.status(200).json({ usuario: { login: usuario.login, funcao: usuario.funcao } });
-  } catch (error) {
-    res.status(500).json({ error: "Erro ao tentar logar." });
+    // Aqui está o essencial
+    res.json({
+      message: "Login bem-sucedido",
+      usuario: {
+        _id: usuario._id.toString(),
+        funcao: usuario.funcao
+      }
+    });
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Erro interno do servidor" });
   }
 });
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`<✅> Servidor rodando na porta ${PORT}`));
+
+// Agendamento de laboratório
+
+app.post("/agendamentos", async (req, res) => {
+  console.log("Recebido:", req.body); // verifique exatamente o que chega
+  try {
+    const agendamento = new Agendamento(req.body);
+    await agendamento.save();
+    res.status(201).json({ message: "Agendamento criado com sucesso!" });
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
+// rota para listar agendamentos (só pra testar)
+app.get("/agendamentos", async (req, res) => {
+  const agendamentos = await Agendamento.find();
+  res.json(agendamentos);
+});

@@ -3,7 +3,6 @@ async function logincheck() {
     const password = document.getElementById("password").value.trim();
     const errorMessage = document.getElementById("errorMessage");
 
-    // Reset do erro antes de tentar login
     errorMessage.style.display = "none";
     errorMessage.textContent = "";
 
@@ -21,29 +20,39 @@ async function logincheck() {
 
         const resultado = await resposta.json();
 
-        if (resposta.ok) {
-            mostrarSucesso(resultado.message || "✅ Login bem-sucedido!");
-
-            // Redireciona conforme função
-            const funcao = resultado.usuario.funcao;
-            if (funcao === "admin" || funcao === "administrador") {
-                window.location.href = "/pages/pages_admin/TelaAdministrador.html";
-            } else if (funcao === "professor") {
-                window.location.href = "/pages/pages_professor/TelaProfessor.html";
-            } else if (funcao === "tecnico") {
-                window.location.href = "/pages/pages_tecnico/TelaTecnico.html";
-            } else {
-                window.location.href = "telalogin.html";
-            }
-        } else {
+        // Verifica se houve erro no login
+        if (!resposta.ok) {
             mostrarErro(resultado.error || "Erro no login.");
+            return;
         }
+
+        // Salva userId no localStorage somente se vier correto
+        if (resultado.usuario && resultado.usuario._id) {
+            localStorage.setItem("userId", resultado.usuario._id);
+        } else {
+            mostrarErro("Usuário inválido recebido do servidor.");
+            return;
+        }
+
+        mostrarSucesso(resultado.message || "✅ Login bem-sucedido!");
+
+        // Redireciona conforme função
+        const funcao = resultado.usuario.funcao;
+        if (funcao === "admin" || funcao === "administrador") {
+            window.location.href = "/pages/pages_admin/TelaAdministrador.html";
+        } else if (funcao === "professor") {
+            window.location.href = "/pages/pages_professor/TelaProfessor.html";
+        } else if (funcao === "tecnico") {
+            window.location.href = "/pages/pages_tecnico/TelaTecnico.html";
+        } else {
+            window.location.href = "telalogin.html";
+        }
+
     } catch (err) {
         mostrarErro("Erro ao conectar com o servidor.");
         console.error(err);
     }
 
-    // Estilo da mensagem de texto após tentativa de login incorreta
     function mostrarErro(msg) {
         errorMessage.style.display = "block";
         errorMessage.style.color = "#f32a2a";
@@ -54,7 +63,7 @@ async function logincheck() {
             errorMessage.style.display = "none";
         }, 5000);
     }
-    // Estilo da mensagem de texto após tentativa de login correta
+
     function mostrarSucesso(msg) {
         errorMessage.style.display = "block";
         errorMessage.style.color = "#388E3C";
