@@ -250,7 +250,8 @@ p {
     background: #d4d1d1;
     text-align: left;
     border-radius: 20px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Corrigido aqui */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    /* Corrigido aqui */
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -262,19 +263,22 @@ p {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 10px; /* Espaço entre linhas */
+    margin-bottom: 10px;
+    /* Espaço entre linhas */
 }
 
 /* Estilo do título */
 .h2-es-tec {
     color: #004854;
     font-size: 1.1rem;
-    margin: 0; /* Remove margens padrão do h2 */
+    margin: 0;
+    /* Remove margens padrão do h2 */
 }
 
 /* Estilo do botão */
 .button-es-tec {
-    width: 30%; /* Ajuste conforme necessário */
+    width: 30%;
+    /* Ajuste conforme necessário */
     background-color: #8d0000;
     border: none;
     border-radius: 50px;
@@ -603,9 +607,10 @@ input[type="number"] {
 
 }
 
-#nome-material{
+#nome-material {
     margin-top: 5%;
 }
+
 #nome-material,
 #quantidade-material {
     width: 80%;
@@ -616,6 +621,7 @@ input[type="number"] {
     border: 1px solid #C2C2C2;
     font-size: 16px;
 }
+
 #nome-material:focus,
 #quantidade-material:focus {
     border-color: #757575;
@@ -662,6 +668,25 @@ input[type="number"] {
 
 
 /* ------- telalogin.html COMEÇO ------- */
+#errorMessage {
+    display: none;
+    margin-top: 20px;
+    padding: 12px 20px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 14px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+#errorMessage.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 #login {
     background-color: #F0F0F0;
     display: flex;

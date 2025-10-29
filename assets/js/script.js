@@ -12,34 +12,6 @@ const incremento = 0.3; // 30%
 // Guarda tamanhos originais
 const tamanhosOriginais = new Map();
 
-
-// ***** Funções *****
-
-// Login
-function logincheck() {
-  const usernameEl = document.getElementById('username');
-  const passwordEl = document.getElementById('password');
-  const errorMessage = document.getElementById('errorMessage');
-
-  const username = usernameEl ? usernameEl.value : '';
-  const password = passwordEl ? passwordEl.value : '';
-
-  const correctUsername = 'admin';
-  const correctPassword = 'password123';
-  const correctTecnico = 'tecnico';
-
-  if (username === correctUsername && password === correctPassword) {
-    if (errorMessage) errorMessage.style.display = 'none';
-    window.location.href = '/pages/pages_professor/TelaProfessor.html';
-  } else if (username === correctTecnico && password === correctPassword) {
-    if (errorMessage) errorMessage.style.display = 'none';
-    window.location.href = '/pages/pages_tecnico/menu_tecnico.html';
-  } else {
-    if (errorMessage) errorMessage.style.display = 'block';
-  }
-}
-
-
 // Tema escuro
 function toggleTheme() {
   document.body.classList.toggle('dark-mode');

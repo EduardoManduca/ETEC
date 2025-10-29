@@ -9,18 +9,22 @@
 
 .cadastrar-check {
     display: none;
+    position: relative;
     margin: 10px auto;
     padding: 15px 20px;
     text-align: center;
     font-size: 16px;
     border-radius: 8px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-    transition: all 0.3s ease;
+    transition: opacity 0.4s ease;
     max-width: 400px;
+    overflow: hidden;
+    /* essencial pra esconder a barra quando ela esvazia */
 }
 
 .icone-alerta {
     margin-right: 10px;
+    color: orange;
     font-size: 20px;
     vertical-align: middle;
 }
@@ -29,24 +33,42 @@
     color: #155724;
     background-color: #d4edda;
     border: 1px solid #c3e6cb;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .cadastrar-check.erro {
     color: #721c24;
     background-color: #f8d7da;
     border: 1px solid #f5c6cb;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .nome-usuario {
     font-weight: bold;
     color: #721c24;
-    text-decoration:underline;
+    text-decoration: underline;
+}
+
+/* Barra do setTimeout (CadastrarUser) */
+.tempo-barra {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #6d6d6d, #6d6d6d);
+    border-radius: 2px;
+    width: 100%;
+    transition: width 5s linear, opacity 0.4s ease;
+    opacity: 0.8;
+}
+
+/* Animação que reduz a largura */
+@keyframes esvaziar {
+    from {
+        width: 100%;
+    }
+
+    to {
+        width: 0;
+    }
 }
 
 .container-painel-admin {
@@ -203,7 +225,6 @@ th {
 }
 
 #dropdown-cadastro {
-    padding-inline: 125px;
     margin-bottom: 15px;
 }
 
