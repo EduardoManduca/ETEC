@@ -777,6 +777,724 @@ input[type="number"] {
 
 /* telalogin.html */
 
+/* DARK MODE */
+body.dark-mode {
+    /* Cor de fundo escura para o corpo da página */
+    background-color: #121212;
+    /* Cor do texto clara */
+    color: #E0E0E0;
+}
+
+/* Redefinição de variáveis e cores para elementos principais no Dark Mode */
+body.dark-mode {
+    /* Cores de fundo e texto dos containers e divs */
+    --cinza-claro: #333333;
+    --cinza-texto-base: #B0B0B0;
+    --prata-base: #1F1F1F;
+    /* Fundo mais escuro */
+
+    /* Cores principais em tons claros para contraste */
+    --vermelho-base: #FFB4AB;
+    /* Vermelho claro para elementos principais */
+    --azul-base: #A0CFFD;
+    /* Azul claro */
+    --primario-titulos-hover: #C5E6FF;
+    /* Azul mais claro para títulos */
+}
+
+/* Títulos H1 (geral) e H2 (serviços) */
+body.dark-mode h1,
+body.dark-mode .h1-div-servicos,
+body.dark-mode #servicos-h2 {
+    color: var(--azul-base);
+}
+
+/* Divisores (hr) */
+body.dark-mode hr {
+    border-color: #333333;
+}
+
+/* Navbar */
+body.dark-mode .nav-bar {
+    background: #424242;
+    border: 1px solid #757575;
+}
+
+body.dark-mode .li-nav-bar {
+    border-left: 1px solid #757575;
+}
+
+body.dark-mode .li-nav-bar:last-child {
+    border-right: 1px solid #757575;
+}
+
+body.dark-mode .li-nav-bar:hover {
+    background-color: #292929;
+}
+
+body.dark-mode .a-nav-bar {
+    color: #E0E0E0;
+}
+
+/* Botão de busca e campo de pesquisa */
+body.dark-mode .br-pesq {
+    background: #424242;
+    color: #E0E0E0;
+    border: 1px solid #757575;
+}
+
+body.dark-mode .search-button {
+    background-color: var(--vermelho-base);
+}
+
+/* Texto topo GSP */
+body.dark-mode #texto-topo-gsp {
+    color: #B0B0B0;
+}
+
+/* Controles de acessibilidade (botões) */
+body.dark-mode .controles-acessibilidade button {
+    border: 2px solid #E0E0E0;
+    color: #E0E0E0;
+}
+
+/* Ícones de Mídias Sociais - Inverte a cor para melhor visualização em fundo escuro */
+body.dark-mode .img-midias {
+    filter: invert(100%);
+    opacity: 0.9;
+}
+
+/* Contêineres de Serviços */
+body.dark-mode .div-servicos,
+body.dark-mode .div-servicos-2 {
+    background: var(--cinza-claro);
+    color: #E0E0E0;
+    box-shadow: 0 2px 5px rgba(255, 255, 255, 0.2);
+}
+
+/* Botões de Serviço */
+body.dark-mode .botao-servicos {
+    background-color: var(--vermelho-base);
+}
+
+body.dark-mode .botao-servicos:hover {
+    background-color: #7E0000;
+}
+
+/* Rodapé */
+body.dark-mode footer {
+    background-color: #000000;
+}
+
+/* Tabelas (Kits e Materiais / Estoque) */
+body.dark-mode table {
+    background-color: #333333;
+}
+
+body.dark-mode thead {
+    background-color: #424242;
+    color: var(--vermelho-base);
+}
+
+body.dark-mode th,
+body.dark-mode td {
+    border: 1px solid #121212;
+}
+
+body.dark-mode .item:hover {
+    background-color: #424242;
+}
+
+body.dark-mode #search-input {
+    border: 2px solid #333333;
+    background-color: #424242;
+    color: #E0E0E0;
+}
+
+body.dark-mode .clear-search {
+    color: #B0B0B0;
+}
+
+body.dark-mode .clear-search:hover {
+    color: var(--vermelho-base);
+}
+
+/*  DARK MODE */
+
+/* AGENDAMENTO */
+#container-principal {
+    justify-content: center;
+    display: flex;
+    padding: 10px;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 30px;
+}
+
+#formulario {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    width: 50%;
+    gap: 30px;
+    min-width: 655px;
+}
+
+#itens-selecao {
+    display: flex;
+    flex-direction: column;
+    background-color: #DDDDDD;
+    border-radius: 10px;
+    min-width: 300px;
+    max-width: 95%;
+    flex-grow: 1;
+}
+
+.div-search-botao {
+    background-image: url("../../images/plus-solid-full.svg");
+    background-size: cover;
+    height: 100%;
+    aspect-ratio: 1 / 1;
+}
+
+#reagentes-input,
+#materiais-input {
+    display: flex;
+}
+
+.botao-agendamento {
+    padding: 2.5px;
+    display: flex;
+    margin: 10px;
+    width: 300px;
+    height: 50px;
+    border: 0;
+    border-radius: 50px;
+    transition: transform 0.2 ease;
+    display: inline;
+}
+
+.campo-search {
+    background-color: #D9D9D9;
+    border-radius: 4px;
+}
+
+#botoes-agend-lab {
+    text-align: center;
+}
+
+#btn-lab-conf {
+    background-color: #f32a2a;
+    color: white;
+}
+
+
+#btn-lab-conf:hover {
+    background-color: #7E0000;
+}
+
+#btn-lab-cancelar {
+    background-color: #141414;
+    color: white;
+}
+
+#btn-lab-cancelar:hover {
+    background-color: #444;
+}
+
+.selecao-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+}
+
+.aviso {
+    color: var(--cancelado);
+    margin: 0px;
+    font-weight: 700;
+}
+
+.subselecao {
+    background-color: #CCCCCC;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.subselecao p {
+    color: white;
+    margin: 0px
+}
+
+#laboratorio-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    border-radius: 20px;
+    font-size: medium;
+    font-weight: bold;
+    gap: 10px;
+}
+
+.formulario-grupo {
+    width: 100%;
+}
+
+.campos-div {
+    height: 25px;
+    background-color: #D9D9D9;
+    border-radius: 4px;
+    padding: 4px 6px 4px;
+    width: 100%;
+    cursor: pointer;
+}
+
+#div-search {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.grupo {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+#container-principal h2 {
+    margin: 0;
+    padding: 0;
+    color: #005C6D;
+}
+
+.grupo h2 {
+    margin: 0;
+    padding: 0;
+    color: #005C6D;
+}
+
+@media (max-width: 1024px) {
+
+    #formulario {
+        width: 100%;
+    }
+
+    #laboratorio-div {
+        width: 100%;
+        font-size: inherit;
+    }
+
+    #container-principal {
+        gap: 20px;
+    }
+
+    #div-search {
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+
+    #container-principal,
+    #laboratorio-div {
+        max-width: 95%;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 10px;
+    }
+
+    #container-principal {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    #formulario {
+        min-width: unset;
+        gap: 15px;
+        width: 100%;
+        margin-left: 0px;
+    }
+
+    #laboratorio-div {
+        display: flex;
+        padding: 0px;
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+    }
+
+    #itens-selecao {
+        margin-top: 10px;
+        display: inline-block;
+        width: 100%;
+        align-self: center;
+    }
+
+    #div-search {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+        align-self: center;
+    }
+
+    .grupo {
+        gap: 0px;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .campo-search,
+    .campos-div {
+        margin-top: 0px;
+        width: 100%;
+    }
+
+    input[type="text"],
+    input[type="search"],
+    input[type="number"] {
+        margin-top: 0px;
+        width: 100%;
+        height: 90%
+    }
+
+    #materiais-input,
+    #reagentes-input,
+    .campos-div {
+        height: 50px;
+        gap: 5px;
+        align-items: center;
+        flex-direction: row-reverse;
+    }
+
+    .div-search-botao {
+        height: 100%;
+        aspect-ratio: 1 / 1;
+        background-image: url("../../images/plus-solid-full.svg");
+        background-size: cover;
+    }
+}
+
+/* AGENDAMENTO */
+
+/* TELAADMINISTRADOR */
+#main-div-TelaAdministrador {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
+    padding: 30px;
+    flex-wrap: wrap;
+}
+
+.cadastrar-check {
+    display: none;
+    position: relative;
+    margin: 10px auto;
+    padding: 15px 20px;
+    text-align: center;
+    font-size: 16px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    transition: opacity 0.4s ease;
+    max-width: 400px;
+    overflow: hidden;
+    /* essencial pra esconder a barra quando ela esvazia */
+}
+
+.icone-alerta {
+    margin-right: 10px;
+    color: orange;
+    font-size: 20px;
+    vertical-align: middle;
+}
+
+.cadastrar-check.sucesso {
+    color: #155724;
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+}
+
+.cadastrar-check.erro {
+    color: #721c24;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+}
+
+.nome-usuario {
+    font-weight: bold;
+    color: #721c24;
+    text-decoration: underline;
+}
+
+/* Barra do setTimeout (CadastrarUser) */
+.tempo-barra {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #6d6d6d, #6d6d6d);
+    border-radius: 2px;
+    width: 100%;
+    transition: width 5s linear, opacity 0.4s ease;
+    opacity: 0.8;
+}
+
+/* Animação que reduz a largura */
+@keyframes esvaziar {
+    from {
+        width: 100%;
+    }
+
+    to {
+        width: 0;
+    }
+}
+
+.container-painel-admin {
+    background-color: #ffffff;
+    border-radius: 30px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.cards-inferiores {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.painel-acess-admin {
+    background-color: rgb(255, 247, 247);
+    flex: 1;
+    min-width: 160px;
+    padding: 6%;
+    border-radius: 10px;
+    text-align: center;
+    color: #333;
+    font-weight: bold;
+}
+
+th {
+    background-color: #BA1A1A;
+    color: white;
+}
+
+.container-painel {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    width: 50%;
+}
+
+.div-painel-tecnico {
+    background: #fff;
+    text-align: center;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.div-painel-tecnico img {
+    max-width: 35%;
+    height: auto;
+}
+
+.container-geral {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.coluna-esquerda {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 45%;
+}
+
+.painel-cadastrar {
+    background-color: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+}
+
+#container-registro {
+    background-color: #fff;
+    display: grid;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 30px;
+    flex-direction: column;
+    text-align: center;
+    border-radius: 20px;
+    padding: 30px;
+}
+
+#container-telaadmin {
+    width: 50%;
+    background: #fff;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+
+.btn-editar,
+.btn-excluir {
+    color: white;
+    padding: 5px;
+    width: 70px;
+    transition: transform 0.2s ease;
+    cursor: pointer;
+    border: 0;
+    border-radius: 5px;
+}
+
+.btn-gerenciar {
+    display: inline-block;
+    margin: 20px auto;
+    background: linear-gradient(135deg, #BA1A1A, #E53935);
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    padding: 8px;
+    padding-inline: 30px;
+    font-size: medium;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-gerenciar:hover {
+    background: linear-gradient(135deg, #7E0000, #BA1A1A);
+    transform: translateY(-3px);
+}
+
+
+.btn-editar:hover {
+    background-color: #00AEBA;
+}
+
+.btn-excluir:hover {
+    background-color: #7E0000;
+}
+
+.btn-editar {
+    background-color: #1AC7D4;
+}
+
+.btn-excluir {
+    background-color: #BA1A1A;
+    color: white;
+}
+
+#dropdown-cadastro {
+    margin-bottom: 15px;
+}
+
+/* cadastrarUser.html */
+.login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    flex-grow: 1;
+}
+
+.login-container {
+    background-color: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
+}
+
+.login-container h2 {
+    color: var(--azul-base);
+    margin-bottom: 10px;
+    font-size: 1.8em;
+}
+
+.login-container p {
+    color: var(--cinza-texto-base);
+    margin-bottom: 30px;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    color: var(--cinza-texto-base);
+    margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    height: 45px;
+    padding: 0 15px;
+    font-size: 1rem;
+    border: 1px solid var(--cinza-claro);
+    border-radius: 8px;
+    background-color: var(--prata-base);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--azul-base);
+    box-shadow: 0 0 0 3px rgba(0, 92, 109, 0.2);
+}
+
+.btn-criar {
+    width: 100%;
+    height: 45px;
+    background-color: var(--vermelho-base);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-criar:hover {
+    background-color: var(--vermelho-escuro-10);
+}
+
+/* TELAADMINISTRADOR */
+
 /* RESPONSIVIDADE */
 
 @media (max-width: 1024px) {
