@@ -1,64 +1,79 @@
-document.getElementById("btn-kit-sol").addEventListener("click", async () => {
-    e.preventDefault();
+// Referências dos containers
+const materiaisContainer = document.getElementById("materiais-container");
+const equipamentosContainer = document.getElementById("equipamentos-container");
 
-    const nome = document.getElementById("nome-kit").value;
-    const materiais = [...document.querySelectorAll("#materiais-kit input:search]")].map(i => i.value);
-    const quantMat = [...document.querySelectorAll("#num-mat input[type='number']")].map(i => i.value);
-    const equipamentos = [...document.querySelectorAll("#equip-kit input:search")].map(i => i.value);
-    const quantEquip = [...document.querySelectorAll("#num-equip input[type='number']")].map(i => i.value);
-    const observacoes = document.getElementById("obs-kit").value;
-    const kitData = {
-        nome,
-        materiais: materiais.map((mat, index) => ({ item: mat, quantidade: quantMat[index] })),
-        equipamentos: equipamentos.map((equip, index) => ({ item: equip, quantidade: quantEquip[index] })),
-        observacoes
-    }
+// ➕ Adicionar Material
+document.getElementById("add-material").addEventListener("click", () => {
+    const div = document.createElement("div");
+    div.classList.add("item");
+    div.innerHTML = `
+      <input type="text" placeholder="Material" class="material-nome">
+      <input type="number" placeholder="Qtd" class="material-qtd" min="1">
+      <button type="button" class="remove-btn">Remover</button>
+    `;
+    div.querySelector(".remove-btn").addEventListener("click", () => div.remove());
+    materiaisContainer.appendChild(div);
+});
+
+// ➕ Adicionar Equipamento
+document.getElementById("add-equip").addEventListener("click", () => {
+    const div = document.createElement("div");
+    div.classList.add("item");
+    div.innerHTML = `
+      <input type="text" placeholder="Equipamento" class="equip-nome">
+      <input type="number" placeholder="Qtd" class="equip-qtd" min="1">
+      <button type="button" class="remove-btn">Remover</button>
+    `;
+    div.querySelector(".remove-btn").addEventListener("click", () => div.remove());
+    equipamentosContainer.appendChild(div);
+});
+
+document.getElementById("btn-kit-limpar").addEventListener("click", () => {
+    document.querySelectorAll("input, textarea").forEach((i) => (i.value = ""));
+    materiaisContainer.innerHTML = "";
+    equipamentosContainer.innerHTML = "";
+});
+
+document.getElementById("btn-kit-sol").addEventListener("click", async () => {
+    const nomeKit = document.getElementById("nome-kit").value.trim();
+    const observacoes = document.getElementById("obs-kit").value.trim();
+
+    const materiais = [...document.querySelectorAll(".material-nome")].map((el, i) => ({
+        item: el.value.trim(),
+        quantidade: Number(document.querySelectorAll(".material-qtd")[i].value),
+    }));
+
+    const equipamentos = [...document.querySelectorAll(".equip-nome")].map((el, i) => ({
+        item: el.value.trim(),
+        quantidade: Number(document.querySelectorAll(".equip-qtd")[i].value),
+    }));
+
+    // ⚠️ Validação
+    if (!nomeKit) return alert("Digite o nome do kit!");
+    if (materiais.some((m) => !m.item || m.quantidade <= 0))
+        return alert("Preencha todos os materiais corretamente!");
+    if (equipamentos.some((e) => !e.item || e.quantidade <= 0))
+        return alert("Preencha todos os equipamentos corretamente!");
+
+    const data = { nomeKit, materiais, equipamentos, observacoes };
+
     try {
-        const resposta = await fetch("http://localhost:5000/kits", {
+        const resp = await fetch("http://localhost:5000/kits", {  // <-- porta 5000
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(kitData)
-        })
-        const resultado = await resposta.json();
-        if (resposta.ok) {
-            alert("✅ Kit solicitado com sucesso!");
+            body: JSON.stringify(data),
+        });
+
+
+        if (resp.ok) {
+            alert("✅ Kit criado com sucesso!");
+            document.getElementById("btn-kit-limpar").click();
         } else {
-            alert("❌ Erro ao solicitar o kit: " + (resultado.error || "Erro desconhecido."));
+            const erro = await resp.json();
+            alert("❌ Erro ao criar kit: " + (erro.error || "verifique o servidor"));
         }
-        mensagem.style.display = "block";
-        mensagem.style.opacity = "1";
-        barra.style.animation = "none";
-        void barra.offsetWidth; // reinicia a animação da barra
-        barra.style.animation = "esvaziar 5s linear forwards";
-
-        // Intervalo da mensagem de status
-        setTimeout(() => {
-            mensagem.style.opacity = "0";
-            setTimeout(() => {
-                mensagem.style.display = "none";
-                texto.innerHTML = "";
-                barra.style.animation = "none";
-            }, 400);
-        }, 5000);
-
     } catch (err) {
-        console.error("Erro ao enviar a requisição:", err);
-        alert("❌ Erro de conexão com o servidor.");
-        mensagem.className = "cadastrar-check erro";
-        mensagem.style.display = "block";
-
-        barra.style.animation = "none";
-        void barra.offsetWidth;
-        barra.style.animation = "esvaziar 5s linear forwards";
-
-        // Intervalo da mensagem de status
-        setTimeout(() => {
-            mensagem.style.opacity = "0";
-            setTimeout(() => {
-                mensagem.style.display = "none";
-                texto.innerHTML = "";
-                barra.style.animation = "none";
-            }, 400);
-        }, 5000);
+        console.error("Erro:", err);
+        alert("Erro ao conectar com o servidor!");
     }
-})
+});

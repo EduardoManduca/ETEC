@@ -182,65 +182,184 @@
     opacity: 0.85;
 }
 
-
-/*MontarKit*/
-#div-kit-criar {
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    padding: 20px;
-    width: 400px;
-    margin: 20px auto;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+/* MontarKit */
+main {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 50px 20px;
+    min-height: 100vh;
 }
 
-#h1-kits-criar {
+
+.kit-section {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 40px 50px;
+    width: 100%;
+    max-width: 650px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== Título ===== */
+.kit-section h1 {
     text-align: center;
-    color: #004854;
-    margin-bottom: 20px;
+    margin-bottom: 35px;
+    font-size: 2.2rem;
+    font-weight: 700;
 }
 
-.label-kit {
-    display: inline-block;
-    margin-top: 10px;
-    font-weight: bold;
-    color: #444;
-}
-
-#label-num-kit,
-#label-num-kit-2 {
-    margin-left: 10px;
-}
-
-.button-kit-div {
-    text-align: center;
+/* ===== Labels ===== */
+.form-container label {
+    display: block;
     margin-top: 20px;
+    font-weight: 600;
+    color: #333;
 }
 
-.button-kit-solicitar,
-.button-kit-limpar {
-    background-color: #7E0000;
+/* ===== Inputs e textarea ===== */
+input[type="text"],
+input[type="number"],
+textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1.5px solid #dcdcdc;
+    margin-top: 6px;
+    font-size: 15px;
+    transition: all 0.2s ease;
+    background: #fafafa;
+}
+
+input:focus,
+textarea:focus {
+    border-color: #8a3232;
+    background: #fff;
+    outline: none;
+    box-shadow: 0 0 6px rgba(150, 19, 19, 0.3);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 90px;
+}
+
+/* ===== Botões ===== */
+.btn-add {
+    background: #BA1A1A;
     color: #fff;
     border: none;
-    padding: 8px 16px;
-    border-radius: 6px;
+    padding: 10px 18px;
+    border-radius: 10px;
+    margin-top: 15px;
+    font-weight: 500;
     cursor: pointer;
-    margin: 5px;
-    transition: background-color 0.2s;
+    transition: 0.3s;
 }
 
-.button-kit-solicitar:hover,
-.button-kit-limpar:hover {
-    background-color: #9c3b3b;
+.btn-add:hover {
+    background: #7E0000;
+    transform: translateY(-1px);
 }
 
-.button-kit-limpar {
-    background-color: #666666;
+.item {
+    background: #f7f8fa;
+    padding: 15px;
+    border-radius: 12px;
+    margin-top: 12px;
+    box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.05);
 }
 
-.button-kit-limpar:hover {
-    background-color: #8a8989;
+.item input {
+    margin-bottom: 10px;
 }
+
+.remove-btn,
+.btn-remover {
+    background: #e53935;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 7px 12px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.remove-btn:hover,
+.btn-remover:hover {
+    background: #c62828;
+}
+
+/* ===== Botões finais ===== */
+.botoes-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.btn-solicitar,
+.btn-limpar {
+    padding: 12px 28px;
+    font-size: 16px;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.btn-solicitar {
+    background: #BA1A1A;
+    color: white;
+}
+
+.btn-solicitar:hover {
+    background: #7E0000;
+    transform: scale(1.05);
+
+}
+
+.btn-limpar {
+    background: #333;
+    color: white;
+}
+
+.btn-limpar:hover {
+    background: #141414;
+    transform: scale(1.05);
+}
+
+/* ===== Responsividade ===== */
+@media (max-width: 600px) {
+    .kit-section {
+        padding: 30px 25px;
+    }
+
+    .btn-solicitar,
+    .btn-limpar {
+        width: 100%;
+    }
+
+    .botoes-container {
+        flex-direction: column;
+    }
+}
+
 
 /* ------- Agendamento Prof -------*/
 
@@ -305,30 +424,36 @@
 #botoes-agend-lab {
     text-align: center;
 }
+
 #btn-lab-conf {
     background-color: #f32a2a;
     cursor: pointer;
     color: white;
 }
+
 #btn-lab-conf:hover {
     background-color: #7E0000;
     box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
 }
+
 #btn-lab-conf:active {
     background-color: #7E0000;
     transform: scale(0.95);
     box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
 }
+
 #btn-lab-cancelar {
     background-color: #141414;
     color: white;
     box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
 
 }
+
 #btn-lab-cancelar:hover {
-    background-color: #444;
+    background-color: #333;
     box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
 }
+
 #btn-lab-cancelar:active {
     background-color: #141414;
     transform: scale(0.95);

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painel do Administrador</title>
+    <title>Registro de Usuários</title>
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="stylesheet" href="/assets/css/admin.css">
     <link rel="stylesheet" href="/assets/css/darkMode.css">
@@ -13,6 +13,7 @@
 
 <body>
 
+    <!-- Topo -->
     <ul class="ul-topo">
         <li class="li-topo">
             <div class="campo-preto">
@@ -52,6 +53,7 @@
         </li>
     </ul>
     <hr>
+
     <ul class="ul-meio-topo">
         <a href="/pages/index.html">
             <li class="li-meio-topo"><img class="logo-etec" src="/images/logo-etec.png" alt=""></li>
@@ -60,57 +62,66 @@
 
     <nav>
         <ul class="nav-bar">
-            <li class="li-nav-bar"><a class="a-nav-bar" href="/pages/pages_admin/HistoricoMateriais.html">Histórico de Materiais</a></li>
-            <li class="li-nav-bar"><a class="a-nav-bar" href="/pages/pages_admin/CadastrarUser.html">Cadastrar Usuários</a></li>
+            <li class="li-nav-bar"><a class="a-nav-bar" href="/pages/pages_admin/TelaAdministrador.html">Home</a></li>
         </ul>
     </nav>
-    <main id="main-div-TelaAdministrador">
-        <div class="coluna-esquerda">
-            <div id="container-registro">
-                <div id="div-registroUser">
-                    <h1>Registro de Usuários</h1>
-                    <p>Utilize esta opção para visualizar, editar ou remover os usuários no banco de dados.</p>
-                    <button onclick="window.location.href='/pages/pages_admin/RegistroUsuario.html'" class="btn-gerenciar">Ver Todos</button>
+
+    <main>
+        <div id="modal-editar" class="modal">
+            <div class="modal-conteudo">
+                <h1>Editar Usuário</h1>
+                <input type="hidden" id="usuario-id">
+                <label>Nome de Usuário:</label>
+                <input type="text" id="usuario-login">
+                <label>Função:</label>
+                <select id="usuario-funcao">
+                    <option value="admin">admin</option>
+                    <option value="tecnico">tecnico</option>
+                    <option value="professor">professor</option>
+                </select>
+                <label>Senha (opcional):</label>
+                <input type="password" id="usuario-senha" placeholder="Nova senha (Opcional)">
+                <div class="botoes-modal">
+                    <button id="salvar-usuario">Salvar</button>
+                    <button id="fechar-modal">Cancelar</button>
                 </div>
             </div>
-            <div class="painel-cadastrar">
-                <h1>Cadastrar Usuários</h1>
-                <p>
-                    Utilize esta opção para cadastrar novos professores e técnicos, garantindo que cada usuário
-                    tenha sua conta personalizada
-                    e acesso adequado às funcionalidades do sistema.
-                </p>
-                <button class="btn-gerenciar"
-                    onclick="window.location.href='/pages/pages_admin/CadastrarUser.html'">Cadastrar</button>
-            </div>
-
         </div>
-        <div id="container-telaadmin">
-            <h1>Em desenvolvimento...</h1>
-            <p>Cadastrarem e atualizarem o banco de materiais (nome, quantidade, unidade).</p>
-            <p>Verem histórico de uso dos materiais</p>
-            <br><br>
-        </div>
-
+        <h1>Registro de Usuários</h1>
+        <table id="RegistroUsuario">
+            <thead>
+                <tr>
+                    <th>Nome de usuário</th>
+                    <th>Função</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
     </main>
+
+    <!-- VLibras -->
     <div vw class="enabled">
         <div vw-access-button class="active"></div>
         <div vw-plugin-wrapper>
             <div class="vw-plugin-top-wrapper"></div>
         </div>
     </div>
-
     <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
     <script>
         new window.VLibras.Widget('https://vlibras.gov.br/app');
     </script>
 
+    <!-- Rodapé -->
     <footer>
         <a href="https://www.sp.gov.br/sp">
             <img id="img-rodape" src="/images/logo-sp.png" alt="">
         </a>
     </footer>
-    <script src="/assets/js/script.js"></script>
+
+    <script src="/assets/js/RegistroUser.js"></script>
+
 </body>
 
 </html>
