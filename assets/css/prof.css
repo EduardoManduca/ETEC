@@ -183,7 +183,7 @@
 }
 
 /* MontarKit */
-main {
+#montar-kit-main {
     display: flex;
     justify-content: center;
     align-items: flex-start;
