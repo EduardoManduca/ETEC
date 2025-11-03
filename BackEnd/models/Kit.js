@@ -1,9 +1,5 @@
 const mongoose = require("mongoose");
-
-const ItemSchema = new mongoose.Schema({
-  item: { type: String, required: true },
-  quantidade: { type: Number, default: 1 },
-});
+const { ItemSchema } = require("./Item.js");
 
 const KitSchema = new mongoose.Schema({
   nomeKit: { type: String, required: true },

@@ -8,6 +8,7 @@ const bcrypt = require("bcrypt");
 const Usuario = require("./models/Usuarios.js");
 const Agendamento = require("./models/Agendamento.js");
 const Kit = require("./models/Kit.js");
+const { Item } = require("./models/Item.js")
 
 const app = express();
 app.use(cors());
@@ -154,6 +155,32 @@ app.get("/kits", async (req, res) => {
     res.json(kits);
   } catch (err) {
     res.status(500).json({ error: err.message });
+  }
+});
+
+// Cadastro de Materiais
+app.post("/itens", async (req, res) => {
+  try {
+    const item = req.body.item;
+    const tipo = req.body.tipo;
+    const quantidade = req.body.quantidade;
+    const descricao = req.body.descricao;
+    
+    const material = new Item({
+      item: item, 
+      tipo: tipo,
+      quantidade: quantidade,
+      descricao: descricao
+    });
+    const respMongo = await material.save();
+    console.log(respMongo);
+
+    res.status(201).end();
+    
+    
+  } catch (err) {
+    console.log("Erro:", err);
+    res.status(409).end()
   }
 });
 
