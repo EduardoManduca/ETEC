@@ -60,11 +60,19 @@
         <a href="/pages/index.html">
             <li class="li-meio-topo"><img class="logo-etec" src="/images/logo-etec.png" alt=""></li>
         </a>
+
+        <li class="search-wrapper">
+            <input type="text" class="br-pesq" placeholder="O que deseja localizar?">
+            <button class="search-button">🔍</button>
+        </li>
     </ul>
 
     <nav>
         <ul class="nav-bar">
-            <li class="li-nav-bar"><a class="a-nav-bar" href="/pages/pages_tecnico/TelaTecnico.html">Home</a></li>
+            <li class="li-nav-bar"><a class="a-nav-bar" href="TelaTecnico.html">Home</a></li>
+            <li class="li-nav-bar"><a class="a-nav-bar" href="agendamentos_tecnico.html">Agendamentos</a></li>
+            <li class="li-nav-bar"><a class="a-nav-bar" href="estoque_tecnico.html">Estoque</a></li> 
+            <li class="li-nav-bar"><a class="a-nav-bar" href="kits_tecnico.html">Kits e materiais</a></li>
         </ul>
     </nav>
     <main>
@@ -83,7 +91,7 @@
         <h1>Kits e materiais</h1>
 
         <div id="div-search-kit">
-            <input type="search" id="search-input" placeholder="Filtrar kits e materiais..." <script search()></script>
+            <input type="search" id="search-input" placeholder="Filtrar kits e materiais...">
             <button class="clear-search">&times;</button>
             <button class="search-botao"><i class="fa fa-search"></i></button>
         </div>
@@ -92,14 +100,10 @@
             <table id="tabela-kits-materiais">
                 <thead>
                     <tr>
+                        <th>Reagentes</th>
                         <th>Kits</th>
                         <th>Materiais</th>
-<<<<<<< HEAD:pages/pages_tecnico/kits_admin.html
-                        <th>Reagentes</th>
                         <th>Ações</th>
-=======
-
->>>>>>> 3a7b95f1f3bde93d10eaf216c9822b3247c3f881:pages/pages_tecnico/kits_tecnico.html
                     </tr>
                 </thead>
                 <tbody>
@@ -107,31 +111,46 @@
                         <td>XXXXX</td>
                         <td>XXXXX</td>
                         <td>XXXXX</td>
-            
+                        <td>
+                            <button class="btn-editar">Editar</button>
+                            <button class="btn-excluir">Excluir</button>
+                        </td>
                     </tr>
                     <tr>
                         <td>XXXXX</td>
                         <td>XXXXX</td>
                         <td>XXXXX</td>
-
+                        <td>
+                            <button class="btn-editar">Editar</button>
+                            <button class="btn-excluir">Excluir</button>
+                        </td>
                     </tr>
                     <tr>
                         <td>XXXXX</td>
                         <td>XXXXX</td>
                         <td>XXXXX</td>
- 
+                        <td>
+                            <button class="btn-editar">Editar</button>
+                            <button class="btn-excluir">Excluir</button>
+                        </td>
                     </tr>
                     <tr>
                         <td>XXXXX</td>
                         <td>XXXXX</td>
                         <td>XXXXX</td>
-                 
+                        <td>
+                            <button class="btn-editar">Editar</button>
+                            <button class="btn-excluir">Excluir</button>
+                        </td>
                     </tr>
                     <tr>
                         <td>XXXXX</td>
                         <td>XXXXX</td>
                         <td>XXXXX</td>
-
+                        <td>
+                            <button class="btn-editar">Editar</button>
+                            <button class="btn-excluir">Excluir</button>
+                        </td>
                     </tr>
                 </tbody>
             </table>
