@@ -184,6 +184,11 @@ app.post("/itens", async (req, res) => {
   }
 });
 
+app.get("/itens", async (req, res) => {
+  const itens = await Item.find();
+  res.json(itens);
+});
+
 // --- Servidor
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`<✅> Servidor rodando na porta ${PORT}`));

@@ -12,7 +12,10 @@
 </head>
 
 <body>
-<ul class="ul-topo">
+    <!-- Importação do Axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <ul class="ul-topo">
         <li class="li-topo">
             <div class="campo-preto">
                 <a href="https://www.sp.gov.br/sp">
@@ -127,13 +130,20 @@
                     <div class="grupo">
 
                         <div id="materiais-header" class="selecao-header">
-                            <h2>Materiais:</h2>
-                            <p class="esconder aviso">Selecione um material.</p>
+                            <h2>Vidrarias:</h2>
+                            <p class="esconder aviso">Selecione uma vidraria.</p>
                         </div>
 
                         <div id="materiais-input">    
-                            <input type="text" class="campo-search" placeholder="Nome do material" id="search-materiais">
-                            <button type="button" class="div-search-botao" id="lab-botao-materiais" onclick="adicionarItem('materiais')"></button>
+
+                            <div id="materiais-pesquisa">
+                                <input type="text" class="campo-search" placeholder="Nome da vidraria" id="search-vidraria">
+                                <div class="pesquisa-resultados" id="materiais-resultados">
+                                </div>
+                            </div>
+
+                            <!-- <button type="button" class="div-search-botao" id="lab-botao-materiais" onclick="adicionarItem('materiais')"></button> -->
+                       
                         </div>
 
                     </div>
@@ -146,7 +156,7 @@
                         </div>
 
                         <div id="reagentes-input">
-                            <input type="text" class="campo-search" placeholder="Nome do reagente" id="search-reagentes">
+                            <input type="text" class="campo-search" placeholder="Nome do reagente" id="search-reagente">
                             <button type="button" class="div-search-botao" id="lab-botao-reagentes" onclick="adicionarItem('reagentes')"></button>
                         </div>
 
@@ -160,11 +170,11 @@
 
             <div id="itens-selecao">
 
-                <div class="subselecao" id="materiais">
-                    <h2>Materiais</h2>
+                <div class="subselecao" id="vidraria">
+                    <h2>Vidrarias</h2>
                 </div>
 
-                <div class="subselecao" id="reagentes">
+                <div class="subselecao" id="reagente">
                     <h2>Reagentes</h2>
                 </div>
 

@@ -381,6 +381,25 @@ textarea {
     min-width: 655px;
 }
 
+#materiais-pesquisa {
+    display: flex;
+    flex-direction: column;
+}
+
+#materiais-resultados {
+    align-self: center;
+    width: calc(100% - 5px);
+    max-height: 100px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+#materiais-resultados p {
+    background-color: #EEEEEE;
+    margin: 0px;
+    cursor: pointer;
+}
+
 #itens-selecao {
     display: flex;
     flex-direction: column;

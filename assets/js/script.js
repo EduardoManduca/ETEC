@@ -97,32 +97,3 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
-
-// Agendamento Lab
-function adicionarItem(tipo) {
-
-  let inputCampo = document.getElementById(`search-${tipo}`);
-  let inputValor = inputCampo.value.trim();
-
-  if (inputValor) {
-
-    inputCampo.value = "";
-
-    let itemListaSelecao = document.getElementById(`${tipo}`);
-    let novoItem = document.createElement("p");
-    novoItem.innerHTML = inputValor;
-    itemListaSelecao.appendChild(novoItem);
-
-  } else {
-
-    let itemAviso = document.querySelector(`#${tipo}-header > .aviso`);
-    itemAviso.classList.add("exibir");
-    itemAviso.classList.remove("esconder");
-
-    setTimeout(() => {
-      itemAviso.classList.add("esconder");
-      itemAviso.classList.remove("exibir");
-    }, 5000);
-
-  }
-}
