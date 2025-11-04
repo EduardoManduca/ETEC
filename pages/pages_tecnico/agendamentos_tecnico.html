@@ -39,11 +39,11 @@
                 <li id="texto-topo-gsp">/governosp</li>
 
                 <li class="controles-acessibilidade">
-                    <button id="aumentar-texto" class="controles-tamanho" title="Aumentar texto"><img src="/images/i-big-font.png"
-                            alt=""></button>
+                    <button id="aumentar-texto" class="controles-tamanho" title="Aumentar texto"><img
+                            src="/images/i-big-font.png" alt=""></button>
 
-                    <button id="diminuir-texto" class="controles-tamanho" title="Diminuir texto"><img src="/images/i-small-font.png"
-                            alt=""></button>
+                    <button id="diminuir-texto" class="controles-tamanho" title="Diminuir texto"><img
+                            src="/images/i-small-font.png" alt=""></button>
 
                     <button id="theme-toggle" onclick="toggleTheme()" class="controles-tamanho"
                         title="Alternar modo claro/escuro"><img src="/images/i-contrast.png" alt=""></button>
@@ -59,61 +59,31 @@
         <a href="menu_tecnico.html">
             <li class="li-meio-topo"><img class="logo-etec" src="/images/logo-etec.png" alt=""></li>
         </a>
-        <li class="search-wrapper">
-            <input type="text" class="br-pesq" placeholder="O que deseja localizar?">
-            <button class="search-button">🔍</button>
-        </li>
     </ul>
 
     <nav>
         <ul class="nav-bar">
             <li class="li-nav-bar"><a class="a-nav-bar" href="TelaTecnico.html">Home</a></li>
             <li class="li-nav-bar"><a class="a-nav-bar" href="agendamentos_tecnico.html">Agendamentos</a></li>
-            <li class="li-nav-bar"><a class="a-nav-bar" href="estoque_tecnico.html">Estoque</a></li> 
-            <li class="li-nav-bar"><a class="a-nav-bar" href="kits_tecnico.html">Kits e materiais</a></li> 
+            <li class="li-nav-bar"><a class="a-nav-bar" href="EstoqueTecnico.html">Estoque</a></li> 
+            <li class="li-nav-bar"><a class="a-nav-bar" href="kits_tecnico.html">Kits</a></li> 
         </ul>
 
         <h1>Status dos Agendamentos</h1>
         <div class="tabela-responsiva-wrapper">
-            <table>
+            <table id="tabelaAgendamentos">
                 <thead>
                     <tr>
-                        <th>Laborátorio</th>
+                        <th>Laboratório</th>
                         <th>Professor</th>
                         <th>Horário</th>
                         <th>Kit</th>
                         <th>Status</th>
+                        <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td class="item"></td>
-                        <td class="item"></td>
-                        <td class="item"></td>
-                        <td class="item"></td>
-                        <td class="item"></td>
-                    </tr>
-                    <tr>
-                        <td class="item"></td>
-                        <td class="item"></td>
-                        <td class="item"></td>
-                        <td class="item"></td>
-                        <td class="item"></td>
-                    </tr>
-                    <tr>
-                        <td class="item"></td>
-                        <td class="item"></td>
-                        <td class="item"></td>
-                        <td class="item"></td>
-                        <td class="item"></td>
-                    </tr>
-                    <tr>
-                        <td class="item"></td>
-                        <td class="item"></td>
-                        <td class="item"></td>
-                        <td class="item"></td>
-                        <td class="item"></td>
-                    </tr>
+                    <tr><td colspan="6" style="text-align:center;">Carregando...</td></tr>
                 </tbody>
             </table>
         </div>
@@ -136,7 +106,59 @@
                 <img id="img-rodape" src="/images/logo-sp.png" alt="">
             </a>
         </footer>
+
         <script src="/assets/js/script.js"></script>
+
+        <script>
+            async function carregarAgendamentos() {
+                try {
+                    const resposta = await fetch("http://localhost:5000/agendamentos");
+                    const agendamentos = await resposta.json();
+                    const tabela = document.querySelector("#tabelaAgendamentos tbody");
+                    tabela.innerHTML = "";
+
+                    if (agendamentos.length === 0) {
+                        tabela.innerHTML = '<tr><td colspan="6" style="text-align:center;">Nenhum agendamento encontrado.</td></tr>';
+                        return;
+                    }
+
+                    agendamentos.forEach(a => {
+                        const linha = document.createElement("tr");
+                        linha.innerHTML = `
+                            <td>${a.laboratorio || "-"}</td>
+                            <td>${a.professor?.nome || a.professor || "-"}</td>
+                            <td>${a.horario || "-"}</td>
+                            <td>${a.kit?.nomeKit || "-"}</td>
+                            <td>${a.status || "-"}</td>
+                            <td>
+                                ${
+                                    a.status === "solicitado"
+                                    ? `<button onclick="autorizarAgendamento('${a._id}')">Autorizar</button>`
+                                    : `<span style="color:green; font-weight:bold;">Autorizado</span>`
+                                }
+                            </td>
+                        `;
+                        tabela.appendChild(linha);
+                    });
+                } catch (err) {
+                    console.error("Erro ao carregar agendamentos:", err);
+                    alert("Erro ao carregar agendamentos.");
+                }
+            }
+
+            async function autorizarAgendamento(id) {
+                if (!confirm("Deseja autorizar este agendamento?")) return;
+                const resposta = await fetch(`http://localhost:5000/agendamentos/${id}/autorizar`, { method: "PUT" });
+                if (resposta.ok) {
+                    alert("Agendamento autorizado com sucesso!");
+                    carregarAgendamentos();
+                } else {
+                    alert("Erro ao autorizar agendamento!");
+                }
+            }
+
+            window.onload = carregarAgendamentos;
+        </script>
 </body>
 
 </html>
