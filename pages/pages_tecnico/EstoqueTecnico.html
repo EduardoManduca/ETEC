@@ -65,96 +65,11 @@
         <ul class="nav-bar">
             <li class="li-nav-bar"><a class="a-nav-bar" href="TelaTecnico.html">Home</a></li>
             <li class="li-nav-bar"><a class="a-nav-bar" href="agendamentos_tecnico.html">Agendamentos</a></li>
-            <li class="li-nav-bar"><a class="a-nav-bar" href="estoque_tecnico.html">Estoque</a></li> 
-            <li class="li-nav-bar"><a class="a-nav-bar" href="kits_tecnico.html">Kits e materiais</a></li> 
+            <li class="li-nav-bar"><a class="a-nav-bar" href="EstoqueTecnico.html">Estoque</a></li> 
+            <li class="li-nav-bar"><a class="a-nav-bar" href="kits_tecnico.html">Kits</a></li> 
         </ul>
     </nav>
-    <main>
-        <h1>Controle de Estoque</h1>
-        <main>
-            <div id="div-search-kit">
-                <input type="search" id="search-input" placeholder="Filtrar kits e materiais...">
-                <button class="clear-search">&times;</button>
-                <button class="search-botao"><i class="fa fa-search"></i></button>
-            </div>
 
-            <div class="tabela-responsiva-wrapper">
-                <table id="tabela-kits-materiais">
-                    <thead>
-                        <tr>
-                            <th>Reagentes</th>
-                            <th>Kits</th>
-                            <th>Materiais</th>
-
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>XXXXX</td>
-                            <td>XXXXX</td>
-                            <td>XXXXX</td>
-
-                        </tr>
-                        <tr>
-                            <td>XXXXX</td>
-                            <td>XXXXX</td>
-                            <td>XXXXX</td>
-
-                        </tr>
-                        <tr>
-                            <td>XXXXX</td>
-                            <td>XXXXX</td>
-                            <td>XXXXX</td>
-
-                        </tr>
-                        <tr>
-                            <td>XXXXX</td>
-                            <td>XXXXX</td>
-                            <td>XXXXX</td>
-
-                        </tr>
-                        <tr>
-                            <td>XXXXX</td>
-                            <td>XXXXX</td>
-                            <td>XXXXX</td>
-
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <br>
-            <div id="container-es-tec">
-                <div class="div-painel-tecnico-es">
-                    <div class="linha-item">
-                        <h2 class="h2-es-tec">Reagentes</h2>
-                        <button class="button-es-tec">editar</button>
-                    </div>
-                    <div class="linha-item">
-                        <h2 class="h2-es-tec">Materiais</h2>
-                        <button class="button-es-tec">editar</button>
-                    </div>
-                    <div class="linha-item">
-                        <h2 class="h2-es-tec">Kits</h2>
-                        <button class="button-es-tec">editar</button>
-                    </div>
-                </div>
-            </div>
-        </main>
-        <!-- Script do div-search-kit -->
-        <script>
-            const searchInput = document.getElementById('search-input');
-            const clearButton = document.querySelector('.clear-search');
-
-            searchInput.addEventListener('input', () => {
-                clearButton.style.display = searchInput.value ? 'block' : 'none';
-            });
-
-            clearButton.addEventListener('click', () => {
-                searchInput.value = '';
-                clearButton.style.display = 'none';
-                searchInput.focus();
-            });
-        </script>
         <script src="/assets/js/script.js"></script>
         <div vw class="enabled">
             <div vw-access-button class="active"></div>
@@ -167,12 +82,12 @@
         <script>
             new window.VLibras.Widget('https://vlibras.gov.br/app');
         </script>
-        <h1>Kits Requeridos</h1>
+        <h1>Estoque</h1>
         <div class="tabela-estoque">
             <table id="estoque">
                 <thead>
                     <tr>
-                        <th>Materiais</th>
+                        <th>Materiais / Equipamentos</th>
                         <th>Quantidade</th>
                     </tr>
                 </thead>
