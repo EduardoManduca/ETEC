@@ -1,9 +1,13 @@
 # ETEC 
 
 ## 🟢 Linguagens utilizadas
-![](https://img.shields.io/badge/-JS-yellow)
-![](https://img.shields.io/badge/-HTML-yellow)
-![](https://img.shields.io/badge/-CSS-WHITE)
+
+<p align="center">
+  <img src="https://img.shields.io/badge/JS-FFD700?style=for-the-badge&logo=javascript&logoColor=black" alt="JS">
+  <img src="https://img.shields.io/badge/HTML-FF5733?style=for-the-badge&logo=html5&logoColor=white" alt="HTML">
+  <img src="https://img.shields.io/badge/CSS-8A2BE2?style=for-the-badge&logo=css3&logoColor=white" alt="CSS">
+</p>
+
 
 Projeto Interdisciplinar do Segundo Semestre do IMT, desenvolvido para a ETEC. O sistema permite o **agendamento de laboratórios por professores** e o **gerenciamento de materiais e kits por técnicos e administradores**.
 
