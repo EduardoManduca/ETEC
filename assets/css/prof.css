@@ -1,41 +1,3 @@
-/* Agendamento Prof */
-
-.campo-search {
-    display: block;
-    box-sizing: border-box;
-    width: 220px;
-    background-color: #D9D9D9;
-    border-radius: 4px;
-    background-repeat: no-repeat;
-    background-size: 20px;
-    background-position: 5px center;
-    background-image: url("images/search_icon.png");
-    font-size: medium;
-    height: 28px;
-    padding: 4px 6px 4px 30px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-}
-
-.campo-search {
-    background-color: #D9D9D9;
-    border-radius: 4px;
-}
-
-.campos-div {
-    height: 25px;
-    background-color: #D9D9D9;
-    border-radius: 4px;
-    padding: 4px 6px 4px;
-    width: 100%;
-    cursor: pointer;
-}
-
-.campo-search,
-.campos-div {
-    margin-top: 0px;
-    width: 100%;
-}
 
 /*Tela Professor*/
 
@@ -244,6 +206,20 @@
 
 /* ------- Agendamento Prof -------*/
 
+.campos-div {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 16px;
+    border-radius: 6px;
+    border: 1px solid #777;
+}
+
+.campo-search,
+.campos-div {
+    margin-top: 0px;
+    width: 100%;
+}
+
 #container-principal {
     justify-content: center;
     display: flex;
@@ -256,10 +232,7 @@
 #formulario {
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
-    width: 50%;
-    gap: 30px;
-    min-width: 655px;
+    width: 100%;
 }
 
 #itens-selecao {
@@ -274,14 +247,60 @@
 
 .div-search-botao {
     background-image: url("../../images/plus-solid-full.svg");
-    background-size: cover;
-    height: 100%;
-    aspect-ratio: 1 / 1;
+    width: 35px;
+    height: 35px;
+    border: none;
+    border-radius: 6px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 60%;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
-#reagentes-input,
-#materiais-input {
+.div-search-botao:hover {
+    background-color: #ccc;
+}
+
+@media (max-width: 600px) {
+    .add-btn {
+        width: 1.8rem;
+        height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    .input-group {
+        flex-direction: row;
+    }
+}
+
+
+.input-group {
+    width: 100%;
     display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+@media (min-width: 900px) {
+    #div-search {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .grupo {
+        width: 48%;
+    }
+}
+
+.input-group input,
+.input-group select {
+    flex: 1;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 4px;
+    background-color: #d9d9d9;
 }
 
 .botao-agendamento {
@@ -297,43 +316,52 @@
     display: inline;
 }
 
-.campo-search {
-    background-color: #D9D9D9;
-    border-radius: 4px;
-}
+
 
 #botoes-agend-lab {
-    text-align: center;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: -10px;
+    margin-bottom: 15px;
 }
+
 #btn-lab-conf {
     background-color: #f32a2a;
     cursor: pointer;
     color: white;
 }
+
 #btn-lab-conf:hover {
     background-color: #7E0000;
     box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
 }
+
 #btn-lab-conf:active {
     background-color: #7E0000;
     transform: scale(0.95);
     box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
 }
+
 #btn-lab-cancelar {
     background-color: #141414;
     color: white;
     box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
-
 }
+
 #btn-lab-cancelar:hover {
     background-color: #444;
     box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
 }
+
 #btn-lab-cancelar:active {
     background-color: #141414;
     transform: scale(0.95);
     box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
 }
+
+
 
 .selecao-header {
     display: flex;
@@ -355,22 +383,31 @@
 
 #laboratorio-div {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 100%;
-    border-radius: 20px;
-    font-size: medium;
-    font-weight: bold;
-    gap: 10px;
+    flex-wrap: wrap;
+    gap: 25px;
+    align-items: flex-start;
 }
 
+#laboratorio-div .campos-div {
+    width: 350px;
+    /* Aumenta o tamanho */
+    height: 45px;
+    font-size: 16px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid #888;
+    background-color: #d9d9d9;
+    /* Cor igual aos outros campos */
+}
+
+
 .formulario-grupo {
-    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
 }
 
 .grupo {
-    display: flex;
-    flex-direction: column;
     width: 100%;
 }
 
@@ -388,8 +425,31 @@
 
 #div-search {
     display: flex;
-    justify-content: space-between;
-    gap: 40px;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
+#div-search select.campos-div {
+    height: 48px;
+    background-color: #d9d9d9;
+    border-radius: 6px;
+    border: 1px solid #888;
+}
+
+
+
+
+
+.campo-search {
+    width: 100%;
+    height: 48px;
+    font-size: 16px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid #888;
+    background-color: #d9d9d9;
+    box-sizing: border-box;
 }
 
 @media (max-width: 1024px) {
@@ -489,4 +549,9 @@
         background-image: url("../../images/plus-solid-full.svg");
         background-size: cover;
     }
+}
+
+[vw-access-button] {
+    bottom: 40px !important;
+    z-index: 100 !important;
 }

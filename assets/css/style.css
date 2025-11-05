@@ -527,3 +527,8 @@ th {
         max-width: 250px;
     }
 }
+
+button:hover {
+    cursor: pointer;
+}
+
