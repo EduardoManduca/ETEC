@@ -89,20 +89,28 @@
             <label for="username" class="title-login">ID / Nome:</label>
             <input type="text" id="username" name="username" placeholder="Insira seu ID/Nome" class="cadastro">
             <label for="password" class="title-login">Senha:</label>
-            <input type="password" id="password" name="password" placeholder="Insira sua senha" class="cadastro">
+            <input type="text" id="password" name="password" placeholder="Insira sua senha" class="cadastro">
             <div id="errorMessage">Nome de usuário ou senha incorretos.</div><br>
             <input type="button" value="Entrar" id="enter" onclick="logincheck()">
             <input type="button" value="Cancelar" id="cancel"
                 onclick="window.location.href='/code/Code_Tela_Inicial.html'"> <!--Botão Cancelar-->
+            <div class="login-links">
+                <a href="politica-de-privacidade.html" target="_blank">Política de Privacidade</a>
+                <span>|</span>
+                <a href="termos-de-uso.html" target="_blank">Termos de Uso</a>
+            </div>
         </div>
     </main>
-    <footer>
+    <button id="btnTopo"></button>
+    <script src="/assets/js/ir-ao-topo.js"></script>
+    <footer id="footer">
         <a href="https://www.sp.gov.br/sp">
             <img id="img-rodape" src="/images/logo-sp.png" alt="">
         </a>
     </footer>
     <script src="/assets/js/LoginUser.js"></script>
     </div>
+
 </body>
 
 </html>

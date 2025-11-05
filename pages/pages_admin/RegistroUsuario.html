@@ -1,17 +1,19 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Status de Agendamento</title>
+    <title>Registro de Usuários</title>
     <link rel="stylesheet" href="/assets/css/style.css">
-    <link rel="stylesheet" href="/assets/css/tecnico.css">
+    <link rel="stylesheet" href="/assets/css/admin.css">
     <link rel="stylesheet" href="/assets/css/darkMode.css">
     <link rel="icon" href="/images/logo-cps.png">
 </head>
 
 <body>
+
+    <!-- Topo -->
     <ul class="ul-topo">
         <li class="li-topo">
             <div class="campo-preto">
@@ -37,17 +39,13 @@
                 <li class="li-midias"><a href="https://www.facebook.com/governosp/" target="_blank"><img
                             class="img-midias" src="/images/facebook.png" alt=""></a></li>
                 <li id="texto-topo-gsp">/governosp</li>
-
                 <li class="controles-acessibilidade">
-                    <button id="aumentar-texto" class="controles-tamanho" title="Aumentar texto"><img src="/images/i-big-font.png"
+                    <button class="controles-tamanho" title="Aumentar texto"><img src="/images/i-big-font.png"
                             alt=""></button>
-
-                    <button id="diminuir-texto" class="controles-tamanho" title="Diminuir texto"><img src="/images/i-small-font.png"
+                    <button class="controles-tamanho" title="Diminuir texto"><img src="/images/i-small-font.png"
                             alt=""></button>
-
                     <button id="theme-toggle" onclick="toggleTheme()" class="controles-tamanho"
                         title="Alternar modo claro/escuro"><img src="/images/i-contrast.png" alt=""></button>
-
                     <button class="controles-tamanho" title="Mostrar aviso"><img src="/images/i-error-report.png"
                             alt=""></button>
                 </li>
@@ -55,81 +53,81 @@
         </li>
     </ul>
     <hr>
+
     <ul class="ul-meio-topo">
-        <a href="menu_tecnico.html">
+        <a href="/pages/pages_admin/TelaAdministrador.html">
             <li class="li-meio-topo"><img class="logo-etec" src="/images/logo-etec.png" alt=""></li>
         </a>
     </ul>
 
     <nav>
         <ul class="nav-bar">
-            <li class="li-nav-bar"><a class="a-nav-bar" href="/pages/pages_tecnico/TelaTecnico.html">Home</a></li>
+            <li class="li-nav-bar"><a class="a-nav-bar" href="TelaAdministrador.html">home</a></li>
+            <li class="li-nav-bar"><a class="a-nav-bar" href="/pages/pages_admin/HistoricoMateriais.html">Materiais</a>
+            </li>
+            <li class="li-nav-bar"><a class="a-nav-bar" href="/pages/pages_admin/CadastrarUser.html">Cadastro</a></li>
+            <li class="li-nav-bar"><a class="a-nav-bar" href="RegistroUsuario.html">Usuarios</a></li>
         </ul>
+    </nav>
 
-        <h1>Status dos Laboratórios</h1>
-        <div class="tabela-responsiva-wrapper">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Laborátorio</th>
-                        <th>Professor</th>
-                        <th>Horário</th>
-                        <th>Kit</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="item"></td>
-                        <td class="item"></td>
-                        <td class="item"></td>
-                        <td class="item"></td>
-                        <td class="item"></td>
-                    </tr>
-                    <tr>
-                        <td class="item"></td>
-                        <td class="item"></td>
-                        <td class="item"></td>
-                        <td class="item"></td>
-                        <td class="item"></td>
-                    </tr>
-                    <tr>
-                        <td class="item"></td>
-                        <td class="item"></td>
-                        <td class="item"></td>
-                        <td class="item"></td>
-                        <td class="item"></td>
-                    </tr>
-                    <tr>
-                        <td class="item"></td>
-                        <td class="item"></td>
-                        <td class="item"></td>
-                        <td class="item"></td>
-                        <td class="item"></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <!-- VLibras Widget -->
-        <div vw class="enabled">
-            <div vw-access-button class="active"></div>
-            <div vw-plugin-wrapper>
-                <div class="vw-plugin-top-wrapper"></div>
+    <main>
+        <div id="modal-editar" class="modal">
+            <div class="modal-conteudo">
+                <h1>Editar Usuário</h1>
+                <input type="hidden" id="usuario-id">
+                <label>Nome de Usuário:</label>
+                <input type="text" id="usuario-login">
+                <label>Função:</label>
+                <select id="usuario-funcao">
+                    <option value="admin">admin</option>
+                    <option value="tecnico">tecnico</option>
+                    <option value="professor">professor</option>
+                </select>
+                <label>Senha (opcional):</label>
+                <input type="password" id="usuario-senha" placeholder="Nova senha (Opcional)">
+                <div class="botoes-modal">
+                    <button id="salvar-usuario">Salvar</button>
+                    <button id="fechar-modal">Cancelar</button>
+                </div>
             </div>
         </div>
+        <h1>Registro de Usuários</h1>
+        <table id="RegistroUsuario">
+            <thead>
+                <tr>
+                    <th>Nome de usuário</th>
+                    <th>Função</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </main>
 
-        <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-        <script>
-            new window.VLibras.Widget('https://vlibras.gov.br/app');
-        </script>
+    <!-- VLibras -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
 
-        <footer>
-            <a href="https://www.sp.gov.br/sp">
-                <img id="img-rodape" src="/images/logo-sp.png" alt="">
-            </a>
-        </footer>
-        <script src="/assets/js/script.js"></script>
+    <!-- Rodapé -->
+    <button id="btnTopo"></button>
+    <script src="/assets/js/ir-ao-topo.js"></script>
+    <footer id="footer">
+        <a href="https://www.sp.gov.br/sp">
+            <img id="img-rodape" src="/images/logo-sp.png" alt="">
+        </a>
+    </footer>
+
+    <script src="/assets/js/RegistroUser.js"></script>
+
 </body>
 
 </html>

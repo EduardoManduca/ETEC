@@ -1,5 +1,8 @@
-/*Geral*/
+/* ================================
+   TECNICO.CSS — versão responsiva
+   ================================ */
 
+/* ===== Geral ===== */
 .div-painel-tecnico {
     background: #fff;
     text-align: center;
@@ -17,6 +20,16 @@
     height: auto;
 }
 
+.btn-aprov {
+    color: white;
+    background-color: #3ACF1F;
+    padding: 5px;
+    width: 70px;
+    transition: transform 0.2s ease;
+    cursor: pointer;
+    border: 0;
+    border-radius: 5px;
+}
 .btn-editar,
 .btn-excluir {
     color: white;
@@ -29,15 +42,22 @@
 }
 
 .btn-editar:hover {
-    background-color: #00AEBA;
+    background-color: black;
+    transform: scale(1.05);
 }
 
 .btn-excluir:hover {
     background-color: #7E0000;
+    transform: scale(1.05);
+}
+
+.btn-editar:active,
+.btn-excluir:active {
+    transform: scale(0.95);
 }
 
 .btn-editar {
-    background-color: #1AC7D4;
+    background-color: #333;
 }
 
 .btn-excluir {
@@ -60,40 +80,33 @@
     justify-self: center;
 }
 
-
-/* Estoque técnico */
-
+/* ===== Estoque técnico ===== */
 .div-painel-tecnico-es {
     background: #d4d1d1;
     text-align: left;
     border-radius: 20px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    /* Corrigido aqui */
     padding: 20px;
     display: flex;
     flex-direction: column;
     width: 20%;
 }
 
-/* Classe para alinhar cada h2 e botão lado a lado */
 .linha-item {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 10px;
-    /* Espaço entre linhas */
 }
 
 .h2-es-tec {
     color: #004854;
     font-size: 1.1rem;
     margin: 0;
-    /* Remove margens padrão do h2 */
 }
 
 .button-es-tec {
     width: 30%;
-    /* Ajuste conforme necessário */
     background-color: #8d0000;
     border: none;
     border-radius: 50px;
@@ -104,7 +117,6 @@
     transition: background-color 0.2s ease;
 }
 
-/* Efeito ao passar o mouse */
 .button-es-tec:hover {
     background-color: #f32a2a;
 }
@@ -112,6 +124,8 @@
 #container-es-tec {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
 #div-search-kit {
@@ -176,7 +190,6 @@
     box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
     padding: 20px;
     border-radius: 30px;
-
 }
 
 #nome-material {
@@ -201,30 +214,12 @@
     outline: none;
 }
 
-
-
-
-
-
-
-#add-button {
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 12px;
-    border: none;
-    border-radius: 30px;
-    background-color: #3D3D3D;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.2s;
+#observacoes-msg {
+    font-weight: bold;
+    color: #3D3D3D;
 }
 
-#add-button:hover {
-    background-color: #292929;
-}
-
+#add-button,
 #rem-button {
     width: 80%;
     margin-left: auto;
@@ -232,11 +227,22 @@
     padding: 12px;
     border: none;
     border-radius: 30px;
-    background-color: #BA1A1A;
     color: white;
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.2s;
+}
+
+#add-button {
+    background-color: #3D3D3D;
+}
+
+#add-button:hover {
+    background-color: #292929;
+}
+
+#rem-button {
+    background-color: #BA1A1A;
     margin-bottom: 5%;
 }
 
@@ -244,8 +250,7 @@
     background-color: #7E0000;
 }
 
-/*Tela Técnico*/
-
+/* ===== Tela Técnico ===== */
 #main-div-TelaTecnico {
     display: flex;
     justify-content: space-between;
@@ -278,4 +283,107 @@
     width: 100%;
     padding: 20px;
     box-sizing: border-box;
+}
+
+/* ===== Responsividade ===== */
+
+/* Tablets e telas médias */
+@media (max-width: 1024px) {
+    .div-painel-tecnico img {
+        max-width: 50%;
+    }
+
+    .div-painel-tecnico-es {
+        width: 40%;
+    }
+
+    #container-telatecnico,
+    .container-painel {
+        width: 100%;
+    }
+
+    #main-div-TelaTecnico {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .material-inputs {
+        width: 40%;
+    }
+}
+
+/* Celulares grandes */
+@media (max-width: 768px) {
+    #main-div-TelaTecnico {
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+    }
+
+    #container-telatecnico,
+    .container-painel {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .div-painel-tecnico-es {
+        width: 80%;
+    }
+
+    .material-inputs {
+        width: 80%;
+    }
+
+    .h2-es-tec {
+        font-size: 1rem;
+    }
+
+    .button-es-tec {
+        width: auto;
+        padding: 6px 10px;
+        font-size: 14px;
+    }
+
+    .btn-editar,
+    .btn-excluir {
+        width: 60px;
+        font-size: 14px;
+    }
+}
+
+/* Celulares pequenos */
+@media (max-width: 480px) {
+    #main-div-TelaTecnico {
+        padding: 10px;
+        gap: 10px;
+    }
+
+    .div-painel-tecnico img {
+        max-width: 70%;
+    }
+
+    .div-painel-tecnico-es {
+        width: 95%;
+        padding: 15px;
+    }
+
+    .container-painel {
+        grid-template-columns: 1fr;
+    }
+
+    #container-telatecnico {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .material-inputs {
+        width: 95%;
+        padding: 15px;
+    }
+
+    #add-button,
+    #rem-button {
+        width: 100%;
+        font-size: 15px;
+    }
 }

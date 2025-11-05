@@ -12,6 +12,12 @@
 </head>
 
 <body>
+<<<<<<< HEAD
+=======
+    <!-- Importação do Axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+>>>>>>> f5ae156586edd1ec297632821f81b5306b402073
     <ul class="ul-topo">
         <li class="li-topo">
             <div class="campo-preto">
@@ -56,7 +62,7 @@
     </ul>
     <hr>
     <ul class="ul-meio-topo">
-        <a href="/pages/index.html">
+        <a href="/pages/pages_professor/TelaProfessor.html">
             <li class="li-meio-topo"><img class="logo-etec" src="/images/logo-etec.png" alt=""></li>
         </a>
     </ul>
@@ -64,6 +70,10 @@
     <nav>
         <ul class="nav-bar">
             <li class="li-nav-bar"><a class="a-nav-bar" href="/pages/pages_professor/TelaProfessor.html">Home</a></li>
+            <li class="li-nav-bar"><a class="a-nav-bar" href="/pages/pages_professor/agendamento.html">Agendamentos</a>
+            </li>
+            <li class="li-nav-bar"><a class="a-nav-bar" href="/pages/pages_professor/estoque.html">Estoque</a></li>
+            <li class="li-nav-bar"><a class="a-nav-bar" href="/pages/pages_professor/MontarKit.html">Criar Kit</a></li>
         </ul>
     </nav>
 
@@ -86,7 +96,8 @@
         <script>
             new window.VLibras.Widget('https://vlibras.gov.br/app');
         </script>
-        <h1>Agendamento de Laboratórios</h1> <br>
+        <h1 id="agendamento-header">Agendamento de Laboratórios</h1>
+
         <div id="container-principal">
             <div id="formulario">
                 <div id="laboratorio-div">
@@ -169,14 +180,53 @@
                     </div>
                 </div>
 
+<<<<<<< HEAD
                 <div id="itens-selecao">
+=======
+                <div id="div-search">
+                    <div class="grupo">
+
+                        <div id="materiais-header" class="selecao-header">
+                            <h2>Vidrarias:</h2>
+                            <p class="esconder aviso">Selecione uma vidraria.</p>
+                        </div>
+
+                        <div id="materiais-input">
+
+                            <div id="materiais-pesquisa">
+                                <input type="text" class="campo-search" placeholder="Nome da vidraria"
+                                    id="search-vidraria">
+                                <div class="pesquisa-resultados" id="materiais-resultados">
+                                </div>
+                            </div>
+
+                            <!-- <button type="button" class="div-search-botao" id="lab-botao-materiais" onclick="adicionarItem('materiais')"></button> -->
+
+                        </div>
+>>>>>>> f5ae156586edd1ec297632821f81b5306b402073
 
                     <div class="subselecao" id="kits">
                         <h2>Kits</h2>
                     </div>
 
+<<<<<<< HEAD
                     <div class="subselecao" id="equipamentos">
                         <h2>Equipamentos</h2>
+=======
+                    <div class="grupo">
+
+                        <div id="reagentes-header" class="selecao-header">
+                            <h2>Reagentes:</h2>
+                            <p class="esconder aviso">Selecione um reagente.</p>
+                        </div>
+
+                        <div id="reagentes-input">
+                            <input type="text" class="campo-search" placeholder="Nome do reagente" id="search-reagente">
+                            <button type="button" class="div-search-botao" id="lab-botao-reagentes"
+                                onclick="adicionarItem('reagentes')"></button>
+                        </div>
+
+>>>>>>> f5ae156586edd1ec297632821f81b5306b402073
                     </div>
 
                     <div class="subselecao" id="materiais">
@@ -186,10 +236,31 @@
                 </div>
             </div>
 
+<<<<<<< HEAD
+=======
+            <div id="itens-selecao">
+
+                <div class="subselecao" id="vidraria">
+                    <h2>Vidrarias</h2>
+                </div>
+
+                <div class="subselecao" id="reagente">
+                    <h2>Reagentes</h2>
+                </div>
+
+                <div class="subselecao" id="kits">
+                    <h2>Kits</h2>
+                </div>
+            </div>
+        </div>
+
+>>>>>>> f5ae156586edd1ec297632821f81b5306b402073
     </main>
 
     <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-    <footer>
+    <button id="btnTopo"></button>
+    <script src="/assets/js/ir-ao-topo.js"></script>
+    <footer id="footer">
         <a href="https://www.sp.gov.br/sp">
             <img id="img-rodape" src="/images/logo-sp.png" alt="">
         </a>

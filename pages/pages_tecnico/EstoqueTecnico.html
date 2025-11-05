@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agendamentos</title>
+    <title>Controle de estoque</title>
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="stylesheet" href="/assets/css/tecnico.css">
     <link rel="stylesheet" href="/assets/css/darkMode.css">
@@ -39,11 +39,11 @@
                 <li id="texto-topo-gsp">/governosp</li>
 
                 <li class="controles-acessibilidade">
-                    <button id="aumentar-texto" class="controles-tamanho" title="Aumentar texto"><img src="/images/i-big-font.png"
-                            alt=""></button>
+                    <button id="aumentar-texto" class="controles-tamanho" title="Aumentar texto"><img
+                            src="/images/i-big-font.png" alt=""></button>
 
-                    <button id="diminuir-texto" class="controles-tamanho" title="Diminuir texto"><img src="/images/i-small-font.png"
-                            alt=""></button>
+                    <button id="diminuir-texto" class="controles-tamanho" title="Diminuir texto"><img
+                            src="/images/i-small-font.png" alt=""></button>
 
                     <button id="theme-toggle" onclick="toggleTheme()" class="controles-tamanho"
                         title="Alternar modo claro/escuro"><img src="/images/i-contrast.png" alt=""></button>
@@ -56,80 +56,63 @@
     </ul>
     <hr>
     <ul class="ul-meio-topo">
-        <a href="menu_tecnico.html">
+        <a href="/pages/pages_tecnico/TelaTecnico.html">
             <li class="li-meio-topo"><img class="logo-etec" src="/images/logo-etec.png" alt=""></li>
         </a>
     </ul>
 
     <nav>
         <ul class="nav-bar">
-            <li class="li-nav-bar"><a class="a-nav-bar" href="/pages/pages_tecnico/TelaTecnico.html">Home</a></li>
+            <li class="li-nav-bar"><a class="a-nav-bar" href="TelaTecnico.html">Home</a></li>
+            <li class="li-nav-bar"><a class="a-nav-bar" href="EstoqueTecnico.html">Estoque</a></li>
+            <li class="li-nav-bar"><a class="a-nav-bar" href="kits_tecnico.html">Kits</a></li>
         </ul>
+    </nav>
 
-        <h1>Status dos Agendamentos</h1>
-        <div class="tabela-responsiva-wrapper">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Laborátorio</th>
-                        <th>Professor</th>
-                        <th>Horário</th>
-                        <th>Kit</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="item"></td>
-                        <td class="item"></td>
-                        <td class="item"></td>
-                        <td class="item"></td>
-                        <td class="item"></td>
-                    </tr>
-                    <tr>
-                        <td class="item"></td>
-                        <td class="item"></td>
-                        <td class="item"></td>
-                        <td class="item"></td>
-                        <td class="item"></td>
-                    </tr>
-                    <tr>
-                        <td class="item"></td>
-                        <td class="item"></td>
-                        <td class="item"></td>
-                        <td class="item"></td>
-                        <td class="item"></td>
-                    </tr>
-                    <tr>
-                        <td class="item"></td>
-                        <td class="item"></td>
-                        <td class="item"></td>
-                        <td class="item"></td>
-                        <td class="item"></td>
-                    </tr>
-                </tbody>
-            </table>
+    <script src="/assets/js/script.js"></script>
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
         </div>
+    </div>
 
-        <!-- VLibras Widget -->
-        <div vw class="enabled">
-            <div vw-access-button class="active"></div>
-            <div vw-plugin-wrapper>
-                <div class="vw-plugin-top-wrapper"></div>
-            </div>
-        </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
+    <h1>Estoque</h1>
+    <div class="tabela-estoque">
+        <table id="estoque">
+            <thead>
+                <tr>
+                    <th>Materiais / Equipamentos</th>
+                    <th>Quantidade</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
 
-        <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-        <script>
-            new window.VLibras.Widget('https://vlibras.gov.br/app');
-        </script>
+                </tr>
 
-        <footer>
-            <a href="https://www.sp.gov.br/sp">
-                <img id="img-rodape" src="/images/logo-sp.png" alt="">
-            </a>
-        </footer>
-        <script src="/assets/js/script.js"></script>
+            </tbody>
+        </table>
+    </div>
+    <div class="material-inputs">
+        <input type="text" placeholder="Nome do material" id="nome-material" />
+        <input type="number" placeholder="Quantidade" id="quantidade-material" />
+        <input type="button" onclick="addTableRow()" value="Adicionar Item" id="add-button" />
+        <input type="button" onclick="cancelMaterial" value="Cancelar" id="rem-button" />
+    </div>
+    <button id="btnTopo"></button>
+    <script src="/assets/js/ir-ao-topo.js"></script>
+    <button id="btnTopo"></button>
+    <script src="/assets/js/ir-ao-topo.js"></script>
+    <footer id="footer">
+        <a href="https://www.sp.gov.br/sp">
+            <img id="img-rodape" src="/images/logo-sp.png" alt="">
+        </a>
+    </footer>
 </body>
 
 </html>
