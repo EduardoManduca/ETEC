@@ -53,7 +53,7 @@
     </ul>
     <hr>
     <ul class="ul-meio-topo">
-        <a href="/pages/index.html">
+        <a href="/pages/pages_admin/TelaAdministrador.html">
             <li class="li-meio-topo"><img class="logo-etec" src="/images/logo-etec.png" alt=""></li>
         </a>
     </ul>
@@ -61,7 +61,8 @@
     <nav>
         <ul class="nav-bar">
             <li class="li-nav-bar"><a class="a-nav-bar" href="TelaAdministrador.html">home</a></li>
-            <li class="li-nav-bar"><a class="a-nav-bar" href="/pages/pages_admin/HistoricoMateriais.html">Materiais</a></li>
+            <li class="li-nav-bar"><a class="a-nav-bar" href="/pages/pages_admin/HistoricoMateriais.html">Materiais</a>
+            </li>
             <li class="li-nav-bar"><a class="a-nav-bar" href="/pages/pages_admin/CadastrarUser.html">Cadastro</a></li>
             <li class="li-nav-bar"><a class="a-nav-bar" href="RegistroUsuario.html">Usuarios</a></li>
         </ul>
@@ -72,7 +73,8 @@
                 <div id="div-registroUser">
                     <h1>Registro de Usuários</h1>
                     <p>Utilize esta opção para visualizar, editar ou remover os usuários no banco de dados.</p>
-                    <button onclick="window.location.href='/pages/pages_admin/RegistroUsuario.html'" class="btn-gerenciar">Ver Todos</button>
+                    <button onclick="window.location.href='/pages/pages_admin/RegistroUsuario.html'"
+                        class="btn-gerenciar">Ver Todos</button>
                 </div>
             </div>
             <div class="painel-cadastrar">
@@ -107,7 +109,9 @@
         new window.VLibras.Widget('https://vlibras.gov.br/app');
     </script>
 
-    <footer>
+    <button id="btnTopo"></button>
+    <script src="/assets/js/ir-ao-topo.js"></script>
+    <footer id="footer">
         <a href="https://www.sp.gov.br/sp">
             <img id="img-rodape" src="/images/logo-sp.png" alt="">
         </a>

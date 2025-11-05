@@ -1,0 +1,67 @@
+.container-conteudo {
+    max-width: 900px;
+    margin: 50px auto;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    padding: 40px;
+    line-height: 1.7;
+    font-family: url(/font/RobotoSlab-Regular.ttf);
+    color: #222;
+}
+
+.container-conteudo h1 {
+    text-align: center;
+    color: #1a1a1a;
+    font-size: 2em;
+    margin-bottom: 25px;
+}
+
+.container-conteudo h2 {
+    margin-top: 35px;
+    color: #333;
+    font-size: 1.4em;
+    border-left: 4px solid #c00;
+    padding-left: 10px;
+}
+
+.container-conteudo p {
+    margin: 12px 0;
+    text-align: justify;
+}
+
+.container-conteudo ul {
+    margin-left: 30px;
+    list-style: disc;
+}
+
+.container-conteudo li {
+    margin-bottom: 6px;
+}
+
+.container-conteudo strong {
+    color: #000;
+}
+
+.data-atualizacao {
+    margin-top: 40px;
+    font-size: 0.9em;
+    text-align: right;
+    color: #666;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .container-conteudo {
+        padding: 25px;
+        margin: 20px;
+    }
+
+    .container-conteudo h1 {
+        font-size: 1.6em;
+    }
+
+    .container-conteudo h2 {
+        font-size: 1.2em;
+    }
+}

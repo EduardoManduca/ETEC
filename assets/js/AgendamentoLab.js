@@ -83,7 +83,7 @@ searchVidraria.addEventListener("input", async () => {
     const itensEndpoint = "/itens"
     const URLCompleta = `${protocolo}${baseURL}${itensEndpoint}`
     const itens = (await axios.get(URLCompleta)).data
-    
+
     const searchValor = removerAcentuacao(escaparRegex(searchVidraria.value));
     const regex = new RegExp(searchValor, "i");
 

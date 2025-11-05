@@ -42,11 +42,11 @@
                 <li id="texto-topo-gsp">/governosp</li>
 
                 <li class="controles-acessibilidade">
-                    <button id="aumentar-texto" class="controles-tamanho" title="Aumentar texto"><img src="/images/i-big-font.png"
-                            alt=""></button>
+                    <button id="aumentar-texto" class="controles-tamanho" title="Aumentar texto"><img
+                            src="/images/i-big-font.png" alt=""></button>
 
-                    <button id="diminuir-texto" class="controles-tamanho" title="Diminuir texto"><img src="/images/i-small-font.png"
-                            alt=""></button>
+                    <button id="diminuir-texto" class="controles-tamanho" title="Diminuir texto"><img
+                            src="/images/i-small-font.png" alt=""></button>
 
                     <button id="theme-toggle" onclick="toggleTheme()" class="controles-tamanho"
                         title="Alternar modo claro/escuro"><img src="/images/i-contrast.png" alt=""></button>
@@ -59,7 +59,7 @@
     </ul>
     <hr>
     <ul class="ul-meio-topo">
-        <a href="/pages/index.html">
+        <a href="/pages/pages_professor/TelaProfessor.html">
             <li class="li-meio-topo"><img class="logo-etec" src="/images/logo-etec.png" alt=""></li>
         </a>
     </ul>
@@ -67,7 +67,8 @@
     <nav>
         <ul class="nav-bar">
             <li class="li-nav-bar"><a class="a-nav-bar" href="/pages/pages_professor/TelaProfessor.html">Home</a></li>
-            <li class="li-nav-bar"><a class="a-nav-bar" href="/pages/pages_professor/agendamento.html">Agendamentos</a></li>
+            <li class="li-nav-bar"><a class="a-nav-bar" href="/pages/pages_professor/agendamento.html">Agendamentos</a>
+            </li>
             <li class="li-nav-bar"><a class="a-nav-bar" href="/pages/pages_professor/estoque.html">Estoque</a></li>
             <li class="li-nav-bar"><a class="a-nav-bar" href="/pages/pages_professor/MontarKit.html">Criar Kit</a></li>
         </ul>
@@ -134,16 +135,17 @@
                             <p class="esconder aviso">Selecione uma vidraria.</p>
                         </div>
 
-                        <div id="materiais-input">    
+                        <div id="materiais-input">
 
                             <div id="materiais-pesquisa">
-                                <input type="text" class="campo-search" placeholder="Nome da vidraria" id="search-vidraria">
+                                <input type="text" class="campo-search" placeholder="Nome da vidraria"
+                                    id="search-vidraria">
                                 <div class="pesquisa-resultados" id="materiais-resultados">
                                 </div>
                             </div>
 
                             <!-- <button type="button" class="div-search-botao" id="lab-botao-materiais" onclick="adicionarItem('materiais')"></button> -->
-                       
+
                         </div>
 
                     </div>
@@ -157,7 +159,8 @@
 
                         <div id="reagentes-input">
                             <input type="text" class="campo-search" placeholder="Nome do reagente" id="search-reagente">
-                            <button type="button" class="div-search-botao" id="lab-botao-reagentes" onclick="adicionarItem('reagentes')"></button>
+                            <button type="button" class="div-search-botao" id="lab-botao-reagentes"
+                                onclick="adicionarItem('reagentes')"></button>
                         </div>
 
                     </div>
@@ -187,7 +190,9 @@
     </main>
 
     <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-    <footer>
+    <button id="btnTopo"></button>
+    <script src="/assets/js/ir-ao-topo.js"></script>
+    <footer id="footer">
         <a href="https://www.sp.gov.br/sp">
             <img id="img-rodape" src="/images/logo-sp.png" alt="">
         </a>

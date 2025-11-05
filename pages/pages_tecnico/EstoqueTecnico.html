@@ -56,7 +56,7 @@
     </ul>
     <hr>
     <ul class="ul-meio-topo">
-        <a href="menu_tecnico.html">
+        <a href="/pages/pages_tecnico/TelaTecnico.html">
             <li class="li-meio-topo"><img class="logo-etec" src="/images/logo-etec.png" alt=""></li>
         </a>
     </ul>
@@ -64,53 +64,55 @@
     <nav>
         <ul class="nav-bar">
             <li class="li-nav-bar"><a class="a-nav-bar" href="TelaTecnico.html">Home</a></li>
-            <li class="li-nav-bar"><a class="a-nav-bar" href="agendamentos_tecnico.html">Agendamentos</a></li>
-            <li class="li-nav-bar"><a class="a-nav-bar" href="EstoqueTecnico.html">Estoque</a></li> 
-            <li class="li-nav-bar"><a class="a-nav-bar" href="kits_tecnico.html">Kits</a></li> 
+            <li class="li-nav-bar"><a class="a-nav-bar" href="EstoqueTecnico.html">Estoque</a></li>
+            <li class="li-nav-bar"><a class="a-nav-bar" href="kits_tecnico.html">Kits</a></li>
         </ul>
     </nav>
 
-        <script src="/assets/js/script.js"></script>
-        <div vw class="enabled">
-            <div vw-access-button class="active"></div>
-            <div vw-plugin-wrapper>
-                <div class="vw-plugin-top-wrapper"></div>
-            </div>
+    <script src="/assets/js/script.js"></script>
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
         </div>
+    </div>
 
-        <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-        <script>
-            new window.VLibras.Widget('https://vlibras.gov.br/app');
-        </script>
-        <h1>Estoque</h1>
-        <div class="tabela-estoque">
-            <table id="estoque">
-                <thead>
-                    <tr>
-                        <th>Materiais / Equipamentos</th>
-                        <th>Quantidade</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
+    <h1>Estoque</h1>
+    <div class="tabela-estoque">
+        <table id="estoque">
+            <thead>
+                <tr>
+                    <th>Materiais / Equipamentos</th>
+                    <th>Quantidade</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
 
-                    </tr>
+                </tr>
 
-                </tbody>
-            </table>
-        </div>
-        <div class="material-inputs">
-            <input type="text" placeholder="Nome do material" id="nome-material" />
-            <input type="number" placeholder="Quantidade" id="quantidade-material" />
-            <input type="button" onclick="addTableRow()" value="Adicionar Item" id="add-button" />
-            <input type="button" onclick="cancelMaterial" value="Cancelar" id="rem-button" />
-        </div>
-        <footer>
-            <a href="https://www.sp.gov.br/sp">
-                <img id="img-rodape" src="/images/logo-sp.png" alt="">
-            </a>
-        </footer>
-</body>
+            </tbody>
+        </table>
+    </div>
+    <div class="material-inputs">
+        <input type="text" placeholder="Nome do material" id="nome-material" />
+        <input type="number" placeholder="Quantidade" id="quantidade-material" />
+        <input type="button" onclick="addTableRow()" value="Adicionar Item" id="add-button" />
+        <input type="button" onclick="cancelMaterial" value="Cancelar" id="rem-button" />
+    </div>
+    <button id="btnTopo"></button>
+    <script src="/assets/js/ir-ao-topo.js"></script>
+    <button id="btnTopo"></button>
+    <script src="/assets/js/ir-ao-topo.js"></script>
+    <footer id="footer">
+        <a href="https://www.sp.gov.br/sp">
+            <img id="img-rodape" src="/images/logo-sp.png" alt="">
+        </a>
+    </footer>
 </body>
 
 </html>

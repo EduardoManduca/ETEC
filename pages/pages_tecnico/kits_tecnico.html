@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,10 +24,30 @@
         </li>
         <li class="li-topo">
             <ul class="ul-midias">
-                <li class="li-midias"><a href="https://www.instagram.com/governosp/" target="_blank"><img class="img-midias" src="/images/instagram.png" alt=""></a></li>
+                <li><a href="https://www.flickr.com/photos/governosp/" target="_blank"><img class="img-midias"
+                            src="/images/fr.png" alt=""></a></li>
+                <li><a href="https://www.linkedin.com/company/governosp/" target="_blank"><img class="img-midias"
+                            src="/images/linkedin.png" alt=""></a></li>
+                <li><a href="https://www.tiktok.com/@governosp" target="_blank"><img class="img-midias"
+                            src="/images/tiktok.png" alt=""></a></li>
+                <li><a href="https://www.youtube.com/governosp/" target="_blank"><img class="img-midias"
+                            src="/images/youtube.png" alt=""></a></li>
+                <li><a href="https://x.com/governosp/" target="_blank"><img class="img-midias" src="/images/twitter.png"
+                            alt=""></a></li>
+                <li><a href="https://www.instagram.com/governosp/" target="_blank"><img class="img-midias"
+                            src="/images/instagram.png" alt=""></a></li>
+                <li><a href="https://www.facebook.com/governosp/" target="_blank"><img class="img-midias"
+                            src="/images/facebook.png" alt=""></a></li>
                 <li id="texto-topo-gsp">/governosp</li>
                 <li class="controles-acessibilidade">
-                    <button id="theme-toggle" onclick="toggleTheme()" class="controles-tamanho" title="Alternar modo claro/escuro"><img src="/images/i-contrast.png" alt=""></button>
+                    <button class="controles-tamanho" id="btnAumentar" title="Aumentar texto"><img
+                            src="/images/i-big-font.png" alt=""></button>
+                    <button class="controles-tamanho" title="Diminuir texto"><img src="/images/i-small-font.png"
+                            alt=""></button>
+                    <button class="controles-tamanho" title="Alternar modo claro/escuro"><img
+                            src="/images/i-contrast.png" alt=""></button>
+                    <button class="controles-tamanho" title="Mostrar aviso" onclick="ErrorReport()"><img
+                            src="/images/i-error-report.png" alt=""></button>
                 </li>
             </ul>
         </li>
@@ -36,7 +57,7 @@
 
     <!-- Logo e Navegação -->
     <ul class="ul-meio-topo">
-        <a href="/pages/index.html">
+        <a href="/pages/pages_tecnico/TelaTecnico.html">
             <li class="li-meio-topo"><img class="logo-etec" src="/images/logo-etec.png" alt=""></li>
         </a>
     </ul>
@@ -44,9 +65,8 @@
     <nav>
         <ul class="nav-bar">
             <li class="li-nav-bar"><a class="a-nav-bar" href="TelaTecnico.html">Home</a></li>
-            <li class="li-nav-bar"><a class="a-nav-bar" href="agendamentos_tecnico.html">Agendamentos</a></li>
-            <li class="li-nav-bar"><a class="a-nav-bar" href="EstoqueTecnico.html">Estoque</a></li> 
-            <li class="li-nav-bar"><a class="a-nav-bar" href="kits_tecnico.html">Kits</a></li> 
+            <li class="li-nav-bar"><a class="a-nav-bar" href="EstoqueTecnico.html">Estoque</a></li>
+            <li class="li-nav-bar"><a class="a-nav-bar" href="kits_tecnico.html">Kits</a></li>
         </ul>
     </nav>
 
@@ -65,23 +85,31 @@
                 <thead>
                     <tr>
                         <th>Kit</th>
+                        <th>Materiais</th>
+                        <th>Equipamentos</th>
+                        <th>Observações</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td colspan="4" style="text-align:center;">Carregando dados...</td></tr>
+                    <tr>
+                        <td colspan="4" style="text-align:center;">Carregando dados...</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
     </main>
 
-    <footer>
+    <button id="btnTopo"></button>
+    <script src="/assets/js/ir-ao-topo.js"></script>
+    <button id="btnTopo"></button>
+    <script src="/assets/js/ir-ao-topo.js"></script>
+    <footer id="footer">
         <a href="https://www.sp.gov.br/sp">
             <img id="img-rodape" src="/images/logo-sp.png" alt="">
         </a>
     </footer>
 
-    <!-- Script de busca -->
     <script>
         const searchInput = document.getElementById('search-input');
         const clearButton = document.querySelector('.clear-search');
@@ -107,55 +135,7 @@
         }
     </script>
 
-    <!-- Script principal: carregar dados do MongoDB -->
-    <script>
-    async function carregarKits() {
-        try {
-            const response = await fetch("http://localhost:5000/kits");
-            const kits = await response.json();
-
-            const tabela = document.querySelector("#tabela-kits-materiais tbody");
-            tabela.innerHTML = "";
-
-            kits.forEach(kit => {
-                const linha = document.createElement("tr");
-
-                const materiais = kit.materiais.map(m => `${m.item} (${m.quantidade})`).join(", ") || "-";
-                const equipamentos = kit.equipamentos.map(e => `${e.item} (${e.quantidade})`).join(", ") || "-";
-
-                linha.innerHTML = `
-                    <td>${materiais}</td>
-                    <td>${kit.nomeKit}</td>
-                    <td>${equipamentos}</td>
-                    <td>
-                        <button class="btn-editar" onclick="editarKit('${kit._id}')">Editar</button>
-                        <button class="btn-excluir" onclick="excluirKit('${kit._id}')">Excluir</button>
-                    </td>
-                `;
-                tabela.appendChild(linha);
-            });
-
-        } catch (err) {
-            console.error("Erro ao carregar kits:", err);
-        }
-    }
-
-    async function excluirKit(id) {
-        if (!confirm("Tem certeza que deseja excluir este kit?")) return;
-        try {
-            const resp = await fetch(`http://localhost:5000/kits/${id}`, { method: "DELETE" });
-            if (resp.ok) {
-                alert("Kit excluído com sucesso!");
-                carregarKits();
-            } else {
-                alert("Erro ao excluir kit.");
-            }
-        } catch (err) {
-            console.error(err);
-        }
-    }
-
-    carregarKits();
-    </script>
+    <script src="/assets/js/RegistroKits.js"></script>
 </body>
+
 </html>

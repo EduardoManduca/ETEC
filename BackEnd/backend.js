@@ -123,16 +123,66 @@ app.post("/agendamentos", async (req, res) => {
   }
 });
 
+// -- get Agendamento --
 app.get("/agendamentos", async (req, res) => {
   try {
-    const agendamentos = await Agendamento.find();
-    res.json(agendamentos);
+    const agora = new Date();
+
+    // Combina data e horário em um Date completo
+    const agendamentos = await Agendamento.find()
+      .sort({ data: -1 })
+      .populate("usuario", "login nome funcao");
+
+    const filtrados = agendamentos.filter(a => {
+      if (!a.data || !a.horario) return false;
+      const [hora, minuto] = a.horario.split(":").map(Number);
+      const dataHora = new Date(a.data);
+      dataHora.setHours(hora, minuto, 0, 0);
+      return dataHora >= agora;
+    });
+
+    res.json(filtrados);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 });
 
-// --- KITS (corrigido para evitar req.body indefinido) ---
+app.delete("/agendamentos/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const agendamento = await Agendamento.findByIdAndDelete(id);
+
+    if (!agendamento) {
+      return res.status(404).json({ error: "Agendamento não encontrado." });
+    }
+
+    res.status(200).json({ message: "✅ Agendamento excluído com sucesso!" });
+  } catch (err) {
+    console.error("Erro ao excluir agendamento:", err);
+    res.status(500).json({ error: "Erro ao excluir agendamento." });
+  }
+});
+app.patch("/agendamentos/:id/status", async (req, res) => {
+  try {
+    const { status } = req.body;
+    if (!status) return res.status(400).json({ error: "Status obrigatório" })
+
+    const agendamento = await Agendamento.findByIdAndUpdate(
+      req.params.id,
+      { status },
+      { new: true }
+    );
+    if (!agendamento) return res.status(404).json({ error: "Agendamento não encontrado" })
+
+    res.json({ message: "Status atualizado com sucesso", agendamento });
+  } catch (err) {
+    console.log("Erro ao atualizar status", err);
+    res.status(500).json({ error: "Erro ao atualizar o status"})
+  }
+})
+
+// --- KITS ---
 app.post("/kits", async (req, res) => {
   try {
     console.log("🟢 Recebido no body:", req.body);
@@ -174,8 +224,9 @@ app.delete("/kits/:id", async (req, res) => {
     res.status(400).json({ error: err.message });
   }
 });
+
 // --- Busca de Kits
-// --- Busca de Kits
+
 app.get("/kits/search/:termo", async (req, res) => {
   try {
     const termo = req.params.termo.trim();
@@ -199,7 +250,7 @@ app.get("/kits/search/:termo", async (req, res) => {
 });
 
 // --- Atualizar status do agendamento (Aceitar solicitação)
-app.put("/agendamentos/:id/autorizar", async (req, res) => {
+app.put("/agendamentos/:id", async (req, res) => {
   try {
     const agendamento = await Agendamento.findByIdAndUpdate(
       req.params.id,
@@ -239,5 +290,5 @@ app.post("/itens", async (req, res) => {
 
 // --- Servidor ---
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(` Servidor rodando na porta ${PORT}`));
+app.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`));
 

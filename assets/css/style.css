@@ -141,7 +141,6 @@ main {
 }
 
 footer {
-    margin-top: 3%;
     background-color: black;
     padding: 40px;
     text-align: center;
@@ -198,6 +197,80 @@ p {
     gap: 20px;
 }
 
+.login-links {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.login-links a {
+    color: #0044cc;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.login-links a:hover {
+    color: #001f7a;
+}
+
+.login-links span {
+    color: #777;
+    margin: 0 5px;
+}
+
+#btnTopo {
+    display: none;
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background-color: #BA1A1A;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    font-size: 22px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+    transition: transform 0.4s;
+    z-index: 9999;
+}
+
+
+/* Seta pseudoelemento */
+#btnTopo::after {
+    content: '';
+    display: inline-block;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    padding: 5px;
+    transform: rotate(-135deg);
+}
+
+#btnTopo:hover {
+    transform: translateY(-10px) scale(1.05);
+    background-color: var(--vermelho-escuro-10);
+}
+
+@keyframes quicar {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateY(0);
+    }
+
+    40% {
+        transform: translateY(-10px);
+    }
+
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
 
 .campo-preto {
     background-color: #141414;
@@ -242,21 +315,6 @@ p {
     width: 100%;
     max-width: 300px;
 }
-
-/* ARQUIVOS NO GERAL */
-
-
-
-
-
-
-
-/* Agendamento_lab.html */
-
-/* index.html */
-
-
-/* index.html */
 
 /* Tabelas em kits_e_materias && estoque */
 
@@ -304,13 +362,6 @@ thead {
     color: white;
 }
 
-
-
-
-
-
-
-
 input[type="text"],
 input[type="search"],
 input[type="number"] {
@@ -320,12 +371,6 @@ input[type="number"] {
     border-radius: 6px;
     box-sizing: border-box;
 }
-
-
-
-
-
-
 
 .item {
     padding: 50px;
@@ -352,8 +397,6 @@ input[type="number"] {
         height: 90%
     }
 }
-
-
 
 
 th {

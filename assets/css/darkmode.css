@@ -1,40 +1,32 @@
-body.dark-mode {
-    /* Cor de fundo escura para o corpo da página */
-    background-color: #121212;
-    /* Cor do texto clara */
-    color: #E0E0E0;
-}
+/* =========================================================
+   DARKMODE.css — Tema escuro responsivo e completo
+   ========================================================= */
 
-/* Redefinição de variáveis e cores para elementos principais no Dark Mode */
+/* ====== Corpo e cores base ====== */
 body.dark-mode {
-    /* Cores de fundo e texto dos containers e divs */
+    background-color: #121212;
+    color: #E0E0E0;
     --cinza-claro: #333333;
     --cinza-texto-base: #B0B0B0;
     --prata-base: #1F1F1F;
-    /* Fundo mais escuro */
-
-    /* Cores principais em tons claros para contraste */
     --vermelho-base: #FFB4AB;
-    /* Vermelho claro para elementos principais */
     --azul-base: #A0CFFD;
-    /* Azul claro */
     --primario-titulos-hover: #C5E6FF;
-    /* Azul mais claro para títulos */
 }
 
-/* Títulos H1 (geral) e H2 (serviços) */
+/* ====== Títulos ====== */
 body.dark-mode h1,
 body.dark-mode .h1-div-servicos,
 body.dark-mode #servicos-h2 {
     color: var(--azul-base);
 }
 
-/* Divisores (hr) */
+/* ====== Divisores ====== */
 body.dark-mode hr {
     border-color: #333333;
 }
 
-/* Navbar */
+/* ====== Navbar ====== */
 body.dark-mode .nav-bar {
     background: #424242;
     border: 1px solid #757575;
@@ -56,7 +48,7 @@ body.dark-mode .a-nav-bar {
     color: #E0E0E0;
 }
 
-/* Botão de busca e campo de pesquisa */
+/* ====== Busca ====== */
 body.dark-mode .br-pesq {
     background: #424242;
     color: #E0E0E0;
@@ -65,76 +57,194 @@ body.dark-mode .br-pesq {
 
 body.dark-mode .search-button {
     background-color: var(--vermelho-base);
+    color: #121212;
+    font-weight: 600;
 }
 
-/* Texto topo GSP */
+/* ====== Texto topo ====== */
 body.dark-mode #texto-topo-gsp {
     color: #B0B0B0;
 }
 
-/* Controles de acessibilidade (botões) */
+/* ====== Controles de acessibilidade ====== */
 body.dark-mode .controles-acessibilidade button {
     border: 2px solid #E0E0E0;
     color: #E0E0E0;
+    background: transparent;
+    transition: all 0.3s ease;
 }
 
-/* Ícones de Mídias Sociais - Inverte a cor para melhor visualização em fundo escuro */
+body.dark-mode .controles-acessibilidade button:hover {
+    background-color: #292929;
+}
+
+/* ====== Ícones de mídias ====== */
 body.dark-mode .img-midias {
     filter: invert(100%);
     opacity: 0.9;
+    transition: opacity 0.3s ease;
 }
 
-/* Contêineres de Serviços */
+body.dark-mode .img-midias:hover {
+    opacity: 1;
+}
+
+/* ====== Containers de serviços ====== */
 body.dark-mode .div-servicos,
 body.dark-mode .div-servicos-2 {
     background: var(--cinza-claro);
     color: #E0E0E0;
     box-shadow: 0 2px 5px rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    padding: 1rem;
 }
 
-/* Botões de Serviço */
+/* ====== Botões de serviço ====== */
 body.dark-mode .botao-servicos {
     background-color: var(--vermelho-base);
+    color: #121212;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 body.dark-mode .botao-servicos:hover {
     background-color: #7E0000;
+    color: #fff;
 }
 
-/* Rodapé */
+/* ====== Rodapé ====== */
 body.dark-mode footer {
     background-color: #000000;
+    padding: 1rem;
+    color: #B0B0B0;
+    text-align: center;
 }
 
-/* Tabelas (Kits e Materiais / Estoque) */
+/* ====== Tabelas ====== */
 body.dark-mode table {
+    width: 100%;
+    border-collapse: collapse;
     background-color: #333333;
+    border-radius: 6px;
+    overflow: hidden;
 }
 
 body.dark-mode thead {
     background-color: #424242;
     color: var(--vermelho-base);
+    text-transform: uppercase;
+    font-size: 0.9rem;
 }
 
 body.dark-mode th,
 body.dark-mode td {
     border: 1px solid #121212;
+    padding: 0.7rem;
+    text-align: left;
 }
 
 body.dark-mode .item:hover {
     background-color: #424242;
 }
 
+/* ====== Campo de pesquisa e limpar ====== */
 body.dark-mode #search-input {
     border: 2px solid #333333;
     background-color: #424242;
     color: #E0E0E0;
+    padding: 0.5rem;
+    border-radius: 4px;
+    width: 100%;
 }
 
 body.dark-mode .clear-search {
     color: #B0B0B0;
+    cursor: pointer;
 }
 
 body.dark-mode .clear-search:hover {
     color: var(--vermelho-base);
+}
+
+/* =========================================================
+   RESPONSIVIDADE
+   ========================================================= */
+
+/* Celulares pequenos até 480px */
+@media (max-width: 480px) {
+    body.dark-mode .nav-bar {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 0.9rem;
+    }
+
+    body.dark-mode .div-servicos,
+    body.dark-mode .div-servicos-2 {
+        padding: 0.8rem;
+        font-size: 0.95rem;
+    }
+
+    body.dark-mode table {
+        font-size: 0.85rem;
+    }
+
+    body.dark-mode #search-input {
+        font-size: 0.9rem;
+        padding: 0.4rem;
+    }
+
+    body.dark-mode .botao-servicos {
+        width: 100%;
+        padding: 0.8rem;
+    }
+}
+
+/* 481px a 768px */
+@media (max-width: 768px) {
+    body.dark-mode .nav-bar {
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+
+    body.dark-mode .div-servicos {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    body.dark-mode table {
+        font-size: 0.9rem;
+    }
+
+    body.dark-mode footer {
+        font-size: 0.9rem;
+        padding: 0.8rem;
+    }
+}
+
+/* 769px a 1200px */
+@media (max-width: 1200px) {
+    body.dark-mode .div-servicos,
+    body.dark-mode .div-servicos-2 {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    body.dark-mode table {
+        font-size: 0.95rem;
+    }
+}
+
+/* acima de 1200px */
+@media (min-width: 1201px) {
+    body.dark-mode {
+        font-size: 1rem;
+    }
+    body.dark-mode .div-servicos {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+    }
 }

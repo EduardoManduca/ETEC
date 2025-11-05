@@ -1,3 +1,8 @@
+/* ================================
+   LOGIN.CSS — RESPONSIVO
+   ================================ */
+
+/* Mensagem de erro */
 #errorMessage {
     display: none;
     margin-top: 20px;
@@ -10,6 +15,7 @@
     opacity: 0;
     transform: translateY(-10px);
     transition: opacity 0.3s ease, transform 0.3s ease;
+    color: #BA1A1A;
 }
 
 #errorMessage.show {
@@ -17,7 +23,7 @@
     transform: translateY(0);
 }
 
-
+/* Container principal do login */
 #login {
     background-color: #F0F0F0;
     display: flex;
@@ -33,14 +39,7 @@
     margin: 5% auto;
 }
 
-#errorMessage {
-    color: #BA1A1A;
-    font-weight: bold;
-    font-size: 0.9em;
-    display: none;
-    padding-top: 5px;
-}
-
+/* Textos */
 #paragrafo-login {
     text-align: center;
     margin-bottom: 10px;
@@ -65,19 +64,39 @@
 .cadastro {
     width: 100%;
     font-size: 15px;
-    padding: 10px;
+    padding: 12px 14px;
     border: 1px solid #C2C2C2;
-    border-radius: 8px;
+    border-radius: 10px;
     box-sizing: border-box;
-    transition: border-color 0.2s, box-shadow 0.2s;
+    background-color: #FAFAFA;
+    color: #222;
+    transition: all 0.3s ease;
+    outline: none;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.cadastro::placeholder {
+    color: #999;
+    transition: color 0.2s ease;
+}
+
+.cadastro:hover {
+    border-color: #888;
+    background-color: #FDFDFD;
 }
 
 .cadastro:focus {
-    border-color: #757575;
-    box-shadow: 0 0 3px #5C5C5C;
-    outline: none;
+    border-color: #1A6C7C;
+    box-shadow: 0 0 0 3px rgba(26, 108, 124, 0.2);
+    background-color: #FFF;
+    color: #111;
 }
 
+.cadastro:focus::placeholder {
+    color: #BBB;
+}
+
+/* Botões */
 #enter,
 #cancel {
     width: 85%;
@@ -88,6 +107,7 @@
     cursor: pointer;
     font-size: 15px;
     margin: 8px;
+    transition: background-color 0.2s ease;
 }
 
 #enter {
@@ -104,4 +124,74 @@
 
 #cancel:hover {
     background-color: #7E0000;
+}
+
+/* ================================
+   RESPONSIVIDADE
+   ================================ */
+
+/* 768px */
+@media (max-width: 768px) {
+    #login {
+        max-width: 300px;
+        padding: 1.5rem;
+        margin: 10% auto;
+    }
+
+    #titulo-login {
+        font-size: 20px;
+    }
+
+    .title-login {
+        font-size: 16px;
+    }
+
+    .cadastro {
+        font-size: 14px;
+        padding: 9px;
+    }
+
+    #enter,
+    #cancel {
+        width: 95%;
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    #errorMessage {
+        font-size: 13px;
+    }
+}
+
+/* Celulares pequenos (até 480px) */
+@media (max-width: 480px) {
+    #login {
+        max-width: 90%;
+        padding: 1.2rem;
+        border-radius: 15px;
+    }
+
+    #titulo-login {
+        font-size: 18px;
+    }
+
+    .title-login {
+        font-size: 15px;
+    }
+
+    .cadastro {
+        font-size: 13px;
+    }
+
+    #enter,
+    #cancel {
+        width: 100%;
+        font-size: 13px;
+        padding: 10px;
+    }
+
+    #errorMessage {
+        font-size: 12px;
+        padding: 8px;
+    }
 }

@@ -11,7 +11,7 @@ const ItemSchema = new mongoose.Schema({
     tipo: {
         type: String,
         enum: ["reagente", "vidraria"],
-        required: true
+        required: false
     },
     quantidade: { type: Number, default: 1 },
     descricao: {
