@@ -570,12 +570,3 @@ th {
         max-width: 250px;
     }
 }
-
-button:hover {
-    cursor: pointer;
-}
-
-[vw-access-button] {
-    bottom: 40px !important;
-    z-index: 100 !important;
-}
