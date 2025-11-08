@@ -1,23 +1,26 @@
 const mongoose = require("mongoose");
 
+const ItemSchema = new mongoose.Schema({
+  nome: { type: String, required: true },
+  quantidade: { type: Number, required: true }
+});
+
 const AgendamentoSchema = new mongoose.Schema({
+  usuario: { type: String, required: true }, 
   laboratorio: { type: String, required: true },
   data: { type: Date, required: true },
   horario: { type: String, required: true },
-  kit: { type: String, required: true },
-  materiais: { type: [String], default: [] },
-  reagentes: { type: [String], default: [] },
-  usuario: { type: mongoose.Schema.Types.ObjectId, ref: "Usuario", required: true },
-  status: { type: String, default: "Pendente" },
+  kit: { type: String, default: "" },
 
-  // -- Data de criação --
+  materiais: { type: [ItemSchema], default: [] },
+  reagentes: { type: [ItemSchema], default: [] },
+  vidrarias: { type: [ItemSchema], default: [] },
+
   createdAt: { type: Date, default: Date.now }
 });
 
-// -- Apaga automaticamente 24h depois do término do agendamento --
-AgendamentoSchema.index(
-  { createdAt: 1 },
-  { expireAfterSeconds: 60 * 60 * 24 } // 24h
-);
+// expira em 24h 
+AgendamentoSchema.index({ createdAt: 1 }, { expireAfterSeconds: 60 * 60 * 24 });
+AgendamentoSchema.index({ laboratorio: 1, data: 1, horario: 1 }, { unique: true });
 
 module.exports = mongoose.model("Agendamento", AgendamentoSchema);

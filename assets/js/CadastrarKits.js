@@ -1,8 +1,7 @@
-// Referências dos containers
 const materiaisContainer = document.getElementById("materiais-container");
 const equipamentosContainer = document.getElementById("equipamentos-container");
 
-// ➕ Adicionar Material
+//  Adicionar Material
 document.getElementById("add-material").addEventListener("click", () => {
     const div = document.createElement("div");
     div.classList.add("item");
@@ -15,7 +14,7 @@ document.getElementById("add-material").addEventListener("click", () => {
     materiaisContainer.appendChild(div);
 });
 
-// ➕ Adicionar Equipamento
+//  Adicionar Equipamento
 document.getElementById("add-equip").addEventListener("click", () => {
     const div = document.createElement("div");
     div.classList.add("item");
@@ -48,7 +47,7 @@ document.getElementById("btn-kit-sol").addEventListener("click", async () => {
         quantidade: Number(document.querySelectorAll(".equip-qtd")[i].value),
     }));
 
-    // ⚠️ Validação
+    //  Validação
     if (!nomeKit) return alert("Digite o nome do kit!");
     if (materiais.some((m) => !m.item || m.quantidade <= 0))
         return alert("Preencha todos os materiais corretamente!");
@@ -58,7 +57,7 @@ document.getElementById("btn-kit-sol").addEventListener("click", async () => {
     const data = { nomeKit, materiais, equipamentos, observacoes };
 
     try {
-        const resp = await fetch("http://localhost:5000/kits", {  // <-- porta 5000
+        const resp = await fetch("http://localhost:5000/kits", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(data),

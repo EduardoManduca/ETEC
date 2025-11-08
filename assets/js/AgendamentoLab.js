@@ -1,14 +1,34 @@
-const protocolo = "http://"
-const baseURL = "localhost:5000"
+const protocolo = "http://";
+const baseURL = "localhost:5000";
 
-function escaparRegex(str) {
-  return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+// =========================================================================
+//  Lê os itens das caixas de resumo (Vidrarias, Reagentes, Materiais)
+// =========================================================================
+function getItemsFromSummaryBox(boxId) {
+  const box = document.querySelector(boxId);
+  if (!box) return [];
+
+  const items = [];
+  const summaryItems = box.querySelectorAll('.summary-item');
+
+  summaryItems.forEach(item => {
+    const text = item.querySelector('span').textContent;
+    const match = text.match(/(.+) \(x(\d+)\)/);
+
+    if (match && match[1] && match[2]) {
+      items.push({
+        nome: match[1].trim(),
+        quantidade: parseInt(match[2], 10)
+      });
+    }
+  });
+
+  return items;
 }
 
-function removerAcentuacao(str) {
-  return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-}
-
+// =========================================================================
+// MOSTRAR AVISO (TOAST)
+// =========================================================================
 function mostrarToast(mensagem, tipo = "sucesso") {
   const toast = document.createElement("div");
   toast.classList.add("toast");
@@ -23,119 +43,143 @@ function mostrarToast(mensagem, tipo = "sucesso") {
   }, 5000);
 }
 
-function exibirResultados(container, correspondencias) {
-  container.innerHTML = "";
-  correspondencias.forEach(c => {
-    const p = document.createElement("p");
-    p.textContent = c.item;
-    container.appendChild(p);
+// =========================================================================
+// CARREGAR KITS DO BANCO
+// =========================================================================
+async function carregarKits() {
+  const selectKit = document.querySelector("#select-kit");
+  if (!selectKit) return;
 
-    p.addEventListener("click", () => {
-      const tipo = c.tipo;
-      adicionarItem(c);
-    });
-  });
-}
-
-function adicionarItem(item) {
-  const tipo = item.tipo;
-  const container = document.getElementById(`${tipo}`);
-  let novoItem = document.createElement("p");
-  novoItem.innerHTML = item.item;
-  container.appendChild(novoItem);
-}
-
-
-// Esta função provavelmente vai ser removida, mas a lógica dela pode ser reimplementada
-function adicionarItemAntigo(tipo) {
-
-  let inputCampo = document.getElementById(`search-${tipo}`);
-  let inputValor = inputCampo.value.trim();
-
-  if (inputValor) {
-
-    inputCampo.value = "";
-
-    let itemListaSelecao = document.getElementById(`${tipo}`);
-    let novoItem = document.createElement("p");
-    novoItem.innerHTML = inputValor;
-    itemListaSelecao.appendChild(novoItem);
-
-  } else {
-
-    let itemAviso = document.querySelector(`#${tipo}-header > .aviso`);
-    itemAviso.classList.add("exibir");
-    itemAviso.classList.remove("esconder");
-
-    setTimeout(() => {
-      itemAviso.classList.add("esconder");
-      itemAviso.classList.remove("exibir");
-    }, 5000);
-
-  }
-}
-
-const searchVidraria = document.querySelector("#search-vidraria");
-const materiaisResultado = document.querySelector("#materiais-resultados");
-
-searchVidraria.addEventListener("input", async () => {
   try {
-    const itensEndpoint = "/itens"
-    const URLCompleta = `${protocolo}${baseURL}${itensEndpoint}`
-    const itens = (await axios.get(URLCompleta)).data
+    const res = await fetch(`${protocolo}${baseURL}/kits`);
+    const kits = await res.json();
 
-    const searchValor = removerAcentuacao(escaparRegex(searchVidraria.value));
-    const regex = new RegExp(searchValor, "i");
+    selectKit.innerHTML = `<option value="">Selecione um kit</option>`;
 
-    const correspondencias = itens.filter(item => (regex.test(removerAcentuacao(item.item)) && item.tipo === "vidraria"));
-    exibirResultados(materiaisResultado, correspondencias);
+    kits.forEach(kit => {
+      const option = document.createElement("option");
+      option.value = kit._id;  
+      option.textContent = kit.nomeKit;
+      selectKit.appendChild(option);
+    });
 
   } catch (err) {
-    console.log(err)
+    console.error("Erro ao carregar kits:", err);
   }
+}
+
+// =========================================================================
+//  ADICIONAR ITENS Adicionar e Remover 
+// =========================================================================
+document.addEventListener('DOMContentLoaded', () => {
+  carregarKits();
+
+  // Adicionar itens
+  document.querySelectorAll('.btn-add').forEach(button => {
+    button.addEventListener('click', (event) => {
+      event.preventDefault();
+      const itemBox = event.target.closest('.item-box');
+      const nomeInput = itemBox.querySelector('.form-input-text:nth-of-type(1)');
+      const qtdInput = itemBox.querySelector('.form-input-text:nth-of-type(2)');
+
+      const nome = nomeInput.value.trim();
+      const quantidade = qtdInput.value.trim();
+
+      if (!nome || !quantidade || isNaN(quantidade) || parseInt(quantidade) <= 0) {
+        mostrarToast('Preencha nome e quantidade válidos.', 'erro');
+        return;
+      }
+
+      const tipo = itemBox.querySelector('h3').textContent.toLowerCase();
+      let destinationBox;
+      if (tipo === 'vidrarias') destinationBox = document.querySelector('#vidraria');
+      else if (tipo === 'reagentes') destinationBox = document.querySelector('#reagente');
+      else if (tipo === 'materiais') destinationBox = document.querySelector('#materiais');
+      else return;
+
+      const itemElement = document.createElement('div');
+      itemElement.className = 'summary-item';
+      itemElement.innerHTML = `
+        <span>${nome} (x${quantidade})</span>
+        <button class="btn-remove-item" title="Remover item">x</button>
+      `;
+
+      destinationBox.appendChild(itemElement);
+      nomeInput.value = '';
+      qtdInput.value = '';
+
+      itemElement.querySelector('.btn-remove-item').addEventListener('click', () => {
+        itemElement.remove();
+      });
+    });
+  });
+
+  // Limpar inputs
+  document.querySelectorAll('.btn-remove').forEach(button => {
+    button.addEventListener('click', (event) => {
+      event.preventDefault();
+      const itemBox = event.target.closest('.item-box');
+      itemBox.querySelectorAll('.form-input-text').forEach(input => input.value = '');
+    });
+  });
 });
 
-// searchVidraria.addEventListener("blur", () => {
-//   materiaisResultado.innerHTML = ""
-// });
-
-document.getElementById("btn-lab-conf").addEventListener("click", async () => {
-  const laboratorio = document.querySelector("#laboratorio-div select").value;
-  const dataStr = document.querySelector('input[name="Data"]').value;
-  const dataObj = new Date(dataStr + "T00:00:00");
-  const horario = document.querySelector('input[name="datetime"]').value;
-  const kit = document.querySelectorAll("#laboratorio-div select")[1].value;
-
-  const materiais = [...document.querySelectorAll("#materiais input:checked")].map(i => i.value);
-  const reagentes = [...document.querySelectorAll("#reagentes input:checked")].map(i => i.value);
+// =========================================================================
+// ENVIAR AGENDAMENTO
+// =========================================================================
+document.getElementById("btn-lab-conf").addEventListener("click", async (event) => {
+  event.preventDefault();
 
   const userId = localStorage.getItem("userId");
   if (!userId) {
-    mostrarToast("❌ Usuário não logado. Faça login antes de agendar.", "erro");
+    mostrarToast("❌ Faça login antes de agendar.", "erro");
     return;
   }
 
-  if (!laboratorio || !dataObj || !horario || !kit) {
-    mostrarToast("❌ Você deve preencher todos os campos antes de fazer um agendamento.", "erro");
+  const laboratorio = document.querySelector("#laboratorio-div select").value;
+  const dataStr = document.querySelector('input[name="Data"]').value;
+  const horario = document.querySelector('input[name="datetime"]').value;
+  const kitSelecionado = document.querySelector("#select-kit").value;
+
+  const vidrarias = getItemsFromSummaryBox('#vidraria');
+  const reagentes = getItemsFromSummaryBox('#reagente');
+  const materiais = getItemsFromSummaryBox('#materiais');
+
+  if (!laboratorio || !dataStr || !horario) {
+    mostrarToast("❌ Preencha Laboratório, Data e Horário.", "erro");
     return;
   }
 
-  const agendamento = { laboratorio, data: dataObj, horario, kit, materiais, reagentes, usuario: userId };
+  if (vidrarias.length === 0 && reagentes.length === 0 && materiais.length === 0 && !kitSelecionado) {
+    mostrarToast("❌ Adicione ao menos um item ou selecione um kit.", "erro");
+    return;
+  }
+
+  const agendamento = {
+    laboratorio,
+    data: new Date(dataStr + "T00:00:00"),
+    horario,
+    kit: kitSelecionado || "",
+    vidrarias,
+    reagentes,
+    materiais,
+    usuario: userId
+  };
 
   try {
-    const res = await fetch("http://localhost:5000/agendamentos", {
+    const res = await fetch(`${protocolo}${baseURL}/agendamentos`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(agendamento)
     });
 
-    const dataRes = await res.json().catch(() => ({}));
-
     if (res.ok) {
-      mostrarToast("✅ Agendamento realizado com sucesso!", "sucesso");
+      const dataRes = await res.json().catch(() => ({}));
+      mostrarToast(dataRes.message || "✅ Agendamento realizado com sucesso!", "sucesso");
+      setTimeout(() => window.location.reload(), 2000);
     } else {
-      console.error("Erro ao salvar agendamento:", dataRes);
-      mostrarToast(`❌ Erro ao salvar o agendamento. (${res.status})`, "erro");
+      const dataRes = await res.json().catch(() => ({ error: "Erro desconhecido" }));
+      mostrarToast(`❌ ${dataRes.error}`, "erro");
     }
 
   } catch (err) {

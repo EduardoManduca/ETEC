@@ -131,8 +131,15 @@
 }
 
 @keyframes pulse {
-    from { transform: scale(1); opacity: 0.7; }
-    to { transform: scale(1.05); opacity: 1; }
+    from {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+
+    to {
+        transform: scale(1.05);
+        opacity: 1;
+    }
 }
 
 /* ===== Barra e imagens ===== */
@@ -173,8 +180,15 @@
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(15px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .kit-section h1 {
@@ -244,7 +258,9 @@ textarea {
     box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.05);
 }
 
-.item input { margin-bottom: 10px; }
+.item input {
+    margin-bottom: 10px;
+}
 
 .remove-btn,
 .btn-remover {
@@ -324,9 +340,9 @@ textarea {
     min-width: 655px;
 }
 
-#materiais-pesquisa { 
+#materiais-pesquisa {
     display: flex;
-    flex-direction:column ; 
+    flex-direction: column;
     width: 100%;
 }
 
@@ -360,7 +376,7 @@ textarea {
     height: 80%;
     aspect-ratio: 1 / 1;
     cursor: pointer;
-    
+
 }
 
 #reagentes-input,
@@ -380,7 +396,9 @@ textarea {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-#botoes-agend-lab { text-align: center; }
+#botoes-agend-lab {
+    text-align: center;
+}
 
 #btn-lab-conf {
     background-color: #f32a2a;
@@ -437,7 +455,9 @@ textarea {
     gap: 10px;
 }
 
-.formulario-grupo { width: 100%; }
+.formulario-grupo {
+    width: 100%;
+}
 
 .grupo {
     display: flex;
@@ -461,15 +481,28 @@ textarea {
 /* =========================================================
    Responsividade
    ========================================================= */
-   
+
 @media (max-width: 1024px) {
-    #formulario { width: 100%; }
-    #laboratorio-div { width: 100%; font-size: inherit; }
-    #container-principal { gap: 20px; }
-    #div-search { gap: 20px; }
+    #formulario {
+        width: 100%;
+    }
+
+    #laboratorio-div {
+        width: 100%;
+        font-size: inherit;
+    }
+
+    #container-principal {
+        gap: 20px;
+    }
+
+    #div-search {
+        gap: 20px;
+    }
 }
 
 @media (max-width: 768px) {
+
     #container-principal,
     #laboratorio-div {
         max-width: 95%;
@@ -537,7 +570,70 @@ textarea {
     }
 }
 
+.item-entry-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.item-box {
+    flex: 1;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+    padding: 15px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.item-box h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    text-align: center;
+    color: #1A6C7C;
+}
+
+.item-box label {
+    font-weight: normal;
+    color: #333;
+    margin-top: 10px;
+    display: block;
+}
+
+.form-input-text {
+    background-color: #eeeeee;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    padding: 10px;
+    font-size: 1em;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.item-buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+    gap: 8px;
+}
+
+.btn-add {
+    width: 120px;
+    height: 40px;
+    border: none;
+    border-radius: 16px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.btn-add {
+    background-color: #B20000;
+}
+
 @media (max-width: 480px) {
+
     .btn-solicitar,
     .btn-limpar {
         width: 100%;

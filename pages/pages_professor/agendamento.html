@@ -12,9 +12,9 @@
 </head>
 
 <body>
-    <!-- Importação do Axios -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
+    <!-- Topo -->
     <ul class="ul-topo">
         <li class="li-topo">
             <div class="campo-preto">
@@ -44,13 +44,10 @@
                 <li class="controles-acessibilidade">
                     <button id="aumentar-texto" class="controles-tamanho" title="Aumentar texto"><img
                             src="/images/i-big-font.png" alt=""></button>
-
                     <button id="diminuir-texto" class="controles-tamanho" title="Diminuir texto"><img
                             src="/images/i-small-font.png" alt=""></button>
-
                     <button id="theme-toggle" onclick="toggleTheme()" class="controles-tamanho"
                         title="Alternar modo claro/escuro"><img src="/images/i-contrast.png" alt=""></button>
-
                     <button class="controles-tamanho" title="Mostrar aviso"><img src="/images/i-error-report.png"
                             alt=""></button>
                 </li>
@@ -58,6 +55,7 @@
         </li>
     </ul>
     <hr>
+
     <ul class="ul-meio-topo">
         <a href="/pages/pages_professor/TelaProfessor.html">
             <li class="li-meio-topo"><img class="logo-etec" src="/images/logo-etec.png" alt=""></li>
@@ -74,25 +72,7 @@
         </ul>
     </nav>
 
-    <div vw class="enabled">
-        <div vw-access-button class="active"></div>
-        <div vw-plugin-wrapper>
-            <div class="vw-plugin-top-wrapper"></div>
-        </div>
-    </div>
     <main>
-        <!-- VLibras Widget -->
-        <div vw class="enabled">
-            <div vw-access-button class="active"></div>
-            <div vw-plugin-wrapper>
-                <div class="vw-plugin-top-wrapper"></div>
-            </div>
-        </div>
-
-        <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-        <script>
-            new window.VLibras.Widget('https://vlibras.gov.br/app');
-        </script>
         <h1 id="agendamento-header">Agendamento de Laboratórios</h1>
 
         <div id="container-principal">
@@ -117,90 +97,78 @@
                         <input type="time" class="campos-div" name="datetime" id="datetime-div">
                     </div>
 
+                    <!-- ADICIONAR KITS -->
                     <div class="formulario-grupo">
                         <h2>Adicionar Kit</h2>
-                        <select class="campos-div">
-                            <option>Kit1</option>
-                            <option>Kit2</option>
-                            <option>Kit3</option>
+                        <select id="select-kit" class="campos-div">
+                            <option value="">Carregando kits...</option>
                         </select>
                     </div>
                 </div>
 
-                <div id="div-search">
-                    <div class="grupo">
-
-                        <div id="materiais-header" class="selecao-header">
-                            <h2>Equipamentos:</h2>
-                            <p class="esconder aviso">Selecione um equipamento.</p>
+                <div class="item-entry-row">
+                    <div class="item-box">
+                        <h3>Reagentes</h3>
+                        <label>Nome</label>
+                        <input type="text" class="form-input-text">
+                        <label>Quantidade</label>
+                        <input type="text" class="form-input-text">
+                        <div class="item-buttons">
+                            <button class="btn-add">Adicionar</button>
                         </div>
-
-                        <div id="materiais-input">
-
-                            <div id="materiais-pesquisa">
-                                <input type="text" class="campo-search" placeholder="Nome do equipamento"
-                                    id="search-vidraria">
-                                <div class="pesquisa-resultados" id="materiais-resultados">
-                                </div>
-                            </div>
-
-                            <button type="button" class="div-search-botao" id="lab-botao-materiais"
-                                onclick="adicionarItem('materiais')"></button>
-
-                        </div>
-
                     </div>
 
-                    <div class="grupo">
-
-                        <div id="reagentes-header" class="selecao-header">
-                            <h2>Reagentes:</h2>
-                            <p class="esconder aviso">Selecione um reagente.</p>
+                    <div class="item-box">
+                        <h3>Vidrarias</h3>
+                        <label>Nome</label>
+                        <input type="text" class="form-input-text">
+                        <label>Quantidade</label>
+                        <input type="text" class="form-input-text">
+                        <div class="item-buttons">
+                            <button class="btn-add">Adicionar</button>
                         </div>
+                    </div>
 
-                        <div id="reagentes-input">
-                            <input type="text" class="campo-search" placeholder="Nome do reagente" id="search-reagente">
-                            <button type="button" class="div-search-botao" id="lab-botao-reagentes"
-                                onclick="adicionarItem('reagentes')"></button>
+                    <div class="item-box">
+                        <h3>Materiais</h3>
+                        <label>Nome</label>
+                        <input type="text" class="form-input-text">
+                        <label>Quantidade</label>
+                        <input type="text" class="form-input-text">
+                        <div class="item-buttons">
+                            <button class="btn-add">Adicionar</button>
                         </div>
-
                     </div>
                 </div>
+
                 <div id="botoes-agend-lab">
                     <input type="button" value="Confirmar" class="botao-agendamento" id="btn-lab-conf">
                     <input type="button" value="Cancelar" class="botao-agendamento" id="btn-lab-cancelar">
                 </div>
+            </div>
 
-
-                <div id="itens-selecao">
-                    <div class="subselecao" id="kits">
-                        <h2>Kits</h2>
-                    </div>
-
-                    <div class="subselecao" id="vidraria">
-                        <h2>Equipamentos</h2>
-                    </div>
-
-                    <div class="subselecao" id="reagente">
-                        <h2>Reagentes</h2>
-                    </div>
-
+            <!-- RESUMO DOS ITENS -->
+            <div id="itens-selecao">
+                <div class="subselecao" id="reagente">
+                    <h2>Reagentes</h2>
+                </div>
+                <div class="subselecao" id="vidraria">
+                    <h2>Vidrarias</h2>
+                </div>
+                <div class="subselecao" id="materiais">
+                    <h2>Materiais</h2>
                 </div>
             </div>
         </div>
-
     </main>
 
-    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-    <button id="btnTopo"></button>
-    <script src="/assets/js/ir-ao-topo.js"></script>
     <footer id="footer">
         <a href="https://www.sp.gov.br/sp">
             <img id="img-rodape" src="/images/logo-sp.png" alt="">
         </a>
     </footer>
+
+    <script src="/assets/js/AgendamentoLab.js"></script>
 </body>
-<script src="/assets/js/script.js"></script>
-<script src="/assets/js/AgendamentoLab.js"></script>
 
 </html>

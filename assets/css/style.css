@@ -197,6 +197,43 @@ p {
     gap: 20px;
 }
 
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 8px;
+    margin: 4px 0;
+    background-color: #f0f0f0;
+    border-radius: 4px;
+}
+
+.summary-item button.btn-remove-item {
+    background: red;
+    color: white;
+    border: none;
+    padding: 2px 6px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.btn-add-kit {
+    margin-top: 6px;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+.toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.toast-sucesso {
+    background-color: #4caf50;
+}
+
+.toast-erro {
+    background-color: #f44336;
+}
+
 .login-links {
     text-align: center;
     margin-top: 20px;
