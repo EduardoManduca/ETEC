@@ -170,7 +170,39 @@ async function iniciarServidor() {
         });
 
         await novoAgendamento.save();
-        res.status(201).json({ message: "Agendamento criado com sucesso!" });
+
+        const estoque = await Estoque.findOne();
+        if (!estoque)
+          return res.status(500).json({ error: "Estoque não encontrado." });
+
+        function atualizarEstoque(itens, tipo) {
+          if (!itens || !Array.isArray(itens)) return;
+          // Verifica se o tipo existe no estoque (ex: 'vidrarias')
+          if (!estoque[tipo]) throw new Error(`Tipo de estoque '${tipo}' inválido.`);
+          for (const i of itens) {
+            const itemEstoque = estoque[tipo].find(e => e.nome.toLowerCase() === i.nome.toLowerCase());
+            if (!itemEstoque) throw new Error(`Item '${i.nome}' (${tipo}) não encontrado no estoque.`);
+            if (itemEstoque.quantidade < i.quantidade)
+              throw new Error(`Quantidade insuficiente de ${i.nome} (${tipo}).`);
+            itemEstoque.quantidade -= i.quantidade;
+          }
+        }
+
+        try {
+          // MODIFICADO: Atualiza as 3 categorias
+          atualizarEstoque(restoDoBody.reagentes, "reagentes");
+          atualizarEstoque(restoDoBody.vidrarias, "vidrarias");
+          atualizarEstoque(restoDoBody.materiais, "materiais");
+
+          estoque.atualizadoEm = new Date();
+          await estoque.save();
+        } catch (erroEstoque) {
+          await Agendamento.findByIdAndDelete(novoAgendamento._id);
+          return res.status(400).json({ error: erroEstoque.message });
+        }
+
+        res.status(201).json({ message: "✅ Agendamento criado e estoque atualizado!" });
+
       } catch (err) {
         console.error("Erro ao criar agendamento:", err);
         res.status(500).json({ error: "Erro interno ao criar agendamento: " + err.message });
@@ -194,9 +226,32 @@ async function iniciarServidor() {
         const agendamento = await Agendamento.findByIdAndDelete(req.params.id);
         if (!agendamento)
           return res.status(404).json({ error: "Agendamento não encontrado." });
-        res.status(200).json({ message: "✅ Agendamento excluído com sucesso!" });
+
+        const estoque = await Estoque.findOne();
+        if (estoque && agendamento) {
+          function devolverEstoque(itens, tipo) {
+            if (!itens || !Array.isArray(itens)) return;
+            // Verifica se o tipo existe no estoque
+            if (!estoque[tipo]) return;
+
+            for (const i of itens) {
+              let item = estoque[tipo].find(e => e.nome.toLowerCase() === i.nome.toLowerCase());
+              if (item) item.quantidade += i.quantidade;
+              else estoque[tipo].push({ nome: i.nome, quantidade: i.quantidade, unidade: i.unidade || "" });
+            }
+          }
+          // MODIFICADO: Devolve as 3 categorias
+          devolverEstoque(agendamento.reagentes, "reagentes");
+          devolverEstoque(agendamento.vidrarias, "vidrarias");
+          devolverEstoque(agendamento.materiais, "materiais");
+
+          estoque.atualizadoEm = new Date();
+          await estoque.save();
+        }
+
+        res.status(200).json({ message: "✅ Agendamento excluído e estoque restaurado!" });
       } catch (err) {
-        res.status(500).json({ error: "Erro ao excluir agendamento." });
+        res.status(500).json({ error: "Erro ao excluir agendamento: " + err.message });
       }
     });
 
@@ -209,8 +264,8 @@ async function iniciarServidor() {
         const {
           nomeKit,
           reagentes = [],
+          vidrarias = [], // MODIFICADO
           materiais = [],
-          equipamentos = [],
           observacoes = ""
         } = req.body;
 
@@ -221,22 +276,24 @@ async function iniciarServidor() {
           .filter(i => i.nome && i.nome.trim() !== "" && i.quantidade > 0)
           .map(i => ({ nome: i.nome.trim(), quantidade: i.quantidade, unidade: i.unidade || "" }));
 
+        // MODIFICADO: Adicionado vidrariasValidas
+        const vidrariasValidas = vidrarias
+          .filter(i => i.nome && i.nome.trim() !== "" && i.quantidade > 0)
+          .map(i => ({ nome: i.nome.trim(), quantidade: i.quantidade, unidade: i.unidade || "" }));
+
         const materiaisValidos = materiais
           .filter(i => i.nome && i.nome.trim() !== "" && i.quantidade > 0)
           .map(i => ({ nome: i.nome.trim(), quantidade: i.quantidade, unidade: i.unidade || "" }));
 
-        const equipamentosValidos = equipamentos
-          .filter(e => e.nome && e.nome.trim() !== "" && e.quantidade > 0)
-          .map(i => ({ nome: i.nome.trim(), quantidade: i.quantidade, unidade: i.unidade || "" }));
-
-        if (reagentesValidos.length === 0 && materiaisValidos.length === 0 && equipamentosValidos.length === 0)
-          return res.status(400).json({ error: "Adicione ao menos um reagente, material ou equipamento válido." });
+        // MODIFICADO: Atualiza a validação
+        if (reagentesValidos.length === 0 && materiaisValidos.length === 0 && vidrariasValidas.length === 0)
+          return res.status(400).json({ error: "Adicione ao menos um reagente, vidraria ou material válido." });
 
         const novoKit = new Kit({
           nomeKit: nomeKit.trim(),
           reagentes: reagentesValidos,
+          vidrarias: vidrariasValidas, // MODIFICADO
           materiais: materiaisValidos,
-          equipamentos: equipamentosValidos,
           observacoes: observacoes.trim()
         });
 
@@ -259,10 +316,6 @@ async function iniciarServidor() {
       }
     });
 
-    //============================================
-    // Alterar status do kit e atualizar estoque
-    //============================================
-
     app.patch("/kits/:id/status", async (req, res) => {
       try {
         const { status } = req.body;
@@ -278,6 +331,9 @@ async function iniciarServidor() {
 
         function atualizarEstoque(itens, tipo, operacao) {
           if (!itens || !Array.isArray(itens)) return null;
+          // Verifica se o tipo existe
+          if (!estoque[tipo]) return `Tipo de estoque '${tipo}' inválido.`;
+
           for (const i of itens) {
             if (!i || !i.nome || typeof i.quantidade !== "number") continue;
             const nomeLimpo = i.nome.trim().toLowerCase();
@@ -301,18 +357,19 @@ async function iniciarServidor() {
         }
 
         if (kit.status !== "autorizado" && status === "autorizado") {
+          // MODIFICADO: Atualiza as 3 categorias
           let erro = atualizarEstoque(kit.reagentes, "reagentes", "usar") ||
-            atualizarEstoque(kit.materiais, "materiais", "usar") ||
-            atualizarEstoque(kit.equipamentos, "equipamentos", "usar");
+            atualizarEstoque(kit.vidrarias, "vidrarias", "usar") ||
+            atualizarEstoque(kit.materiais, "materiais", "usar");
 
           if (erro) return res.status(400).json({ error: erro });
           estoque.atualizadoEm = new Date();
           await estoque.save();
         } else if (kit.status === "autorizado" && status !== "autorizado") {
-          // Devolver itens para estoque
+          // MODIFICADO: Devolve as 3 categorias
           atualizarEstoque(kit.reagentes, "reagentes", "devolver");
+          atualizarEstoque(kit.vidrarias, "vidrarias", "devolver");
           atualizarEstoque(kit.materiais, "materiais", "devolver");
-          atualizarEstoque(kit.equipamentos, "equipamentos", "devolver");
           estoque.atualizadoEm = new Date();
           await estoque.save();
         }
@@ -326,10 +383,6 @@ async function iniciarServidor() {
       }
     });
 
-    //=====================================================
-    // Excluir kit com devolução de itens se autorizado
-    //=====================================================
-
     app.delete("/kits/:id", async (req, res) => {
       try {
         const kit = await Kit.findById(req.params.id);
@@ -341,6 +394,9 @@ async function iniciarServidor() {
         if (kit.status === "autorizado") {
           function devolverItens(itens, tipo) {
             if (!itens || !Array.isArray(itens)) return;
+            // Verifica se o tipo existe
+            if (!estoque[tipo]) return;
+
             for (const i of itens) {
               if (!i || !i.nome || typeof i.quantidade !== "number") continue;
               const nomeLimpo = i.nome.trim().toLowerCase();
@@ -353,9 +409,10 @@ async function iniciarServidor() {
             }
           }
 
+          // MODIFICADO: Devolve as 3 categorias
           devolverItens(kit.reagentes || [], "reagentes");
+          devolverItens(kit.vidrarias || [], "vidrarias");
           devolverItens(kit.materiais || [], "materiais");
-          devolverItens(kit.equipamentos || [], "equipamentos");
 
           estoque.atualizadoEm = new Date();
           await estoque.save();
@@ -376,7 +433,8 @@ async function iniciarServidor() {
       try {
         let estoque = await Estoque.findOne();
         if (!estoque) {
-          estoque = new Estoque({ reagentes: [], materiais: [], equipamentos: [] });
+          // MODIFICADO: Cria estoque com as 3 categorias
+          estoque = new Estoque({ reagentes: [], vidrarias: [], materiais: [] });
           await estoque.save();
         }
         res.json(estoque);
@@ -389,7 +447,8 @@ async function iniciarServidor() {
       try {
         const { tipo } = req.params;
         const { nome, quantidade, unidade } = req.body;
-        if (!["reagentes", "materiais", "equipamentos"].includes(tipo))
+        // MODIFICADO: Validação de tipo
+        if (!["reagentes", "materiais", "vidrarias"].includes(tipo))
           return res.status(400).json({ error: "Tipo inválido." });
 
         if (!nome || quantidade == null || quantidade < 0 || !unidade)
@@ -420,11 +479,17 @@ async function iniciarServidor() {
       try {
         const { tipo, nome } = req.params;
         const { quantidade } = req.body;
-        if (!["reagentes", "materiais", "equipamentos"].includes(tipo))
+        // MODIFICADO: Validação de tipo
+        if (!["reagentes", "materiais", "vidrarias"].includes(tipo))
           return res.status(400).json({ error: "Tipo inválido." });
 
         const estoque = await Estoque.findOne();
         if (!estoque) return res.status(404).json({ error: "Estoque não encontrado." });
+
+        // Garante que o tipo exista no estoque antes de procurar
+        if (!estoque[tipo]) {
+          return res.status(404).json({ error: `Tipo de estoque '${tipo}' não encontrado.` });
+        }
 
         const item = estoque[tipo].find(i => i.nome === nome);
         if (!item) return res.status(404).json({ error: `Item '${nome}' não encontrado.` });
@@ -441,11 +506,20 @@ async function iniciarServidor() {
     app.delete("/estoque/:tipo/:nome", async (req, res) => {
       try {
         const { tipo, nome } = req.params;
-        if (!["reagentes", "materiais", "equipamentos"].includes(tipo))
+        // MODIFICADO: Validação de tipo
+        if (!["reagentes", "materiais", "vidrarias"].includes(tipo))
           return res.status(400).json({ error: "Tipo inválido." });
 
         const estoque = await Estoque.findOne();
         if (!estoque) return res.status(404).json({ error: "Estoque não encontrado." });
+
+        // ==========================================================
+        // Garante que o tipo exista no estoque antes de procurar
+        // ==========================================================
+        
+        if (!estoque[tipo]) {
+          return res.status(404).json({ error: `Tipo de estoque '${tipo}' não encontrado.` });
+        }
 
         const index = estoque[tipo].findIndex(i => i.nome === nome);
         if (index === -1) return res.status(404).json({ error: `Item '${nome}' não encontrado.` });
@@ -469,25 +543,24 @@ async function iniciarServidor() {
   }
 }
 
-
 // =============================
 // HISTÓRICO DE MATERIAIS
 // =============================
+
 app.get("/historico-materiais", async (req, res) => {
   try {
-    // Aqui usamos os kits autorizados como histórico de retiradas
     const kits = await Kit.find({ status: "autorizado" }).sort({ updatedAt: -1 });
-
     const historico = [];
 
     kits.forEach(kit => {
       const data = kit.updatedAt || kit.createdAt || new Date();
 
       const adicionarAoHistorico = (itens, tipo) => {
+        if (!itens) return;
         itens.forEach(i => {
           historico.push({
             data,
-            professor: kit.usuario || "Desconhecido",
+            professor: kit.usuario || "Não-Logado",
             material: i.nome,
             quantidade: i.quantidade,
             unidade: i.unidade || "",
@@ -496,9 +569,13 @@ app.get("/historico-materiais", async (req, res) => {
         });
       };
 
+      // ===============================
+      // Busca as 3 categorias
+      // ===============================
+
       adicionarAoHistorico(kit.reagentes, "reagente");
+      adicionarAoHistorico(kit.vidrarias, "vidraria");
       adicionarAoHistorico(kit.materiais, "material");
-      adicionarAoHistorico(kit.equipamentos, "equipamento");
     });
 
     res.json(historico);
@@ -509,20 +586,22 @@ app.get("/historico-materiais", async (req, res) => {
 });
 
 // =======================================
-//  Histórico de Materiais (Apagar)
+//  Apagar TODO o estoque
 // =======================================
 app.delete("/estoque", async (req, res) => {
   try {
     const estoque = await Estoque.findOne();
     if (!estoque) return res.status(404).json({ error: "Estoque não encontrado." });
 
+    // MODIFICADO: Limpa as 3 categorias
     estoque.reagentes = [];
+    estoque.vidrarias = [];
     estoque.materiais = [];
-    estoque.equipamentos = [];
+
     estoque.atualizadoEm = new Date();
     await estoque.save();
 
-    res.json({ message: "✅ Histórico apagado com sucesso!" });
+    res.json({ message: "✅ Estoque (reagentes, vidrarias, materiais) apagado com sucesso!" });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

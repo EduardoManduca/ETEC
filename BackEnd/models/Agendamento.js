@@ -1,6 +1,3 @@
-//==========================
-// IMPORTAÇÕES
-//==========================
 const mongoose = require("mongoose");
 const { ItemSchema } = require("./Item.js");
 
@@ -8,16 +5,18 @@ const { ItemSchema } = require("./Item.js");
 // SCHEMA DE ESTOQUE
 //==========================
 const EstoqueSchema = new mongoose.Schema({
-  reagentes: { type: [ItemSchema], default: [] },   // lista de reagentes
-  materiais: { type: [ItemSchema], default: [] },   // lista de materiais
-  equipamentos: { type: [ItemSchema], default: [] },// lista de equipamentos
-  atualizadoEm: { type: Date, default: Date.now }   // timestamp da última atualização
+  reagentes: { type: [ItemSchema], default: [] }, // lista de reagentes
+  vidrarias: { type: [ItemSchema], default: [] }, // lista de vidrarias
+  materiais: { type: [ItemSchema], default: [] }, // lista de materiais
+  atualizadoEm: { type: Date, default: Date.now } // timestamp da última atualização
 });
 
 //==========================
 // EXPORTAÇÃO DO MODELO DE ESTOQUE
+// Evitar sobrescrita
 //==========================
-module.exports = mongoose.model("Estoque", EstoqueSchema);
+
+module.exports = mongoose.models.Estoque || mongoose.model("Estoque", EstoqueSchema);
 
 
 //==========================
@@ -35,9 +34,9 @@ const AgendamentoSchema = new mongoose.Schema({
   horario: { type: String, required: true },       // horário do agendamento
   kit: { type: String, default: "" },              // kit selecionado, se houver
 
-  materiais: { type: [ItemSchemaAgendamento], default: [] },
   reagentes: { type: [ItemSchemaAgendamento], default: [] },
-  equipamentos: { type: [ItemSchemaAgendamento], default: [] },
+  vidrarias: { type: [ItemSchemaAgendamento], default: [] },
+  materiais: { type: [ItemSchemaAgendamento], default: [] },
 
   createdAt: { type: Date, default: Date.now }     // timestamp de criação
 });
@@ -55,4 +54,5 @@ AgendamentoSchema.index({ createdAt: 1 }, { expireAfterSeconds: 60 * 60 * 24 });
 
 AgendamentoSchema.index({ laboratorio: 1, data: 1, horario: 1 }, { unique: true });
 
-module.exports = mongoose.model("Agendamento", AgendamentoSchema);
+// Modificado para evitar sobrescrita
+module.exports = mongoose.models.Agendamento || mongoose.model("Agendamento", AgendamentoSchema);

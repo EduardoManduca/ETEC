@@ -240,6 +240,28 @@ body.dark-mode ::-webkit-scrollbar-thumb:hover {
     background-color: var(--vermelho-base);
 }
 
+body.dark-mode .sugestao-box {
+    background-color: #3a3a3a;
+    border-color: #555555;
+    color: #f0f0f0;
+}
+
+body.dark-mode .sugestao-item {
+    border-bottom-color: #4a4a4a;
+}
+
+body.dark-mode .sugestao-item:hover {
+    background-color: #4f4f4f;
+}
+
+body.dark-mode .sugestao-item-none {
+    color: #aaaaaa;
+}
+
+.tabela-estoque tr:hover {
+    background-color: #dbd8d8;
+}
+
 /* =========================================================
    RESPONSIVIDADE
    ========================================================= */

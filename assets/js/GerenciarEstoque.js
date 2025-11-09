@@ -11,10 +11,11 @@ async function carregarEstoque() {
         conteudo.innerHTML = "";
 
         //==========================
-        // Loop para reagentes, materiais e equipamentos
+        // Loop para reagentes, vidrarias e materiais
         //==========================
-        
-        ["reagentes", "materiais", "equipamentos"].forEach(tipo => {
+
+        // MODIFICADO: Adicionado "materiais"
+        ["reagentes", "vidrarias", "materiais"].forEach(tipo => {
             const secao = document.createElement("div");
             secao.className = "secao-estoque";
 
@@ -81,7 +82,7 @@ async function carregarEstoque() {
                     </tr>
                 </thead>
                 <tbody>
-                    ${estoque[tipo].map(i => `
+                    ${(estoque[tipo] || []).map(i => `
                         <tr>
                             <td>${i.nome}</td>
                             <td><input class="input-qtd" type="number" value="${i.quantidade}" min="0" id="${tipo}-${i.nome}"></td>
@@ -109,6 +110,7 @@ async function carregarEstoque() {
 //==========================
 
 function ativarBusca(tipo) {
+    // ... (código original sem alteração)
     const searchInput = document.getElementById(`search-${tipo}`);
     const tabela = document.getElementById(`tabela-${tipo}`);
 
@@ -126,6 +128,7 @@ function ativarBusca(tipo) {
 //==========================
 
 async function excluirItem(tipo, nome) {
+    // ... (código original sem alteração)
     if (!confirm(`Tem certeza que deseja excluir "${nome}" do estoque de ${tipo}?`)) return;
 
     try {
@@ -144,6 +147,7 @@ async function excluirItem(tipo, nome) {
 //==========================
 
 async function adicionarItem(tipo) {
+    // ... (código original sem alteração)
     const itemInput = document.getElementById(`novoItem-${tipo}`);
     const qtdInput = document.getElementById(`novaQtd-${tipo}`);
     const unidadeInput = document.getElementById(`novaUnidade-${tipo}`);
@@ -177,6 +181,7 @@ async function adicionarItem(tipo) {
 //==========================
 
 async function atualizarQuantidade(tipo, nome) {
+    // ... (código original sem alteração)
     const input = document.getElementById(`${tipo}-${nome}`);
     const quantidade = Number(input.value);
 

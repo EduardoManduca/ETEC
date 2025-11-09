@@ -13,7 +13,7 @@ async function carregarEstoque() {
         // Tipos de itens no estoque
         //==========================
 
-        const tipos = ["reagentes", "materiais", "equipamentos"];
+        const tipos = ["reagentes", "materiais", "vidrarias"];
         let temItens = false;
 
         tipos.forEach(tipo => {
@@ -97,7 +97,7 @@ document.addEventListener("DOMContentLoaded", () => {
         todos: ["todos", ""],
         reagente: ["reagente", "reagentes"],
         material: ["material", "materiais"],
-        equipamentos: ["equipamento", "equipamentos"]
+        vidrarias: ["vidraria", "vidrarias"]
     };
 
     //==========================

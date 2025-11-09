@@ -2,6 +2,96 @@
    PROF.css — Tela de Professor e Agendamento
    ========================================================= */
 
+/* ============================
+Painel lateral  MontarKit
+ ============================*/
+.painel-lateral {
+    width: 300px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    height: fit-content;
+    position: sticky;
+    top: 2rem;
+}
+
+.painel-lateral h2 {
+    color: #B20000;
+    font-size: 1.2rem;
+    border-bottom: 2px solid #B20000;
+    padding-bottom: 0.3rem;
+    margin-bottom: 1rem;
+}
+
+.painel-lateral ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0 0 1.5rem 0;
+}
+
+.painel-lateral li {
+    background: #f3f3f3;
+    padding: 0.6rem 0.8rem;
+    margin-bottom: 0.5rem;
+    border-radius: 6px;
+    color: #333;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.painel-lateral li:hover {
+    background: #ffeaea;
+}
+
+/* ================================================
+Conteúdo principal 
+===================================================*/
+
+.form-container {
+    flex: 1;
+    max-width: 800px;
+    background: #fff;
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.btn-add-kit {
+    background: #B20000;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.btn-add-kit:hover {
+    background: #a30000;
+}
+
+.btn-solicitar {
+    background: #B20000;
+    color: #fff;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-limpar {
+    background: #444;
+    color: #fff;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
 /* ===== Campos de busca e entrada ===== */
 .campo-search {
     background-color: #D9D9D9;
@@ -245,7 +335,7 @@ textarea {
 }
 
 .btn-add-kit {
-    background: #BA1A1A;
+    background: #B20000;
     color: #fff;
     border: none;
     padding: 10px 18px;
@@ -572,10 +662,11 @@ textarea {
     transition: 0.3s ease;
 }
 
-.btn-salvar:hover{
+.btn-salvar:hover {
     background-color: #8a0000;
     transform: scale(1.03);
 }
+
 .btn-excluir {
     color: white;
     background-color: #141414;
@@ -586,6 +677,7 @@ textarea {
     font-weight: 500;
     transition: 0.3s ease;
 }
+
 .btn-excluir:hover {
     transform: scale(1.03);
 }
@@ -616,8 +708,41 @@ textarea {
     color: #333;
 }
 
-.tabela-estoque tr:hover {
-    background-color: #dbd8d8;
+/*==============================
+ CSS para Caixa de Sugestões
+================================= */
+
+.sugestao-box {
+    position: absolute;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    border-top: none;
+    max-height: 180px;
+    overflow-y: auto;
+    z-index: 1001;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 0 0 4px 4px;
+}
+
+.sugestao-item,
+.sugestao-item-none {
+    padding: 10px 12px;
+    cursor: pointer;
+    font-size: 0.9em;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.sugestao-item:last-child {
+    border-bottom: none;
+}
+
+.sugestao-item:hover {
+    background-color: #f5f5f5;
+}
+
+.sugestao-item-none {
+    color: #888888;
+    cursor: default;
 }
 
 .input-qtd {
@@ -732,7 +857,7 @@ textarea {
 
 .btn-add {
     width: 120px;
-    Dheight: 40px;
+    height: 40px;
     border: none;
     border-radius: 16px;
     color: white;
@@ -748,22 +873,37 @@ textarea {
    Responsividade
    ========================================================= */
 
-/* === INÍCIO DAS MUDANÇAS === */
-/* Breakpoint para celulares maiores e tablets em modo retrato */
 @media (max-width: 768px) {
+
+    main {
+        flex-direction: column;
+        padding: 1rem;
+    }
+
+    .painel-lateral {
+        display: none;
+        /* esconde painel lateral */
+    }
+
+    .nav-bar {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav-bar li {
+        margin: 0.2rem 0;
+    }
 
     .container-servicos,
     .container-servicos-2 {
         flex-direction: column;
         margin: 20px;
-        /* Reduz a margem lateral excessiva */
         gap: 20px;
     }
 
     .div-servicos,
     .div-servicos-2 {
         margin: 0;
-        /* Remove a margem lateral desnecessária quando empilhado */
     }
 
     .h1-div-servicos {
@@ -772,53 +912,42 @@ textarea {
 
     .kit-section {
         padding: 30px 20px;
-        /* Reduz o padding lateral */
     }
 
     /* Agendamento */
     #container-principal {
         flex-direction: column;
         align-items: center;
-        /* Centraliza os itens empilhados */
         gap: 20px;
     }
 
     #formulario {
         width: 100%;
-        /* Ocupa a largura total */
         min-width: unset;
-        /* Remove a largura mínima problemática */
         gap: 20px;
     }
 
     #itens-selecao {
         width: 100%;
-        /* Ocupa a largura total */
         max-width: 100%;
     }
 
     #div-search {
         flex-direction: column;
-        /* Empilha a busca */
         gap: 15px;
     }
 
     /* Estoque */
     .secao-estoque {
         width: 100%;
-        /* Empilha as seções de estoque */
         min-width: unset;
-        /* Remove a largura mínima */
     }
 
     .item-entry-row {
         flex-direction: column;
-        /* Empilha as caixas de item */
         gap: 10px;
     }
 
-    /* === CORREÇÃO ADICIONADA === */
-    /* Garante que a tabela de estoque nesta página também seja rolável */
     .tabela-estoque {
         display: block;
         width: 100%;
@@ -829,12 +958,10 @@ textarea {
     .tabela-estoque th,
     .tabela-estoque td {
         white-space: nowrap;
-        /* Impede a quebra de linha nas células */
     }
 }
 
-
-/* Breakpoint existente para celulares menores */
+/* ===== Celulares pequenos ===== */
 @media (max-width: 480px) {
 
     .btn-solicitar,
@@ -848,14 +975,27 @@ textarea {
 
     .h1-div-servicos {
         font-size: 1.4rem;
-        /* Reduz um pouco mais para telas bem pequenas */
     }
 
     .container-servicos,
     .container-servicos-2 {
-        /* Adicionado .container-servicos-2 aqui */
-        /* flex-direction: column; (Já herdado de 768px) */
         margin: 10px;
         gap: 15px;
+    }
+
+    .btn-add-kit,
+    .btn-add {
+        padding: 8px 14px;
+        font-size: 0.9rem;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    textarea {
+        font-size: 0.9rem;
+    }
+
+    .form-container {
+        padding: 1.5rem;
     }
 }
