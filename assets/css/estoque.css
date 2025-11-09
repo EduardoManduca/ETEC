@@ -1,0 +1,206 @@
+/* ===============================
+   ESTOQUE - Layout Geral
+   =============================== */
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Roboto", sans-serif;
+    background-color: #f8f8f8;
+    color: #222;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ===============================
+   CABEÇALHO DO ESTOQUE
+   =============================== */
+
+.secao-estoque {
+    flex: 1;
+    width: 90%;
+    max-width: 1400px;
+    margin: 40px auto 60px;
+    padding: 35px 30px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+}
+
+.cabecalho-estoque {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 25px;
+}
+
+.subtitulo-estoque {
+    font-size: 1.9rem;
+    font-weight: 700;
+    color: #8B0000;
+    margin: 0;
+}
+
+/* ===============================
+   CAMPO DE PESQUISA
+   =============================== */
+
+.campo-pesquisa {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40%;
+    margin: 0 auto 30px;
+}
+
+.input-pesquisa {
+    width: 100%;
+    padding: 12px 45px 12px 15px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    outline: none;
+    transition: 0.3s ease;
+    font-size: 1rem;
+    background-color: #fff;
+}
+
+.input-pesquisa:focus {
+    border-color: #b20000;
+    box-shadow: 0 0 6px rgba(178, 0, 0, 0.3);
+}
+
+.icone-pesquisa {
+    position: absolute;
+    right: 12px;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.icone-pesquisa:hover {
+    opacity: 1;
+}
+
+/* ===============================
+   TABELA DE ESTOQUE
+   =============================== */
+
+.tabela-estoque {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 12px;
+    overflow: hidden;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.tabela-estoque thead {
+    background-color: #b20000;
+    color: #fff;
+    font-size: 1.05rem;
+}
+
+.tabela-estoque th {
+    padding: 16px;
+    font-weight: 600;
+}
+
+.tabela-estoque td {
+    padding: 14px;
+    border-bottom: 1px solid #ddd;
+}
+
+.tabela-estoque tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.tabela-estoque tr:hover {
+    background-color: #fff4f4;
+    transition: background 0.3s;
+}
+
+/* ===============================
+   FILTROS DE TIPO
+   =============================== */
+
+.filtros-tipo {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.btn-filtro {
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 8px 20px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.btn-filtro:hover {
+    background-color: #fff4f4;
+    border-color: #b20000;
+}
+
+.btn-filtro.ativo {
+    background-color: #b20000;
+    color: #fff;
+    border-color: #b20000;
+}
+
+
+/* ===============================
+   RESPONSIVIDADE
+   =============================== */
+
+@media (max-width: 768px) {
+    .secao-estoque {
+        width: 94%;
+        margin: 20px auto;
+        padding: 20px;
+    }
+
+    .campo-pesquisa {
+        width: 80%;
+    }
+
+    .input-pesquisa {
+        width: 100%;
+        padding: 10px 40px 10px 15px;
+    }
+
+    .icone-pesquisa {
+        width: 20px;
+        height: 20px;
+    }
+
+    .tabela-estoque th,
+    .tabela-estoque td {
+        font-size: 0.9rem;
+        padding: 10px;
+    }
+    
+    /* === CORREÇÃO ADICIONADA === */
+    /* Torna a tabela rolável horizontalmente em celulares */
+    .tabela-estoque {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        /* Melhora a rolagem em iOS */
+    }
+
+    .tabela-estoque th,
+    .tabela-estoque td {
+        white-space: nowrap;
+        /* Impede quebra de linha nas células */
+    }
+}

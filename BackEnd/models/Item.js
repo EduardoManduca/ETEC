@@ -1,29 +1,15 @@
 const mongoose = require("mongoose");
 
+// ========================
+// Definição do schema para itens (reagentes, materiais ou equipamentos)
+// ========================
+
 const ItemSchema = new mongoose.Schema({
-    item: {
-        type: String,
-        required: true,
-        unique: true,
-        trim: true,
-        set: v => v.replace(/\s+/g, " ")
-    },
-    tipo: {
-        type: String,
-        enum: ["reagente", "vidraria"],
-        required: false
-    },
-    quantidade: { type: Number, default: 1 },
-    descricao: {
-        type: String,
-        trim: true,
-        set: v => v.replace(/\s+/g, " ")
-    }
+    nome: { type: String, required: true, trim: true, set: v => v.replace(/\s+/g, " ") },
+    quantidade: { type: Number, default: 1, min: 0 },
+    descricao: { type: String, trim: true, set: v => v.replace(/\s+/g, " ") },
+    unidade: { type: String, default: "" }
 });
 
 const Item = mongoose.model("Item", ItemSchema);
-
-module.exports = {
-    ItemSchema,
-    Item
-};
+module.exports = { ItemSchema, Item };

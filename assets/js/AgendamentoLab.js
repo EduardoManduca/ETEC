@@ -1,9 +1,10 @@
 const protocolo = "http://";
 const baseURL = "localhost:5000";
 
-// =========================================================================
-//  Lê os itens das caixas de resumo (Vidrarias, Reagentes, Materiais)
-// =========================================================================
+//==========================
+// Função para ler itens das caixas de resumo (Equipamentos, Reagentes, Materiais)
+//==========================
+
 function getItemsFromSummaryBox(boxId) {
   const box = document.querySelector(boxId);
   if (!box) return [];
@@ -26,9 +27,10 @@ function getItemsFromSummaryBox(boxId) {
   return items;
 }
 
-// =========================================================================
-// MOSTRAR AVISO (TOAST)
-// =========================================================================
+//==========================
+// Mostrar aviso (toast)
+//==========================
+
 function mostrarToast(mensagem, tipo = "sucesso") {
   const toast = document.createElement("div");
   toast.classList.add("toast");
@@ -43,9 +45,10 @@ function mostrarToast(mensagem, tipo = "sucesso") {
   }, 5000);
 }
 
-// =========================================================================
-// CARREGAR KITS DO BANCO
-// =========================================================================
+//==========================
+// Carregar kits do banco (somente autorizados)
+//==========================
+
 async function carregarKits() {
   const selectKit = document.querySelector("#select-kit");
   if (!selectKit) return;
@@ -56,9 +59,19 @@ async function carregarKits() {
 
     selectKit.innerHTML = `<option value="">Selecione um kit</option>`;
 
-    kits.forEach(kit => {
+    const kitsAutorizados = kits.filter(kit => kit.status === "autorizado");
+
+    if (kitsAutorizados.length === 0) {
       const option = document.createElement("option");
-      option.value = kit._id;  
+      option.value = "";
+      option.textContent = "Nenhum kit autorizado disponível";
+      selectKit.appendChild(option);
+      return;
+    }
+
+    kitsAutorizados.forEach(kit => {
+      const option = document.createElement("option");
+      option.value = kit._id;
       option.textContent = kit.nomeKit;
       selectKit.appendChild(option);
     });
@@ -68,13 +81,17 @@ async function carregarKits() {
   }
 }
 
-// =========================================================================
-//  ADICIONAR ITENS Adicionar e Remover 
-// =========================================================================
+//==========================
+// Adicionar e remover itens
+//==========================
+
 document.addEventListener('DOMContentLoaded', () => {
   carregarKits();
 
+  //==========================
   // Adicionar itens
+  //==========================
+
   document.querySelectorAll('.btn-add').forEach(button => {
     button.addEventListener('click', (event) => {
       event.preventDefault();
@@ -92,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const tipo = itemBox.querySelector('h3').textContent.toLowerCase();
       let destinationBox;
-      if (tipo === 'vidrarias') destinationBox = document.querySelector('#vidraria');
+      if (tipo === 'equipamentos') destinationBox = document.querySelector('#equipamentos');
       else if (tipo === 'reagentes') destinationBox = document.querySelector('#reagente');
       else if (tipo === 'materiais') destinationBox = document.querySelector('#materiais');
       else return;
@@ -114,7 +131,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  //==========================
   // Limpar inputs
+  //==========================
+
   document.querySelectorAll('.btn-remove').forEach(button => {
     button.addEventListener('click', (event) => {
       event.preventDefault();
@@ -124,9 +144,10 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-// =========================================================================
-// ENVIAR AGENDAMENTO
-// =========================================================================
+//==========================
+// Enviar agendamento
+//==========================
+
 document.getElementById("btn-lab-conf").addEventListener("click", async (event) => {
   event.preventDefault();
 
@@ -141,7 +162,7 @@ document.getElementById("btn-lab-conf").addEventListener("click", async (event) 
   const horario = document.querySelector('input[name="datetime"]').value;
   const kitSelecionado = document.querySelector("#select-kit").value;
 
-  const vidrarias = getItemsFromSummaryBox('#vidraria');
+  const equipamentos = getItemsFromSummaryBox('#equipamentos');
   const reagentes = getItemsFromSummaryBox('#reagente');
   const materiais = getItemsFromSummaryBox('#materiais');
 
@@ -150,7 +171,7 @@ document.getElementById("btn-lab-conf").addEventListener("click", async (event) 
     return;
   }
 
-  if (vidrarias.length === 0 && reagentes.length === 0 && materiais.length === 0 && !kitSelecionado) {
+  if (equipamentos.length === 0 && reagentes.length === 0 && materiais.length === 0 && !kitSelecionado) {
     mostrarToast("❌ Adicione ao menos um item ou selecione um kit.", "erro");
     return;
   }
@@ -160,7 +181,7 @@ document.getElementById("btn-lab-conf").addEventListener("click", async (event) 
     data: new Date(dataStr + "T00:00:00"),
     horario,
     kit: kitSelecionado || "",
-    vidrarias,
+    equipamentos,
     reagentes,
     materiais,
     usuario: userId

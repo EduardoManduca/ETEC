@@ -1,6 +1,6 @@
 /* ================================
-   LOGIN.CSS — RESPONSIVO
-   ================================ */
+   LOGIN.CSS — RESPONSIVO
+   ================================ */
 
 /* Mensagem de erro */
 #errorMessage {
@@ -127,48 +127,27 @@
 }
 
 /* ================================
-   RESPONSIVIDADE
-   ================================ */
+   RESPONSIVIDADE
+   ================================ */
 
-/* 768px */
+/* Para celulares de todos os tipos (tablets em modo retrato e celulares grandes) */
 @media (max-width: 768px) {
     #login {
-        max-width: 300px;
-        padding: 1.5rem;
-        margin: 10% auto;
-    }
-
-    #titulo-login {
-        font-size: 20px;
-    }
-
-    .title-login {
-        font-size: 16px;
-    }
-
-    .cadastro {
-        font-size: 14px;
-        padding: 9px;
-    }
-
-    #enter,
-    #cancel {
-        width: 95%;
-        padding: 10px;
-        font-size: 14px;
-    }
-
-    #errorMessage {
-        font-size: 13px;
+        max-width: 90%;
+        /* Muda de 400px fixo para 90% */
+        margin-top: 10%;
+        /* Ajusta a margem superior */
     }
 }
 
-/* Celulares pequenos (até 480px) */
+/* Para celulares menores */
 @media (max-width: 480px) {
     #login {
-        max-width: 90%;
+        /* max-width: 90%; (Já herdado do 768px) */
         padding: 1.2rem;
         border-radius: 15px;
+        margin-top: 15%;
+        /* Aumenta a margem para telas bem pequenas */
     }
 
     #titulo-login {
@@ -195,3 +174,5 @@
         padding: 8px;
     }
 }
+
+/* A CHAVE '}' EXTRA QUE ESTAVA AQUI FOI REMOVIDA */

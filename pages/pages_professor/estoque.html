@@ -6,12 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Estoque</title>
     <link rel="stylesheet" href="/assets/css/style.css">
-    <link rel="stylesheet" href="/assets/css/prof.css">
+    <link rel="stylesheet" href="/assets/css/tecnico.css">
     <link rel="stylesheet" href="/assets/css/darkMode.css">
+    <link rel="stylesheet" href="/assets/css/estoque.css">
     <link rel="icon" href="/images/logo-cps.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 
 <body>
+    <!-- Topo -->
     <ul class="ul-topo">
         <li class="li-topo">
             <div class="campo-preto">
@@ -41,77 +44,69 @@
                 <li class="controles-acessibilidade">
                     <button id="aumentar-texto" class="controles-tamanho" title="Aumentar texto"><img
                             src="/images/i-big-font.png" alt=""></button>
-
                     <button id="diminuir-texto" class="controles-tamanho" title="Diminuir texto"><img
                             src="/images/i-small-font.png" alt=""></button>
-
                     <button id="theme-toggle" onclick="toggleTheme()" class="controles-tamanho"
                         title="Alternar modo claro/escuro"><img src="/images/i-contrast.png" alt=""></button>
-
                     <button class="controles-tamanho" title="Mostrar aviso"><img src="/images/i-error-report.png"
                             alt=""></button>
                 </li>
             </ul>
         </li>
     </ul>
+
     <hr>
+
+    <!-- Logo e Navegação -->
     <ul class="ul-meio-topo">
-        <a href="/pages/pages_professor/TelaProfessor.html">
+        <a href="/pages/pages_tecnico/TelaTecnico.html">
             <li class="li-meio-topo"><img class="logo-etec" src="/images/logo-etec.png" alt=""></li>
         </a>
     </ul>
 
     <nav>
         <ul class="nav-bar">
-            <li class="li-nav-bar"><a class="a-nav-bar" href="/pages/pages_professor/TelaProfessor.html">Home</a></li>
-            <li class="li-nav-bar"><a class="a-nav-bar" href="/pages/pages_professor/agendamento.html">Agendamentos</a>
-            </li>
-            <li class="li-nav-bar"><a class="a-nav-bar" href="/pages/pages_professor/estoque.html">Estoque</a></li>
-            <li class="li-nav-bar"><a class="a-nav-bar" href="/pages/pages_professor/MontarKit.html">Criar Kit</a></li>
+            <li class="li-nav-bar"><a class="a-nav-bar" href="./TelaProfessor.html">Home</a></li>
+            <li class="li-nav-bar"><a class="a-nav-bar" href="./agendamento.html">Agendamento</a></li>
+            <li class="li-nav-bar"><a class="a-nav-bar" href="./estoque.html">Estoque</a></li>
+            <li class="li-nav-bar"><a class="a-nav-bar" href="./MontarKit.html">Criar Kit</a></li>
         </ul>
     </nav>
-    <main>
-        <!-- VLibras Widget -->
-        <div vw class="enabled">
-            <div vw-access-button class="active"></div>
-            <div vw-plugin-wrapper>
-                <div class="vw-plugin-top-wrapper"></div>
+
+    <h1>Estoque Atual</h1>
+    <div class="secao-estoque">
+        <div class="cabecalho-estoque">
+            <div class="campo-pesquisa">
+                <input type="text" id="filtro" placeholder="Pesquisar item..." class="input-pesquisa">
+                <img src="/images/lupa.png" alt="Buscar" class="icone-pesquisa">
+            </div>
+
+            <div class="filtros-tipo">
+                <button class="btn-filtro ativo" data-tipo="todos">Todos</button>
+                <button class="btn-filtro" data-tipo="Reagente">Reagentes</button>
+                <button class="btn-filtro" data-tipo="Material">Materiais</button>
+                <button class="btn-filtro" data-tipo="equipamento">Equipamentos</button>
             </div>
         </div>
 
-        <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-        <script>
-            new window.VLibras.Widget('https://vlibras.gov.br/app');
-        </script>
 
-        <h1>Estoque</h1>
-        <div class="tabela-responsiva-wrapper">
-            <table>
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th>Reagentes</th>
-                        <th>Kits</th>
-                        <th>Materiais</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="dleft">Estoque</td>
-                        <td class="item"></td>
-                        <td class="item"></td>
-                        <td class="item"></td>
-                    </tr>
-                    <tr>
-                        <td class="dleft">Disponível</td>
-                        <td class="item"></td>
-                        <td class="item"></td>
-                        <td class="item"></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </main>
+
+
+        <table id="tabela-estoque" class="tabela-estoque">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Tipo</th>
+                    <th>Quantidade</th>
+                    <th>Última Atualização</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    <script src="/assets/js/script.js"></script>
+
+    <script src="/assets/js/ConteudoEstoque.js"></script>
     <button id="btnTopo"></button>
     <script src="/assets/js/ir-ao-topo.js"></script>
     <footer id="footer">
@@ -119,7 +114,6 @@
             <img id="img-rodape" src="/images/logo-sp.png" alt="">
         </a>
     </footer>
-    <script src="/assets/js/script.js"></script>
 </body>
 
 </html>

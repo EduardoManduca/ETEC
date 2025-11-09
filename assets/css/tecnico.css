@@ -1,6 +1,6 @@
 /* ================================
-   TECNICO.CSS — versão responsiva
-   ================================ */
+   TECNICO.CSS — versão responsiva
+   ================================ */
 
 /* ===== Geral ===== */
 .div-painel-tecnico {
@@ -30,6 +30,7 @@
     border: 0;
     border-radius: 5px;
 }
+
 .btn-editar,
 .btn-excluir {
     color: white;
@@ -285,73 +286,96 @@
     box-sizing: border-box;
 }
 
-/* ===== Responsividade ===== */
+/* ================================
+   RESPONSIVIDADE
+   ================================ */
 
-/* Tablets e telas médias */
-@media (max-width: 1024px) {
-    .div-painel-tecnico img {
-        max-width: 50%;
-    }
-
-    .div-painel-tecnico-es {
-        width: 40%;
-    }
-
-    #container-telatecnico,
-    .container-painel {
-        width: 100%;
-    }
-
+/* Breakpoint maior para pegar tablets em modo retrato e celulares */
+@media (max-width: 768px) {
     #main-div-TelaTecnico {
-        flex-direction: column;
+        padding: 15px;
         gap: 20px;
     }
 
-    .material-inputs {
-        width: 40%;
-    }
-}
-
-/* Celulares grandes */
-@media (max-width: 768px) {
-    #main-div-TelaTecnico {
-        flex-direction: column;
-        align-items: center;
-        padding: 20px;
-    }
-
+    /* Faz os contêineres principais ocuparem 100% da largura */
     #container-telatecnico,
     .container-painel {
         width: 100%;
-        padding: 20px;
+        padding: 15px;
+    }
+
+    .container-painel {
+        grid-template-columns: 1fr;
+        /* Força uma única coluna */
     }
 
     .div-painel-tecnico-es {
-        width: 80%;
+        width: 100%;
+        /* Ocupa 100% */
+        padding: 15px;
     }
 
     .material-inputs {
-        width: 80%;
+        width: 90%;
+        /* Ocupa 90% */
+        padding: 15px;
     }
 
-    .h2-es-tec {
-        font-size: 1rem;
+    /* === CORREÇÃO DA TABELA === */
+    /* Aplica a rolagem em qualquer tabela nesta página */
+    table,
+    .tabela-estoque {
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
     }
 
-    .button-es-tec {
-        width: auto;
-        padding: 6px 10px;
-        font-size: 14px;
-    }
-
-    .btn-editar,
-    .btn-excluir {
-        width: 60px;
-        font-size: 14px;
+    table th,
+    table td {
+        white-space: nowrap;
     }
 }
 
-/* Celulares pequenos */
+/* =============================
+   Botão de Status dos Kits
+   ============================= */
+.btn-status {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #fff;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+/* Status autorizado: verde */
+.btn-status.autorizado {
+    background-color: #141414;
+    /* verde */
+}
+
+/* Status solicitado: amarelo */
+.btn-status.solicitado {
+    background-color: #3ACF1F;
+    color: white;
+}
+
+/* Hover */
+.btn-status:hover {
+    transform: scale(1.05);
+    opacity: 0.9;
+}
+
+/* Desativado ou temporariamente bloqueado */
+.btn-status:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    color: #666;
+}
+
+
+/* Ajustes finos para celulares bem pequenos */
 @media (max-width: 480px) {
     #main-div-TelaTecnico {
         padding: 10px;
@@ -360,25 +384,6 @@
 
     .div-painel-tecnico img {
         max-width: 70%;
-    }
-
-    .div-painel-tecnico-es {
-        width: 95%;
-        padding: 15px;
-    }
-
-    .container-painel {
-        grid-template-columns: 1fr;
-    }
-
-    #container-telatecnico {
-        width: 100%;
-        padding: 15px;
-    }
-
-    .material-inputs {
-        width: 95%;
-        padding: 15px;
     }
 
     #add-button,

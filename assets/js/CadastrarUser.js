@@ -1,15 +1,28 @@
 document.querySelector(".login-form").addEventListener("submit", async (e) => {
     e.preventDefault();
 
+    //==========================
+    // Coletar dados do formulário
+    //==========================
+
     const login = document.getElementById("username").value.trim();
     const password = document.getElementById("password").value.trim();
     const funcao = document.getElementById("dropdown-cadastro").value;
+
+    //==========================
+    // Selecionar elementos de feedback visual
+    //==========================
 
     const mensagem = document.getElementById("cadastrar-check");
     const texto = mensagem.querySelector(".texto");
     const barra = mensagem.querySelector(".tempo-barra");
 
     try {
+
+        //==========================
+        // Enviar requisição ao backend
+        //==========================
+
         const resposta = await fetch("http://localhost:5000/signup", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -17,6 +30,10 @@ document.querySelector(".login-form").addEventListener("submit", async (e) => {
         });
 
         const resultado = await resposta.json();
+
+        //==========================
+        // Exibir resultado do cadastro
+        //==========================
 
         if (resposta.ok) {
             texto.innerHTML = resultado.message || "✅ Usuário cadastrado com sucesso!";
@@ -26,11 +43,19 @@ document.querySelector(".login-form").addEventListener("submit", async (e) => {
             mensagem.className = "cadastrar-check erro";
         }
 
+        //==========================
+        // Mostrar mensagem com animação da barra
+        //==========================
+
         mensagem.style.display = "block";
         mensagem.style.opacity = "1";
         barra.style.animation = "none";
-        void barra.offsetWidth;
+        void barra.offsetWidth; // reinicia animação
         barra.style.animation = "esvaziar 5s linear forwards";
+
+        //==========================
+        // Ocultar mensagem após 5 segundos
+        //==========================
 
         setTimeout(() => {
             mensagem.style.opacity = "0";
@@ -42,6 +67,11 @@ document.querySelector(".login-form").addEventListener("submit", async (e) => {
         }, 5000);
 
     } catch (err) {
+
+        //==========================
+        // Tratar erros de conexão
+        //==========================
+
         console.error("Erro ao enviar a requisição:", err);
         texto.textContent = "❌ Erro de conexão com o servidor.";
         mensagem.className = "cadastrar-check erro";

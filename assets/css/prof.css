@@ -1,6 +1,6 @@
 /* =========================================================
-   PROF.css — Tela de Professor e Agendamento
-   ========================================================= */
+   PROF.css — Tela de Professor e Agendamento
+   ========================================================= */
 
 /* ===== Campos de busca e entrada ===== */
 .campo-search {
@@ -159,8 +159,8 @@
 }
 
 /* =========================================================
-   Montar Kit
-   ========================================================= */
+   Montar Kit
+   ========================================================= */
 #montar-kit-main {
     display: flex;
     justify-content: center;
@@ -244,7 +244,19 @@ textarea {
     transition: 0.3s;
 }
 
-.btn-add:hover {
+.btn-add-kit {
+    background: #BA1A1A;
+    color: #fff;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 10px;
+    margin-top: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-add:hover,
+.btn-add-kit:hover {
     background: #7E0000;
     transform: translateY(-1px);
 }
@@ -320,8 +332,8 @@ textarea {
 }
 
 /* =========================================================
-   Agendamento Professor
-   ========================================================= */
+   Agendamento Professor
+   ========================================================= */
 #container-principal {
     justify-content: center;
     display: flex;
@@ -479,95 +491,188 @@ textarea {
 }
 
 /* =========================================================
-   Responsividade
-   ========================================================= */
+   ESTOQUE — Layout em Colunas
+   ========================================================= */
 
-@media (max-width: 1024px) {
-    #formulario {
-        width: 100%;
-    }
-
-    #laboratorio-div {
-        width: 100%;
-        font-size: inherit;
-    }
-
-    #container-principal {
-        gap: 20px;
-    }
-
-    #div-search {
-        gap: 20px;
-    }
+#conteudo-estoque {
+    padding: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    background-color: #f9f9f9;
 }
 
-@media (max-width: 768px) {
+/* ====== SEÇÃO ====== */
+.secao-estoque {
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    padding: 1rem 1.2rem;
+    width: 31%;
+    min-width: 340px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+    transition: 0.3s ease;
+}
 
-    #container-principal,
-    #laboratorio-div {
-        max-width: 95%;
-        margin: 0 auto;
-        padding: 10px;
-    }
+.secao-estoque:hover {
+    transform: translateY(-3px);
+}
 
-    #container-principal {
-        flex-direction: column;
-        width: 100%;
-    }
+/* ====== CABEÇALHO ====== */
+.cabecalho-estoque {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
 
-    #formulario {
-        min-width: unset;
-        gap: 15px;
-        width: 100%;
-    }
+.subtitulo-estoque {
+    color: #800000;
+    font-size: 1.3rem;
+    margin: 0;
+    font-weight: 600;
+}
 
-    #laboratorio-div {
-        flex-direction: column;
-        gap: 10px;
-        width: 100%;
-    }
+/* ====== FORM ====== */
+.form-adicionar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    width: 100%;
+}
 
-    #itens-selecao {
-        margin-top: 10px;
-        display: inline-block;
-        width: 100%;
-        align-self: center;
-    }
+.form-adicionar input {
+    padding: 6px 8px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    width: 120px;
+}
 
-    #div-search {
-        flex-direction: column;
-        gap: 10px;
-        align-self: center;
-    }
+.form-adicionar input:focus {
+    border-color: #b20000;
+}
 
-    .grupo {
-        gap: 0;
-        width: 100%;
-    }
+/* ====== BOTÃO ====== */
+.btn-salvar {
+    background-color: #b20000;
+    color: white;
+    border: none;
+    padding: 7px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: 0.3s ease;
+}
 
-    input[type="text"],
-    input[type="search"],
-    input[type="number"] {
-        margin-top: 0;
-        width: 100%;
-        height: 90%;
-    }
+.btn-salvar:hover{
+    background-color: #8a0000;
+    transform: scale(1.03);
+}
+.btn-excluir {
+    color: white;
+    background-color: #141414;
+    border: none;
+    padding: 7px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: 0.3s ease;
+}
+.btn-excluir:hover {
+    transform: scale(1.03);
+}
 
-    #materiais-input,
-    #reagentes-input,
-    .campos-div {
-        height: 50px;
-        gap: 5px;
-        align-items: center;
-        flex-direction: row-reverse;
-    }
+/* ====== TABELA ====== */
+.tabela-estoque {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0.5rem;
+    border-radius: 8px;
+    overflow: hidden;
+    font-size: 0.85rem;
+}
 
-    .div-search-botao {
-        height: 100%;
-        aspect-ratio: 1 / 1;
-        background-image: url("../../images/plus-solid-full.svg");
-        background-size: cover;
-    }
+.tabela-estoque th {
+    background-color: #b20000;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    font-size: 0.8rem;
+    padding: 8px;
+}
+
+.tabela-estoque td {
+    border-bottom: 1px solid #eee;
+    padding: 6px 8px;
+    text-align: center;
+    color: #333;
+}
+
+.tabela-estoque tr:hover {
+    background-color: #dbd8d8;
+}
+
+.input-qtd {
+    width: 55px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 3px;
+    background-color: #fafafa;
+}
+
+.input-qtd:focus {
+    border-color: #800000;
+}
+
+/* =========================================================
+   ESTOQUE — Busca com Ícone
+   ========================================================= */
+
+/* Container para o input de busca com ícone */
+.container-busca {
+    position: relative;
+    width: 95%;
+    margin-bottom: 1rem;
+    margin: 25px;
+}
+
+/* ícone de lupa */
+.icone-busca {
+    position: absolute;
+
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+/* input de busca */
+.input-busca-estoque {
+    width: 100%;
+    padding: 8px 38px 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    box-sizing: border-box;
+    flex-grow: 1;
+}
+
+.input-busca-estoque:focus {
+    border-color: #b20000;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(178, 0, 0, 0.2);
 }
 
 .item-entry-row {
@@ -585,6 +690,13 @@ textarea {
     padding: 15px;
     background-color: #ffffff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.input-pesquisa {
+    position: relative;
+    padding-left: 30px;
+    background: url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/svgs/solid/search.svg') no-repeat 8px center;
+    background-size: 14px;
 }
 
 .item-box h3 {
@@ -620,7 +732,7 @@ textarea {
 
 .btn-add {
     width: 120px;
-    height: 40px;
+    Dheight: 40px;
     border: none;
     border-radius: 16px;
     color: white;
@@ -632,6 +744,97 @@ textarea {
     background-color: #B20000;
 }
 
+/* =========================================================
+   Responsividade
+   ========================================================= */
+
+/* === INÍCIO DAS MUDANÇAS === */
+/* Breakpoint para celulares maiores e tablets em modo retrato */
+@media (max-width: 768px) {
+
+    .container-servicos,
+    .container-servicos-2 {
+        flex-direction: column;
+        margin: 20px;
+        /* Reduz a margem lateral excessiva */
+        gap: 20px;
+    }
+
+    .div-servicos,
+    .div-servicos-2 {
+        margin: 0;
+        /* Remove a margem lateral desnecessária quando empilhado */
+    }
+
+    .h1-div-servicos {
+        font-size: 1.6rem;
+    }
+
+    .kit-section {
+        padding: 30px 20px;
+        /* Reduz o padding lateral */
+    }
+
+    /* Agendamento */
+    #container-principal {
+        flex-direction: column;
+        align-items: center;
+        /* Centraliza os itens empilhados */
+        gap: 20px;
+    }
+
+    #formulario {
+        width: 100%;
+        /* Ocupa a largura total */
+        min-width: unset;
+        /* Remove a largura mínima problemática */
+        gap: 20px;
+    }
+
+    #itens-selecao {
+        width: 100%;
+        /* Ocupa a largura total */
+        max-width: 100%;
+    }
+
+    #div-search {
+        flex-direction: column;
+        /* Empilha a busca */
+        gap: 15px;
+    }
+
+    /* Estoque */
+    .secao-estoque {
+        width: 100%;
+        /* Empilha as seções de estoque */
+        min-width: unset;
+        /* Remove a largura mínima */
+    }
+
+    .item-entry-row {
+        flex-direction: column;
+        /* Empilha as caixas de item */
+        gap: 10px;
+    }
+
+    /* === CORREÇÃO ADICIONADA === */
+    /* Garante que a tabela de estoque nesta página também seja rolável */
+    .tabela-estoque {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .tabela-estoque th,
+    .tabela-estoque td {
+        white-space: nowrap;
+        /* Impede a quebra de linha nas células */
+    }
+}
+
+
+/* Breakpoint existente para celulares menores */
 @media (max-width: 480px) {
 
     .btn-solicitar,
@@ -645,10 +848,13 @@ textarea {
 
     .h1-div-servicos {
         font-size: 1.4rem;
+        /* Reduz um pouco mais para telas bem pequenas */
     }
 
-    .container-servicos {
-        flex-direction: column;
+    .container-servicos,
+    .container-servicos-2 {
+        /* Adicionado .container-servicos-2 aqui */
+        /* flex-direction: column; (Já herdado de 768px) */
         margin: 10px;
         gap: 15px;
     }

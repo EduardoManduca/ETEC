@@ -3,10 +3,11 @@
     margin: 50px auto;
     background-color: #f9f9f9;
     border-radius: 12px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 40px;
     line-height: 1.7;
-    font-family: url(/font/RobotoSlab-Regular.ttf);
+    /* CORREÇÃO: Aplicando a variável da fonte definida no seu root */
+    font-family: var(--font-primary);
     color: #222;
 }
 
@@ -50,18 +51,56 @@
     color: #666;
 }
 
-/* Responsividade */
+/* ================================
+   RESPONSIVIDADE PARA CELULARES
+   ================================ */
+
 @media (max-width: 768px) {
     .container-conteudo {
-        padding: 25px;
-        margin: 20px;
+        /* Reduz margens e padding para tablets e celulares maiores */
+        margin: 30px 20px;
+        padding: 30px;
     }
 
     .container-conteudo h1 {
-        font-size: 1.6em;
+        font-size: 1.8em;
+        /* Reduz um pouco o título principal */
+    }
+
+    .container-conteudo h2 {
+        font-size: 1.3em;
+        /* Reduz um pouco os subtítulos */
+    }
+}
+
+@media (max-width: 480px) {
+    .container-conteudo {
+        /* Reduz mais as margens e padding para celulares menores */
+        margin: 20px 10px;
+        padding: 20px;
+        border-radius: 8px;
+        /* Suaviza a borda */
+    }
+
+    .container-conteudo h1 {
+        font-size: 1.5em;
+        /* Reduz mais o título */
+        margin-bottom: 20px;
     }
 
     .container-conteudo h2 {
         font-size: 1.2em;
+        /* Reduz mais o subtítulo */
+        margin-top: 25px;
+    }
+
+    .container-conteudo ul {
+        margin-left: 20px;
+        /* Reduz o recuo da lista */
+    }
+
+    .data-atualizacao {
+        margin-top: 30px;
+        font-size: 0.85em;
     }
 }

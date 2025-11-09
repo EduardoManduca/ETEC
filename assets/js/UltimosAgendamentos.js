@@ -1,15 +1,27 @@
 document.addEventListener("DOMContentLoaded", async () => {
+
   const corpoTabela = document.querySelector(".container-tabela table tbody");
 
   try {
+    //==========================
+    // Buscar agendamentos do backend
+    //==========================
+
     const res = await fetch("http://localhost:5000/agendamentos");
     const agendamentos = await res.json();
     corpoTabela.innerHTML = "";
 
+    //==========================
+    // Verificar se há agendamentos
+    //==========================
     if (!agendamentos.length) {
       corpoTabela.innerHTML = `<tr class="empty-row"><td colspan="5" style="text-align:center;">Nenhum agendamento recente.</td></tr>`;
       return;
     }
+
+    //==========================
+    // Popular tabela com agendamentos
+    //==========================
 
     agendamentos.forEach(a => {
       const tr = document.createElement("tr");
@@ -30,7 +42,10 @@ document.addEventListener("DOMContentLoaded", async () => {
       corpoTabela.appendChild(tr);
     });
 
+    //==========================
     // Evento para excluir agendamento
+    //==========================
+
     corpoTabela.addEventListener("click", async (e) => {
       const tr = e.target.closest("tr");
       if (!tr || tr.classList.contains('empty-row')) return;
@@ -49,7 +64,10 @@ document.addEventListener("DOMContentLoaded", async () => {
               tr.remove();
               alert("Agendamento excluído com sucesso!");
 
-              // Se não sobrar nenhum agendamento, mostra mensagem de vazio
+              //==========================
+              // Verifica se tabela ficou vazia
+              //==========================
+
               if (corpoTabela.children.length === 0) {
                 corpoTabela.innerHTML = `<tr class="empty-row"><td colspan="5" style="text-align:center;">Nenhum agendamento recente.</td></tr>`;
               }

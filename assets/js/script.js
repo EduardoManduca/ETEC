@@ -1,84 +1,92 @@
-// ***** Constantes e variáveis *****
-const reagentesEl = document.getElementById('reagentes');
-const reagentesValor = reagentesEl ? reagentesEl.value : null;
 const botaoAumentar = document.getElementById("aumentar-texto");
 const botaoDiminuir = document.getElementById("diminuir-texto");
 
-let nivel = 0; // nível atual
+let nivel = 0;
 const maxNivel = 3;
 const minNivel = -3;
-const incremento = 0.3; // 30%
-
-// Guarda tamanhos originais
+const incremento = 0.2;
 const tamanhosOriginais = new Map();
 
-// Tema escuro
+//==========================
+// TEMA ESCURO / CLARO
+//==========================
+
 function toggleTheme() {
-  document.body.classList.toggle('dark-mode');
-  localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
-}
+  const darkModeAtivo = document.body.classList.toggle("dark-mode");
+  localStorage.setItem("theme", darkModeAtivo ? "dark" : "light");
 
-
-// Guardar tamanhos originais
-function guardarTamanhosOriginais() {
-  const todosElementos = document.querySelectorAll("*");
-  todosElementos.forEach(el => {
-    const style = window.getComputedStyle(el);
-    const size = parseFloat(style.fontSize) || 16;
-    tamanhosOriginais.set(el, size);
+  document.querySelectorAll(".card, .item, table, input, textarea").forEach(el => {
+    el.classList.toggle("dark-element", darkModeAtivo);
   });
 }
 
+//==========================
+// TAMANHOS DE FONTE
+//==========================
 
-// Atualizar tamanhos de fonte
+function guardarTamanhosOriginais() {
+  document.querySelectorAll("body *").forEach(el => {
+    if (!tamanhosOriginais.has(el)) {
+      const size = parseFloat(window.getComputedStyle(el).fontSize);
+      if (!isNaN(size)) tamanhosOriginais.set(el, size);
+    }
+  });
+}
+
 function atualizarTamanhos() {
+  // Ajusta os tamanhos com base no nível atual
   tamanhosOriginais.forEach((tamanhoOriginal, el) => {
     const novoTamanho = tamanhoOriginal * (1 + incremento * nivel);
-    el.style.fontSize = novoTamanho + "px";
+    el.style.fontSize = `${novoTamanho}px`;
   });
 }
 
+//==========================
+// PESQUISA EM LISTA
+//==========================
 
-// Pesquisar em lista
 function search() {
-  const inputEl = document.getElementById('searchInput');
-  const input = inputEl ? inputEl.value.toLowerCase() : '';
-  const items = document.querySelectorAll('.item');
+  const inputEl = document.getElementById("searchInput");
+  const termo = inputEl ? inputEl.value.toLowerCase() : "";
+  const items = document.querySelectorAll(".item");
 
   items.forEach(it => {
-    const text = it.textContent || '';
-    it.style.display = text.toLowerCase().includes(input) ? '' : 'none';
+    const texto = it.textContent.toLowerCase();
+    it.style.display = texto.includes(termo) ? "" : "none";
   });
 }
 
+//==========================
+// ADIÇÃO DE LINHA NA TABELA
+//==========================
 
-// Adicionar linha à tabela
 function addTableRow() {
   const material = document.getElementById("nome-material");
   const quantidade = document.getElementById("quantidade-material");
   const tabela = document.getElementById("estoque");
-  if (!tabela) return;
+
+  if (!tabela) return alert("Tabela de estoque não encontrada.");
   if (!material.value || !quantidade.value) {
     alert("❌ Por favor, preencha ambos os campos.");
     return;
-  };
+  }
+
   const novaLinha = tabela.insertRow();
-  const novaCelula = novaLinha.insertCell();
-  novaCelula.innerHTML = material.value;
-  const novaCelula2 = novaLinha.insertCell();
-  novaCelula2.innerHTML = quantidade.value;
+  novaLinha.insertCell().textContent = material.value;
+  novaLinha.insertCell().textContent = quantidade.value;
   material.value = "";
   quantidade.value = "";
 }
 
+document.addEventListener("DOMContentLoaded", () => {
+  // Carrega tema salvo
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme === "dark") document.body.classList.add("dark-mode");
 
-// ***** Eventos *****
-document.addEventListener('DOMContentLoaded', () => {
-  const savedTheme = localStorage.getItem('theme');
-  if (savedTheme === 'dark') document.body.classList.add('dark-mode');
+  // Guarda tamanhos originais após renderizar
+  requestAnimationFrame(() => guardarTamanhosOriginais());
 
-  guardarTamanhosOriginais();
-
+  // Evento: aumentar texto
   if (botaoAumentar) {
     botaoAumentar.addEventListener("click", () => {
       if (nivel < maxNivel) {
@@ -87,6 +95,8 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  // Evento: diminuir texto
 
   if (botaoDiminuir) {
     botaoDiminuir.addEventListener("click", () => {

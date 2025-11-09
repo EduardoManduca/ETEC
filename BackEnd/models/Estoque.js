@@ -1,0 +1,16 @@
+const mongoose = require("mongoose");
+const { ItemSchema } = require("./Item.js");
+
+//==========================
+// SCHEMA DE ESTOQUE
+//==========================
+
+const EstoqueSchema = new mongoose.Schema({
+  reagentes: { type: [ItemSchema], default: [] },
+  materiais: { type: [ItemSchema], default: [] },
+  equipamentos: { type: [ItemSchema], default: [] },
+  atualizadoEm: { type: Date, default: Date.now }
+});
+
+// Verifica se o modelo já existe
+module.exports = mongoose.models.Estoque || mongoose.model("Estoque", EstoqueSchema);
