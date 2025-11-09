@@ -469,4 +469,64 @@ async function iniciarServidor() {
   }
 }
 
+
+// =============================
+// HISTÓRICO DE MATERIAIS
+// =============================
+app.get("/historico-materiais", async (req, res) => {
+  try {
+    // Aqui usamos os kits autorizados como histórico de retiradas
+    const kits = await Kit.find({ status: "autorizado" }).sort({ updatedAt: -1 });
+
+    const historico = [];
+
+    kits.forEach(kit => {
+      const data = kit.updatedAt || kit.createdAt || new Date();
+
+      const adicionarAoHistorico = (itens, tipo) => {
+        itens.forEach(i => {
+          historico.push({
+            data,
+            professor: kit.usuario || "Desconhecido",
+            material: i.nome,
+            quantidade: i.quantidade,
+            unidade: i.unidade || "",
+            tipo
+          });
+        });
+      };
+
+      adicionarAoHistorico(kit.reagentes, "reagente");
+      adicionarAoHistorico(kit.materiais, "material");
+      adicionarAoHistorico(kit.equipamentos, "equipamento");
+    });
+
+    res.json(historico);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Erro ao buscar histórico de materiais." });
+  }
+});
+
+// =======================================
+//  Histórico de Materiais (Apagar)
+// =======================================
+app.delete("/estoque", async (req, res) => {
+  try {
+    const estoque = await Estoque.findOne();
+    if (!estoque) return res.status(404).json({ error: "Estoque não encontrado." });
+
+    estoque.reagentes = [];
+    estoque.materiais = [];
+    estoque.equipamentos = [];
+    estoque.atualizadoEm = new Date();
+    await estoque.save();
+
+    res.json({ message: "✅ Histórico apagado com sucesso!" });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+
 iniciarServidor();

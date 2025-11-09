@@ -398,6 +398,37 @@ button.btn-excluir:active {
     transform: scale(0.95);
 }
 
+.btn-apagar {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-apagar:hover {
+    background-color: #c0392b;
+}
+
+/* Centraliza o search */
+#searchContainer {
+    text-align: center;
+    margin: 20px 0;
+}
+
+#searchInput {
+    width: 50%;
+    padding: 8px 12px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
 
 /* ================================
    RESPONSIVIDADE (CELULARES)

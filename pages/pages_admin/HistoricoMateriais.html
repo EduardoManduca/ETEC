@@ -14,10 +14,13 @@
 
 <body>
 
+    <!-- topo, logo, nav etc (sem alterações) -->
     <ul class="ul-topo">
         <li class="li-topo">
             <div class="campo-preto">
-                <img class="logo-sp" src="/images/logo-sp.png" alt="logo-sp">
+                <a href="https://www.sp.gov.br/sp">
+                    <img class="logo-sp" src="/images/logo-sp.png" alt="logo-sp">
+                </a>
             </div>
         </li>
         <li class="li-topo">
@@ -37,13 +40,14 @@
                 <li class="li-midias"><a href="https://www.facebook.com/governosp/" target="_blank"><img
                             class="img-midias" src="/images/facebook.png" alt=""></a></li>
                 <li id="texto-topo-gsp">/governosp</li>
+
                 <li class="controles-acessibilidade">
-                    <button class="controles-tamanho" title="Aumentar texto"><img src="/images/i-big-font.png"
-                            alt=""></button>
-                    <button class="controles-tamanho" title="Diminuir texto"><img src="/images/i-small-font.png"
-                            alt=""></button>
-                    <button class="controles-tamanho" title="Alternar modo claro/escuro"><img
-                            src="/images/i-contrast.png" alt=""></button>
+                    <button id="aumentar-texto" class="controles-tamanho" title="Aumentar texto"><img
+                            src="/images/i-big-font.png" alt=""></button>
+                    <button id="diminuir-texto" class="controles-tamanho" title="Diminuir texto"><img
+                            src="/images/i-small-font.png" alt=""></button>
+                    <button id="theme-toggle" onclick="toggleTheme()" class="controles-tamanho"
+                        title="Alternar modo claro/escuro"><img src="/images/i-contrast.png" alt=""></button>
                     <button class="controles-tamanho" title="Mostrar aviso"><img src="/images/i-error-report.png"
                             alt=""></button>
                 </li>
@@ -60,41 +64,107 @@
     <nav>
         <ul class="nav-bar">
             <li class="li-nav-bar"><a class="a-nav-bar" href="TelaAdministrador.html">home</a></li>
-            <li class="li-nav-bar"><a class="a-nav-bar" href="/pages/pages_admin/HistoricoMateriais.html">Materiais</a>
-            </li>
+            <li class="li-nav-bar"><a class="a-nav-bar" href="/pages/pages_admin/HistoricoMateriais.html">Histórico de Materiais</a></li>
             <li class="li-nav-bar"><a class="a-nav-bar" href="/pages/pages_admin/CadastrarUser.html">Cadastro</a></li>
             <li class="li-nav-bar"><a class="a-nav-bar" href="RegistroUsuario.html">Usuarios</a></li>
         </ul>
     </nav>
+
     <main>
         <h1>Histórico de materiais</h1>
-        <table>
-            <tr>
-                <th>Data</th>
-                <th>Professor (a)</th>
-                <th>Materiais</th>
-                <th>Retirada</th>
-            </tr>
-            <tr>
-                <td>14/10/2025</td>
-                <td>Prof Rodrigo</td>
-                <td>Ácido Sulfúrico</td>
-                <td>1 Litro</td>
-            </tr>
-            <tr>
-                <td>12/10/2025</td>
-                <td>Prof Rosana</td>
-                <td>Cano PVC</td>
-                <td>1 Tubo</td>
-            </tr>
-        </table>
 
-        <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-        <script>
-            new window.VLibras.Widget('https://vlibras.gov.br/app');
-        </script>
-        <script src="/assets/js/script.js"></script>
+        <!-- Search centralizado -->
+        <div id="searchContainer">
+            <input type="text" id="searchInput" placeholder="Buscar material, professor ou data">
+        </div>
+
+        <!-- Botão apagar histórico -->
+        <button class="btn-apagar" id="btnApagar">Apagar Histórico</button>
+
+        <table id="tabelaHistorico">
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Professor (a)</th>
+                    <th>Materiais</th>
+                    <th>Retirada</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- dados carregados dinamicamente -->
+            </tbody>
+        </table>
     </main>
+
+    <script>
+        const tabela = document.querySelector("#tabelaHistorico tbody");
+        const searchInput = document.getElementById("searchInput");
+
+        async function carregarHistorico() {
+            try {
+                const res = await fetch("http://localhost:5000/estoque");
+                const dados = await res.json();
+
+                tabela.innerHTML = "";
+
+                const tipos = ["reagentes", "materiais", "equipamentos"];
+                let temItens = false;
+
+                tipos.forEach(tipo => {
+                    if (Array.isArray(dados[tipo])) {
+                        dados[tipo].forEach(item => {
+                            temItens = true;
+                            const tr = document.createElement("tr");
+                            tr.innerHTML = `
+                                <td>${dados.atualizadoEm ? new Date(dados.atualizadoEm).toLocaleDateString("pt-BR") : "-"}</td>
+                                <td>${item.professor || "Desconhecido"}</td>
+                                <td>${item.nome}</td>
+                                <td>${item.quantidade} ${item.unidade || ""}</td>
+                            `;
+                            tabela.appendChild(tr);
+                        });
+                    }
+                });
+
+                if (!temItens) {
+                    tabela.innerHTML = `<tr><td colspan="4" style="text-align:center;">Nenhum item no histórico.</td></tr>`;
+                }
+
+            } catch (err) {
+                console.error(err);
+                tabela.innerHTML = `<tr><td colspan="4" style="text-align:center;">Erro ao carregar histórico.</td></tr>`;
+            }
+        }
+
+        // Filtrar search
+        searchInput.addEventListener("input", () => {
+            const termo = searchInput.value.toLowerCase();
+            tabela.querySelectorAll("tr").forEach(tr => {
+                tr.style.display = tr.textContent.toLowerCase().includes(termo) ? "" : "none";
+            });
+        });
+
+        // Apagar histórico
+        document.getElementById("btnApagar").addEventListener("click", async () => {
+            if (!confirm("Tem certeza que deseja apagar todo o histórico de materiais?")) return;
+
+            try {
+                const res = await fetch("http://localhost:5000/estoque", { method: "DELETE" });
+                const data = await res.json();
+                alert(data.message);
+                carregarHistorico();
+            } catch (err) {
+                console.error(err);
+                alert("Erro ao apagar histórico.");
+            }
+        });
+
+        carregarHistorico();
+    </script>
+
+    <script src="/assets/js/script.js"></script>
+
+    <script src="/assets/js/ConteudoEstoque.js"></script>
     <button id="btnTopo"></button>
     <script src="/assets/js/ir-ao-topo.js"></script>
     <footer id="footer">
