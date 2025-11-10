@@ -1,6 +1,3 @@
-// =====================
-// Função para carregar todos os kits
-// =====================
 async function carregarKits() {
     try {
         const response = await fetch("http://localhost:5000/kits");
@@ -27,20 +24,22 @@ async function carregarKits() {
                 ? kit.materiais.map(m => `${m.nome} (${m.quantidade})`).join(", ")
                 : "-";
 
-            const equipamentos = kit.equipamentos?.length
-                ? kit.equipamentos.map(e => `${e.nome} (${e.quantidade})`).join(", ")
+            const vidrarias = kit.vidrarias?.length
+                ? kit.vidrarias.map(v => `${v.nome} (${v.quantidade})`).join(", ")
                 : "-";
 
-            // Botão de status com classe automática
+            const usuarioSolicitante = kit.usuario && kit.usuario.login ? kit.usuario.login : "Desconhecido";
+
             const statusClass = kit.status === "autorizado" ? "autorizado" : "solicitado";
             const statusText = kit.status === "autorizado" ? "Reprovar" : "Autorizar";
 
             const statusBtn = `<button class="btn-status ${statusClass}" onclick="alterarStatus('${kit._id}', '${kit.status}', this)">${statusText}</button>`;
             linha.innerHTML = `
+             <td>${usuarioSolicitante}</td>
              <td>${kit.nomeKit}</td>
              <td>${materiais}</td> 
              <td>${reagentes}</td>
-             <td>${equipamentos}</td>
+             <td>${vidrarias}</td> 
              <td>${kit.observacoes || "-"}</td>
              <td>
              ${statusBtn}
@@ -61,6 +60,7 @@ async function carregarKits() {
 // =====================
 // Alterar status do kit (Autorizar/Reprovar)
 // =====================
+
 async function alterarStatus(id, statusAtual, btn) {
     const novoStatus = statusAtual === "autorizado" ? "solicitado" : "autorizado";
 
@@ -90,6 +90,7 @@ async function alterarStatus(id, statusAtual, btn) {
 // =====================
 // Excluir kit
 // =====================
+
 async function excluirKit(id) {
     if (!confirm("Tem certeza que deseja excluir este kit?")) return;
 

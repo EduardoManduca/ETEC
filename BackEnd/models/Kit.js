@@ -5,7 +5,8 @@ const KitSchema = new mongoose.Schema({
   nomeKit: { type: String, required: true },
   reagentes: { type: [ItemSchema], default: [] },
   materiais: { type: [ItemSchema], default: [] },
-  equipamentos: { type: [ItemSchema], default: [] },
+  vidrarias: { type: [ItemSchema], default: [] },
+  usuario: { type: mongoose.Schema.Types.ObjectId, ref: 'Usuario', required: true },
   observacoes: { type: String, default: "" },
   status: {
     type: String,
@@ -16,21 +17,19 @@ const KitSchema = new mongoose.Schema({
 });
 
 // ========================
-// Validação de duplicados antes de salvar o Kit
+// Validação de duplicados
 // ========================
-
 KitSchema.pre("save", function (next) {
   const nomesMateriais = this.materiais.map(i => i.nome.toLowerCase());
-  const nomesEquipamentos = this.equipamentos.map(i => i.nome.toLowerCase());
-
+  const nomesVidrarias = this.vidrarias.map(i => i.nome.toLowerCase());
   const dupMateriais = nomesMateriais.filter((v, i, a) => a.indexOf(v) !== i);
-  const dupEquipamentos = nomesEquipamentos.filter((v, i, a) => a.indexOf(v) !== i);
+  const dupVidrarias = nomesVidrarias.filter((v, i, a) => a.indexOf(v) !== i);
 
   if (dupMateriais.length > 0) {
     return next(new Error(`Materiais duplicados: ${[...new Set(dupMateriais)].join(", ")}`));
   }
-  if (dupEquipamentos.length > 0) {
-    return next(new Error(`Equipamentos duplicados: ${[...new Set(dupEquipamentos)].join(", ")}`));
+  if (dupVidrarias.length > 0) {
+    return next(new Error(`Vidrarias duplicadas: ${[...new Set(dupVidrarias)].join(", ")}`));
   }
 
   next();

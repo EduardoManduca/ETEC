@@ -8,7 +8,7 @@ const { ItemSchema } = require("./Item.js");
 const EstoqueSchema = new mongoose.Schema({
   reagentes: { type: [ItemSchema], default: [] },
   materiais: { type: [ItemSchema], default: [] },
-  equipamentos: { type: [ItemSchema], default: [] },
+  vidrarias: { type: [ItemSchema], default: [] },
   atualizadoEm: { type: Date, default: Date.now }
 });
 

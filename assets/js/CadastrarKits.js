@@ -8,7 +8,7 @@ const vidrariasContainer = document.getElementById("vidrarias-container");
 
 let estoqueReagentes = [];
 let estoqueMateriais = [];
-let estoqueVidrarias = [];
+let estoqueVidrarias = []; // CORRIGIDO: Usando 'vidrarias'
 
 //==========================
 // Carregar estoque do backend
@@ -21,7 +21,7 @@ async function carregarEstoque() {
 
         estoqueReagentes = estoque.reagentes || [];
         estoqueMateriais = estoque.materiais || [];
-        estoqueVidrarias = estoque.vidrarias || [];
+        estoqueVidrarias = estoque.vidrarias || []; // CORRIGIDO: Busca 'vidrarias'
     } catch (err) {
         console.error("Erro ao carregar estoque:", err);
         alert("Não foi possível carregar o estoque!");
@@ -52,6 +52,7 @@ function atualizarPainelLateralKit() {
         return `${nome} (${qtd} ${unidade})`;
     });
 
+    // CORRIGIDO: Vidrarias
     const vidrarias = [...document.querySelectorAll(".vidraria-nome")].map((el, i) => {
         const qtd = document.querySelectorAll(".vidraria-qtd")[i].value || 0;
         const nome = el.value || "—";
@@ -122,6 +123,7 @@ function criarReagenteItem(nome, qtd) {
 function criarMaterialItem(nome, qtd) {
     criarItem(materiaisContainer, estoqueMateriais, "material-nome", "material-qtd", nome, qtd);
 }
+// CORRIGIDO: Função para Vidrarias
 function criarVidrariaItem(nome, qtd) {
     criarItem(vidrariasContainer, estoqueVidrarias, "vidraria-nome", "vidraria-qtd", nome, qtd);
 }
@@ -132,6 +134,7 @@ function criarVidrariaItem(nome, qtd) {
 
 document.getElementById("add-reagente").addEventListener("click", () => criarReagenteItem());
 document.getElementById("add-material").addEventListener("click", () => criarMaterialItem());
+// CORRIGIDO: Chama a função correta para Vidrarias
 document.getElementById("add-equip").addEventListener("click", () => criarVidrariaItem());
 
 //==========================
@@ -153,7 +156,10 @@ document.getElementById("btn-kit-limpar").addEventListener("click", () => {
 document.getElementById("btn-kit-sol").addEventListener("click", async () => {
     const nomeKit = document.getElementById("nome-kit").value.trim();
     const observacoes = document.getElementById("obs-kit").value.trim();
+    // NOVO: Coleta o ID do usuário logado
+    const userId = localStorage.getItem("userId");
 
+    if (!userId) return alert("❌ Faça login antes de cadastrar um kit!");
     if (!nomeKit) return alert("Digite o nome do kit!");
 
     function coletarItens(selNome, selQtd) {
@@ -170,6 +176,7 @@ document.getElementById("btn-kit-sol").addEventListener("click", async () => {
 
     const reagentes = coletarItens(".reagente-nome", ".reagente-qtd");
     const materiais = coletarItens(".material-nome", ".material-qtd");
+    // CORRIGIDO: Coleta Vidrarias
     const vidrarias = coletarItens(".vidraria-nome", ".vidraria-qtd");
 
     if (reagentes.length + materiais.length + vidrarias.length === 0)
@@ -186,6 +193,7 @@ document.getElementById("btn-kit-sol").addEventListener("click", async () => {
 
     verificarEstoque(reagentes, estoqueReagentes, "reagente");
     verificarEstoque(materiais, estoqueMateriais, "material");
+    // CORRIGIDO: Verifica estoque de Vidrarias
     verificarEstoque(vidrarias, estoqueVidrarias, "vidraria");
 
     const data = {
@@ -194,6 +202,7 @@ document.getElementById("btn-kit-sol").addEventListener("click", async () => {
         materiais,
         vidrarias,
         observacoes,
+        usuario: userId
     };
 
     try {

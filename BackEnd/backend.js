@@ -4,7 +4,6 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 
-// Models
 const Usuario = require("./models/Usuarios.js");
 const Agendamento = require("./models/Agendamento.js");
 const Kit = require("./models/Kit.js");
@@ -115,6 +114,7 @@ async function iniciarServidor() {
     //=============================
     // AGENDAMENTOS
     //=============================
+
     function converterHorarioParaMinutos(horarioStr) {
       try {
         if (!horarioStr || typeof horarioStr !== "string" || !horarioStr.includes(":")) {
@@ -189,7 +189,6 @@ async function iniciarServidor() {
         }
 
         try {
-          // MODIFICADO: Atualiza as 3 categorias
           atualizarEstoque(restoDoBody.reagentes, "reagentes");
           atualizarEstoque(restoDoBody.vidrarias, "vidrarias");
           atualizarEstoque(restoDoBody.materiais, "materiais");
@@ -240,7 +239,7 @@ async function iniciarServidor() {
               else estoque[tipo].push({ nome: i.nome, quantidade: i.quantidade, unidade: i.unidade || "" });
             }
           }
-          // MODIFICADO: Devolve as 3 categorias
+
           devolverEstoque(agendamento.reagentes, "reagentes");
           devolverEstoque(agendamento.vidrarias, "vidrarias");
           devolverEstoque(agendamento.materiais, "materiais");
@@ -264,19 +263,23 @@ async function iniciarServidor() {
         const {
           nomeKit,
           reagentes = [],
-          vidrarias = [], // MODIFICADO
+          vidrarias = [],
           materiais = [],
-          observacoes = ""
+          observacoes = "",
+          usuario // NOVO: Campo de usuário
         } = req.body;
 
         if (!nomeKit || nomeKit.trim() === "")
           return res.status(400).json({ error: "O campo 'nomeKit' é obrigatório." });
 
+        if (!usuario)
+          return res.status(400).json({ error: "ID do usuário é obrigatório." }); // Garante que o usuário está logado
+
         const reagentesValidos = reagentes
           .filter(i => i.nome && i.nome.trim() !== "" && i.quantidade > 0)
           .map(i => ({ nome: i.nome.trim(), quantidade: i.quantidade, unidade: i.unidade || "" }));
 
-        // MODIFICADO: Adicionado vidrariasValidas
+        // CORRIGIDO: Vidrarias Validas
         const vidrariasValidas = vidrarias
           .filter(i => i.nome && i.nome.trim() !== "" && i.quantidade > 0)
           .map(i => ({ nome: i.nome.trim(), quantidade: i.quantidade, unidade: i.unidade || "" }));
@@ -285,16 +288,16 @@ async function iniciarServidor() {
           .filter(i => i.nome && i.nome.trim() !== "" && i.quantidade > 0)
           .map(i => ({ nome: i.nome.trim(), quantidade: i.quantidade, unidade: i.unidade || "" }));
 
-        // MODIFICADO: Atualiza a validação
         if (reagentesValidos.length === 0 && materiaisValidos.length === 0 && vidrariasValidas.length === 0)
           return res.status(400).json({ error: "Adicione ao menos um reagente, vidraria ou material válido." });
 
         const novoKit = new Kit({
           nomeKit: nomeKit.trim(),
           reagentes: reagentesValidos,
-          vidrarias: vidrariasValidas, // MODIFICADO
+          vidrarias: vidrariasValidas,
           materiais: materiaisValidos,
-          observacoes: observacoes.trim()
+          observacoes: observacoes.trim(),
+          usuario // NOVO: Salva o ID do usuário
         });
 
         await novoKit.save();
@@ -309,7 +312,8 @@ async function iniciarServidor() {
       try {
         const { apenasAutorizados } = req.query;
         const filtro = apenasAutorizados === "true" ? { status: "autorizado" } : {};
-        const kits = await Kit.find(filtro);
+        // NOVO: Usa populate para trazer o login do usuário
+        const kits = await Kit.find(filtro).populate("usuario", "login");
         res.json(kits);
       } catch (err) {
         res.status(500).json({ error: err.message });
@@ -331,7 +335,6 @@ async function iniciarServidor() {
 
         function atualizarEstoque(itens, tipo, operacao) {
           if (!itens || !Array.isArray(itens)) return null;
-          // Verifica se o tipo existe
           if (!estoque[tipo]) return `Tipo de estoque '${tipo}' inválido.`;
 
           for (const i of itens) {
@@ -357,7 +360,6 @@ async function iniciarServidor() {
         }
 
         if (kit.status !== "autorizado" && status === "autorizado") {
-          // MODIFICADO: Atualiza as 3 categorias
           let erro = atualizarEstoque(kit.reagentes, "reagentes", "usar") ||
             atualizarEstoque(kit.vidrarias, "vidrarias", "usar") ||
             atualizarEstoque(kit.materiais, "materiais", "usar");
@@ -366,7 +368,6 @@ async function iniciarServidor() {
           estoque.atualizadoEm = new Date();
           await estoque.save();
         } else if (kit.status === "autorizado" && status !== "autorizado") {
-          // MODIFICADO: Devolve as 3 categorias
           atualizarEstoque(kit.reagentes, "reagentes", "devolver");
           atualizarEstoque(kit.vidrarias, "vidrarias", "devolver");
           atualizarEstoque(kit.materiais, "materiais", "devolver");
@@ -408,8 +409,6 @@ async function iniciarServidor() {
               }
             }
           }
-
-          // MODIFICADO: Devolve as 3 categorias
           devolverItens(kit.reagentes || [], "reagentes");
           devolverItens(kit.vidrarias || [], "vidrarias");
           devolverItens(kit.materiais || [], "materiais");
@@ -433,7 +432,6 @@ async function iniciarServidor() {
       try {
         let estoque = await Estoque.findOne();
         if (!estoque) {
-          // MODIFICADO: Cria estoque com as 3 categorias
           estoque = new Estoque({ reagentes: [], vidrarias: [], materiais: [] });
           await estoque.save();
         }
@@ -447,7 +445,6 @@ async function iniciarServidor() {
       try {
         const { tipo } = req.params;
         const { nome, quantidade, unidade } = req.body;
-        // MODIFICADO: Validação de tipo
         if (!["reagentes", "materiais", "vidrarias"].includes(tipo))
           return res.status(400).json({ error: "Tipo inválido." });
 
@@ -479,14 +476,12 @@ async function iniciarServidor() {
       try {
         const { tipo, nome } = req.params;
         const { quantidade } = req.body;
-        // MODIFICADO: Validação de tipo
         if (!["reagentes", "materiais", "vidrarias"].includes(tipo))
           return res.status(400).json({ error: "Tipo inválido." });
 
         const estoque = await Estoque.findOne();
         if (!estoque) return res.status(404).json({ error: "Estoque não encontrado." });
 
-        // Garante que o tipo exista no estoque antes de procurar
         if (!estoque[tipo]) {
           return res.status(404).json({ error: `Tipo de estoque '${tipo}' não encontrado.` });
         }
@@ -506,7 +501,6 @@ async function iniciarServidor() {
     app.delete("/estoque/:tipo/:nome", async (req, res) => {
       try {
         const { tipo, nome } = req.params;
-        // MODIFICADO: Validação de tipo
         if (!["reagentes", "materiais", "vidrarias"].includes(tipo))
           return res.status(400).json({ error: "Tipo inválido." });
 
@@ -516,7 +510,7 @@ async function iniciarServidor() {
         // ==========================================================
         // Garante que o tipo exista no estoque antes de procurar
         // ==========================================================
-        
+
         if (!estoque[tipo]) {
           return res.status(404).json({ error: `Tipo de estoque '${tipo}' não encontrado.` });
         }
@@ -560,7 +554,8 @@ app.get("/historico-materiais", async (req, res) => {
         itens.forEach(i => {
           historico.push({
             data,
-            professor: kit.usuario || "Não-Logado",
+            // CORRIGIDO: Tenta buscar o login se o populate falhar
+            professor: kit.usuario && kit.usuario.login ? kit.usuario.login : "Não-Logado",
             material: i.nome,
             quantidade: i.quantidade,
             unidade: i.unidade || "",
@@ -568,10 +563,6 @@ app.get("/historico-materiais", async (req, res) => {
           });
         });
       };
-
-      // ===============================
-      // Busca as 3 categorias
-      // ===============================
 
       adicionarAoHistorico(kit.reagentes, "reagente");
       adicionarAoHistorico(kit.vidrarias, "vidraria");
@@ -593,7 +584,6 @@ app.delete("/estoque", async (req, res) => {
     const estoque = await Estoque.findOne();
     if (!estoque) return res.status(404).json({ error: "Estoque não encontrado." });
 
-    // MODIFICADO: Limpa as 3 categorias
     estoque.reagentes = [];
     estoque.vidrarias = [];
     estoque.materiais = [];
