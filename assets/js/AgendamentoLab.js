@@ -138,30 +138,26 @@ async function mostrarSugestoes(inputElement, tipo) {
 //==========================
 
 async function carregarKits() {
-  // ... (Seu código original, sem alterações)
-  const selectKit = document.querySelector("#select-kit");
-  if (!selectKit) return;
+  const kitsContainer = document.querySelector("#kits-container");
 
   try {
     const res = await fetch(`${protocolo}${baseURL}/kits`);
     const kits = await res.json();
 
-    selectKit.innerHTML = `<option value="">Selecione um kit</option>`;
+    // kitsContainer.innerHTML = `<option value="">Selecione um kit</option>`;
 
     const kitsAutorizados = kits.filter(kit => kit.status === "autorizado");
 
     if (kitsAutorizados.length === 0) {
-      const option = document.createElement("option");
-      option.value = "";
-      option.textContent = "Nenhum kit autorizado disponível";
-      selectKit.appendChild(option);
-      return;
+      const p = document.createElement("p");
+      p.textContent = "Não há nenhum kit disponível para uso.";
+      kitsContainer.appendChild(p);
     }
 
     kitsAutorizados.forEach(kit => {
-      const option = document.createElement("option");
-      option.value = kit._id;
-      option.textContent = kit.nomeKit;
+      const kitElemento = document.createElement("div")
+      kitElemento.classList.add("kit-elemento");
+      kitElemento.innerHTML = kit.nomeKit
       selectKit.appendChild(option);
     });
 

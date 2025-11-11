@@ -107,7 +107,7 @@
                     </div>
                 </div>
 
-                <div class="item-entry-row">
+                <div class="item-entry-container">
                     <div class="item-box">
                         <h3>Reagentes</h3>
                         <label>Nome</label>
@@ -140,6 +140,24 @@
                             <button class="btn-add">Adicionar</button>
                         </div>
                     </div>
+
+                    <div class="item-box">
+                        <h3>Kits</h3>
+                        <label>Nome</label>
+                        <input type="text" class="form-input-text">
+                        <label>Quantidade</label>
+                        <input type="number" class="form-input-text" min="0">
+                        <div class="item-buttons">
+                            <button class="btn-add">Adicionar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="kits-secao">
+                    <h3>Kits</h3>
+                    <div id="kits-container">
+                        <!-- KITS EM ESTOQUE -->
+                    </div>
                 </div>
             </div>
 
@@ -152,6 +170,9 @@
                     <h2>Vidrarias</h2>
                 </div>
                 <div class="subselecao" id="materiais">
+                    <h2>Materiais</h2>
+                </div>
+                <div class="subselecao" id="kits">
                     <h2>Materiais</h2>
                 </div>
             </div>

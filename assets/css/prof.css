@@ -805,10 +805,11 @@ textarea {
     box-shadow: 0 0 0 2px rgba(178, 0, 0, 0.2);
 }
 
-.item-entry-row {
+.item-entry-container {
     display: flex;
-    justify-content: space-between;
-    gap: 15px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 30px;
     margin-top: 20px;
     margin-bottom: 0px;
 }
@@ -816,10 +817,48 @@ textarea {
 .item-box {
     flex: 1;
     border: 1px solid #dddddd;
+    min-width: min(400px, 50%);
     border-radius: 5px;
     padding: 15px;
     background-color: #ffffff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+#kits-secao {
+    display: flex;
+    flex-direction: column;
+    background-color: black;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+    height: fit-content;
+    padding: 10px;
+}
+
+#kits-secao h3 {
+    color: var(--azul-base);
+    
+}
+
+#kits-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.kit-elemento {
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    border: 1px solid #dddddd;
+    border-radius: 10px;
+    height: fit-content;
+    padding: 5px 12px;
+    margin: 5px;
+}
+
+.kit-elemento:hover {
+    background-color: var(--cinza-hover);
+    cursor: pointer;
 }
 
 .input-pesquisa {
@@ -930,6 +969,10 @@ textarea {
         width: 100%;
         min-width: unset;
         gap: 20px;
+    }
+
+    input[type="text"], input[type="search"], input[type="number"] {
+        height: auto;
     }
 
     #itens-selecao {
