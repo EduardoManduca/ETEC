@@ -14,7 +14,7 @@
 
 <body>
     <ul class="ul-topo">
-        <li>
+        <li class="li-topo">
             <div class="campo-preto">
                 <a href="https://www.sp.gov.br/sp">
                     <img class="logo-sp" src="/images/logo-sp.png" alt="logo-sp">
@@ -23,37 +23,41 @@
         </li>
         <li class="li-topo">
             <ul class="ul-midias">
-                <li><a href="https://www.flickr.com/photos/governosp/" target="_blank"><img class="img-midias"
-                            src="/images/fr.png" alt=""></a></li>
-                <li><a href="https://www.linkedin.com/company/governosp/" target="_blank"><img class="img-midias"
-                            src="/images/linkedin.png" alt=""></a></li>
-                <li><a href="https://www.tiktok.com/@governosp" target="_blank"><img class="img-midias"
-                            src="/images/tiktok.png" alt=""></a></li>
-                <li><a href="https://www.youtube.com/governosp/" target="_blank"><img class="img-midias"
-                            src="/images/youtube.png" alt=""></a></li>
-                <li><a href="https://x.com/governosp/" target="_blank"><img class="img-midias" src="/images/twitter.png"
-                            alt=""></a></li>
-                <li><a href="https://www.instagram.com/governosp/" target="_blank"><img class="img-midias"
-                            src="/images/instagram.png" alt=""></a></li>
-                <li><a href="https://www.facebook.com/governosp/" target="_blank"><img class="img-midias"
-                            src="/images/facebook.png" alt=""></a></li>
+                <li class="li-midias"><a href="https://www.flickr.com/photos/governosp/" target="_blank"><img
+                            class="img-midias" src="/images/fr.png" alt=""></a></li>
+                <li class="li-midias"><a href="https://www.linkedin.com/company/governosp/" target="_blank"><img
+                            class="img-midias" src="/images/linkedin.png" alt=""></a></li>
+                <li class="li-midias"><a href="https://www.tiktok.com/@governosp" target="_blank"><img
+                            class="img-midias" src="/images/tiktok.png" alt=""></a></li>
+                <li class="li-midias"><a href="https://www.youtube.com/governosp/" target="_blank"><img
+                            class="img-midias" src="/images/youtube.png" alt=""></a></li>
+                <li class="li-midias"><a href="https://x.com/governosp/" target="_blank"><img class="img-midias"
+                            src="/images/twitter.png" alt=""></a></li>
+                <li class="li-midias"><a href="https://www.instagram.com/governosp/" target="_blank"><img
+                            class="img-midias" src="/images/instagram.png" alt=""></a></li>
+                <li class="li-midias"><a href="https://www.facebook.com/governosp/" target="_blank"><img
+                            class="img-midias" src="/images/facebook.png" alt=""></a></li>
                 <li id="texto-topo-gsp">/governosp</li>
+
                 <li class="controles-acessibilidade">
-                    <button class="controles-tamanho" id="btnAumentar" title="Aumentar texto"><img
+                    <button id="aumentar-texto" class="controles-tamanho" title="Aumentar texto"><img
                             src="/images/i-big-font.png" alt=""></button>
-                    <button class="controles-tamanho" title="Diminuir texto"><img src="/images/i-small-font.png"
-                            alt=""></button>
-                    <button class="controles-tamanho" title="Alternar modo claro/escuro"><img
-                            src="/images/i-contrast.png" alt=""></button>
-                    <button class="controles-tamanho" title="Mostrar aviso" onclick="ErrorReport()"><img
-                            src="/images/i-error-report.png" alt=""></button>
+
+                    <button id="diminuir-texto" class="controles-tamanho" title="Diminuir texto"><img
+                            src="/images/i-small-font.png" alt=""></button>
+
+                    <button id="theme-toggle" onclick="toggleTheme()" class="controles-tamanho"
+                        title="Alternar modo claro/escuro"><img src="/images/i-contrast.png" alt=""></button>
+
+                    <button class="controles-tamanho" title="Mostrar aviso"><a href="https://www.sp.gov.br/sp" target="_blank"><img src="/images/i-error-report.png"
+                            alt=""></a></button>
                 </li>
             </ul>
         </li>
     </ul>
     <hr>
     <ul class="ul-meio-topo">
-        <a href="/pages/pages_admin/TelaAdministrador.html">
+        <a href="/pages/index.html">
             <li class="li-meio-topo"><img class="logo-etec" src="/images/logo-etec.png" alt=""></li>
         </a>
     </ul>

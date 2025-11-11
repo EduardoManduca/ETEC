@@ -861,8 +861,8 @@ textarea {
 }
 
 .btn-add {
-    width: 120px;
-    height: 40px;
+    width: 100%;
+    height: 30%;
     border: none;
     border-radius: 16px;
     color: white;
