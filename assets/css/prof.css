@@ -443,23 +443,62 @@ textarea {
     min-width: 655px;
 }
 
-#materiais-pesquisa {
+#kits-secao {
     display: flex;
     flex-direction: column;
+    background-color: black;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+    height: fit-content;
+    padding: 10px;
+}
+
+#kits-secao h3 {
+    color: var(--azul-base);
+    
+}
+
+#kits-container {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.kit-elemento {
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    border: 1px solid #dddddd;
+    border-radius: 10px;
+    height: fit-content;
+    word-break: break-all;
+    padding: 5px 12px;
+    margin: 5px;
+}
+
+.kit-selecionado {
     width: 100%;
 }
 
-#materiais-resultados {
-    align-self: center;
-    width: calc(100% - 5px);
-    max-height: 100px;
-    overflow-y: scroll;
-    overflow-x: hidden;
+.kit-elemento h4 {
+    text-transform: capitalize;
 }
 
-#materiais-resultados p {
-    background-color: #EEEEEE;
-    margin: 0;
+.botao-kit {
+    display: inline-block;
+    width: 100%;
+    height: fit-content;
+    padding: 12px 10px;
+    color: white;
+    border-radius: 16px;
+    border: none;
+    font-size: 16px;
+    margin-top: 15px;
+}
+
+.botao-kit:hover {
     cursor: pointer;
 }
 
@@ -822,43 +861,6 @@ textarea {
     padding: 15px;
     background-color: #ffffff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-}
-
-#kits-secao {
-    display: flex;
-    flex-direction: column;
-    background-color: black;
-    background-color: #ffffff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    border: 1px solid #dddddd;
-    border-radius: 5px;
-    height: fit-content;
-    padding: 10px;
-}
-
-#kits-secao h3 {
-    color: var(--azul-base);
-    
-}
-
-#kits-container {
-    display: flex;
-    flex-direction: row;
-}
-
-.kit-elemento {
-    background-color: #ffffff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    border: 1px solid #dddddd;
-    border-radius: 10px;
-    height: fit-content;
-    padding: 5px 12px;
-    margin: 5px;
-}
-
-.kit-elemento:hover {
-    background-color: var(--cinza-hover);
-    cursor: pointer;
 }
 
 .input-pesquisa {

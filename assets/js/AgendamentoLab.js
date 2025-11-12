@@ -144,8 +144,6 @@ async function carregarKits() {
     const res = await fetch(`${protocolo}${baseURL}/kits`);
     const kits = await res.json();
 
-    // kitsContainer.innerHTML = `<option value="">Selecione um kit</option>`;
-
     const kitsAutorizados = kits.filter(kit => kit.status === "autorizado");
 
     if (kitsAutorizados.length === 0) {
@@ -155,15 +153,106 @@ async function carregarKits() {
     }
 
     kitsAutorizados.forEach(kit => {
-      const kitElemento = document.createElement("div")
+      const kitElemento = document.createElement("div");
       kitElemento.classList.add("kit-elemento");
-      kitElemento.innerHTML = kit.nomeKit
-      selectKit.appendChild(option);
+      kitElemento.innerHTML = kit.nomeKit;
+      kitsContainer.appendChild(kitElemento);
+
+      let isKitSelecionado = kitElemento.classList.contains("kit-selecionado");
+
+      kitElemento.addEventListener("mouseover", () => {
+        if(!isKitSelecionado) {
+          kitElemento.style.backgroundColor = "var(--cinza-hover)";
+          kitElemento.style.cursor = "pointer";
+        }
+      });
+
+      kitElemento.addEventListener("mouseout", () => {
+        kitElemento.style.backgroundColor = "white";
+        kitElemento.style.cursor = "default";
+      });
+
+      kitElemento.addEventListener("click", () => {
+        
+        if(!isKitSelecionado) {
+          console.log("teste")
+          kitElemento.style.backgroundColor = "white";
+          kitElemento.style.cursor = "default";
+          kitElemento.classList.add("kit-selecionado");
+          isKitSelecionado = true;
+          
+          const kitCabecalho = document.createElement("h3");
+          kitCabecalho.style.marginTop = "10px";
+          kitCabecalho.textContent = "Informações do kit:";
+          kitElemento.appendChild(kitCabecalho);
+
+          const kitAtributos = ["reagentes", "vidrarias", "materiais"]
+          kitAtributos.forEach(atributo => {
+
+            const atributoElemento = document.createElement("div");
+            atributoElemento.style.marginTop = "5px";
+            atributoElemento.class = "kit-atributo";
+            kitElemento.appendChild(atributoElemento);
+
+            const atributoCabecalho = document.createElement("h4");
+            atributoCabecalho.textContent = atributo;
+            atributoElemento.appendChild(atributoCabecalho);
+            
+            kit[atributo].forEach(atributoItem => {
+              const atributoItemElemento = document.createElement("p");
+              atributoItemElemento.style.marginTop = "0px"
+              atributoItemElemento.style.marginLeft = "5px"
+              atributoItemElemento.textContent = `${atributoItem.nome} (${atributoItem.quantidade} ${atributoItem.unidade})`;
+              atributoElemento.appendChild(atributoItemElemento);
+            });
+
+          });
+
+          const botaoAdicionar = criarBotaoKit("Adicionar", "var(--concluido)", "var(--verde-base)", () => {});
+
+          const botaoCancelar = criarBotaoKit("Cancelar", "var(--vermelho-base)", "var(--vermelho-escuro-10)", (evento) => {
+            kitElemento.innerHTML = kit.nomeKit;
+            kitElemento.classList.remove("kit-selecionado");
+            // kitElemento.style.cursor = "default";
+            isKitSelecionado = false;
+            evento.stopPropagation();
+          });
+
+          [botaoAdicionar, botaoCancelar].forEach(b => {
+            kitElemento.appendChild(b);
+          });
+
+        }
+
+      });
     });
 
   } catch (err) {
     console.error("Erro ao carregar kits:", err);
+    const p = document.createElement("p");
+    p.textContent = "Não foi possível carregar os kits disponíveis. Verifique sua conexão e tente recarregar a página.";
+    kitsContainer.appendChild(p);
   }
+}
+
+// Função para instanciar os botões de kits selecionados
+function criarBotaoKit(rotulo, cor, corHover, aoClicar) {
+  const botaoKit = document.createElement("button");
+  botaoKit.classList.add("botao-kit");
+  botaoKit.textContent = `${rotulo}`;
+  botaoKit.style.backgroundColor = `${cor}`
+
+  botaoKit.addEventListener("mouseover", () => {
+    botaoKit.style.backgroundColor = `${corHover}`;
+  });
+
+  botaoKit.addEventListener("mouseout", () => {
+    botaoKit.style.backgroundColor = `${cor}`;
+  });
+
+  botaoKit.addEventListener("click", aoClicar)
+
+  return botaoKit;
 }
 
 //==========================
