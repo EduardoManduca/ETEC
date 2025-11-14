@@ -1,14 +1,21 @@
 {
+  "name": "etec",
+  "version": "1.0.0",
+  "description": "Sistema de agendamento de laboratórios, controle de estoque e kits da ETEC.",
+  "main": "backend.js",
   "scripts": {
-    "start": "nodemon BackEnd/backend.js"
+    "start": "node backend.js",
+    "dev": "nodemon backend.js"
   },
   "dependencies": {
-    "bcrypt": "^6.0.0",
+    "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
-    "dotenv": "^17.2.3",
-    "express": "^5.1.0",
-    "mongoose": "^8.19.2",
-    "mongoose-unique-validator": "^4.0.1",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mongoose": "^8.4.3",
+    "mongoose-unique-validator": "^4.0.1"
+  },
+  "devDependencies": {
     "nodemon": "^3.1.10"
   }
 }

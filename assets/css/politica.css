@@ -6,7 +6,6 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 40px;
     line-height: 1.7;
-    /* CORREÇÃO: Aplicando a variável da fonte definida no seu root */
     font-family: var(--font-primary);
     color: #222;
 }

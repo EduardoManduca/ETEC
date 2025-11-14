@@ -34,7 +34,7 @@ async function carregarEstoque() {
             containerBusca.className = "container-busca";
             containerBusca.innerHTML = `
                 <input type="text" class="input-busca-estoque" id="search-${tipo}" placeholder="Buscar ${tipo}...">
-                <img src="/images/lupa.png" class="icone-busca" alt="Buscar">
+                <img src="/assets/images/lupa.png" class="icone-busca" alt="Buscar">
             `;
 
             //==========================
@@ -110,7 +110,6 @@ async function carregarEstoque() {
 //==========================
 
 function ativarBusca(tipo) {
-    // ... (código original sem alteração)
     const searchInput = document.getElementById(`search-${tipo}`);
     const tabela = document.getElementById(`tabela-${tipo}`);
 
@@ -128,7 +127,6 @@ function ativarBusca(tipo) {
 //==========================
 
 async function excluirItem(tipo, nome) {
-    // ... (código original sem alteração)
     if (!confirm(`Tem certeza que deseja excluir "${nome}" do estoque de ${tipo}?`)) return;
 
     try {

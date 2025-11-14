@@ -161,7 +161,7 @@ async function carregarKits() {
       let isKitSelecionado = kitElemento.classList.contains("kit-selecionado");
 
       kitElemento.addEventListener("mouseover", () => {
-        if(!isKitSelecionado) {
+        if (!isKitSelecionado) {
           kitElemento.style.backgroundColor = "var(--cinza-hover)";
           kitElemento.style.cursor = "pointer";
         }
@@ -173,14 +173,14 @@ async function carregarKits() {
       });
 
       kitElemento.addEventListener("click", () => {
-        
-        if(!isKitSelecionado) {
+
+        if (!isKitSelecionado) {
           console.log("teste")
           kitElemento.style.backgroundColor = "white";
           kitElemento.style.cursor = "default";
           kitElemento.classList.add("kit-selecionado");
           isKitSelecionado = true;
-          
+
           const kitCabecalho = document.createElement("h3");
           kitCabecalho.style.marginTop = "10px";
           kitCabecalho.textContent = "Informações do kit:";
@@ -197,7 +197,7 @@ async function carregarKits() {
             const atributoCabecalho = document.createElement("h4");
             atributoCabecalho.textContent = atributo;
             atributoElemento.appendChild(atributoCabecalho);
-            
+
             kit[atributo].forEach(atributoItem => {
               const atributoItemElemento = document.createElement("p");
               atributoItemElemento.style.marginTop = "0px"
@@ -208,7 +208,7 @@ async function carregarKits() {
 
           });
 
-          const botaoAdicionar = criarBotaoKit("Adicionar", "var(--concluido)", "var(--verde-base)", () => {});
+          const botaoAdicionar = criarBotaoKit("Adicionar", "var(--concluido)", "var(--verde-base)", () => { });
 
           const botaoCancelar = criarBotaoKit("Cancelar", "var(--vermelho-base)", "var(--vermelho-escuro-10)", (evento) => {
             kitElemento.innerHTML = kit.nomeKit;
@@ -234,8 +234,10 @@ async function carregarKits() {
     kitsContainer.appendChild(p);
   }
 }
-
+// ========================================================
 // Função para instanciar os botões de kits selecionados
+// ========================================================
+
 function criarBotaoKit(rotulo, cor, corHover, aoClicar) {
   const botaoKit = document.createElement("button");
   botaoKit.classList.add("botao-kit");

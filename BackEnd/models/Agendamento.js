@@ -1,23 +1,4 @@
 const mongoose = require("mongoose");
-const { ItemSchema } = require("./Item.js");
-
-//==========================
-// SCHEMA DE ESTOQUE
-//==========================
-const EstoqueSchema = new mongoose.Schema({
-  reagentes: { type: [ItemSchema], default: [] }, // lista de reagentes
-  vidrarias: { type: [ItemSchema], default: [] }, // lista de vidrarias
-  materiais: { type: [ItemSchema], default: [] }, // lista de materiais
-  atualizadoEm: { type: Date, default: Date.now } // timestamp da última atualização
-});
-
-//==========================
-// EXPORTAÇÃO DO MODELO DE ESTOQUE
-// Evitar sobrescrita
-//==========================
-
-module.exports = mongoose.models.Estoque || mongoose.model("Estoque", EstoqueSchema);
-
 
 //==========================
 // SCHEMA DE AGENDAMENTO
@@ -46,12 +27,10 @@ const AgendamentoSchema = new mongoose.Schema({
 //==========================
 
 // expira documentos após 24h
-AgendamentoSchema.index({ createdAt: 1 }, { expireAfterSeconds: 60 * 60 * 24 });
+// AgendamentoSchema.index({ createdAt: 1 }, { expireAfterSeconds: 60 * 60 * 24 });
+// Comentado caso não seja desejado
 
-// ========================================
 // Garante que não haja conflito de agendamento no mesmo laboratório, data e horário
-// ========================================
-
 AgendamentoSchema.index({ laboratorio: 1, data: 1, horario: 1 }, { unique: true });
 
 // Modificado para evitar sobrescrita
