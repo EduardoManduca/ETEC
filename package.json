@@ -2,10 +2,10 @@
   "name": "etec",
   "version": "1.0.0",
   "description": "Sistema de agendamento de laboratórios, controle de estoque e kits da ETEC.",
-  "main": "backend.js",
+  "main": "BackEnd/index.js",
   "scripts": {
-    "start": "node backend.js",
-    "dev": "nodemon backend.js"
+    "start": "node BackEnd/index.js",
+    "dev": "nodemon BackEnd/index.js"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",

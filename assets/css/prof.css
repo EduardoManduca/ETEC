@@ -427,7 +427,6 @@ textarea {
    ========================================================= */
 #container-principal {
     justify-content: center;
-    flex-wrap: wrap;
     display: flex;
     padding: 10px;
     width: 100%;
@@ -437,10 +436,107 @@ textarea {
 #formulario {
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
-    width: 50%;
+    flex: 1 0 60%;
     gap: 30px;
-    min-width: 655px;
+}
+
+#laboratorio-div {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+    font-weight: bold;
+    gap: 10px;
+}
+
+.formulario-grupo {
+    width: 100%;
+    max-width: 200px;
+}
+
+.grupo {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+#container-principal h2,
+.grupo h2 {
+    margin: 0;
+    padding: 0;
+    color: #005C6D;
+}
+
+.item-entry-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.item-box {
+    flex: 1 1 100%;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+    padding: 15px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.item-box h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    text-align: center;
+    color: #1A6C7C;
+}
+
+.item-box-input {
+    display: flex;
+    gap: 10px;
+}
+
+.item-box-nome {
+    flex: 1 1 70%;
+}
+
+.item-box-quantidade {
+    flex: 1 1 30%;
+    max-width: 200px;
+}
+
+.item-box label {
+    font-weight: normal;
+    color: #333;
+    margin-top: 10px;
+    display: inline;
+}
+
+.form-input-text {
+    background-color: #eeeeee;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    padding: 10px;
+    font-size: 1em;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.item-buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+    gap: 8px;
+}
+
+.btn-add {
+    width: 100%;
+    height: 30%;
+    border: none;
+    border-radius: 16px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: var(--vermelho-base);
 }
 
 #kits-secao {
@@ -509,23 +605,21 @@ textarea {
     border: 1px solid #dddddd;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
     border-radius: 10px;
-    min-width: 300px;
-    max-width: 95%;
-    flex-grow: 1;
+    flex: 1 1 40%;
 }
 
-.div-search-botao {
-    background-image: url("../../images/plus-solid-full.svg");
-    background-size: cover;
-    height: 80%;
-    aspect-ratio: 1 / 1;
-    cursor: pointer;
-
+.subselecao {
+    background-color: white;
+    border: 1px solid var(--cinza-claro);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
 }
 
-#reagentes-input,
-#materiais-input {
-    display: flex;
+.subselecao p {
+    color: white;
+    margin: 0;
 }
 
 .botao-agendamento {
@@ -570,58 +664,10 @@ textarea {
     transform: scale(0.97);
 }
 
-.subselecao {
-    background-color: white;
-    border: 1px solid var(--cinza-claro);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    margin: 10px;
-    padding: 10px;
-    border-radius: 10px;
-}
-
-.subselecao p {
-    color: white;
-    margin: 0;
-}
-
 .summary-item {
     background-color: white;
     border: 1px solid black;
     border-radius: 10px;
-}
-
-#laboratorio-div {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    width: 100%;
-    font-weight: bold;
-    gap: 10px;
-}
-
-.formulario-grupo {
-    width: 100%;
-    max-width: 200px;
-}
-
-.grupo {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-}
-
-#container-principal h2,
-.grupo h2 {
-    margin: 0;
-    padding: 0;
-    color: #005C6D;
-}
-
-#div-search {
-    display: flex;
-    justify-content: space-between;
-    gap: 40px;
 }
 
 /* =========================================================
@@ -842,77 +888,6 @@ textarea {
     border-color: #b20000;
     outline: none;
     box-shadow: 0 0 0 2px rgba(178, 0, 0, 0.2);
-}
-
-.item-entry-container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 30px;
-    margin-top: 20px;
-    margin-bottom: 0px;
-}
-
-.item-box {
-    flex: 1;
-    border: 1px solid #dddddd;
-    min-width: min(400px, 50%);
-    border-radius: 5px;
-    padding: 15px;
-    background-color: #ffffff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-}
-
-.input-pesquisa {
-    position: relative;
-    padding-left: 30px;
-    background: url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/svgs/solid/search.svg') no-repeat 8px center;
-    background-size: 14px;
-}
-
-.item-box h3 {
-    margin-top: 0;
-    margin-bottom: 15px;
-    text-align: center;
-    color: #1A6C7C;
-}
-
-.item-box label {
-    font-weight: normal;
-    color: #333;
-    margin-top: 10px;
-    display: block;
-}
-
-.form-input-text {
-    background-color: #eeeeee;
-    border: 1px solid #cccccc;
-    border-radius: 4px;
-    padding: 10px;
-    font-size: 1em;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.item-buttons {
-    display: flex;
-    justify-content: center;
-    margin-top: 15px;
-    gap: 8px;
-}
-
-.btn-add {
-    width: 100%;
-    height: 30%;
-    border: none;
-    border-radius: 16px;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-.btn-add {
-    background-color: #B20000;
 }
 
 /* =========================================================
