@@ -145,7 +145,6 @@ async function excluirItem(tipo, nome) {
 //==========================
 
 async function adicionarItem(tipo) {
-    // ... (código original sem alteração)
     const itemInput = document.getElementById(`novoItem-${tipo}`);
     const qtdInput = document.getElementById(`novaQtd-${tipo}`);
     const unidadeInput = document.getElementById(`novaUnidade-${tipo}`);
@@ -179,7 +178,6 @@ async function adicionarItem(tipo) {
 //==========================
 
 async function atualizarQuantidade(tipo, nome) {
-    // ... (código original sem alteração)
     const input = document.getElementById(`${tipo}-${nome}`);
     const quantidade = Number(input.value);
 

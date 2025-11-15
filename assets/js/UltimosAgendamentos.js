@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     //==========================
     // Verificar se há agendamentos
     //==========================
+    
     if (!agendamentos.length) {
       corpoTabela.innerHTML = `<tr class="empty-row"><td colspan="5" style="text-align:center;">Nenhum agendamento recente.</td></tr>`;
       return;

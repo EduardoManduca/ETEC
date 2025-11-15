@@ -1,7 +1,9 @@
 const Kit = require("../models/Kit.js");
 const Estoque = require("../models/Estoque.js");
 
-// --- Criar Kit ---
+// ===============================
+// Criar Kit
+// ===============================
 exports.createKit = async (req, res) => {
     try {
         const {
@@ -17,7 +19,7 @@ exports.createKit = async (req, res) => {
             return res.status(400).json({ error: "O campo 'nomeKit' é obrigatório." });
         if (!usuario)
             return res.status(400).json({ error: "ID do usuário é obrigatório." });
-
+        // Filtrar itens inválidos (nome vazio ou quantidade <= 0)
         const reagentesValidos = reagentes
             .filter(i => i.nome && i.nome.trim() !== "" && i.quantidade > 0)
             .map(i => ({ nome: i.nome.trim(), quantidade: i.quantidade, unidade: i.unidade || "" }));
@@ -48,7 +50,9 @@ exports.createKit = async (req, res) => {
     }
 };
 
-// --- Listar Kits ---
+// ===============================
+// Listar Kits
+// ===============================
 exports.getKits = async (req, res) => {
     try {
         const { apenasAutorizados } = req.query;
@@ -60,7 +64,10 @@ exports.getKits = async (req, res) => {
     }
 };
 
-// --- Atualizar Status do Kit ---
+// ===============================
+// Atualizar Status do Kit
+// ===============================
+
 exports.updateKitStatus = async (req, res) => {
     try {
         const { status } = req.body;
@@ -126,7 +133,10 @@ exports.updateKitStatus = async (req, res) => {
     }
 };
 
-// --- Excluir Kit ---
+// ===============================
+// Excluir Kit
+// ===============================
+
 exports.deleteKit = async (req, res) => {
     try {
         const kit = await Kit.findById(req.params.id);

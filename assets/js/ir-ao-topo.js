@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (footerTop < windowHeight + 25) {
             btnTopo.style.bottom = `${windowHeight - footerTop + 25}px`;
-            btnTopo.style.animation = "quicar 1.5s infinite"; // Pequeno efeito de quicar
+            btnTopo.style.animation = "quicar 1.5s infinite"; // Animação de quicar 1.5s
         } else {
             btnTopo.style.bottom = '25px';
             btnTopo.style.animation = "none";

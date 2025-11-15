@@ -72,11 +72,10 @@ async function alterarStatus(id, statusAtual, btn) {
         });
 
         if (resp.ok) {
-            // Atualiza botão
-            btn.classList.remove("autorizado", "solicitado");
-            btn.classList.add(novoStatus);
-            btn.textContent = novoStatus === "autorizado" ? "Reprovar" : "Autorizar";
-            btn.setAttribute("onclick", `alterarStatus('${id}', '${novoStatus}', this)`);
+            btn.classList.remove("autorizado", "solicitado"); // Remove ambas as classes
+            btn.classList.add(novoStatus); // Adiciona a nova classe
+            btn.textContent = novoStatus === "autorizado" ? "Reprovar" : "Autorizar"; // Atualiza o texto do botão
+            btn.setAttribute("onclick", `alterarStatus('${id}', '${novoStatus}', this)`); // Atualiza o onclick com o novo status
         } else {
             const err = await resp.json();
             alert("Erro ao alterar status: " + (err.error || "Tente novamente"));
@@ -108,7 +107,4 @@ async function excluirKit(id) {
     }
 }
 
-// =====================
-// Carregar kits ao abrir a página
-// =====================
-carregarKits();
+carregarKits(); // Carrega kits ao iniciar a página

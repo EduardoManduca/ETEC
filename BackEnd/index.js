@@ -3,29 +3,36 @@ const express = require("express");
 const cors = require("cors");
 const connectDB = require("./config/db");
 
+//=======================================
 // Importar rotas
-const authRoutes = require("./routes/authRoutes");
+//=======================================
+
+const authRoutes = require("./routes/authRoutes"); 
 const usuarioRoutes = require("./routes/usuarioRoutes");
 const agendamentoRoutes = require("./routes/agendamentoRoutes");
 const kitRoutes = require("./routes/kitRoutes");
 const estoqueRoutes = require("./routes/estoqueRoutes");
 const historicoRoutes = require("./routes/historicoRoutes");
 
-// Conectar ao banco de dados
-connectDB();
+
+connectDB(); // Conectar ao banco de dados
 
 const app = express();
 
+// =======================================
 // Middlewares
+// =======================================
+
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// --- Rota principal ---
-app.get("/", (req, res) => res.send("Servidor online!"));
+app.get("/", (req, res) => res.send("Servidor online!")); // Rota raiz para teste
 
-// --- Usar rotas ---
-// Deixei os prefixos de rota aqui para manter os caminhos originais
+// =======================================
+// Usar rotas
+// =======================================
+
 app.use("/", authRoutes); // Contém /signup e /login
 app.use("/usuarios", usuarioRoutes);
 app.use("/agendamentos", agendamentoRoutes);

@@ -2,11 +2,14 @@ const Agendamento = require("../models/Agendamento.js");
 const Estoque = require("../models/Estoque.js");
 const { converterHorarioParaMinutos } = require("../utils/horario.js");
 
-// --- Criar Agendamento ---
+// =====================================
+// Criar Agendamento
+// =====================================
+
 exports.createAgendamento = async (req, res) => {
-    const DURACAO_SLOT_EM_MINUTOS = 60;
+    const DURACAO_SLOT_EM_MINUTOS = 60; 
     try {
-        const { laboratorio, data, horario, ...restoDoBody } = req.body;
+        const { laboratorio, data, horario, ...restoDoBody } = req.body; // Desestruturar o corpo da requisição
 
         const novoInicioMinutos = converterHorarioParaMinutos(horario);
         if (novoInicioMinutos === -1)
@@ -28,7 +31,7 @@ exports.createAgendamento = async (req, res) => {
             if (existenteInicioMinutos === -1) continue;
             const existenteFimMinutos = existenteInicioMinutos + DURACAO_SLOT_EM_MINUTOS;
 
-            if (novoInicioMinutos < existenteFimMinutos && novoFimMinutos > existenteInicioMinutos)
+            if (novoInicioMinutos < existenteFimMinutos && novoFimMinutos > existenteInicioMinutos) // Verifica sobreposição
                 return res.status(409).json({
                     error: `Horário indisponível. Já existe uma reserva às ${agendamento.horario} neste laboratório.`
                 });
@@ -40,7 +43,6 @@ exports.createAgendamento = async (req, res) => {
             horario,
             ...restoDoBody
         });
-
         await novoAgendamento.save();
 
         const estoque = await Estoque.findOne();
@@ -79,7 +81,10 @@ exports.createAgendamento = async (req, res) => {
     }
 };
 
-// --- Listar Agendamentos ---
+// =====================================
+// Listar Agendamentos
+// =====================================
+
 exports.getAgendamentos = async (req, res) => {
     try {
         const agendamentos = await Agendamento.find({})

@@ -53,10 +53,11 @@ document.querySelector(".login-form").addEventListener("submit", async (e) => {
         void barra.offsetWidth; // reinicia animação
         barra.style.animation = "esvaziar 5s linear forwards";
 
+
         //==========================
         // Ocultar mensagem após 5 segundos
         //==========================
-
+        
         setTimeout(() => {
             mensagem.style.opacity = "0";
             setTimeout(() => {
@@ -67,11 +68,6 @@ document.querySelector(".login-form").addEventListener("submit", async (e) => {
         }, 5000);
 
     } catch (err) {
-
-        //==========================
-        // Tratar erros de conexão
-        //==========================
-
         console.error("Erro ao enviar a requisição:", err);
         texto.textContent = "❌ Erro de conexão com o servidor.";
         mensagem.className = "cadastrar-check erro";

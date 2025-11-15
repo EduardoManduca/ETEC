@@ -20,13 +20,11 @@ async function logincheck() {
 
         const resultado = await resposta.json();
 
-        // Verifica se houve erro no login
         if (!resposta.ok) {
             mostrarErro(resultado.error || "Erro no login.");
             return;
         }
 
-        // Salva userId no localStorage somente se vier correto
         if (resultado.usuario && resultado.usuario._id) {
             localStorage.setItem("userId", resultado.usuario._id);
         } else {
@@ -53,6 +51,10 @@ async function logincheck() {
         console.error(err);
     }
 
+    // ==================================================
+    // Funções para mostrar mensagens de erro e sucesso
+    // ==================================================
+    
     function mostrarErro(msg) {
         errorMessage.style.display = "block";
         errorMessage.style.color = "#f32a2a";

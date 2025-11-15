@@ -20,9 +20,9 @@ function toggleTheme() {
   });
 }
 
-//==========================
-// TAMANHOS DE FONTE
-//==========================
+// ==========================
+// Guarda tamanhos originais de fonte
+// ==========================
 
 function guardarTamanhosOriginais() {
   document.querySelectorAll("body *").forEach(el => {
@@ -33,8 +33,11 @@ function guardarTamanhosOriginais() {
   });
 }
 
+// ==========================
+// Atualiza tamanhos de fonte
+// ========================== 
+
 function atualizarTamanhos() {
-  // Ajusta os tamanhos com base no nível atual
   tamanhosOriginais.forEach((tamanhoOriginal, el) => {
     const novoTamanho = tamanhoOriginal * (1 + incremento * nivel);
     el.style.fontSize = `${novoTamanho}px`;
@@ -79,14 +82,16 @@ function addTableRow() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Carrega tema salvo
-  const savedTheme = localStorage.getItem("theme");
+  const savedTheme = localStorage.getItem("theme"); // Recupera tema salvo
   if (savedTheme === "dark") document.body.classList.add("dark-mode");
 
   // Guarda tamanhos originais após renderizar
   requestAnimationFrame(() => guardarTamanhosOriginais());
 
+  // ===========================
   // Evento: aumentar texto
+  // ===========================
+
   if (botaoAumentar) {
     botaoAumentar.addEventListener("click", () => {
       if (nivel < maxNivel) {
@@ -96,7 +101,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // ===========================
   // Evento: diminuir texto
+  // ===========================
 
   if (botaoDiminuir) {
     botaoDiminuir.addEventListener("click", () => {

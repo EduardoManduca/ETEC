@@ -2,6 +2,10 @@ const express = require("express");
 const router = express.Router();
 const historicoController = require("../controllers/historicoController");
 
-router.get("/", historicoController.getHistoricoMateriais);
+//=======================================
+// Rota para histórico de materiais
+//=======================================
+
+router.get("/", historicoController.getHistoricoMateriais);  // Rota para obter todo o histórico de materiais
 
 module.exports = router;

@@ -12,5 +12,4 @@ const EstoqueSchema = new mongoose.Schema({
   atualizadoEm: { type: Date, default: Date.now }
 });
 
-// Verifica se o modelo já existe
 module.exports = mongoose.models.Estoque || mongoose.model("Estoque", EstoqueSchema);

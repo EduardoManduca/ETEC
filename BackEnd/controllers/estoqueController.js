@@ -1,6 +1,9 @@
 const Estoque = require("../models/Estoque.js");
 
-// --- Obter Estoque ---
+// ==================================
+// Obter Estoque
+// ==================================
+
 exports.getEstoque = async (req, res) => {
     try {
         let estoque = await Estoque.findOne();
@@ -14,7 +17,10 @@ exports.getEstoque = async (req, res) => {
     }
 };
 
-// --- Adicionar Item ao Estoque ---
+// ==================================
+// Adicionar Item ao Estoque
+// =================================
+
 exports.addEstoqueItem = async (req, res) => {
     try {
         const { tipo } = req.params;
@@ -46,7 +52,10 @@ exports.addEstoqueItem = async (req, res) => {
     }
 };
 
-// --- Atualizar Item do Estoque ---
+// ==================================
+// Atualizar Item do Estoque
+// ==================================
+
 exports.updateEstoqueItem = async (req, res) => {
     try {
         const { tipo, nome } = req.params;
@@ -73,7 +82,10 @@ exports.updateEstoqueItem = async (req, res) => {
     }
 };
 
-// --- Excluir Item do Estoque ---
+// ==================================
+// Deletar Item do Estoque
+// ==================================
+
 exports.deleteEstoqueItem = async (req, res) => {
     try {
         const { tipo, nome } = req.params;
@@ -100,11 +112,14 @@ exports.deleteEstoqueItem = async (req, res) => {
     }
 };
 
-// --- Apagar TODO o estoque ---
+// ==================================
+// Apagar Todo o Estoque
+// ==================================
+
 exports.deleteAllEstoque = async (req, res) => {
     try {
         const estoque = await Estoque.findOne();
-        if (!estoque) return res.status(404).json({ error: "Estoque não encontrado." });
+        if (!estoque) return res.status(404).json({ error: "Estoque não encontrado." }); 
 
         estoque.reagentes = [];
         estoque.vidrarias = [];

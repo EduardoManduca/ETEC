@@ -1,7 +1,11 @@
 const bcrypt = require("bcrypt");
 const Usuario = require("../models/Usuarios.js");
 
-// --- Cadastro de usuário ---
+
+// ================================
+// Cadastro de usuário
+// ================================
+
 exports.signup = async (req, res) => {
     try {
         const { login, password, funcao } = req.body;
@@ -23,7 +27,10 @@ exports.signup = async (req, res) => {
     }
 };
 
-// --- Login ---
+// ================================
+// Login de usuário
+// ================================
+
 exports.login = async (req, res) => {
     try {
         const { login, password } = req.body;

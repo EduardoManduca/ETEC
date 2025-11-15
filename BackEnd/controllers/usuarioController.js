@@ -1,7 +1,10 @@
 const bcrypt = require("bcrypt");
 const Usuario = require("../models/Usuarios.js");
 
-// --- Listar usuários ---
+// ===============================
+// Listar usuários
+// ===============================
+
 exports.getUsuarios = async (req, res) => {
     try {
         const usuarios = await Usuario.find({}, "-password");
@@ -11,7 +14,10 @@ exports.getUsuarios = async (req, res) => {
     }
 };
 
-// --- Atualizar usuário ---
+// ===============================
+// Atualizar usuário
+// ===============================  
+
 exports.updateUsuario = async (req, res) => {
     try {
         const { login, password, funcao } = req.body;
@@ -32,7 +38,9 @@ exports.updateUsuario = async (req, res) => {
     }
 };
 
-// --- Excluir usuário ---
+// ===============================
+// Excluir usuário
+// ===============================
 exports.deleteUsuario = async (req, res) => {
     try {
         await Usuario.findByIdAndDelete(req.params.id);

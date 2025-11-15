@@ -2,26 +2,23 @@ const reagentesContainer = document.getElementById("reagentes-container");
 const materiaisContainer = document.getElementById("materiais-container");
 const vidrariasContainer = document.getElementById("vidrarias-container");
 
-//==========================
-// Variáveis de estoque
-//==========================
 
 let estoqueReagentes = [];
 let estoqueMateriais = [];
-let estoqueVidrarias = []; // CORRIGIDO: Usando 'vidrarias'
+let estoqueVidrarias = [];
 
-//==========================
-// Carregar estoque do backend
-//==========================
+
+// ==========================
+// Carregar Estoque
+// ===========================  
 
 async function carregarEstoque() {
     try {
         const resp = await fetch("http://localhost:5000/estoque");
         const estoque = await resp.json();
-
         estoqueReagentes = estoque.reagentes || [];
         estoqueMateriais = estoque.materiais || [];
-        estoqueVidrarias = estoque.vidrarias || []; // CORRIGIDO: Busca 'vidrarias'
+        estoqueVidrarias = estoque.vidrarias || [];
     } catch (err) {
         console.error("Erro ao carregar estoque:", err);
         alert("Não foi possível carregar o estoque!");
@@ -29,9 +26,10 @@ async function carregarEstoque() {
 }
 carregarEstoque();
 
-//==========================
-// Atualizar painel lateral (mostra o que está sendo montado)
-//==========================
+
+//=================================
+// Atualizar painel lateral do kit
+//=================================
 
 function atualizarPainelLateralKit() {
     const listaMateriais = document.getElementById("lista-materiais");
@@ -52,7 +50,6 @@ function atualizarPainelLateralKit() {
         return `${nome} (${qtd} ${unidade})`;
     });
 
-    // CORRIGIDO: Vidrarias
     const vidrarias = [...document.querySelectorAll(".vidraria-nome")].map((el, i) => {
         const qtd = document.querySelectorAll(".vidraria-qtd")[i].value || 0;
         const nome = el.value || "—";
@@ -134,7 +131,6 @@ function criarVidrariaItem(nome, qtd) {
 
 document.getElementById("add-reagente").addEventListener("click", () => criarReagenteItem());
 document.getElementById("add-material").addEventListener("click", () => criarMaterialItem());
-// CORRIGIDO: Chama a função correta para Vidrarias
 document.getElementById("add-equip").addEventListener("click", () => criarVidrariaItem());
 
 //==========================
@@ -176,7 +172,6 @@ document.getElementById("btn-kit-sol").addEventListener("click", async () => {
 
     const reagentes = coletarItens(".reagente-nome", ".reagente-qtd");
     const materiais = coletarItens(".material-nome", ".material-qtd");
-    // CORRIGIDO: Coleta Vidrarias
     const vidrarias = coletarItens(".vidraria-nome", ".vidraria-qtd");
 
     if (reagentes.length + materiais.length + vidrarias.length === 0)
@@ -193,7 +188,6 @@ document.getElementById("btn-kit-sol").addEventListener("click", async () => {
 
     verificarEstoque(reagentes, estoqueReagentes, "reagente");
     verificarEstoque(materiais, estoqueMateriais, "material");
-    // CORRIGIDO: Verifica estoque de Vidrarias
     verificarEstoque(vidrarias, estoqueVidrarias, "vidraria");
 
     const data = {

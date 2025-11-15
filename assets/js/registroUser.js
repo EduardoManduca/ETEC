@@ -8,7 +8,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const btnSalvar = document.getElementById("salvar-usuario");
     const btnFechar = document.getElementById("fechar-modal");
 
-    // --- Abre modal preenchendo campos ---
+    // ==============================
+    // Abre modal preenchendo campos
+    // ==============================
     function abrirModal(usuario) {
         inputId.value = usuario._id;
         inputLogin.value = usuario.login;
@@ -17,13 +19,19 @@ document.addEventListener("DOMContentLoaded", () => {
         modal.style.display = "flex"; // flex centraliza o modal
     }
 
-    // --- Fecha modal ---
+    // ================
+    // Fecha modal
+    // ================
+
     btnFechar.addEventListener("click", () => modal.style.display = "none");
     window.addEventListener("click", (event) => {
         if (event.target === modal) modal.style.display = "none";
     });
 
-    // --- Salvar alterações ---
+    // ==============================
+    // Salva alterações do usuário
+    // ==============================
+
     btnSalvar.addEventListener("click", async () => {
         const id = inputId.value;
         const login = inputLogin.value.trim();
@@ -46,7 +54,10 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // --- Carregar usuários na tabela ---
+    // ================================
+    // Carregar usuários na tabela
+    // ================================
+
     async function carregarUsuarios() {
         try {
             const resposta = await fetch("http://localhost:5000/usuarios");
@@ -68,17 +79,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 `;
                 tbody.appendChild(tr);
 
-                // Editar usuário: abre modal preenchido
-                tr.querySelector(".btn-editar").addEventListener("click", () => abrirModal(u));
-                // Excluir usuário
-                tr.querySelector(".btn-excluir").addEventListener("click", () => excluirUsuario(u._id));
+                tr.querySelector(".btn-editar").addEventListener("click", () => abrirModal(u));              // Editar usuário: abre modal preenchido
+                tr.querySelector(".btn-excluir").addEventListener("click", () => excluirUsuario(u._id));     // Excluir usuário
             });
         } catch (err) {
             console.error("Erro ao carregar usuários:", err);
         }
     }
 
-    // --- Excluir usuário ---
+    // ==============================
+    // Excluir usuário
+    // ==============================
     async function excluirUsuario(id) {
         if (!confirm("Deseja realmente excluir este usuário?")) return;
         try {
@@ -89,6 +100,5 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // Inicializa tabela
-    carregarUsuarios();
+    carregarUsuarios(); // Carrega usuários ao iniciar a página
 });

@@ -262,13 +262,8 @@ function criarBotaoKit(rotulo, cor, corHover, aoClicar) {
 //==========================
 
 document.addEventListener('DOMContentLoaded', () => {
-  carregarKits();
-
-  // ================================================================
-  // Carrega o estoque em cache assim que a página abre
-  // ================================================================
-
-  carregarEstoque();
+  carregarKits(); // Carrega os kits disponíveis ao abrir a página
+  carregarEstoque(); // Carrega o estoque em cache assim que a página abre
 
   document.querySelectorAll('.item-box').forEach(itemBox => {
     const nomeInput = itemBox.querySelector('.form-input-text:nth-of-type(1)');
@@ -277,27 +272,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const tipoH3 = itemBox.querySelector('h3');
     if (!tipoH3) return;
 
-    const tipo = tipoH3.textContent.toLowerCase(); // 'reagentes' 'materias' e 'vidrarias'
+    const tipo = tipoH3.textContent.toLowerCase(); // 'reagentes', 'vidrarias' ou 'materiais'
 
-    // ========================================
-    // Mostrar sugestões ao focar (clicar)
-    // ========================================
 
     nomeInput.addEventListener('focus', () => {
       mostrarSugestoes(nomeInput, tipo);
     });
 
-    // ========================================
-    // Filtrar sugestões ao digitar
-    // ========================================
-
     nomeInput.addEventListener('input', () => {
       mostrarSugestoes(nomeInput, tipo);
     });
 
-    // ========================================
-    // Fechar sugestões ao sair do campo
-    // ========================================
     nomeInput.addEventListener('blur', () => {
       setTimeout(() => {
         removerSugestoesExistentes();
@@ -312,7 +297,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.querySelectorAll('.btn-add').forEach(button => {
     button.addEventListener('click', (event) => {
-      // ... (Seu código original, sem alterações)
       event.preventDefault();
       const itemBox = event.target.closest('.item-box');
       const nomeInput = itemBox.querySelector('.form-input-text:nth-of-type(1)');
@@ -372,7 +356,6 @@ document.addEventListener('DOMContentLoaded', () => {
   //==========================
 
   document.querySelectorAll('.btn-remove').forEach(button => {
-    // ... (Seu código original, sem alterações - se você tiver esse botão)
     button.addEventListener('click', (event) => {
       event.preventDefault();
       const itemBox = event.target.closest('.item-box');
@@ -386,8 +369,7 @@ document.addEventListener('DOMContentLoaded', () => {
 //==========================
 
 document.getElementById("btn-lab-conf").addEventListener("click", async (event) => {
-  // ... (Seu código original, sem alterações)
-  event.preventDefault();
+  event.preventDefault(); // Previne o envio padrão do formulário
 
   const userId = localStorage.getItem("userId");
   if (!userId) {
@@ -422,7 +404,7 @@ document.getElementById("btn-lab-conf").addEventListener("click", async (event) 
     materiais,
     usuario: userId
   };
-
+  // Envia a requisição para a API
   try {
     const res = await fetch(`${protocolo}${baseURL}/agendamentos`, {
       method: "POST",

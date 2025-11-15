@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let tipoSelecionado = "todos";
 
     //==========================
-    // Normaliza strings para comparação
+    // Função para normalizar texto
     //==========================
 
     function normalizar(texto = "") {
@@ -89,9 +89,9 @@ document.addEventListener("DOMContentLoaded", () => {
             .trim();
     }
 
-    //==========================
-    // Dicionário de sinônimos para tipos
-    //==========================
+    // ============================
+    // Sinônimos para tipos de itens
+    //==============================
 
     const sinonimos = {
         todos: ["todos", ""],

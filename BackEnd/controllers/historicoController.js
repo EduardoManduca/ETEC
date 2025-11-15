@@ -1,15 +1,19 @@
 const Kit = require("../models/Kit.js");
 
+// ==================================
+// Obter Histórico de Materiais
+// ==================================
+
 exports.getHistoricoMateriais = async (req, res) => {
     try {
         const kits = await Kit.find({ status: "autorizado" })
             .sort({ updatedAt: -1 })
-            .populate("usuario", "login"); // Popula o usuário para pegar o login
+            .populate("usuario", "login"); // Popula apenas o campo 'login' do usuário
 
         const historico = [];
 
         kits.forEach(kit => {
-            const data = kit.updatedAt || kit.createdAt || new Date();
+            const data = kit.updatedAt || kit.createdAt || new Date(); // Data do histórico
 
             const adicionarAoHistorico = (itens, tipo) => {
                 if (!itens) return;
