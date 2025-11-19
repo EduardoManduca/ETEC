@@ -175,7 +175,6 @@ async function carregarKits() {
       kitElemento.addEventListener("click", () => {
 
         if (!isKitSelecionado) {
-          console.log("teste")
           kitElemento.style.backgroundColor = "white";
           kitElemento.style.cursor = "default";
           kitElemento.classList.add("kit-selecionado");
@@ -208,12 +207,11 @@ async function carregarKits() {
 
           });
 
-          const botaoAdicionar = criarBotaoKit("Adicionar", "var(--concluido)", "var(--verde-base)", () => { });
+          const botaoAdicionar = criarBotaoKit("Adicionar", "var(--concluido)", "var(--verde-base)", () => {});
 
           const botaoCancelar = criarBotaoKit("Cancelar", "var(--vermelho-base)", "var(--vermelho-escuro-10)", (evento) => {
             kitElemento.innerHTML = kit.nomeKit;
             kitElemento.classList.remove("kit-selecionado");
-            // kitElemento.style.cursor = "default";
             isKitSelecionado = false;
             evento.stopPropagation();
           });
@@ -267,10 +265,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.querySelectorAll('.item-box').forEach(itemBox => {
     const nomeInput = itemBox.querySelector('.form-input-text:nth-of-type(1)');
-    if (!nomeInput) return;
-
     const tipoH3 = itemBox.querySelector('h3');
-    if (!tipoH3) return;
 
     const tipo = tipoH3.textContent.toLowerCase(); // 'reagentes', 'vidrarias' ou 'materiais'
 
@@ -299,8 +294,9 @@ document.addEventListener('DOMContentLoaded', () => {
     button.addEventListener('click', (event) => {
       event.preventDefault();
       const itemBox = event.target.closest('.item-box');
-      const nomeInput = itemBox.querySelector('.form-input-text:nth-of-type(1)');
-      const qtdInput = itemBox.querySelector('.form-input-text:nth-of-type(2)');
+      const inputs = itemBox.querySelectorAll(".form-input-text");
+      const nomeInput = inputs[0];
+      const qtdInput = inputs[1];
 
       const nome = nomeInput.value.trim();
       const quantidade = qtdInput.value.trim();
