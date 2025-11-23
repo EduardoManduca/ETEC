@@ -207,8 +207,8 @@ async function carregarKits() {
 
           });
 
-          const botaoAdicionar = criarBotaoKit("Adicionar", "var(--concluido)", "var(--verde-base)", () => {});
-
+          const botaoAdicionar = criarBotaoKit("Adicionar", "#000000", "#333333", () => { });
+          
           const botaoCancelar = criarBotaoKit("Cancelar", "var(--vermelho-base)", "var(--vermelho-escuro-10)", (evento) => {
             kitElemento.innerHTML = kit.nomeKit;
             kitElemento.classList.remove("kit-selecionado");

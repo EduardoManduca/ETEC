@@ -70,8 +70,8 @@
             <li class="li-nav-bar"></li>
         </ul>
     </nav>
+
     <main>
-        <!-- VLibras Widget -->
         <div vw class="enabled">
             <div vw-access-button class="active"></div>
             <div vw-plugin-wrapper>
@@ -83,17 +83,29 @@
         <script>
             new window.VLibras.Widget('https://vlibras.gov.br/app');
         </script>
+
         <div id="login">
             <h2 id="titulo-login">Login</h2>
-            <p id="paragrafo-login">Por favor, insira seu ID e senha para acessar sua conta.</p>
-            <label for="username" class="title-login">ID / Nome:</label>
-            <input type="text" id="username" name="username" placeholder="Insira seu ID/Nome" class="cadastro">
-            <label for="password" class="title-login">Senha:</label>
-            <input type="text" id="password" name="password" placeholder="Insira sua senha" class="cadastro">
-            <div id="errorMessage">Nome de usuário ou senha incorretos.</div><br>
-            <input type="button" value="Entrar" id="enter" onclick="logincheck()">
-            <input type="button" value="Cancelar" id="cancel"
-                onclick="window.location.href='/code/Code_Tela_Inicial.html'"> <!--Botão Cancelar-->
+            <p id="paragrafo-login">Por favor, insira suas credenciais para acessar.</p>
+
+            <div class="input-group">
+                <label for="username" class="title-login">ID / Nome:</label>
+                <input type="text" id="username" name="username" placeholder="Digite seu usuário" class="cadastro">
+            </div>
+
+            <div class="input-group">
+                <label for="password" class="title-login">Senha:</label>
+                <input type="password" id="password" name="password" placeholder="Digite sua senha" class="cadastro">
+            </div>
+
+            <div id="errorMessage">Nome de usuário ou senha incorretos.</div>
+
+            <div class="button-container">
+                <button type="button" id="enter" onclick="logincheck()">Entrar</button>
+                <button type="button" id="cancel"
+                    onclick="window.location.href='/code/Code_Tela_Inicial.html'">Cancelar</button>
+            </div>
+
             <div class="login-links">
                 <a href="politica-de-privacidade.html" target="_blank">Política de Privacidade</a>
                 <span>|</span>
@@ -101,8 +113,10 @@
             </div>
         </div>
     </main>
+
     <button id="btnTopo"></button>
     <script src="/assets/js/ir-ao-topo.js"></script>
+
     <footer id="footer">
         <a href="https://www.sp.gov.br/sp">
             <img id="img-rodape" src="/assets/images/logo-sp.png" alt="">
@@ -110,7 +124,6 @@
     </footer>
     <script src="/assets/js/LoginUser.js"></script>
     <script src="/assets/js/script.js"></script>
-    </div>
 
 </body>
 
