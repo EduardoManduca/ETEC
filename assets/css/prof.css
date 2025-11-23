@@ -627,6 +627,29 @@ textarea {
     margin: 0;
 }
 
+.subselecao h4 {
+    text-transform: capitalize;
+    color: var(--azul-base);
+}
+
+.kit-adicionado {
+    background-color: white; 
+    border: 1px solid var(--cinza-claro);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    margin: 5px;
+    padding: 10px;
+    border-radius: 10px
+}
+
+.remover-kit-btn {
+    background-color: var(--cancelado);
+    cursor: pointer;
+    color: white;
+    float: right;
+    padding: 2px 6px;
+    border-radius: 2px;
+}
+
 .botao-agendamento {
     padding: 2.5px;
     display: inline;

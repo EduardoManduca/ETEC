@@ -190,7 +190,7 @@ async function carregarKits() {
 
             const atributoElemento = document.createElement("div");
             atributoElemento.style.marginTop = "5px";
-            atributoElemento.class = "kit-atributo";
+            atributoElemento.classList.add(kit-atributo);
             kitElemento.appendChild(atributoElemento);
 
             const atributoCabecalho = document.createElement("h4");
@@ -207,8 +207,49 @@ async function carregarKits() {
 
           });
 
-          const botaoAdicionar = criarBotaoKit("Adicionar", "#000000", "#333333", () => { });
-          
+          const botaoAdicionar = criarBotaoKit("Adicionar", "var(--concluido)", "var(--verde-base)", async () => {
+            const subselecaoKitElemento = document.querySelector("#kits");
+            kitAdicionadoElemento = document.createElement("div");
+            kitAdicionadoElemento.classList.add("kit-adicionado");
+            subselecaoKitElemento.appendChild(kitAdicionadoElemento);
+            
+            const kitNomeElemento = document.createElement("h3");
+            kitNomeElemento.textContent = kit.nomeKit;
+            const botaoDevolverKit = document.createElement("span");
+            botaoDevolverKit.classList.add("remover-kit-btn");
+            botaoDevolverKit.textContent = "X";
+            kitNomeElemento.appendChild(botaoDevolverKit);
+
+            botaoDevolverKit.addEventListener("click", () => {
+              kitAdicionadoElemento.remove();
+              kitElemento.style.display = "block";
+              kitElemento.innerHTML = kit.nomeKit;
+              kitElemento.classList.remove("kit-selecionado");
+              isKitSelecionado = false;
+            });
+            
+            kitAdicionadoElemento.appendChild(kitNomeElemento);
+
+            kitAtributos.forEach(atributo => {
+              const atributoCabecalhoElemento = document.createElement("h4");
+              atributoCabecalhoElemento.textContent = `${atributo}`;
+              kitAdicionadoElemento.appendChild(atributoCabecalhoElemento);
+
+              kit[atributo].forEach(atributoItem => {
+                const atributoItemElemento = document.createElement("div");
+                atributoItemElemento.classList.add("summary-item");
+
+                const atributoItemTexto = document.createElement("span");
+                atributoItemTexto.textContent = `${atributoItem.nome} ${atributoItem.quantidade} ${atributoItem.unidade}`
+                atributoItemElemento.appendChild(atributoItemTexto);
+                
+                kitAdicionadoElemento.appendChild(atributoItemElemento);
+              });
+            });
+
+            kitElemento.style.display = "none";
+          });
+
           const botaoCancelar = criarBotaoKit("Cancelar", "var(--vermelho-base)", "var(--vermelho-escuro-10)", (evento) => {
             kitElemento.innerHTML = kit.nomeKit;
             kitElemento.classList.remove("kit-selecionado");
@@ -325,7 +366,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const tipo = itemBox.querySelector('h3').textContent.toLowerCase();
       let destinationBox;
-      if (tipo === 'reagentes') destinationBox = document.querySelector('#reagente');
+      if (tipo === 'reagentes') destinationBox = document.querySelector('#reagentes');
       else if (tipo === 'vidrarias') destinationBox = document.querySelector('#vidrarias');
       else if (tipo === 'materiais') destinationBox = document.querySelector('#materiais')
       else return;
@@ -378,7 +419,7 @@ document.getElementById("btn-lab-conf").addEventListener("click", async (event) 
   const horario = document.querySelector('input[name="datetime"]').value;
   const kitSelecionado = document.querySelector("#select-kit").value;
 
-  const reagentes = getItemsFromSummaryBox('#reagente');
+  const reagentes = getItemsFromSummaryBox('#reagentes');
   const vidrarias = getItemsFromSummaryBox('#vidrarias');
   const materiais = getItemsFromSummaryBox('#materiais')
   if (!laboratorio || !dataStr || !horario) {
