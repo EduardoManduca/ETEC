@@ -1,8 +1,8 @@
-/* ================================
+﻿/* ================================
    TECNICO.CSS — versão responsiva
    ================================ */
 
-/* ===== Geral ===== */
+
 .div-painel-tecnico {
     background: #fff;
     text-align: center;
@@ -34,12 +34,18 @@
 .btn-editar,
 .btn-excluir {
     color: white;
-    padding: 5px;
-    width: 70px;
     transition: transform 0.2s ease;
     cursor: pointer;
     border: 0;
-    border-radius: 5px;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 6px 12px;
+    min-width: 110px;
+    height: 36px;
+    font-weight: 700;
 }
 
 .btn-editar:hover {
@@ -81,7 +87,7 @@
     justify-self: center;
 }
 
-/* ===== Estoque técnico ===== */
+
 .div-painel-tecnico-es {
     background: #d4d1d1;
     text-align: left;
@@ -251,7 +257,7 @@
     background-color: #7E0000;
 }
 
-/* ===== Tela Técnico ===== */
+
 #main-div-TelaTecnico {
     display: flex;
     justify-content: space-between;
@@ -290,14 +296,14 @@
    RESPONSIVIDADE
    ================================ */
 
-/* Breakpoint maior para pegar tablets em modo retrato e celulares */
+
 @media (max-width: 768px) {
     #main-div-TelaTecnico {
         padding: 15px;
         gap: 20px;
     }
 
-    /* Faz os contêineres principais ocuparem 100% da largura */
+
     #container-telatecnico,
     .container-painel {
         width: 100%;
@@ -306,23 +312,23 @@
 
     .container-painel {
         grid-template-columns: 1fr;
-        /* Força uma única coluna */
+
     }
 
     .div-painel-tecnico-es {
         width: 100%;
-        /* Ocupa 100% */
+
         padding: 15px;
     }
 
     .material-inputs {
         width: 90%;
-        /* Ocupa 90% */
+
         padding: 15px;
     }
 
-    /* === CORREÇÃO DA TABELA === */
-    /* Aplica a rolagem em qualquer tabela nesta página */
+
+
     table,
     .tabela-estoque {
         display: block;
@@ -350,33 +356,92 @@
     transition: background-color 0.3s, transform 0.2s;
 }
 
-/* Status autorizado: verde */
+
+.btn-status {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #fff;
+    transition: background-color 0.3s, transform 0.2s;
+    background-color: #000;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-width: 110px;
+    height: 36px;
+    margin-right: 8px;
+}
+
 .btn-status.autorizado {
-    background-color: #141414;
-    /* verde */
+    background-color: black;
+    /* Reprovar: vermelho */
 }
 
-/* Status solicitado: amarelo */
 .btn-status.solicitado {
-    background-color: #3ACF1F;
-    color: white;
+    background-color: transparent;
+    border: 1px solid black;
+    color: black;
 }
 
-/* Hover */
+
 .btn-status:hover {
     transform: scale(1.05);
     opacity: 0.9;
 }
 
-/* Desativado ou temporariamente bloqueado */
+/* Espaçamento entre ícone e texto nos botões de ação */
+.btn-status i,
+.btn-excluir i {
+    margin-right: 6px;
+}
+
+
 .btn-status:disabled {
     background-color: #ccc;
     cursor: not-allowed;
     color: #666;
 }
 
+/* =============================
+   Ajustes de tabela para melhor exibição
+   ============================= */
+.tabela-estoque,
+#tabela-kits-materiais,
+.tabela-estoque table {
+    width: 100%;
+    max-width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
 
-/* Ajustes finos para celulares bem pequenos */
+.tabela-estoque th,
+.tabela-estoque td,
+#tabela-kits-materiais th,
+#tabela-kits-materiais td {
+    padding: 12px 10px;
+    text-align: left;
+    vertical-align: middle;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Em telas pequenas, permita quebra para evitar overflow extremo */
+@media (max-width: 768px) {
+
+    .tabela-estoque th,
+    .tabela-estoque td,
+    #tabela-kits-materiais th,
+    #tabela-kits-materiais td {
+        white-space: normal;
+    }
+}
+
+
+
 @media (max-width: 480px) {
     #main-div-TelaTecnico {
         padding: 10px;

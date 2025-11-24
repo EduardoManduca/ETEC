@@ -1,10 +1,11 @@
-/* =========================================================
-   PROF.css — Tela de Professor e Agendamento
-   ========================================================= */
+﻿/* =========================================================
+   PROF.css — Tela de Professor e Agendamento
+   ========================================================= */
 
 /* ============================
-Painel lateral  MontarKit
- ============================*/
+   Painel lateral  MontarKit
+   ============================*/
+
 .painel-lateral {
     width: 300px;
     background: #fff;
@@ -46,8 +47,8 @@ Painel lateral  MontarKit
 }
 
 /* ================================================
-Conteúdo principal 
-===================================================*/
+   Conteúdo principal 
+   ===================================================*/
 
 .form-container {
     flex: 1;
@@ -66,7 +67,6 @@ Conteúdo principal
     border-radius: 5px;
     cursor: pointer;
     font-weight: 600;
-
 }
 
 .btn-add-kit:hover {
@@ -93,7 +93,7 @@ Conteúdo principal
     cursor: pointer;
 }
 
-/* ===== Campos de busca e entrada ===== */
+
 .campo-search {
     background-color: #D9D9D9;
     display: block;
@@ -121,7 +121,7 @@ Conteúdo principal
     margin-top: 0;
 }
 
-/* ===== Tela Professor ===== */
+
 .container-servicos {
     display: flex;
     justify-content: center;
@@ -157,7 +157,7 @@ Conteúdo principal
     margin: 0 10px;
 }
 
-/* ===== Botões de serviço ===== */
+
 .botao-servicos {
     background-color: var(--vermelho-base);
     border: none;
@@ -174,7 +174,7 @@ Conteúdo principal
     cursor: pointer;
 }
 
-/* ===== Toast (notificações flutuantes) ===== */
+
 .toast {
     position: fixed;
     top: 20px;
@@ -234,7 +234,7 @@ Conteúdo principal
     }
 }
 
-/* ===== Barra e imagens ===== */
+
 .barra-container {
     width: 95%;
     height: 10px;
@@ -251,8 +251,8 @@ Conteúdo principal
 }
 
 /* =========================================================
-   Montar Kit
-   ========================================================= */
+   Montar Kit
+   ========================================================= */
 #montar-kit-main {
     display: flex;
     justify-content: center;
@@ -323,7 +323,7 @@ textarea {
     min-height: 90px;
 }
 
-/* ===== Botões ===== */
+
 .btn-add {
     background: #BA1A1A;
     justify-content: center;
@@ -354,7 +354,7 @@ textarea {
     transform: translateY(-1px);
 }
 
-/* ===== Itens ===== */
+
 .item {
     background: #f7f8fa;
     padding: 15px;
@@ -384,7 +384,6 @@ textarea {
     background: #c62828;
 }
 
-/* ===== Botões finais ===== */
 .botoes-container {
     display: flex;
     justify-content: center;
@@ -425,8 +424,8 @@ textarea {
 }
 
 /* =========================================================
-   Agendamento Professor
-   ========================================================= */
+   Agendamento Professor
+   ========================================================= */
 #container-principal {
     justify-content: center;
     display: flex;
@@ -544,10 +543,13 @@ textarea {
     background-color: var(--vermelho-base);
 }
 
+/* =========================================================
+   SEÇÃO DE KITS (Lista e Detalhes)
+   ========================================================= */
+
 #kits-secao {
     display: flex;
     flex-direction: column;
-    background-color: black;
     background-color: #ffffff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
     border: 1px solid #dddddd;
@@ -558,49 +560,225 @@ textarea {
 
 #kits-secao h3 {
     color: var(--azul-base);
-
 }
 
 #kits-container {
     position: relative;
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-direction: column;
+    /* Alterado para coluna para melhor lista */
+    gap: 15px;
+    margin-top: 10px;
 }
 
+/* Card individual do Kit */
 .kit-elemento {
-    background-color: #ffffff;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    cursor: pointer;
+    transition: all 0.2s ease;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    border: 1px solid #dddddd;
-    border-radius: 10px;
-    height: fit-content;
-    word-break: break-all;
-    padding: 5px 12px;
-    margin: 5px;
 }
 
+.kit-elemento:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-color: #b20000;
+}
+
+/* Estado Expandido */
 .kit-selecionado {
-    width: 100%;
+    border-color: #b20000;
+    background-color: #fff9f9;
+    cursor: default;
 }
 
 .kit-elemento h4 {
+    margin: 0 0 5px 0;
+    color: #333;
+    font-size: 1.1rem;
     text-transform: capitalize;
 }
 
-.botao-kit {
-    display: inline-block;
-    width: 100%;
-    height: fit-content;
-    padding: 12px 10px;
-    color: white;
-    border-radius: 16px;
+.kit-elemento h3 {
+    font-size: 1rem;
+    color: #b20000;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+/* Improved kit card styles */
+.kit-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 14px;
+}
+
+.kit-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.kit-title {
+    margin: 0;
+    font-size: 1.05rem;
+    color: var(--azul-base);
+}
+
+.kit-meta .kit-count {
+    font-size: 0.85rem;
+    color: #666;
+    background: rgba(0,0,0,0.03);
+    padding: 4px 8px;
+    border-radius: 999px;
+}
+
+.kit-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.kit-item {
+    font-size: 0.9rem;
+    color: #333;
+    background: rgba(242,242,242,0.6);
+    padding: 8px;
+    border-radius: 6px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.kit-card-footer {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.kit-actions .botao-kit {
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-weight: 600;
     border: none;
-    font-size: 16px;
+    cursor: pointer;
+}
+
+.add-kit-btn {
+    background: var(--vermelho-base);
+    color: white;
+}
+
+.details-btn {
+    background: #f3f3f3;
+    color: #333;
+}
+
+.kit-detalhes {
+    margin-top: 10px;
+    padding: 12px;
+    border-radius: 8px;
+    background: #fafafa;
+    border: 1px solid #eee;
+}
+
+.kit-selecionado {
+    border-color: #b20000;
+    background-color: #fff9f9;
+}
+
+/* Estilo para lista de atributos (Reagentes/Vidrarias) dentro do card */
+.atributo-wrapper {
+    margin-bottom: 10px;
+    padding: 8px;
+    background: rgba(0, 0, 0, 0.03);
+    border-radius: 6px;
+}
+
+.atributo-wrapper h4 {
+    font-size: 0.95rem;
+    margin-bottom: 3px;
+    color: #005C6D;
+}
+
+/* =========================================================
+   BOTÕES DE KIT (Centralizados)
+   ========================================================= */
+
+/* Container Flex para centralizar os botões */
+.botoes-kit-container {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
     margin-top: 15px;
+    width: 100%;
+}
+
+/* Estilo Base do Botão */
+.botao-kit {
+    flex: 1;
+    /* Faz botões ocuparem espaço igual */
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 0.9rem;
+    text-align: center;
+    transition: background 0.3s ease, transform 0.2s ease;
 }
 
 .botao-kit:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+/* =========================================================
+   KIT ESCOLHIDO (Seleção Final)
+   ========================================================= */
+
+.kit-adicionado {
+    background: #fff;
+    border: 2px solid #005C6D;
+    /* Borda Azul para destaque */
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.4s ease;
+}
+
+.kit-adicionado h3 {
+    color: #005C6D;
+}
+
+.remover-kit-btn {
+    background: #b20000;
+    color: white;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
     cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+    float: right;
+    /* Garante que fique no canto */
+}
+
+.remover-kit-btn:hover {
+    background: #7e0000;
+    transform: scale(1.1);
 }
 
 #itens-selecao {
@@ -630,24 +808,6 @@ textarea {
 .subselecao h4 {
     text-transform: capitalize;
     color: var(--azul-base);
-}
-
-.kit-adicionado {
-    background-color: white; 
-    border: 1px solid var(--cinza-claro);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    margin: 5px;
-    padding: 10px;
-    border-radius: 10px
-}
-
-.remover-kit-btn {
-    background-color: var(--cancelado);
-    cursor: pointer;
-    color: white;
-    float: right;
-    padding: 2px 6px;
-    border-radius: 2px;
 }
 
 .botao-agendamento {
@@ -694,13 +854,18 @@ textarea {
 
 .summary-item {
     background-color: white;
-    border: 1px solid black;
-    border-radius: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 8px 12px;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 /* =========================================================
-   ESTOQUE — Layout em Colunas
-   ========================================================= */
+   ESTOQUE — Layout em Colunas
+   ========================================================= */
 
 #conteudo-estoque {
     padding: 1.5rem;
@@ -712,7 +877,7 @@ textarea {
     background-color: #f9f9f9;
 }
 
-/* ====== SEÇÃO ====== */
+
 .secao-estoque {
     background: #fff;
     border-radius: 14px;
@@ -731,7 +896,7 @@ textarea {
     transform: translateY(-3px);
 }
 
-/* ====== CABEÇALHO ====== */
+
 .cabecalho-estoque {
     display: flex;
     flex-direction: column;
@@ -746,7 +911,7 @@ textarea {
     font-weight: 600;
 }
 
-/* ====== FORM ====== */
+
 .form-adicionar {
     display: flex;
     justify-content: center;
@@ -768,7 +933,7 @@ textarea {
     border-color: #b20000;
 }
 
-/* ====== BOTÃO ====== */
+
 .btn-salvar {
     background-color: #b20000;
     color: white;
@@ -800,7 +965,7 @@ textarea {
     transform: scale(1.03);
 }
 
-/* ====== TABELA ====== */
+
 .tabela-estoque {
     width: 100%;
     border-collapse: collapse;
@@ -826,28 +991,31 @@ textarea {
     color: #333;
 }
 
-/*==============================
- CSS para Caixa de Sugestões
-================================= */
+/* ==============================
+   Caixa de Sugestões (Autocomplete)
+   ============================== */
 
 .sugestao-box {
     position: absolute;
     background-color: #ffffff;
     border: 1px solid #cccccc;
     border-top: none;
-    max-height: 180px;
+    max-height: 200px;
     overflow-y: auto;
     z-index: 1001;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 0 0 4px 4px;
+    border-radius: 0 0 6px 6px;
+    width: 100%;
+    /* Ajusta ao tamanho do input pai */
 }
 
-.sugestao-item,
-.sugestao-item-none {
+.sugestao-item {
     padding: 10px 12px;
     cursor: pointer;
     font-size: 0.9em;
     border-bottom: 1px solid #f0f0f0;
+    color: #333;
+    transition: background 0.2s;
 }
 
 .sugestao-item:last-child {
@@ -856,11 +1024,15 @@ textarea {
 
 .sugestao-item:hover {
     background-color: #f5f5f5;
+    color: #b20000;
 }
 
 .sugestao-item-none {
+    padding: 10px;
     color: #888888;
     cursor: default;
+    font-style: italic;
+    font-size: 0.9em;
 }
 
 .input-qtd {
@@ -877,10 +1049,10 @@ textarea {
 }
 
 /* =========================================================
-   ESTOQUE — Busca com Ícone
-   ========================================================= */
+   ESTOQUE — Busca com Ícone
+   ========================================================= */
 
-/* Container para o input de busca com ícone */
+
 .container-busca {
     position: relative;
     width: 95%;
@@ -888,7 +1060,7 @@ textarea {
     margin: 25px;
 }
 
-/* ícone de lupa */
+
 .icone-busca {
     position: absolute;
 
@@ -901,7 +1073,7 @@ textarea {
     opacity: 0.7;
 }
 
-/* input de busca */
+
 .input-busca-estoque {
     width: 100%;
     padding: 8px 38px 8px 12px;
@@ -919,8 +1091,8 @@ textarea {
 }
 
 /* =========================================================
-   Responsividade
-   ========================================================= */
+   Responsividade
+   ========================================================= */
 
 @media (max-width: 768px) {
 
@@ -931,7 +1103,7 @@ textarea {
 
     .painel-lateral {
         display: none;
-        /* esconde painel lateral */
+
     }
 
     .nav-bar {
@@ -963,7 +1135,7 @@ textarea {
         padding: 30px 20px;
     }
 
-    /* Agendamento */
+
     #container-principal {
         flex-direction: column;
         align-items: center;
@@ -992,7 +1164,7 @@ textarea {
         gap: 15px;
     }
 
-    /* Estoque */
+
     .secao-estoque {
         width: 100%;
         min-width: unset;
@@ -1016,7 +1188,7 @@ textarea {
     }
 }
 
-/* ===== Celulares pequenos ===== */
+
 @media (max-width: 480px) {
 
     .btn-solicitar,

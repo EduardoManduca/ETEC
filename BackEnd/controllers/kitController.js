@@ -1,5 +1,6 @@
 const Kit = require("../models/Kit.js");
 const Estoque = require("../models/Estoque.js");
+const Historico = require("../models/Historico.js");
 
 // ===============================
 // Criar Kit
@@ -116,6 +117,43 @@ exports.updateKitStatus = async (req, res) => {
             if (erro) return res.status(400).json({ error: erro });
             estoque.atualizadoEm = new Date();
             await estoque.save();
+            // Salvar no histórico os itens usados pelo kit autorizado
+            try {
+                const now = new Date();
+                const estoque = await Estoque.findOne();
+                const findUnitInEstoque = (nome) => {
+                    if (!estoque) return '';
+                    const tipos = ['reagentes', 'vidrarias', 'materiais'];
+                    for (const t of tipos) {
+                        const item = (estoque[t] || []).find(e => e.nome && e.nome.trim().toLowerCase() === String(nome).trim().toLowerCase());
+                        if (item && item.unidade) return item.unidade;
+                    }
+                    return '';
+                };
+
+                const docs = [];
+                const pushItens = (lista, tipo) => {
+                    if (!lista || !Array.isArray(lista)) return;
+                    lista.forEach(i => {
+                        docs.push({
+                            data: now,
+                            professor: kit.usuario || 'Desconhecido',
+                            nome: i.nome,
+                            quantidade: i.quantidade || 0,
+                            unidade: i.unidade || findUnitInEstoque(i.nome) || '',
+                            tipo: tipo,
+                            source: 'kit',
+                            referenceId: kit._id
+                        });
+                    });
+                };
+                pushItens(kit.reagentes, 'reagente');
+                pushItens(kit.vidrarias, 'vidraria');
+                pushItens(kit.materiais, 'material');
+                if (docs.length) await Historico.insertMany(docs);
+            } catch (errH) {
+                console.warn('Falha ao salvar histórico do kit autorizado:', errH.message || errH);
+            }
         } else if (kit.status === "autorizado" && status !== "autorizado") {
             atualizarEstoque(kit.reagentes, "reagentes", "devolver");
             atualizarEstoque(kit.vidrarias, "vidrarias", "devolver");

@@ -1,4 +1,6 @@
 const Kit = require("../models/Kit.js");
+const Agendamento = require("../models/Agendamento.js");
+const Historico = require("../models/Historico.js");
 
 // ==================================
 // Obter Histórico de Materiais
@@ -6,37 +8,30 @@ const Kit = require("../models/Kit.js");
 
 exports.getHistoricoMateriais = async (req, res) => {
     try {
-        const kits = await Kit.find({ status: "autorizado" })
-            .sort({ updatedAt: -1 })
-            .populate("usuario", "login"); // Popula apenas o campo 'login' do usuário
-
-        const historico = [];
-
-        kits.forEach(kit => {
-            const data = kit.updatedAt || kit.createdAt || new Date(); // Data do histórico
-
-            const adicionarAoHistorico = (itens, tipo) => {
-                if (!itens) return;
-                itens.forEach(i => {
-                    historico.push({
-                        data,
-                        professor: kit.usuario && kit.usuario.login ? kit.usuario.login : "Usuário desconhecido",
-                        material: i.nome,
-                        quantidade: i.quantidade,
-                        unidade: i.unidade || "",
-                        tipo
-                    });
-                });
-            };
-
-            adicionarAoHistorico(kit.reagentes, "reagente");
-            adicionarAoHistorico(kit.vidrarias, "vidraria");
-            adicionarAoHistorico(kit.materiais, "material");
-        });
-
-        res.json(historico);
+        const registros = await Historico.find({ deleted: { $ne: true } }).sort({ data: -1 }).lean();
+        return res.json(registros);
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: "Erro ao buscar histórico de materiais." });
+    }
+};
+
+// ==========================
+// Apagar histórico de materiais
+// ==========================
+exports.deleteHistoricoMateriais = async (req, res) => {
+    try {
+        const ids = Array.isArray(req.body && req.body.ids) ? req.body.ids : null;
+
+        if (ids && ids.length) {
+            const result = await Historico.updateMany({ _id: { $in: ids.map(id => id) } }, { $set: { deleted: true } });
+            return res.json({ message: `Marcou ${result.modifiedCount || result.nModified || 0} registro(s) do histórico como apagado.` });
+        }
+
+        const result = await Historico.updateMany({ deleted: { $ne: true } }, { $set: { deleted: true } });
+        return res.json({ message: `Marcou ${result.modifiedCount || result.nModified || 0} registro(s) do histórico como apagado.` });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Erro ao apagar histórico de materiais." });
     }
 };

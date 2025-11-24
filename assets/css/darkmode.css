@@ -1,314 +1,222 @@
-/* =========================================================
-   DARKMODE.css — Tema escuro refinado e responsivo
-   ========================================================= */
+﻿/* =========================================================
+   DARKMODE.CSS
+   ========================================================= */
 
-/* ====== Cores base do modo escuro ====== */
 body.dark-mode {
-    --fundo-base: #121212;
-    --fundo-secundario: #1E1E1E;
-    --fundo-terciario: #2A2A2A;
-    --borda-suave: #3A3A3A;
-    --texto-base: #E0E0E0;
-    --texto-claro: #B0B0B0;
-    --texto-destaque: #A0CFFD;
-    --vermelho-base: #FFB4AB;
-    --vermelho-escuro: #7E0000;
-    --azul-base: #A0CFFD;
-    --azul-hover: #C5E6FF;
-    --sombra-suave: rgba(255, 255, 255, 0.15);
-    background-color: var(--fundo-base);
-    color: var(--texto-base);
-    transition: background-color 0.3s ease, color 0.3s ease;
+    --branco: #1e1e1e;
+    --prata-base: #121212;
+    --cinza-claro: #333333;
+    --cinza-hover: #2c2c2c;
+    --cinza-texto-base: #e0e0e0;
+    --input-bg: #2d2d2d;
+    --input-border: #444444;
+
+    /* Cores de destaque */
+    --azul-base: #4dd0e1;
+    --vermelho-base: #b20000;
+    --vermelho-escuro-10: #7e0000;
+
+    --sombra-padrao: 0 4px 20px rgba(0, 0, 0, 0.7);
 }
 
-/* ====== Títulos ====== */
+/* ================================
+   ESTRUTURA GERAL E HEADER
+   ================================ */
+
+body.dark-mode {
+    background-color: var(--prata-base);
+    color: var(--cinza-texto-base);
+}
+
+body.dark-mode header,
+body.dark-mode .secao-estoque {
+    background-color: var(--branco);
+}
+
+body.dark-mode .topo-logos,
+body.dark-mode #cabecalho-geral {
+    background-color: var(--prata-base);
+}
+
+body.dark-mode p {
+    color: white;
+}
+
+body.dark-mode #botoes-agend-lab {
+    background-color: var(--prata-base) !important;
+    border: 0 !important;
+}
+
+body.dark-mode #btn-lab-conf {
+    background-color: #f32a2a !important;
+    border: 0 !important;
+}
+
+body.dark-mode #btn-lab-cancelar {
+    background-color: transparent !important;
+    color: white !important;
+    box-shadow: none !important;
+}
+
 body.dark-mode h1,
 body.dark-mode h2,
 body.dark-mode h3,
-body.dark-mode .h1-div-servicos,
-body.dark-mode #servicos-h2 {
-    color: var(--azul-base);
+body.dark-mode h4,
+body.dark-mode h5,
+body.dark-mode strong,
+body.dark-mode label,
+body.dark-mode .dleft,
+body.dark-mode .titulo-login {
+    color: #005C6D !important;
 }
 
-/* ====== Divisores ====== */
-body.dark-mode hr {
-    border-color: var(--borda-suave);
+/* ================================
+   FOOTER
+   ================================ */
+
+body.dark-mode footer {
+    background-color: #050505 !important;
+    border-top: 1px solid #333;
+    color: #cccccc !important;
 }
 
-/* ====== Navbar ====== */
-body.dark-mode .nav-bar {
-    background: var(--fundo-secundario);
-    border-bottom: 1px solid var(--borda-suave);
-    box-shadow: 0 2px 5px var(--sombra-suave);
+/* ================================
+   TELA DE AGENDAMENTO
+   ================================ */
+
+body.dark-mode #container-principal,
+body.dark-mode #kits-secao,
+body.dark-mode #itens-selecao,
+body.dark-mode .kit-elemento,
+body.dark-mode .kit-adicionado,
+body.dark-mode .subselecao {
+    background-color: var(--branco) !important;
+    border-color: #333 !important;
+    color: var(--cinza-texto-base) !important;
+    box-shadow: var(--sombra-padrao);
 }
 
-body.dark-mode .li-nav-bar {
-    border-left: 1px solid var(--borda-suave);
+body.dark-mode #kits-secao h3,
+body.dark-mode .kit-elemento h4 {
+    color: var(--azul-base) !important;
 }
 
-body.dark-mode .li-nav-bar:last-child {
-    border-right: 1px solid var(--borda-suave);
+body.dark-mode .subselecao p {
+    color: #eee !important;
 }
 
-body.dark-mode .li-nav-bar:hover {
-    background-color: var(--fundo-terciario);
+body.dark-mode .btn-status.autorizado {
+    background-color: #000;
+    border: 1px solid #444;
 }
 
-body.dark-mode .a-nav-bar {
-    color: var(--texto-base);
-    transition: color 0.2s ease;
-}
+/* ================================
+   INPUTS E FORMULÁRIOS
+   ================================ */
 
-body.dark-mode .a-nav-bar:hover {
-    color: var(--azul-hover);
-}
-
-/* ====== Barra de busca ====== */
-body.dark-mode .br-pesq,
-body.dark-mode #search-input {
-    background: var(--fundo-secundario);
-    color: var(--texto-base);
-    border: 1px solid var(--borda-suave);
-    padding: 0.5rem;
-    border-radius: 4px;
-}
-
-body.dark-mode #search-input:focus {
-    outline: 2px solid var(--azul-base);
-}
-
-body.dark-mode .search-button {
-    background-color: var(--vermelho-base);
-    color: var(--fundo-base);
-    font-weight: 600;
-    border: none;
-    padding: 0.6rem 1rem;
-    border-radius: 4px;
-    transition: all 0.3s ease;
-}
-
-body.dark-mode .search-button:hover {
-    background-color: var(--vermelho-escuro);
-    color: #fff;
-}
-
-/* ====== Texto do topo ====== */
-body.dark-mode #texto-topo-gsp {
-    color: var(--texto-claro);
-}
-
-/* ====== Controles de acessibilidade ====== */
-body.dark-mode .controles-acessibilidade button {
-    border: 2px solid var(--texto-base);
-    color: var(--texto-base);
-    background: transparent;
-    transition: all 0.3s ease;
-    border-radius: 4px;
-}
-
-body.dark-mode .controles-acessibilidade button:hover {
-    background-color: var(--fundo-terciario);
-}
-
-/* ====== Ícones de mídias ====== */
-body.dark-mode .img-midias {
-    filter: invert(100%);
-    opacity: 0.85;
-    transition: opacity 0.3s ease;
-}
-
-body.dark-mode .img-midias:hover {
-    opacity: 1;
-}
-
-/* ====== Containers de serviços ====== */
-body.dark-mode .div-servicos,
-body.dark-mode .div-servicos-2 {
-    background: var(--fundo-secundario);
-    color: var(--texto-base);
-    box-shadow: 0 2px 5px var(--sombra-suave);
-    border-radius: 8px;
-    padding: 1rem;
-    transition: background 0.3s ease, color 0.3s ease;
-}
-
-/* ====== Botões ====== */
-body.dark-mode .botao-servicos,
-body.dark-mode button {
-    background-color: var(--vermelho-base);
-    color: var(--fundo-base);
-    border: none;
-    padding: 0.6rem 1.2rem;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: 600;
-    transition: all 0.3s ease;
-}
-
-body.dark-mode .botao-servicos:hover,
-body.dark-mode button:hover {
-    background-color: var(--vermelho-escuro);
-    color: #fff;
-}
-
-/* ====== Inputs e Textareas ====== */
 body.dark-mode input,
+body.dark-mode select,
 body.dark-mode textarea,
-body.dark-mode select {
-    background-color: var(--fundo-terciario);
-    color: var(--texto-base);
-    border: 1px solid var(--borda-suave);
-    border-radius: 4px;
-    padding: 0.5rem;
-    width: 100%;
-    transition: border-color 0.3s ease;
+body.dark-mode .cadastro,
+body.dark-mode .input-pesquisa,
+body.dark-mode .form-input-text,
+body.dark-mode .campo-search {
+    background-color: var(--input-bg) !important;
+    border: 1px solid var(--input-border) !important;
+    color: #fff !important;
 }
 
 body.dark-mode input:focus,
-body.dark-mode textarea:focus,
-body.dark-mode select:focus {
-    outline: none;
-    border-color: var(--azul-base);
+body.dark-mode select:focus,
+body.dark-mode textarea:focus {
+    border-color: var(--vermelho-base) !important;
+    background-color: #303030 !important;
+    box-shadow: 0 0 5px rgba(178, 0, 0, 0.4);
 }
 
-/* ====== Tabelas ====== */
-body.dark-mode table {
-    width: 100%;
-    border-collapse: collapse;
-    background-color: var(--fundo-secundario);
-    border-radius: 6px;
-    overflow: hidden;
-    box-shadow: 0 2px 4px var(--sombra-suave);
+/* ================================
+    TABELAS E LISTAS
+   ================================ */
+
+body.dark-mode table,
+body.dark-mode .tabela-estoque {
+    background-color: var(--branco);
+    color: #e0e0e0;
 }
 
 body.dark-mode thead {
-    background-color: var(--fundo-terciario);
-    color: var(--azul-hover);
-    text-transform: uppercase;
-    font-size: 0.9rem;
+    background-color: #8a0000;
+    color: #ffffff;
 }
 
 body.dark-mode th,
 body.dark-mode td {
-    border: 1px solid var(--borda-suave);
-    padding: 0.7rem;
-    text-align: left;
-    transition: background-color 0.2s ease;
+    border-bottom: 1px solid #333;
+    color: white;
 }
 
+body.dark-mode .tabela-estoque tr:nth-child(even),
 body.dark-mode tbody tr:nth-child(even) {
-    background-color: #181818;
+    background-color: #262626 !important;
 }
 
-body.dark-mode tbody tr:hover {
-    background-color: var(--fundo-terciario);
+body.dark-mode tr:hover {
+    background-color: rgba(12, 12, 12, 0.596) !important;
 }
 
-/* ====== Rodapé ====== */
-body.dark-mode footer {
-    background-color: #000;
-    padding: 1rem;
-    color: var(--texto-claro);
-    text-align: center;
-    border-top: 1px solid var(--borda-suave);
+body.dark-mode .painel-lateral,
+body.dark-mode .painel-lateral li {
+    background-color: var(--branco);
+    color: #ddd;
+    border-color: #333;
 }
 
-/* ====== Botão de limpar pesquisa ====== */
-body.dark-mode .clear-search {
-    color: var(--texto-claro);
-    cursor: pointer;
+body.dark-mode .painel-lateral li:hover {
+    background-color: #333;
 }
 
-body.dark-mode .clear-search:hover {
-    color: var(--vermelho-base);
+/* ================================
+   CONTAINERS DIVERSOS
+   ================================ */
+
+body.dark-mode #login,
+body.dark-mode .login-container,
+body.dark-mode .secao-estoque,
+body.dark-mode .form-container,
+body.dark-mode .kit-section,
+body.dark-mode .div-painel-tecnico,
+body.dark-mode #container-telaadmin,
+body.dark-mode .painel-cadastrar,
+body.dark-mode #container-registro,
+body.dark-mode .modal-conteudo,
+body.dark-mode .container-conteudo,
+body.dark-mode .div-servicos,
+body.dark-mode .div-servicos-2,
+body.dark-mode .item,
+body.dark-mode .item-box,
+body.dark-mode .summary-item {
+    background-color: var(--branco) !important;
+    border: 1px solid #333;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-mode .icone-pesquisa,
+body.dark-mode .icone-busca,
+body.dark-mode .img-midias {
+    filter: invert(1) grayscale(100%);
+    opacity: 0.8;
 }
 
 body.dark-mode ::-webkit-scrollbar {
-    width: 10px;
+    width: 12px;
 }
 
 body.dark-mode ::-webkit-scrollbar-track {
-    background: var(--fundo-base);
+    background: #121212;
 }
 
 body.dark-mode ::-webkit-scrollbar-thumb {
-    background-color: var(--borda-suave);
-    border-radius: 4px;
-}
-
-body.dark-mode ::-webkit-scrollbar-thumb:hover {
-    background-color: var(--vermelho-base);
-}
-
-body.dark-mode .sugestao-box {
-    background-color: #3a3a3a;
-    border-color: #555555;
-    color: #f0f0f0;
-}
-
-body.dark-mode .sugestao-item {
-    border-bottom-color: #4a4a4a;
-}
-
-body.dark-mode .sugestao-item:hover {
-    background-color: #4f4f4f;
-}
-
-body.dark-mode .sugestao-item-none {
-    color: #aaaaaa;
-}
-
-.tabela-estoque tr:hover {
-    background-color: #dbd8d8;
-}
-
-/* =========================================================
-   RESPONSIVIDADE
-   ========================================================= */
-
-/* === AJUSTE DE CONSISTÊNCIA === */
-/* Aplica o layout de coluna na navbar ao mesmo tempo que o style.css */
-@media (max-width: 768px) {
-    body.dark-mode .nav-bar {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    /* === CORREÇÃO ADICIONADA === */
-    /* Faz a tabela rolar horizontalmente no modo escuro */
-    body.dark-mode table {
-        display: block;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-    }
-
-    body.dark-mode th,
-    body.dark-mode td {
-        white-space: nowrap;
-        /* Impede a quebra de linha */
-    }
-}
-
-/* Mantém os ajustes finos para telas menores */
-@media (max-width: 480px) {
-    body.dark-mode .nav-bar {
-        /* (flex-direction: column) já foi herdado do 768px */
-        font-size: 0.9rem;
-    }
-
-    body.dark-mode .div-servicos,
-    body.dark-mode .div-servicos-2 {
-        padding: 0.8rem;
-        font-size: 0.95rem;
-    }
-
-    body.dark-mode table {
-        font-size: 0.85rem;
-        /* A regra de display: block e overflow já foi herdada do 768px */
-    }
-
-    body.dark-mode .botao-servicos {
-        width: 100%;
-        padding: 0.8rem;
-    }
+    background-color: #444;
+    border-radius: 6px;
+    border: 3px solid #121212;
 }

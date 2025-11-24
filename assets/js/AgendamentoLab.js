@@ -18,12 +18,14 @@ function getItemsFromSummaryBox(boxId) {
 
   summaryItems.forEach(item => {
     const text = item.querySelector('span').textContent;
-    const match = text.match(/(.+) \(x(\d+)\)/);
+    // Regex: captura nome, quantidade e unidade opcional dentro do parênteses, ex: "Nome (x2 g)" ou "Nome (x2)"
+    const match = text.match(/^(.+?)\s*\(x\s*(\d+)(?:\s*([^)]+))?\)$/i);
 
     if (match && match[1] && match[2]) {
       items.push({
         nome: match[1].trim(),
-        quantidade: parseInt(match[2], 10)
+        quantidade: parseInt(match[2], 10),
+        unidade: match[3] ? match[3].trim() : ''
       });
     }
   });
@@ -50,13 +52,9 @@ function mostrarToast(mensagem, tipo = "sucesso") {
   }, 5000);
 }
 
-// NOVO Bloco: Funções para carregar estoque e exibir sugestões
 
-/**
- * Busca o estoque da API e armazena em cache
- */
 async function carregarEstoque() {
-  if (estoqueCache) return estoqueCache; // Retorna do cache se já tiver
+  if (estoqueCache) return estoqueCache;
   try {
     const res = await fetch(`${protocolo}${baseURL}/estoque`);
     if (!res.ok) throw new Error('Falha ao buscar estoque');
@@ -69,32 +67,26 @@ async function carregarEstoque() {
   }
 }
 
-/**
- * Remove qualquer caixa de sugestão que esteja aberta
- */
 function removerSugestoesExistentes() {
   const oldBox = document.querySelector('.sugestao-box');
   if (oldBox) oldBox.remove();
 }
 
 /**
- * @param {HTMLInputElement} inputElement O campo <input> que o usuário clicou
- * @param {string} tipo O tipo de item ('reagentes' e 'vidrarias')
+ * @param {HTMLInputElement} inputElement
+ * @param {string} tipo 
  */
 async function mostrarSugestoes(inputElement, tipo) {
-  removerSugestoesExistentes(); // Fecha caixas antigas
+  removerSugestoesExistentes();
 
-  // Garante que o estoque esteja carregado
   if (!estoqueCache) {
     await carregarEstoque();
   }
-  if (!estoqueCache) return; // Se falhou ao carregar, para aqui
+  if (!estoqueCache) return;
 
-  // Pega a lista de itens correta (ex: estoqueCache.reagentes)
   const listaDeItens = estoqueCache[tipo] || [];
   const filtro = inputElement.value.toLowerCase();
 
-  // Filtra os itens
   const itensFiltrados = listaDeItens.filter(item =>
     item.nome.toLowerCase().includes(filtro) && item.quantidade > 0
   );
@@ -102,7 +94,7 @@ async function mostrarSugestoes(inputElement, tipo) {
   const sugestaoBox = document.createElement('div');
   sugestaoBox.className = 'sugestao-box';
 
-  // Calcula a posição da caixa de sugestões
+
   const rect = inputElement.getBoundingClientRect();
   sugestaoBox.style.left = `${rect.left + window.scrollX}px`;
   sugestaoBox.style.top = `${rect.bottom + window.scrollY}px`;
@@ -207,7 +199,7 @@ async function carregarKits() {
 
           });
 
-          const botaoAdicionar = criarBotaoKit("Adicionar", "var(--concluido)", "var(--verde-base)", async () => {
+          const botaoAdicionar = criarBotaoKit("Adicionar", "black", "#333", async () => {
             const subselecaoKitElemento = document.querySelector("#kits");
             kitAdicionadoElemento = document.createElement("div");
             kitAdicionadoElemento.classList.add("kit-adicionado");
@@ -235,16 +227,18 @@ async function carregarKits() {
               atributoCabecalhoElemento.textContent = `${atributo}`;
               kitAdicionadoElemento.appendChild(atributoCabecalhoElemento);
 
-              kit[atributo].forEach(atributoItem => {
-                const atributoItemElemento = document.createElement("div");
-                atributoItemElemento.classList.add("summary-item");
+            kit[atributo].forEach(atributoItem => {
+              const atributoItemElemento = document.createElement("div");
+              atributoItemElemento.classList.add("summary-item");
 
-                const atributoItemTexto = document.createElement("span");
-                atributoItemTexto.textContent = `${atributoItem.nome} ${atributoItem.quantidade} ${atributoItem.unidade}`
-                atributoItemElemento.appendChild(atributoItemTexto);
-                
-                kitAdicionadoElemento.appendChild(atributoItemElemento);
-              });
+              const atributoItemTexto = document.createElement("span");
+              // Usar o mesmo formato que a função getItemsFromSummaryBox espera: 'Nome (xQuantidade)'
+              const unidadeParte = atributoItem.unidade ? ` ${atributoItem.unidade}` : '';
+              atributoItemTexto.textContent = `${atributoItem.nome} (x${atributoItem.quantidade}${unidadeParte})`;
+              atributoItemElemento.appendChild(atributoItemTexto);
+
+              kitAdicionadoElemento.appendChild(atributoItemElemento);
+            });
             });
 
             kitElemento.style.display = "none";
@@ -257,9 +251,16 @@ async function carregarKits() {
             evento.stopPropagation();
           });
 
-          [botaoAdicionar, botaoCancelar].forEach(b => {
-            kitElemento.appendChild(b);
-          });
+          const botoesContainer = document.createElement('div');
+          botoesContainer.style.display = 'flex';
+          botoesContainer.style.gap = '10px';
+          botoesContainer.style.marginTop = '10px';
+          botaoAdicionar.style.width = 'calc(50% - 5px)';
+          botaoCancelar.style.width = 'calc(50% - 5px)';
+
+          botoesContainer.appendChild(botaoAdicionar);
+          botoesContainer.appendChild(botaoCancelar);
+          kitElemento.appendChild(botoesContainer);
 
         }
 
@@ -283,6 +284,11 @@ function criarBotaoKit(rotulo, cor, corHover, aoClicar) {
   botaoKit.textContent = `${rotulo}`;
   botaoKit.style.backgroundColor = `${cor}`
 
+  botaoKit.style.display = 'l';
+  botaoKit.style.width = '100%';
+  botaoKit.style.boxSizing = 'border-box';
+  botaoKit.style.color = 'white';
+
   botaoKit.addEventListener("mouseover", () => {
     botaoKit.style.backgroundColor = `${corHover}`;
   });
@@ -301,8 +307,8 @@ function criarBotaoKit(rotulo, cor, corHover, aoClicar) {
 //==========================
 
 document.addEventListener('DOMContentLoaded', () => {
-  carregarKits(); // Carrega os kits disponíveis ao abrir a página
-  carregarEstoque(); // Carrega o estoque em cache assim que a página abre
+  carregarKits();
+  carregarEstoque();
 
   document.querySelectorAll('.item-box').forEach(itemBox => {
     const nomeInput = itemBox.querySelector('.form-input-text:nth-of-type(1)');
@@ -405,61 +411,100 @@ document.addEventListener('DOMContentLoaded', () => {
 // Enviar agendamento
 //==========================
 
-document.getElementById("btn-lab-conf").addEventListener("click", async (event) => {
-  event.preventDefault(); // Previne o envio padrão do formulário
+const btnConfirm = document.getElementById("btn-lab-conf");
+if (btnConfirm) {
+  btnConfirm.addEventListener("click", async (event) => {
+    event.preventDefault(); // Previne o envio padrão do formulário
 
-  const userId = localStorage.getItem("userId");
-  if (!userId) {
-    mostrarToast("❌ Faça login antes de agendar.", "erro");
-    return;
-  }
+    try {
+      const userId = localStorage.getItem("userId");
+      if (!userId) {
+        mostrarToast("❌ Faça login antes de agendar.", "erro");
+        return;
+      }
 
-  const laboratorio = document.querySelector("#laboratorio-div select").value;
-  const dataStr = document.querySelector('input[name="Data"]').value;
-  const horario = document.querySelector('input[name="datetime"]').value;
-  const kitSelecionado = document.querySelector("#select-kit").value;
+      const laboratorioEl = document.querySelector("#laboratorio-div select");
+      const dataEl = document.querySelector('input[name="Data"]');
+      const horarioEl = document.querySelector('input[name="datetime"]');
+      const kitEl = document.querySelector("#select-kit");
 
-  const reagentes = getItemsFromSummaryBox('#reagentes');
-  const vidrarias = getItemsFromSummaryBox('#vidrarias');
-  const materiais = getItemsFromSummaryBox('#materiais')
-  if (!laboratorio || !dataStr || !horario) {
-    mostrarToast("❌ Preencha Laboratório, Data e Horário.", "erro");
-    return;
-  }
+      const laboratorio = laboratorioEl ? laboratorioEl.value : '';
+      const dataStr = dataEl ? dataEl.value : '';
+      const horario = horarioEl ? horarioEl.value : '';
+      const kitSelecionado = kitEl ? kitEl.value : '';
 
-  if (materiais.length === 0 && reagentes.length === 0 && vidrarias.length === 0 && !kitSelecionado) {
-    mostrarToast("❌ Adicione ao menos um item ou selecione um kit.", "erro");
-    return;
-  }
+      const reagentes = getItemsFromSummaryBox('#reagentes');
+      const vidrarias = getItemsFromSummaryBox('#vidrarias');
+      const materiais = getItemsFromSummaryBox('#materiais');
 
-  const agendamento = {
-    laboratorio,
-    data: new Date(dataStr + "T00:00:00"),
-    horario,
-    kit: kitSelecionado || "",
-    reagentes,
-    materiais,
-    usuario: userId
-  };
-  // Envia a requisição para a API
-  try {
-    const res = await fetch(`${protocolo}${baseURL}/agendamentos`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(agendamento)
-    });
+      if (!laboratorio || !dataStr || !horario) {
+        mostrarToast("❌ Preencha Laboratório, Data e Horário.", "erro");
+        return;
+      }
 
-    if (res.ok) {
-      const dataRes = await res.json().catch(() => ({}));
-      mostrarToast(dataRes.message || "✅ Agendamento realizado com sucesso!", "sucesso");
-      setTimeout(() => window.location.reload(), 2000);
-    } else {
-      const dataRes = await res.json().catch(() => ({ error: "Erro desconhecido" }));
-      mostrarToast(`❌ ${dataRes.error}`, "erro");
+      if (materiais.length === 0 && reagentes.length === 0 && vidrarias.length === 0 && !kitSelecionado) {
+        mostrarToast("❌ Adicione ao menos um item ou selecione um kit.", "erro");
+        return;
+      }
+
+      const agendamento = {
+        laboratorio,
+        data: new Date(dataStr + "T00:00:00"),
+        horario,
+        kit: kitSelecionado || "",
+        reagentes,
+        vidrarias,
+        materiais,
+        usuario: userId
+      };
+
+      // Envia a requisição para a API
+      try {
+        const res = await fetch(`${protocolo}${baseURL}/agendamentos`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(agendamento)
+        });
+
+        if (res.ok) {
+          const dataRes = await res.json().catch(() => ({}));
+          mostrarToast(dataRes.message || "✅ Agendamento realizado com sucesso!", "sucesso");
+          setTimeout(() => window.location.reload(), 2000);
+        } else {
+          const dataRes = await res.json().catch(() => ({ error: "Erro desconhecido" }));
+          mostrarToast(`❌ ${dataRes.error || dataRes.message}`, "erro");
+        }
+
+      } catch (err) {
+        mostrarToast("❌ Falha na conexão com o servidor.", "erro");
+        console.error("Erro de conexão:", err);
+      }
+
+    } catch (err) {
+      console.error('Erro ao processar o agendamento:', err);
+      mostrarToast('Erro interno ao processar o agendamento.', 'erro');
     }
+  });
+} else {
+  console.warn('Botão #btn-lab-conf não encontrado no DOM.');
+}
 
-  } catch (err) {
-    mostrarToast("❌ Falha na conexão com o servidor.", "erro");
-    console.error("Erro de conexão:", err);
-  }
-});
+// Handler para o botão Cancelar: limpa o formulário e as listas de itens
+const btnCancel = document.getElementById('btn-lab-cancelar');
+if (btnCancel) {
+  btnCancel.addEventListener('click', (event) => {
+    event.preventDefault();
+    // Limpa campos de formulário
+    const formContainer = document.getElementById('formulario');
+    if (formContainer) formContainer.querySelectorAll('input, select, textarea').forEach(i => i.value = '');
+
+    // Limpa caixas de resumo
+    document.querySelectorAll('#reagentes, #vidrarias, #materiais').forEach(box => box.innerHTML = '');
+
+    // Remove kit selecionado, se houver
+    const btnRemoveKit = document.getElementById('btn-remover-kit');
+    if (btnRemoveKit) btnRemoveKit.click();
+  });
+} else {
+  console.warn('Botão #btn-lab-cancelar não encontrado no DOM.');
+}

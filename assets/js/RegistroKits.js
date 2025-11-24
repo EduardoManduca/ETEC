@@ -17,23 +17,24 @@ async function carregarKits() {
             const linha = document.createElement("tr");
 
             const reagentes = kit.reagentes?.length
-                ? kit.reagentes.map(r => `${r.nome} (${r.quantidade})`).join(", ")
+                ? kit.reagentes.map(r => `${r.nome} (${r.quantidade}${r.unidade ? ' ' + r.unidade : ''})`).join(", ")
                 : "-";
 
             const materiais = kit.materiais?.length
-                ? kit.materiais.map(m => `${m.nome} (${m.quantidade})`).join(", ")
+                ? kit.materiais.map(m => `${m.nome} (${m.quantidade}${m.unidade ? ' ' + m.unidade : ''})`).join(", ")
                 : "-";
 
             const vidrarias = kit.vidrarias?.length
-                ? kit.vidrarias.map(v => `${v.nome} (${v.quantidade})`).join(", ")
+                ? kit.vidrarias.map(v => `${v.nome} (${v.quantidade}${v.unidade ? ' ' + v.unidade : ''})`).join(", ")
                 : "-";
 
             const usuarioSolicitante = kit.usuario && kit.usuario.login ? kit.usuario.login : "Desconhecido";
 
             const statusClass = kit.status === "autorizado" ? "autorizado" : "solicitado";
             const statusText = kit.status === "autorizado" ? "Reprovar" : "Autorizar";
+            const statusIcon = kit.status === "autorizado" ? '<i class="fa fa-times" aria-hidden="true"></i>' : '<i class="fa fa-check" aria-hidden="true"></i>';
 
-            const statusBtn = `<button class="btn-status ${statusClass}" onclick="alterarStatus('${kit._id}', '${kit.status}', this)">${statusText}</button>`;
+            const statusBtn = `<button class="btn-status ${statusClass}" onclick="alterarStatus('${kit._id}', '${kit.status}', this)">${statusIcon} ${statusText}</button>`;
             linha.innerHTML = `
              <td>${usuarioSolicitante}</td>
              <td>${kit.nomeKit}</td>
@@ -43,7 +44,7 @@ async function carregarKits() {
              <td>${kit.observacoes || "-"}</td>
              <td>
              ${statusBtn}
-             <button class="btn-excluir" onclick="excluirKit('${kit._id}')">Excluir</button>
+             <button class="btn-excluir" onclick="excluirKit('${kit._id}')"><i class="fa fa-trash" aria-hidden="true"></i> Excluir</button>
              </td>
              `;
 
@@ -72,10 +73,12 @@ async function alterarStatus(id, statusAtual, btn) {
         });
 
         if (resp.ok) {
-            btn.classList.remove("autorizado", "solicitado"); // Remove ambas as classes
-            btn.classList.add(novoStatus); // Adiciona a nova classe
-            btn.textContent = novoStatus === "autorizado" ? "Reprovar" : "Autorizar"; // Atualiza o texto do botão
-            btn.setAttribute("onclick", `alterarStatus('${id}', '${novoStatus}', this)`); // Atualiza o onclick com o novo status
+                btn.classList.remove("autorizado", "solicitado"); // Remove ambas as classes
+                btn.classList.add(novoStatus); // Adiciona a nova classe
+                const newIcon = novoStatus === "autorizado" ? '<i class="fa fa-times" aria-hidden="true"></i>' : '<i class="fa fa-check" aria-hidden="true"></i>';
+                const newText = novoStatus === "autorizado" ? 'Reprovar' : 'Autorizar';
+                btn.innerHTML = `${newIcon} ${newText}`; // Atualiza o HTML do botão com ícone
+                btn.setAttribute("onclick", `alterarStatus('${id}', '${novoStatus}', this)`); // Atualiza o onclick com o novo status
         } else {
             const err = await resp.json();
             alert("Erro ao alterar status: " + (err.error || "Tente novamente"));

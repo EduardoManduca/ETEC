@@ -1,4 +1,4 @@
-/* ===============================
+﻿/* ===============================
    ESTOQUE - Layout Geral
    =============================== */
 
@@ -168,6 +168,28 @@ body {
         padding: 20px;
     }
 
+    .filtros-tipo {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        margin-top: 10px;
+        flex-wrap: wrap;
+    }
+
+    .btn-filtro {
+        background-color: #f2f2f2;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 8px 14px;
+        font-size: 0.95rem;
+        cursor: pointer;
+        min-width: 70px;
+        width: auto;
+        transition: 0.3s ease;
+        text-align: center;
+        display: inline-block;
+    }
+
     .campo-pesquisa {
         width: 80%;
     }
@@ -187,20 +209,18 @@ body {
         font-size: 0.9rem;
         padding: 10px;
     }
-    
-    /* === CORREÇÃO ADICIONADA === */
-    /* Torna a tabela rolável horizontalmente em celulares */
+
     .tabela-estoque {
         display: block;
         width: 100%;
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
-        /* Melhora a rolagem em iOS */
+
     }
 
     .tabela-estoque th,
     .tabela-estoque td {
         white-space: nowrap;
-        /* Impede quebra de linha nas células */
+
     }
 }

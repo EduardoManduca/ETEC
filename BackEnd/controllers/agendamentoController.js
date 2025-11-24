@@ -1,4 +1,5 @@
 const Agendamento = require("../models/Agendamento.js");
+const Historico = require("../models/Historico.js");
 const Estoque = require("../models/Estoque.js");
 const { converterHorarioParaMinutos } = require("../utils/horario.js");
 
@@ -71,6 +72,46 @@ exports.createAgendamento = async (req, res) => {
         } catch (erroEstoque) {
             await Agendamento.findByIdAndDelete(novoAgendamento._id);
             return res.status(400).json({ error: erroEstoque.message });
+        }
+
+        // Persistir itens do agendamento no histórico (registro permanente)
+        try {
+            const estoque = await Estoque.findOne();
+            const findUnitInEstoque = (nome) => {
+                if (!estoque) return '';
+                const tipos = ['reagentes', 'vidrarias', 'materiais'];
+                for (const t of tipos) {
+                    const item = (estoque[t] || []).find(e => e.nome && e.nome.trim().toLowerCase() === String(nome).trim().toLowerCase());
+                    if (item && item.unidade) return item.unidade;
+                }
+                return '';
+            };
+
+            const salvarNoHistorico = async (itens, tipo) => {
+                if (!itens || !Array.isArray(itens) || itens.length === 0) return;
+                const docs = itemsToDocs(itens, tipo, novoAgendamento.createdAt || new Date(), novoAgendamento.usuario, novoAgendamento._id, findUnitInEstoque);
+                if (docs.length) await Historico.insertMany(docs);
+            };
+
+            const itemsToDocs = (itens, tipo, data, professor, refId, findUnit) => {
+                return itens.map(i => ({
+                    data,
+                    professor: professor || 'Desconhecido',
+                    nome: i.nome,
+                    quantidade: i.quantidade || 0,
+                    unidade: i.unidade || findUnit(i.nome) || '',
+                    tipo: tipo,
+                    source: 'agendamento',
+                    referenceId: refId
+                }));
+            };
+
+            await salvarNoHistorico(restoDoBody.reagentes, 'reagente');
+            await salvarNoHistorico(restoDoBody.vidrarias, 'vidraria');
+            await salvarNoHistorico(restoDoBody.materiais, 'material');
+        } catch (errHist) {
+            console.warn('Não foi possível salvar itens no histórico:', errHist.message || errHist);
+            // Não falhar a criação do agendamento por falha no histórico
         }
 
         res.status(201).json({ message: "✅ Agendamento criado e estoque atualizado!" });

@@ -27,6 +27,16 @@ async function logincheck() {
 
         if (resultado.usuario && resultado.usuario._id) {
             localStorage.setItem("userId", resultado.usuario._id);
+            const rememberEl = document.getElementById('remember');
+            try {
+                if (rememberEl && rememberEl.checked) {
+                    localStorage.setItem('rememberedUsername', login);
+                } else {
+                    localStorage.removeItem('rememberedUsername');
+                }
+            } catch (e) {
+                console.warn('Erro ao acessar localStorage para lembrar usuário', e);
+            }
         } else {
             mostrarErro("Usuário inválido recebido do servidor.");
             return;
@@ -34,7 +44,6 @@ async function logincheck() {
 
         mostrarSucesso(resultado.message || "✅ Login bem-sucedido!");
 
-        // Redireciona conforme função
         const funcao = resultado.usuario.funcao;
         if (funcao === "admin" || funcao === "administrador") {
             window.location.href = "/pages/pages_admin/TelaAdministrador.html";
@@ -60,6 +69,8 @@ async function logincheck() {
         errorMessage.style.color = "#f32a2a";
         errorMessage.textContent = msg;
         errorMessage.classList.add("show");
+        errorMessage.classList.add('shake');
+        setTimeout(() => errorMessage.classList.remove('shake'), 700);
         setTimeout(() => {
             errorMessage.classList.remove("show");
             errorMessage.style.display = "none";
@@ -77,3 +88,18 @@ async function logincheck() {
         }, 3000);
     }
 }
+
+// Prefill username if user previously asked to be remembered
+document.addEventListener('DOMContentLoaded', () => {
+    try {
+        const remembered = localStorage.getItem('rememberedUsername');
+        if (remembered) {
+            const input = document.getElementById('username');
+            const rememberEl = document.getElementById('remember');
+            if (input) input.value = remembered;
+            if (rememberEl) rememberEl.checked = true;
+        }
+    } catch (e) {
+        console.warn('Erro ao ler rememberedUsername', e);
+    }
+});

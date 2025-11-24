@@ -13,6 +13,7 @@ const KitSchema = new mongoose.Schema({
     enum: ["solicitado", "autorizado"],
     default: "solicitado",
   },
+  historicoApagado: { type: Boolean, default: false },
   dataCriacao: { type: Date, default: Date.now },
 });
 

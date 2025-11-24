@@ -1,4 +1,4 @@
-/* ================================
+﻿/* ================================
    LOGIN.CSS
    ================================ */
 
@@ -34,6 +34,11 @@
     --font-secondary: 'Roboto', sans-serif;
 }
 
+.login-page {
+    background: linear-gradient(180deg, #fafafa 0%, #f3f3f3 50%, #ffffff 100%);
+    min-height: 100vh;
+}
+
 #login {
     background-color: var(--branco);
     display: flex;
@@ -42,13 +47,19 @@
     justify-content: center;
     min-height: auto;
     width: 100%;
-    padding: 3rem 2.5rem;
+    padding: 3.25rem 2.75rem;
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 16px;
     max-width: 420px;
     margin: 4rem auto;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 14px 48px rgba(0, 0, 0, 0.12);
     position: relative;
+}
+
+.login-card .login-logo {
+    width: 80px;
+    height: auto;
+    margin-bottom: 10px;
 }
 
 #titulo-login {
@@ -59,6 +70,17 @@
     font-weight: 700;
     margin-bottom: 0.5rem;
     letter-spacing: -0.5px;
+}
+
+/* subtle accent under title */
+#titulo-login::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--vermelho-base), var(--vermelho-escuro-10));
+    margin: 10px auto 0;
+    border-radius: 2px;
 }
 
 #paragrafo-login {
@@ -88,7 +110,6 @@
 
 .cadastro {
     width: 100%;
-    font-family: var(--font-secondary, sans-serif);
     font-size: 15px;
     padding: 12px 16px !important;
     height: 48px;
@@ -99,6 +120,39 @@
     color: #333;
     transition: all 0.2s ease;
     outline: none;
+}
+
+.input-icon-wrap {
+    position: relative;
+    width: 100%;
+}
+
+.input-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    font-size: 18px;
+    color: #666;
+    z-index: 3;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.input-icon + .cadastro {
+    padding-left: 44px !important;
+}
+
+.input-icon-wrap:focus-within .input-icon {
+    color: #222;
+}
+
+.input-icon svg {
+    width: 20px;
+    height: 20px;
+    display: block;
+    fill: currentColor;
 }
 
 .cadastro::placeholder {
@@ -114,6 +168,11 @@
     border-color: var(--vermelho-base);
     background-color: var(--branco);
     box-shadow: 0 0 0 4px rgba(235, 9, 9, 0.1);
+}
+
+.button-container button:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(178, 0, 0, 0.12);
 }
 
 #errorMessage {
@@ -140,10 +199,20 @@
     transform: translateY(0);
 }
 
+@keyframes shake {
+    10%, 90% { transform: translateX(-1px); }
+    20%, 80% { transform: translateX(2px); }
+    30%, 50%, 70% { transform: translateX(-4px); }
+    40%, 60% { transform: translateX(4px); }
+}
+
+.shake {
+    animation: shake 0.6s ease-in-out;
+}
+
 .button-container {
     width: 100%;
     display: flex;
-    flex-direction: column;
     gap: 12px;
     margin-top: 10px;
 }
@@ -152,49 +221,55 @@
 #enter,
 #cancel {
     width: 100%;
-    padding: 14px;
-    border-radius: 8px;
+    padding: 16px 18px;
+    border-radius: 12px;
     cursor: pointer;
-    font-size: 16px;
-    font-weight: 600;
+    font-size: 18px;
+    font-weight: 700;
     margin: 0;
-    transition: all 0.2s ease;
-    letter-spacing: 0.5px;
+    transition: all 0.18s ease;
+    letter-spacing: 0.3px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    box-sizing: border-box;
 }
 
 #enter {
     background-color: var(--vermelho-base);
-    color: white;
+    color: #fff;
     border: none;
-    box-shadow: 0 4px 10px rgba(178, 0, 0, 0.25);
+    box-shadow: 0 8px 26px rgba(178, 0, 0, 0.18);
 }
 
 #enter:hover {
     background-color: var(--vermelho-escuro-10);
-    transform: translateY(-1px);
-    box-shadow: 0 6px 14px rgba(178, 0, 0, 0.35);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(178, 0, 0, 0.22);
 }
 
-#enter:active {
-    transform: translateY(0);
-    box-shadow: 0 2px 5px rgba(178, 0, 0, 0.2);
-}
+#enter:active { transform: translateY(0); }
 
 #cancel {
-    background-color: transparent;
-    color: var(--preto);
-    border: 2px solid var(--preto);
-    box-shadow: none;
+    background-color: var(--preto);
+    color: #fff;
+    border: none;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.18);
 }
 
 #cancel:hover {
-    background-color: var(--preto);
-    color: white;
-    transform: translateY(-1px);
+    background-color: #000;
+    transform: translateY(-2px);
 }
 
-#cancel:active {
-    transform: translateY(0);
+#cancel:active { transform: translateY(0); }
+
+.button-container button svg {
+    width: 20px;
+    height: 20px;
+    display: block;
+    fill: currentColor;
 }
 
 .login-links {
@@ -227,6 +302,10 @@
         margin-top: 2rem;
         padding: 2rem;
     }
+
+    .button-container {
+        flex-direction: column;
+    }
 }
 
 @media (max-width: 480px) {
@@ -245,3 +324,142 @@
         font-size: 16px;
     }
 }
+
+@media (min-width: 769px) {
+    .button-container {
+        flex-direction: row;
+    }
+    #enter, #cancel {
+        width: 50%;
+    }
+    #enter { margin-right: 6px; }
+    #cancel { margin-left: 6px; }
+}
+
+.checkbox-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #444;
+}
+
+#login {
+    will-change: transform, opacity;
+    animation: loginFadeUp 420ms cubic-bezier(.2,.9,.3,1) both;
+}
+
+@keyframes loginFadeUp {
+    from { opacity: 0; transform: translateY(8px) scale(0.995); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+#login::before {
+    content: '';
+    position: absolute;
+    left: 4%;
+    right: 4%;
+    top: -6%;
+    bottom: -6%;
+    z-index: 0;
+    background: radial-gradient(closest-side, rgba(0,0,0,0.04), transparent 60%);
+    filter: blur(18px);
+    border-radius: 18px;
+    pointer-events: none;
+}
+#login > * { position: relative; z-index: 1; }
+
+.cadastro {
+    transition: box-shadow 180ms ease, transform 160ms ease, border-color 160ms ease;
+    position: relative;
+    z-index: 1;
+}
+.cadastro:focus {
+    box-shadow: 0 10px 28px rgba(0,0,0,0.06), 0 0 0 6px rgba(178,0,0,0.06);
+}
+
+.input-icon-wrap { position: relative; }
+.password-toggle {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    padding: 6px;
+    font-size: 14px;
+    color: #666;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+}
+.password-toggle:hover { color: #333; }
+.password-toggle:active { transform: translateY(-50%) scale(.98); }
+
+.input-hint {
+    display: block;
+    margin-top: 6px;
+    color: #777;
+    font-size: 12px;
+}
+
+.sr-only {
+    position: absolute !important;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px; overflow: hidden;
+    clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+
+.login-card-footer {
+    margin-top: 18px;
+    font-size: 13px;
+    color: var(--cinza-texto-base);
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    align-items: center;
+}
+
+.login-socials {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+.login-socials .social-btn {
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(0,0,0,0.06);
+    background: #fff;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+    cursor: pointer;
+    display: inline-flex; align-items: center; gap: 8px;
+    font-weight: 600; color: #333; font-size: 14px;
+}
+
+body[data-theme="dark"] .login-page {
+    background: linear-gradient(180deg, #0f1720 0%, #071014 100%);
+}
+body[data-theme="dark"] #login {
+    background-color: #0b1114;
+    color: #e6eef0;
+    border-color: rgba(255,255,255,0.04);
+    box-shadow: 0 16px 48px rgba(2,6,8,0.6);
+}
+body[data-theme="dark"] .cadastro {
+    background-color: rgba(255,255,255,0.02);
+    color: #e6eef0;
+    border-color: rgba(255,255,255,0.06);
+}
+body[data-theme="dark"] .cadastro::placeholder { color: rgba(230,238,240,0.5); }
+body[data-theme="dark"] #titulo-login::after { background: linear-gradient(90deg, #ff7b7b, #ff4c4c); }
+
+@media (prefers-reduced-motion: reduce) {
+    #login { animation: none !important; }
+    .cadastro, #enter, #cancel { transition: none !important; }
+}
+
+@media (max-width: 480px) {
+    #enter, #cancel { padding: 18px 20px; font-size: 18px; }
+}
+

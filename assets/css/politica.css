@@ -1,4 +1,4 @@
-.container-conteudo {
+﻿.container-conteudo {
     max-width: 900px;
     margin: 50px auto;
     background-color: #f9f9f9;
@@ -56,46 +56,38 @@
 
 @media (max-width: 768px) {
     .container-conteudo {
-        /* Reduz margens e padding para tablets e celulares maiores */
         margin: 30px 20px;
         padding: 30px;
     }
 
     .container-conteudo h1 {
         font-size: 1.8em;
-        /* Reduz um pouco o título principal */
     }
 
     .container-conteudo h2 {
         font-size: 1.3em;
-        /* Reduz um pouco os subtítulos */
     }
 }
 
 @media (max-width: 480px) {
     .container-conteudo {
-        /* Reduz mais as margens e padding para celulares menores */
         margin: 20px 10px;
         padding: 20px;
         border-radius: 8px;
-        /* Suaviza a borda */
     }
 
     .container-conteudo h1 {
         font-size: 1.5em;
-        /* Reduz mais o título */
         margin-bottom: 20px;
     }
 
     .container-conteudo h2 {
         font-size: 1.2em;
-        /* Reduz mais o subtítulo */
         margin-top: 25px;
     }
 
     .container-conteudo ul {
         margin-left: 20px;
-        /* Reduz o recuo da lista */
     }
 
     .data-atualizacao {

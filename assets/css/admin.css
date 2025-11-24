@@ -1,4 +1,4 @@
-/* ================================
+﻿/* ================================
    CADASTRO USER & GERAL
    ================================ */
 
@@ -14,7 +14,6 @@
     transition: opacity 0.4s ease;
     max-width: 400px;
     overflow: hidden;
-    /* essencial pra esconder a barra quando ela esvazia */
 }
 
 .cadastrar-check.sucesso {
@@ -278,7 +277,6 @@
     box-shadow: 0 0 5px rgba(71, 75, 71, 0.4);
 }
 
-/* Botões do modal */
 .botoes-modal {
     display: flex;
     justify-content: flex-end;
@@ -345,7 +343,6 @@ thead {
 thead th {
     padding: 12px;
     text-align: center;
-    /* CORRIGIDO: Removido o "D" */
 }
 
 tbody tr {
@@ -415,7 +412,6 @@ button.btn-excluir:active {
     background-color: #c0392b;
 }
 
-/* Centraliza o search */
 #searchContainer {
     text-align: center;
     margin: 20px 0;
@@ -434,20 +430,16 @@ button.btn-excluir:active {
    RESPONSIVIDADE (CELULARES)
    ================================ */
 
-/* Para tablets em modo retrato e celulares maiores */
 @media (max-width: 768px) {
     .login-page {
         padding: 20px 10px;
-        /* Reduz padding da página */
     }
 
     .login-container {
         max-width: 95%;
-        /* Ocupa mais a tela */
         padding: 30px 25px;
     }
 
-    /* Layout Admin */
     #main-div-TelaAdministrador {
         padding: 20px;
         gap: 25px;
@@ -457,35 +449,27 @@ button.btn-excluir:active {
     .coluna-esquerda,
     #container-registro {
         width: 100%;
-        /* Faz as colunas empilharem */
         padding: 25px;
     }
 
     .cadastrar-check {
         max-width: 90%;
-        /* Ajusta a largura da notificação */
     }
 }
 
-/* Para celulares (ajuste da tabela e modal) */
 @media (max-width: 600px) {
     .modal-conteudo {
         width: 90%;
         padding: 20px;
     }
 
-    /* === CORREÇÃO DA TABELA === */
     table {
         font-size: 14px;
         display: block;
-        /* Força a tabela a se comportar como um bloco */
         overflow-x: auto;
-        /* Adiciona scroll horizontal */
         -webkit-overflow-scrolling: touch;
-        /* Melhora a rolagem em iOS */
     }
 
-    /* Garante que os botões na tabela fiquem visíveis */
     tbody td {
         white-space: nowrap;
     }
@@ -495,16 +479,13 @@ button.btn-excluir:active {
     }
 }
 
-/* Para celulares menores (ajustes finos) */
 @media (max-width: 480px) {
     .login-container {
         padding: 25px 15px;
-        /* Menos padding */
     }
 
     .login-container h2 {
         font-size: 1.5em;
-        /* Fonte menor */
     }
 
     #main-div-TelaAdministrador,
@@ -512,7 +493,6 @@ button.btn-excluir:active {
     .painel-cadastrar,
     #container-registro {
         padding: 15px;
-        /* Padding global menor */
     }
 
     #main-div-TelaAdministrador {
@@ -523,7 +503,6 @@ button.btn-excluir:active {
     .form-group select,
     .btn-criar {
         height: 42px;
-        /* Altura de input/botão menor */
         font-size: 0.95rem;
     }
 

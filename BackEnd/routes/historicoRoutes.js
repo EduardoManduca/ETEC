@@ -7,5 +7,6 @@ const historicoController = require("../controllers/historicoController");
 //=======================================
 
 router.get("/", historicoController.getHistoricoMateriais);  // Rota para obter todo o histórico de materiais
+router.delete("/", historicoController.deleteHistoricoMateriais); // Marca histórico como apagado
 
 module.exports = router;

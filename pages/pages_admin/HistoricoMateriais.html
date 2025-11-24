@@ -81,11 +81,12 @@
         </div>
 
         <!-- Botão apagar histórico -->
-        <button class="btn-apagar" id="btnApagar">Apagar Histórico</button>
+        <button class="btn-apagar" id="btnApagar">Apagar registros selecionados</button>
 
         <table id="tabelaHistorico">
             <thead>
                 <tr>
+                    <th><input type="checkbox" id="selectAll"></th>
                     <th>Data</th>
                     <th>Professor (a)</th>
                     <th>Materiais</th>
@@ -101,44 +102,76 @@
     <script>
         const tabela = document.querySelector("#tabelaHistorico tbody");
         const searchInput = document.getElementById("searchInput");
+        let usuariosMapById = {};
+        let usuariosMapByLogin = {};
+
+        async function carregarUsuarios() {
+            try {
+                const res = await fetch('http://localhost:5000/usuarios');
+                if (!res.ok) return;
+                const usuarios = await res.json();
+                usuarios.forEach(u => {
+                    usuariosMapById[String(u._id)] = u.login;
+                    usuariosMapByLogin[String(u.login)] = u.login;
+                });
+            } catch (err) {
+                console.warn('Não foi possível carregar usuários:', err);
+            }
+        }
 
         async function carregarHistorico() {
+            tabela.innerHTML = "<tr><td colspan='5' style='text-align:center;'>Carregando...</td></tr>";
             try {
-                const res = await fetch("http://localhost:5000/estoque");
+                await carregarUsuarios();
+                const res = await fetch("http://localhost:5000/historico-materiais");
+                if (!res.ok) throw new Error('Resposta inválida: ' + res.status);
                 const dados = await res.json();
 
                 tabela.innerHTML = "";
 
-                const tipos = ["reagentes", "materiais", "equipamentos"];
-                let temItens = false;
+                if (!Array.isArray(dados) || dados.length === 0) {
+                    tabela.innerHTML = `<tr><td colspan="5" style="text-align:center;">Nenhum item no histórico.</td></tr>`;
+                    return;
+                }
 
-                tipos.forEach(tipo => {
-                    if (Array.isArray(dados[tipo])) {
-                        dados[tipo].forEach(item => {
-                            temItens = true;
-                            const tr = document.createElement("tr");
-                            tr.innerHTML = `
-                                <td>${dados.atualizadoEm ? new Date(dados.atualizadoEm).toLocaleDateString("pt-BR") : "-"}</td>
-                                <td>${item.professor || "Desconhecido"}</td>
-                                <td>${item.nome}</td>
-                                <td>${item.quantidade} ${item.unidade || ""}</td>
-                            `;
-                            tabela.appendChild(tr);
-                        });
+                dados.forEach(entry => {
+                    const data = entry.data ? new Date(entry.data).toLocaleDateString('pt-BR') : '-';
+                    // Resolve professor: pode ser id, pode ser login direto
+                    let professor = entry.professor || 'Desconhecido';
+                    if (professor && usuariosMapById[String(professor)]) {
+                        professor = usuariosMapById[String(professor)];
+                    } else if (professor && usuariosMapByLogin[String(professor)]) {
+                        professor = usuariosMapByLogin[String(professor)];
                     }
+                    const nome = entry.material || entry.nome || '-';
+                    const quantidade = (entry.quantidade !== undefined && entry.quantidade !== null) ? `${entry.quantidade} ${entry.unidade || ''}` : '-';
+
+                    const tr = document.createElement('tr');
+                    tr.dataset.id = entry._id || '';
+                    tr.innerHTML = `
+                        <td><input type="checkbox" class="row-checkbox" value="${entry._id || ''}"></td>
+                        <td>${data}</td>
+                        <td>${professor}</td>
+                        <td>${nome}</td>
+                        <td>${quantidade}</td>
+                    `;
+                    tabela.appendChild(tr);
                 });
 
-                if (!temItens) {
-                    tabela.innerHTML = `<tr><td colspan="4" style="text-align:center;">Nenhum item no histórico.</td></tr>`;
+                const selectAll = document.getElementById('selectAll');
+                if (selectAll) {
+                    selectAll.checked = false;
+                    selectAll.addEventListener('change', () => {
+                        document.querySelectorAll('.row-checkbox').forEach(cb => cb.checked = selectAll.checked);
+                    });
                 }
 
             } catch (err) {
-                console.error(err);
+                console.error('Erro ao carregar histórico:', err);
                 tabela.innerHTML = `<tr><td colspan="4" style="text-align:center;">Erro ao carregar histórico.</td></tr>`;
             }
         }
 
-        // Filtrar search
         searchInput.addEventListener("input", () => {
             const termo = searchInput.value.toLowerCase();
             tabela.querySelectorAll("tr").forEach(tr => {
@@ -146,18 +179,31 @@
             });
         });
 
-        // Apagar histórico
         document.getElementById("btnApagar").addEventListener("click", async () => {
-            if (!confirm("Tem certeza que deseja apagar todo o histórico de materiais?")) return;
+            const selecionados = Array.from(document.querySelectorAll('.row-checkbox:checked')).map(cb => cb.value).filter(Boolean);
+            if (!selecionados.length) {
+                alert('Selecione ao menos um registro para apagar.');
+                return;
+            }
+
+            if (!confirm(`Tem certeza que deseja apagar ${selecionados.length} registro(s) selecionado(s)?`)) return;
 
             try {
-                const res = await fetch("http://localhost:5000/estoque", { method: "DELETE" });
-                const data = await res.json();
-                alert(data.message);
+                const res = await fetch("http://localhost:5000/historico-materiais", {
+                    method: "DELETE",
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ ids: selecionados })
+                });
+                if (res.ok) {
+                    const data = await res.json().catch(() => ({ message: 'Registros apagados' }));
+                    alert(data.message || 'Registros apagados');
+                } else {
+                    alert('Falha ao apagar registros.');
+                }
                 carregarHistorico();
             } catch (err) {
                 console.error(err);
-                alert("Erro ao apagar histórico.");
+                alert('Erro ao apagar histórico (verifique o servidor).');
             }
         });
 

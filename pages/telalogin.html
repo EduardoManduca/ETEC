@@ -12,8 +12,7 @@
     <script src="/assets/js/script.js"></script>
 </head>
 
-<body>
-
+<body class="login-page">
     <ul class="ul-topo">
         <li class="li-topo">
             <div class="campo-preto">
@@ -50,24 +49,22 @@
                     <button id="theme-toggle" onclick="toggleTheme()" class="controles-tamanho"
                         title="Alternar modo claro/escuro"><img src="/assets/images/i-contrast.png" alt=""></button>
 
-                    <button class="controles-tamanho" title="Mostrar aviso"><img src="/assets/images/i-error-report.png"
-                            alt=""></button>
+                    <button class="controles-tamanho" title="Mostrar aviso"><a href="https://www.sp.gov.br/sp"
+                            target="_blank"><img src="/assets/images/i-error-report.png" alt=""></a></button>
                 </li>
             </ul>
         </li>
     </ul>
     <hr>
     <ul class="ul-meio-topo">
-        <a href="/pages/telalogin.html">
+        <a href="/pages/index.html">
             <li class="li-meio-topo"><img class="logo-etec" src="/assets/images/logo-etec.png" alt=""></li>
         </a>
     </ul>
 
     <nav>
         <ul class="nav-bar">
-            <li class="li-nav-bar"></li>
-            <li class="li-nav-bar"></li>
-            <li class="li-nav-bar"></li>
+            <li class="li-nav-bar"><a class="a-nav-bar"></a></li>
         </ul>
     </nav>
 
@@ -84,26 +81,58 @@
             new window.VLibras.Widget('https://vlibras.gov.br/app');
         </script>
 
-        <div id="login">
-            <h2 id="titulo-login">Login</h2>
-            <p id="paragrafo-login">Por favor, insira suas credenciais para acessar.</p>
+        <div id="login" class="login-card">
+            <h2 id="titulo-login">Entrar</h2>
+            <p id="paragrafo-login">Insira suas credenciais para acessar o sistema.</p>
 
-            <div class="input-group">
+            <div class="input-group input-with-icon">
                 <label for="username" class="title-login">ID / Nome:</label>
-                <input type="text" id="username" name="username" placeholder="Digite seu usuário" class="cadastro">
+                <div class="input-icon-wrap">
+                    <span class="input-icon icon-user" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                            <path d="M12 8a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M21 21c0-4.97-4.03-9-9-9s-9 4.03-9 9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </span>
+                    <input type="text" id="username" name="username" placeholder="Digite seu usuário" class="cadastro">
+                </div>
             </div>
 
-            <div class="input-group">
+            <div class="input-group input-with-icon">
                 <label for="password" class="title-login">Senha:</label>
-                <input type="password" id="password" name="password" placeholder="Digite sua senha" class="cadastro">
+                <div class="input-icon-wrap">
+                    <span class="input-icon icon-lock" aria-hidden="true">
+                        <!-- Outline-style lock icon -->
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                            <rect x="3.5" y="10.5" width="17" height="10" rx="1.8" fill="none" stroke="currentColor" stroke-width="1.6"/>
+                            <path d="M8 10.5V8.2a4 4 0 1 1 8 0v2.3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                        </svg>
+                    </span>
+                    <input type="password" id="password" name="password" placeholder="Digite sua senha" class="cadastro">
+                </div>
+            </div>
+
+            <div class="input-group small">
+                <label class="checkbox-label"><input type="checkbox" id="remember"> Lembrar-me</label>
             </div>
 
             <div id="errorMessage">Nome de usuário ou senha incorretos.</div>
 
             <div class="button-container">
-                <button type="button" id="enter" onclick="logincheck()">Entrar</button>
-                <button type="button" id="cancel"
-                    onclick="window.location.href='/code/Code_Tela_Inicial.html'">Cancelar</button>
+                <button type="button" id="enter" class="btn btn-primary" onclick="logincheck()" aria-label="Entrar">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                        <path d="M10 17l5-5-5-5v10zM4 19h2V5H4v14z" />
+                    </svg>
+                    <span>Entrar</span>
+                </button>
+                <button type="button" id="cancel" class="btn btn-secondary"
+                    onclick="window.location.href='/code/Code_Tela_Inicial.html'" aria-label="Cancelar">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                        <path
+                            d="M18.3 5.71L12 12l6.3 6.29-1.41 1.42L10.59 13.41 4.29 19.71 2.88 18.3 9.18 12 2.88 5.71 4.29 4.29 10.59 10.59 16.88 4.29z" />
+                    </svg>
+                    <span>Cancelar</span>
+                </button>
             </div>
 
             <div class="login-links">
