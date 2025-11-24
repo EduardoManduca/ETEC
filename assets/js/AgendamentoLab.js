@@ -412,82 +412,93 @@ document.addEventListener('DOMContentLoaded', () => {
 //==========================
 
 const btnConfirm = document.getElementById("btn-lab-conf");
-if (btnConfirm) {
-  btnConfirm.addEventListener("click", async (event) => {
-    event.preventDefault(); // Previne o envio padrão do formulário
+btnConfirm.addEventListener("click", async (event) => {
+  event.preventDefault(); // Previne o envio padrão do formulário
 
+  try {
+    const userId = localStorage.getItem("userId");
+    if (!userId) {
+      mostrarToast("❌ Faça login antes de agendar.", "erro");
+      return;
+    }
+
+    const res = await fetch(`${protocolo}${baseURL}/usuarios/validate`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ userId }),
+    });
+    const data = await res.json();
+    if (!data.exists) {
+      throw new Error("Usuário inválido");
+    }
+
+    const laboratorioEl = document.querySelector("#laboratorio-div select");
+    const dataEl = document.querySelector('input[name="Data"]');
+    const horarioEl = document.querySelector('input[name="datetime"]');
+    const kitEl = document.querySelector("#select-kit");
+
+    const laboratorio = laboratorioEl ? laboratorioEl.value : '';
+    const dataStr = dataEl ? dataEl.value : '';
+    const horario = horarioEl ? horarioEl.value : '';
+    const kitSelecionado = kitEl ? kitEl.value : '';
+
+    const reagentes = getItemsFromSummaryBox('#reagentes');
+    const vidrarias = getItemsFromSummaryBox('#vidrarias');
+    const materiais = getItemsFromSummaryBox('#materiais');
+
+    if (!laboratorio || !dataStr || !horario) {
+      mostrarToast("❌ Preencha Laboratório, Data e Horário.", "erro");
+      return;
+    }
+
+    if (materiais.length === 0 && reagentes.length === 0 && vidrarias.length === 0 && !kitSelecionado) {
+      mostrarToast("❌ Adicione ao menos um item ou selecione um kit.", "erro");
+      return;
+    }
+
+    const agendamento = {
+      laboratorio,
+      data: new Date(dataStr + "T00:00:00"),
+      horario,
+      kit: kitSelecionado || "",
+      reagentes,
+      vidrarias,
+      materiais,
+      usuario: userId
+    };
+
+    // Envia a requisição para a API
     try {
-      const userId = localStorage.getItem("userId");
-      if (!userId) {
-        mostrarToast("❌ Faça login antes de agendar.", "erro");
-        return;
-      }
+      const res = await fetch(`${protocolo}${baseURL}/agendamentos`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(agendamento)
+      });
 
-      const laboratorioEl = document.querySelector("#laboratorio-div select");
-      const dataEl = document.querySelector('input[name="Data"]');
-      const horarioEl = document.querySelector('input[name="datetime"]');
-      const kitEl = document.querySelector("#select-kit");
-
-      const laboratorio = laboratorioEl ? laboratorioEl.value : '';
-      const dataStr = dataEl ? dataEl.value : '';
-      const horario = horarioEl ? horarioEl.value : '';
-      const kitSelecionado = kitEl ? kitEl.value : '';
-
-      const reagentes = getItemsFromSummaryBox('#reagentes');
-      const vidrarias = getItemsFromSummaryBox('#vidrarias');
-      const materiais = getItemsFromSummaryBox('#materiais');
-
-      if (!laboratorio || !dataStr || !horario) {
-        mostrarToast("❌ Preencha Laboratório, Data e Horário.", "erro");
-        return;
-      }
-
-      if (materiais.length === 0 && reagentes.length === 0 && vidrarias.length === 0 && !kitSelecionado) {
-        mostrarToast("❌ Adicione ao menos um item ou selecione um kit.", "erro");
-        return;
-      }
-
-      const agendamento = {
-        laboratorio,
-        data: new Date(dataStr + "T00:00:00"),
-        horario,
-        kit: kitSelecionado || "",
-        reagentes,
-        vidrarias,
-        materiais,
-        usuario: userId
-      };
-
-      // Envia a requisição para a API
-      try {
-        const res = await fetch(`${protocolo}${baseURL}/agendamentos`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(agendamento)
-        });
-
-        if (res.ok) {
-          const dataRes = await res.json().catch(() => ({}));
-          mostrarToast(dataRes.message || "✅ Agendamento realizado com sucesso!", "sucesso");
-          setTimeout(() => window.location.reload(), 2000);
-        } else {
-          const dataRes = await res.json().catch(() => ({ error: "Erro desconhecido" }));
-          mostrarToast(`❌ ${dataRes.error || dataRes.message}`, "erro");
-        }
-
-      } catch (err) {
-        mostrarToast("❌ Falha na conexão com o servidor.", "erro");
-        console.error("Erro de conexão:", err);
+      if (res.ok) {
+        const dataRes = await res.json().catch(() => ({}));
+        mostrarToast(dataRes.message || "✅ Agendamento realizado com sucesso!", "sucesso");
+        setTimeout(() => window.location.reload(), 2000);
+      } else {
+        const dataRes = await res.json().catch(() => ({ error: "Erro desconhecido" }));
+        mostrarToast(`❌ ${dataRes.error || dataRes.message}`, "erro");
       }
 
     } catch (err) {
-      console.error('Erro ao processar o agendamento:', err);
+      mostrarToast("❌ Falha na conexão com o servidor.", "erro");
+      console.error("Erro de conexão:", err);
+    }
+
+  } catch (err) {
+    switch (err.message) {
+      case "Usuário inválido":
+        mostrarToast("❌ Login inválido.", "erro");
+        break;
+      default:
       mostrarToast('Erro interno ao processar o agendamento.', 'erro');
     }
-  });
-} else {
-  console.warn('Botão #btn-lab-conf não encontrado no DOM.');
-}
+  }
+});
 
 // Handler para o botão Cancelar: limpa o formulário e as listas de itens
 const btnCancel = document.getElementById('btn-lab-cancelar');

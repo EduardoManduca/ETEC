@@ -14,7 +14,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     //==========================
     // Verificar se há agendamentos
     //==========================
-    
     if (!agendamentos.length) {
       corpoTabela.innerHTML = `<tr class="empty-row"><td colspan="5" style="text-align:center;">Nenhum agendamento recente.</td></tr>`;
       return;
@@ -24,14 +23,27 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Popular tabela com agendamentos
     //==========================
 
-    agendamentos.forEach(a => {
+    for (const a of agendamentos) {
+
+      // Buscar usuário pelo ID
+      let usuarioLogin = "Não Logado";
+      try {
+        const userRes = await fetch(`http://localhost:5000/usuarios/${a.usuario}`);
+        if (userRes.ok) {
+          const usuario = await userRes.json();
+          usuarioLogin = usuario.login || usuario.nome || "Não Logado";
+        }
+      } catch (_) {
+        // se der erro, usa "Não Logado"
+      }
+
       const tr = document.createElement("tr");
       const dataAgendamento = new Date(a.data);
       const dataFormatada = dataAgendamento.toLocaleDateString("pt-BR", { timeZone: 'UTC' });
       const horaFormatada = a.horario || "—";
 
       tr.innerHTML = `
-        <td>${a.usuario?.login || "Não Logado"}</td>
+        <td>${usuarioLogin}</td>
         <td>${a.laboratorio || "—"}</td>
         <td>${dataFormatada}</td>
         <td>${horaFormatada}</td>
@@ -41,12 +53,11 @@ document.addEventListener("DOMContentLoaded", async () => {
       `;
 
       corpoTabela.appendChild(tr);
-    });
+    }
 
     //==========================
     // Evento para excluir agendamento
     //==========================
-
     corpoTabela.addEventListener("click", async (e) => {
       const tr = e.target.closest("tr");
       if (!tr || tr.classList.contains('empty-row')) return;
@@ -65,10 +76,7 @@ document.addEventListener("DOMContentLoaded", async () => {
               tr.remove();
               alert("Agendamento excluído com sucesso!");
 
-              //==========================
-              // Verifica se tabela ficou vazia
-              //==========================
-
+              // tabela vazia?
               if (corpoTabela.children.length === 0) {
                 corpoTabela.innerHTML = `<tr class="empty-row"><td colspan="5" style="text-align:center;">Nenhum agendamento recente.</td></tr>`;
               }

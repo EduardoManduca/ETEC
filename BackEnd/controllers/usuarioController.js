@@ -49,3 +49,37 @@ exports.deleteUsuario = async (req, res) => {
         res.status(400).json({ error: err.message });
     }
 };
+
+exports.validateUsuario = async (req, res) => {
+  const { userId } = req.body;
+
+  if (!userId) {
+    return res.status(400).json({ error: "parâmetro userId não foi fornecido." });
+  }
+
+  try {
+    const user = await Usuario.findById(userId); 
+    if (user) {
+      return res.json({ exists: true });
+    } else {
+      return res.json({ exists: false });
+    }
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ error: "Erro de servidor." });
+  }
+};
+
+exports.getUsuarioById = async (req, res) => {
+  try {
+    const usuario = await Usuario.findById(req.params.id).select("-password");
+
+    if (!usuario) {
+      return res.status(404).json({ error: "Usuário não encontrado" });
+    }
+
+    res.json(usuario);
+  } catch (err) {
+    res.status(500).json({ error: "Erro ao buscar usuário" });
+  }
+};
