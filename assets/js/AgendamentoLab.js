@@ -122,6 +122,7 @@ async function mostrarSugestoes(inputElement, tipo) {
 // Carregar kits do banco (somente autorizados)
 //==========================
 
+let kitSelecionado;
 async function carregarKits() {
   const kitsContainer = document.querySelector("#kits-container");
 
@@ -193,6 +194,7 @@ async function carregarKits() {
           });
 
           const botaoAdicionar = criarBotaoKit("Adicionar", "black", "#333", async () => {
+            kitSelecionado = kit.nomeKit;
             const subselecaoKitElemento = document.querySelector("#kits");
             kitAdicionadoElemento = document.createElement("div");
             kitAdicionadoElemento.classList.add("kit-adicionado");
@@ -427,12 +429,10 @@ btnConfirm.addEventListener("click", async (event) => {
     const laboratorioEl = document.querySelector("#laboratorio-div select");
     const dataEl = document.querySelector('input[name="Data"]');
     const horarioEl = document.querySelector('input[name="datetime"]');
-    const kitEl = document.querySelector("#select-kit");
 
     const laboratorio = laboratorioEl ? laboratorioEl.value : '';
     const dataStr = dataEl ? dataEl.value : '';
     const horario = horarioEl ? horarioEl.value : '';
-    const kitSelecionado = kitEl ? kitEl.value : '';
 
     const reagentes = getItemsFromSummaryBox('#reagentes');
     const vidrarias = getItemsFromSummaryBox('#vidrarias');
@@ -447,6 +447,15 @@ btnConfirm.addEventListener("click", async (event) => {
       mostrarToast("❌ Adicione ao menos um item ou selecione um kit.", "erro");
       return;
     }
+
+    const agendamentoHorario = new Date(`${dataStr}T${horario}:00`);
+    const possui48HorasDeAntecedencia = (agendamentoHorario.getTime() - Date.now()) >= (48 * 60 * 60 * 1000);
+
+    if (!possui48HorasDeAntecedencia) {
+      mostrarToast("❌ Selecione um horário com pelo menos 48 horas de antecedência.", "erro");
+      return;
+    }
+    
 
     const agendamento = {
       laboratorio,
