@@ -194,7 +194,7 @@ async function carregarKits() {
           });
 
           const botaoAdicionar = criarBotaoKit("Adicionar", "black", "#333", async () => {
-            kitSelecionado = kit.nomeKit;
+            kitSelecionado = kit;
             const subselecaoKitElemento = document.querySelector("#kits");
             kitAdicionadoElemento = document.createElement("div");
             kitAdicionadoElemento.classList.add("kit-adicionado");
@@ -239,7 +239,7 @@ async function carregarKits() {
           });
 
           const botaoCancelar = criarBotaoKit("Cancelar", "var(--vermelho-base)", "var(--vermelho-escuro-10)", (evento) => {
-            kitElemento.innerHTML = kit.nomeKit;
+            kitElemento.innerHTML = kit;
             kitElemento.classList.remove("kit-selecionado");
             isKitSelecionado = false;
             evento.stopPropagation();
@@ -455,13 +455,24 @@ btnConfirm.addEventListener("click", async (event) => {
       mostrarToast("❌ Selecione um horário com pelo menos 48 horas de antecedência.", "erro");
       return;
     }
-    
+
+    const kitItens = {"reagentes": reagentes, "vidrarias": vidrarias, "materiais": materiais}
+
+    Object.keys(kitItens).forEach(itemTipo => {
+      kitSelecionado[itemTipo].forEach(item => {
+        kitItens[itemTipo].push({ 
+          nome: item.nome,
+          quantidade: item.quantidade,
+          unidade: item.unidade
+        });
+      });
+    });
 
     const agendamento = {
       laboratorio,
       data: new Date(dataStr + "T00:00:00"),
       horario,
-      kit: kitSelecionado || "",
+      kit: kitSelecionado.nomeKit || "",
       reagentes,
       vidrarias,
       materiais,

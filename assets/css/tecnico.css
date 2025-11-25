@@ -357,6 +357,10 @@
     border: none;
 }
 
+.coluna-acoes {
+    flex-direction: column;
+}
+
 .btn-status,
 .btn-excluir {
     display: inline-flex;
@@ -451,7 +455,6 @@
     vertical-align: middle;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
 }
 
 
