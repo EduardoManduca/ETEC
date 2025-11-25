@@ -52,13 +52,10 @@
         <li class="controles-acessibilidade">
           <button id="aumentar-texto" class="controles-tamanho" title="Aumentar texto"><img
               src="/assets/images/i-big-font.png" alt=""></button>
-
           <button id="diminuir-texto" class="controles-tamanho" title="Diminuir texto"><img
               src="/assets/images/i-small-font.png" alt=""></button>
-
           <button id="theme-toggle" onclick="toggleTheme()" class="controles-tamanho"
             title="Alternar modo claro/escuro"><img src="/assets/images/i-contrast.png" alt=""></button>
-
           <button class="controles-tamanho" title="Mostrar aviso"><a href="https://www.sp.gov.br/sp"
               target="_blank"><img src="/assets/images/i-error-report.png" alt=""></a></button>
         </li>
@@ -66,11 +63,13 @@
     </li>
   </ul>
   <hr>
+
   <ul class="ul-meio-topo">
     <a href="/pages/index.html">
       <li class="li-meio-topo"><img class="logo-etec" src="/assets/images/logo-etec.png" alt=""></li>
     </a>
   </ul>
+
   <nav>
     <ul class="nav-bar">
       <li class="li-nav-bar"><a class="a-nav-bar" href="./TelaProfessor.html">Home</a></li>
@@ -81,75 +80,88 @@
   </nav>
 
   <main>
-    <!-- Lista lateral -->
     <aside class="painel-lateral">
       <h2>Materiais</h2>
       <ul id="lista-materiais">
+        <li style="color:#999; font-style:italic; font-size:0.9rem;">Nenhum selecionado</li>
       </ul>
-
 
       <h2>Vidrarias</h2>
       <ul id="lista-vidrarias">
+        <li style="color:#999; font-style:italic; font-size:0.9rem;">Nenhum selecionado</li>
       </ul>
 
       <h2>Reagentes</h2>
       <ul id="lista-reagentes">
+        <li style="color:#999; font-style:italic; font-size:0.9rem;">Nenhum selecionado</li>
       </ul>
     </aside>
 
-
-    <!-- Formulário -->
     <div class="form-container">
       <header style="text-align: center; margin-bottom: 2rem;">
         <h1 style="margin-bottom: 0.5rem; ">Criar Kit</h1>
-        <p style="color: #555; font-size: 0.95rem;">Monte um novo kit selecionando os materiais, vidrarias e reagentes
-          disponíveis no estoque.</p>
+        <p style="font-size: 0.95rem;">Monte um novo kit selecionando os materiais, vidrarias e reagentes disponíveis no
+          estoque.</p>
       </header>
 
       <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+
         <div>
           <label for="nome-kit" style="font-weight: 600; display: block; margin-bottom: 0.5rem;">Nome do Kit</label>
-          <input id="nome-kit" type="text" placeholder="Ex: Kit de Química" required
+          <input id="nome-kit" type="text" placeholder="Ex: Kit de Titulação Ácido-Base" required
             style="width: 100%; padding: 0.75rem; border-radius: 6px; border: 1px solid #ccc; font-size: 1rem;">
         </div>
 
         <div>
-          <div style="display: flex; justify-content: space-between; align-items: center;">
-            <h2 style="font-size: 1.1rem; color: #333;">Materiais</h2>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+            <h2 style="font-size: 1.1rem; margin: 0;">Materiais</h2>
             <button type="button" id="add-material" class="btn-add-kit">+ Adicionar</button>
           </div>
-          <div id="materiais-container" class="lista-dinamica" style="margin-top: 0.5rem;"></div>
+          <div id="materiais-container"></div>
         </div>
 
         <div>
-          <div style="display: flex; justify-content: space-between; align-items: center;">
-            <h2 style="font-size: 1.1rem; color: #333;">Vidrarias</h2>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+            <h2 style="font-size: 1.1rem; margin: 0;">Vidrarias</h2>
             <button type="button" id="add-equip" class="btn-add-kit">+ Adicionar</button>
           </div>
-          <div id="vidrarias-container" class="lista-dinamica" style="margin-top: 0.5rem;"></div>
+          <div id="vidrarias-container"></div>
         </div>
 
         <div>
-          <div style="display: flex; justify-content: space-between; align-items: center;">
-            <h2 style="font-size: 1.1rem; color: #333;">Reagentes</h2>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+            <h2 style="font-size: 1.1rem; margin: 0;">Reagentes</h2>
             <button type="button" id="add-reagente" class="btn-add-kit">+ Adicionar</button>
           </div>
-          <div id="reagentes-container" class="lista-dinamica" style="margin-top: 0.5rem;"></div>
+          <div id="reagentes-container"></div>
         </div>
 
         <div>
           <label for="obs-kit" style="font-weight: 600; display: block; margin-bottom: 0.5rem;">Observações</label>
-          <textarea id="obs-kit" placeholder="Ex: Usar apenas em bancada limpa."
+          <textarea id="obs-kit" placeholder="Ex: Cuidado, reagentes corrosivos."
             style="width: 100%; padding: 0.75rem; border-radius: 6px; border: 1px solid #ccc; min-height: 80px; resize: vertical;"></textarea>
         </div>
 
         <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 1rem;">
-          <button id="btn-kit-sol" class="btn-solicitar" type="button">Solicitar</button>
+          <button id="btn-kit-sol" class="btn-solicitar" type="button">Solicitar Kit</button>
           <button id="btn-kit-limpar" class="btn-limpar" type="button">Limpar</button>
         </div>
       </div>
     </div>
   </main>
+
+  <datalist id="datalist-reagentes"></datalist>
+  <datalist id="datalist-materiais"></datalist>
+  <datalist id="datalist-vidrarias"></datalist>
+
+  <button id="btnTopo"></button>
+  <script src="/assets/js/ir-ao-topo.js"></script>
+
+  <footer id="footer">
+    <a href="https://www.sp.gov.br/sp">
+      <img id="img-rodape" src="/assets/images/logo-sp.png" alt="">
+    </a>
+  </footer>
 
   <script src="/assets/js/script.js"></script>
   <script src="/assets/js/CadastrarKits.js"></script>

@@ -4,7 +4,6 @@ document.querySelector(".login-form").addEventListener("submit", async (e) => {
     //==========================
     // Coletar dados do formulário
     //==========================
-
     const login = document.getElementById("username").value.trim();
     const password = document.getElementById("password").value.trim();
     const funcao = document.getElementById("dropdown-cadastro").value;

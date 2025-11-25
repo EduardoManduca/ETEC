@@ -78,9 +78,10 @@
 
         <div id="container-principal">
             <div id="formulario">
+                <div id="linha-mobile"></div>
                 <div id="laboratorio-div">
                     <div class="formulario-grupo">
-                        <h2>Laboratório</h2>
+                        <h2 id="id-form-lab" class="formulario-textos">Laboratório</h2>
                         <select class="campos-div">
                             <option>Sala1</option>
                             <option>Sala2</option>
@@ -89,28 +90,28 @@
                     </div>
 
                     <div class="formulario-grupo">
-                        <h2>Data</h2>
+                        <h2 class="formulario-textos">Data</h2>
                         <input type="date" class="campos-div" name="Data">
                     </div>
 
                     <div class="formulario-grupo">
-                        <h2>Horário</h2>
+                        <h2 class="formulario-textos">Horário</h2>
                         <input type="time" class="campos-div" name="datetime" id="datetime-div">
                     </div>
                 </div>
-
+                <div id="linha-mobile"></div>
                 <div class="item-entry-container">
                     <div class="item-box">
                         <h3>Reagentes</h3>
-                        
+
                         <div class="item-box-input">
                             <div class="item-box-nome">
                                 <label>Nome</label>
-                                <input type="text" class="form-input-text">
+                                <input type="text" class="form-input-text" placeholder="Buscar Reagentes...">
                             </div>
                             <div class="item-box-quantidade">
                                 <label>Quantidade</label>
-                                <input type="number" class="form-input-text" min="0">
+                                <input type="number" placeholder="Quantidade" class="form-input-text" min="0">
                             </div>
                         </div>
 
@@ -125,12 +126,12 @@
                         <div class="item-box-input">
                             <div class="item-box-nome">
                                 <label>Nome</label>
-                                <input type="text" class="form-input-text">
+                                <input placeholder="Buscar Vidrarias..." type="text" class="form-input-text">
                             </div>
 
                             <div class="item-box-quantidade">
                                 <label>Quantidade</label>
-                                <input type="number" class="form-input-text" min="0">
+                                <input type="number" placeholder="Quantidade" class="form-input-text" min="0">
                             </div>
                         </div>
 
@@ -145,12 +146,12 @@
                         <div class="item-box-input">
                             <div class="item-box-nome">
                                 <label>Nome</label>
-                                <input type="text" class="form-input-text">
+                                <input type="text" placeholder="Buscar Materiais..." class="form-input-text">
                             </div>
 
                             <div class="item-box-quantidade">
                                 <label>Quantidade</label>
-                                <input type="number" class="form-input-text" min="0">
+                                <input type="number" placeholder="Quantidade" class="form-input-text" min="0">
                             </div>
                         </div>
 

@@ -1,7 +1,6 @@
 const protocolo = "http://";
 const baseURL = "localhost:5000";
 
-// NOVO Bloco: Variável para guardar o estoque em cache
 let estoqueCache = null;
 
 //==========================
@@ -9,7 +8,6 @@ let estoqueCache = null;
 //==========================
 
 function getItemsFromSummaryBox(boxId) {
-  // ... (Seu código original, sem alterações)
   const box = document.querySelector(boxId);
   if (!box) return [];
 
@@ -18,7 +16,6 @@ function getItemsFromSummaryBox(boxId) {
 
   summaryItems.forEach(item => {
     const text = item.querySelector('span').textContent;
-    // Regex: captura nome, quantidade e unidade opcional dentro do parênteses, ex: "Nome (x2 g)" ou "Nome (x2)"
     const match = text.match(/^(.+?)\s*\(x\s*(\d+)(?:\s*([^)]+))?\)$/i);
 
     if (match && match[1] && match[2]) {
@@ -38,7 +35,6 @@ function getItemsFromSummaryBox(boxId) {
 //==========================
 
 function mostrarToast(mensagem, tipo = "sucesso") {
-  // ... (Seu código original, sem alterações)
   const toast = document.createElement("div");
   toast.classList.add("toast");
   toast.classList.add(tipo === "erro" ? "toast-erro" : "toast-sucesso");
@@ -106,16 +102,13 @@ async function mostrarSugestoes(inputElement, tipo) {
     itensFiltrados.forEach(item => {
       const itemDiv = document.createElement('div');
       itemDiv.className = 'sugestao-item';
-      // Exibe o nome, quantidade disponível e unidade
       itemDiv.textContent = `${item.nome} (Disponível: ${item.quantidade} ${item.unidade || ''})`;
 
-      // Usamos 'mousedown' que dispara antes do 'blur' do input
       itemDiv.addEventListener('mousedown', (e) => {
-        e.preventDefault(); // Impede que o input perca o foco antes da hora
-        inputElement.value = item.nome; // Preenche o input
+        e.preventDefault();
+        inputElement.value = item.nome;
         removerSugestoesExistentes(); // Fecha a caixa
 
-        // Opcional: Foca no campo de quantidade
         const qtdInput = inputElement.closest('.item-box').querySelector('.form-input-text:nth-of-type(2)');
         if (qtdInput) qtdInput.focus();
       });
@@ -232,7 +225,6 @@ async function carregarKits() {
               atributoItemElemento.classList.add("summary-item");
 
               const atributoItemTexto = document.createElement("span");
-              // Usar o mesmo formato que a função getItemsFromSummaryBox espera: 'Nome (xQuantidade)'
               const unidadeParte = atributoItem.unidade ? ` ${atributoItem.unidade}` : '';
               atributoItemTexto.textContent = `${atributoItem.nome} (x${atributoItem.quantidade}${unidadeParte})`;
               atributoItemElemento.appendChild(atributoItemTexto);
@@ -363,7 +355,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (itemEstoque && parseInt(quantidade) > itemEstoque.quantidade) {
           mostrarToast(`Erro: Só existem ${itemEstoque.quantidade} unidades de '${nome}' no estoque.`, 'erro');
-          return; // Impede a adição
+          return;
         } else if (!itemEstoque) {
           mostrarToast(`Aviso: Item '${nome}' não parece estar no estoque.`, 'erro');
         }
@@ -413,7 +405,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const btnConfirm = document.getElementById("btn-lab-conf");
 btnConfirm.addEventListener("click", async (event) => {
-  event.preventDefault(); // Previne o envio padrão do formulário
+  event.preventDefault();
 
   try {
     const userId = localStorage.getItem("userId");
@@ -467,7 +459,10 @@ btnConfirm.addEventListener("click", async (event) => {
       usuario: userId
     };
 
-    // Envia a requisição para a API
+    // ==========================
+    // Enviar agendamento ao servidor
+    // ==========================
+    
     try {
       const res = await fetch(`${protocolo}${baseURL}/agendamentos`, {
         method: "POST",
@@ -500,19 +495,15 @@ btnConfirm.addEventListener("click", async (event) => {
   }
 });
 
-// Handler para o botão Cancelar: limpa o formulário e as listas de itens
 const btnCancel = document.getElementById('btn-lab-cancelar');
 if (btnCancel) {
   btnCancel.addEventListener('click', (event) => {
     event.preventDefault();
-    // Limpa campos de formulário
     const formContainer = document.getElementById('formulario');
     if (formContainer) formContainer.querySelectorAll('input, select, textarea').forEach(i => i.value = '');
 
-    // Limpa caixas de resumo
     document.querySelectorAll('#reagentes, #vidrarias, #materiais').forEach(box => box.innerHTML = '');
 
-    // Remove kit selecionado, se houver
     const btnRemoveKit = document.getElementById('btn-remover-kit');
     if (btnRemoveKit) btnRemoveKit.click();
   });

@@ -42,18 +42,20 @@ async function logincheck() {
             return;
         }
 
-        mostrarSucesso(resultado.message || "✅ Login bem-sucedido!");
+        mostrarSucesso(resultado.message);
 
         const funcao = resultado.usuario.funcao;
-        if (funcao === "admin" || funcao === "administrador") {
-            window.location.href = "/pages/pages_admin/TelaAdministrador.html";
-        } else if (funcao === "professor") {
-            window.location.href = "/pages/pages_professor/TelaProfessor.html";
-        } else if (funcao === "tecnico") {
-            window.location.href = "/pages/pages_tecnico/TelaTecnico.html";
-        } else {
-            window.location.href = "telalogin.html";
-        }
+        setTimeout(() => {
+            if (funcao === "admin" || funcao === "administrador") {
+                window.location.href = "/pages/pages_admin/TelaAdministrador.html";
+            } else if (funcao === "professor") {
+                window.location.href = "/pages/pages_professor/TelaProfessor.html";
+            } else if (funcao === "tecnico") {
+                window.location.href = "/pages/pages_tecnico/TelaTecnico.html";
+            } else {
+                window.location.href = "telalogin.html";
+            }
+        }, 3000); // Aguarda 3 segundos antes de redirecionar
 
     } catch (err) {
         mostrarErro("Erro ao conectar com o servidor.");
@@ -63,33 +65,51 @@ async function logincheck() {
     // ==================================================
     // Funções para mostrar mensagens de erro e sucesso
     // ==================================================
-    
+
     function mostrarErro(msg) {
         errorMessage.style.display = "block";
-        errorMessage.style.color = "#f32a2a";
+
+        // Marca como erro e remove classes de sucesso
+        errorMessage.classList.remove("sucesso");
+        errorMessage.classList.add("erro");
+
+        errorMessage.style.background = "#f8d7da"; // vermelho claro
+        errorMessage.style.color = "#721c24";      // vermelho escuro
+        errorMessage.style.border = "1px solid #f5c6cb";
+
         errorMessage.textContent = msg;
-        errorMessage.classList.add("show");
-        errorMessage.classList.add('shake');
+
+        errorMessage.classList.add("show", "shake");
         setTimeout(() => errorMessage.classList.remove('shake'), 700);
+
         setTimeout(() => {
             errorMessage.classList.remove("show");
             errorMessage.style.display = "none";
         }, 5000);
     }
 
+
     function mostrarSucesso(msg) {
         errorMessage.style.display = "block";
-        errorMessage.style.color = "#388E3C";
+        errorMessage.classList.remove("erro");
+        errorMessage.classList.remove("shake");
+        errorMessage.classList.add("sucesso");
+
+        errorMessage.style.background = "#d4edda";
+        errorMessage.style.color = "#155724";
+        errorMessage.style.border = "1px solid #c3e6cb";
+
         errorMessage.textContent = msg;
+
         errorMessage.classList.add("show");
         setTimeout(() => {
             errorMessage.classList.remove("show");
             errorMessage.style.display = "none";
         }, 3000);
     }
+
 }
 
-// Prefill username if user previously asked to be remembered
 document.addEventListener('DOMContentLoaded', () => {
     try {
         const remembered = localStorage.getItem('rememberedUsername');

@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
         inputLogin.value = usuario.login;
         inputFuncao.value = usuario.funcao;
         inputSenha.value = "";
-        modal.style.display = "flex"; // flex centraliza o modal
+        modal.style.display = "flex";
     }
 
     // ================
@@ -100,5 +100,5 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    carregarUsuarios(); // Carrega usuários ao iniciar a página
+    carregarUsuarios();
 });

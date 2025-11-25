@@ -344,75 +344,100 @@
 
 
 /* =============================
-   Botão de Status dos Kits
+   Botão de Status dos Kits e Ações
    ============================= */
-.btn-status {
-    padding: 6px 12px;
+
+#tabela-kits-materiais td:last-child,
+.coluna-acoes {
+    display: flex !important;
+    gap: 10px !important;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
     border: none;
-    border-radius: 6px;
-    font-weight: bold;
-    cursor: pointer;
-    color: #fff;
-    transition: background-color 0.3s, transform 0.2s;
 }
 
-
-.btn-status {
-    padding: 6px 12px;
-    border: none;
-    border-radius: 6px;
-    font-weight: bold;
-    cursor: pointer;
-    color: #fff;
-    transition: background-color 0.3s, transform 0.2s;
-    background-color: #000;
+.btn-status,
+.btn-excluir {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
-    min-width: 110px;
+    padding: 6px 12px;
+    min-width: 100px;
     height: 36px;
-    margin-right: 8px;
+    border-radius: 6px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    font-size: 0.9rem;
+    margin: 0 !important;
+}
+
+.btn-status {
+    border: 1px solid transparent;
+    color: #fff;
 }
 
 .btn-status.autorizado {
-    background-color: black;
-    /* Reprovar: vermelho */
+    background-color: #000;
 }
 
 .btn-status.solicitado {
     background-color: transparent;
-    border: 1px solid black;
-    color: black;
+    border: 2px solid #000;
+    color: #000;
 }
 
+.btn-excluir {
+    background-color: #BA1A1A;
+    color: white;
+    border: none;
+}
 
 .btn-status:hover {
     transform: scale(1.05);
     opacity: 0.9;
 }
 
-/* Espaçamento entre ícone e texto nos botões de ação */
-.btn-status i,
-.btn-excluir i {
-    margin-right: 6px;
+.btn-status.solicitado:hover {
+    background-color: #f0f0f0;
 }
 
+.btn-excluir:hover {
+    background-color: #7E0000;
 
-.btn-status:disabled {
+}
+
+.btn-status:active,
+.btn-excluir:active {
+    transform: scale(0.95);
+}
+
+.btn-status i,
+.btn-excluir i {
+    font-size: 1rem;
+}
+
+.btn-status:disabled,
+.btn-excluir:disabled {
     background-color: #ccc;
+    border-color: #ccc;
     cursor: not-allowed;
     color: #666;
+    transform: none;
 }
 
 /* =============================
-   Ajustes de tabela para melhor exibição
+    ESTILOS PARA TABELAS
    ============================= */
+
 .tabela-estoque,
 #tabela-kits-materiais,
 .tabela-estoque table {
     width: 100%;
-    max-width: 100%;
+    max-width: 80%;
     table-layout: fixed;
     border-collapse: collapse;
 }
@@ -429,7 +454,7 @@
     white-space: nowrap;
 }
 
-/* Em telas pequenas, permita quebra para evitar overflow extremo */
+
 @media (max-width: 768px) {
 
     .tabela-estoque th,

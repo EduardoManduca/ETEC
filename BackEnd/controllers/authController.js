@@ -30,11 +30,11 @@ exports.signup = async (req, res) => {
 // ================================
 // Login de usuário
 // ================================
-
 exports.login = async (req, res) => {
     try {
         const { login, password } = req.body;
         const usuario = await Usuario.findOne({ login });
+
         if (!usuario)
             return res.status(401).json({ error: "Usuário não encontrado" });
 
@@ -43,9 +43,15 @@ exports.login = async (req, res) => {
             return res.status(401).json({ error: "Senha incorreta" });
 
         res.json({
-            message: "Login bem-sucedido",
-            usuario: { _id: usuario._id.toString(), funcao: usuario.funcao }
+            message: `Bem-vindo ao sistema, ${usuario.login}!`,
+            usuario: {
+                _id: usuario._id.toString(),
+                funcao: usuario.funcao,
+                login: usuario.login,
+                nome: usuario.login
+            }
         });
+
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: "Erro interno do servidor" });

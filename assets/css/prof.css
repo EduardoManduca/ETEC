@@ -196,12 +196,16 @@
 }
 
 .toast-sucesso {
-    background: linear-gradient(135deg, #28a745, #71e26f);
+    background: #28a745;
+    color: #fff;
 }
 
 .toast-erro {
-    background: linear-gradient(135deg, #dc3545, #f08080);
+    background: #dc3545;
+    color: #fff;
 }
+
+
 
 .toast.show {
     opacity: 1;
@@ -566,12 +570,10 @@ textarea {
     position: relative;
     display: flex;
     flex-direction: column;
-    /* Alterado para coluna para melhor lista */
     gap: 15px;
     margin-top: 10px;
 }
 
-/* Card individual do Kit */
 .kit-elemento {
     background: #fff;
     border: 1px solid #ddd;
@@ -587,7 +589,6 @@ textarea {
     border-color: #b20000;
 }
 
-/* Estado Expandido */
 .kit-selecionado {
     border-color: #b20000;
     background-color: #fff9f9;
@@ -609,7 +610,6 @@ textarea {
     margin-bottom: 10px;
 }
 
-/* Improved kit card styles */
 .kit-card {
     display: flex;
     flex-direction: column;
@@ -633,7 +633,7 @@ textarea {
 .kit-meta .kit-count {
     font-size: 0.85rem;
     color: #666;
-    background: rgba(0,0,0,0.03);
+    background: rgba(0, 0, 0, 0.03);
     padding: 4px 8px;
     border-radius: 999px;
 }
@@ -647,7 +647,7 @@ textarea {
 .kit-item {
     font-size: 0.9rem;
     color: #333;
-    background: rgba(242,242,242,0.6);
+    background: rgba(242, 242, 242, 0.6);
     padding: 8px;
     border-radius: 6px;
     overflow: hidden;
@@ -693,7 +693,6 @@ textarea {
     background-color: #fff9f9;
 }
 
-/* Estilo para lista de atributos (Reagentes/Vidrarias) dentro do card */
 .atributo-wrapper {
     margin-bottom: 10px;
     padding: 8px;
@@ -707,11 +706,140 @@ textarea {
     color: #005C6D;
 }
 
+
 /* =========================================================
-   BOTÕES DE KIT (Centralizados)
+   CRIAR KIT e Itens de Kit 
    ========================================================= */
 
-/* Container Flex para centralizar os botões */
+datalist {
+    display: none;
+}
+
+.input-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.sugestoes-lista {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #ffffff;
+    border: 1px solid #ccc;
+    border-top: none;
+    border-radius: 0 0 6px 6px;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: none;
+}
+
+.sugestoes-item {
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 0.95rem;
+    color: #333;
+    display: flex;
+    justify-content: space-between;
+}
+
+.sugestoes-item:hover {
+    background-color: #f2f2f2;
+    color: #B20000;
+}
+
+.sugestoes-item span.qtd-info {
+    font-size: 0.85rem;
+    color: #888;
+    font-weight: 600;
+}
+
+.kit-item-grid {
+    display: grid;
+    grid-template-columns: 1fr 100px 60px 100px;
+    gap: 15px;
+    align-items: center;
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-left: 4px solid #B20000;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    transition: all 0.2s ease;
+    animation: slideIn 0.3s ease;
+}
+
+.kit-item-grid:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    background: #fff;
+}
+
+.kit-item-grid input[type="text"],
+.kit-item-grid input[type="number"] {
+    margin-top: 0;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background: #fff;
+}
+
+.item-unidade {
+    font-size: 0.9rem;
+    color: #666;
+    font-weight: 600;
+    text-align: center;
+    background: #e9ecef;
+    padding: 10px 0;
+    border-radius: 6px;
+}
+
+.btn-remove-icon {
+    height: 40px;
+    padding: 0 16px;
+    background: transparent;
+    color: #c62828;
+    border: 1.5px solid #c62828;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-remove-icon:hover {
+    background: #c62828;
+    color: #fff;
+    border-color: #c62828;
+}
+
+
+.btn-remove-icon:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(198, 40, 40, 0.15);
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================================================
+   BOTÕES DE KIT
+   ========================================================= */
+
 .botoes-kit-container {
     display: flex;
     gap: 10px;
@@ -720,10 +848,8 @@ textarea {
     width: 100%;
 }
 
-/* Estilo Base do Botão */
 .botao-kit {
     flex: 1;
-    /* Faz botões ocuparem espaço igual */
     padding: 10px;
     border: none;
     border-radius: 6px;
@@ -741,13 +867,12 @@ textarea {
 }
 
 /* =========================================================
-   KIT ESCOLHIDO (Seleção Final)
+   KIT ESCOLHIDO
    ========================================================= */
 
 .kit-adicionado {
     background: #fff;
     border: 2px solid #005C6D;
-    /* Borda Azul para destaque */
     border-radius: 8px;
     padding: 20px;
     margin-bottom: 20px;
@@ -773,7 +898,6 @@ textarea {
     justify-content: center;
     transition: background 0.2s;
     float: right;
-    /* Garante que fique no canto */
 }
 
 .remover-kit-btn:hover {
@@ -1006,7 +1130,6 @@ textarea {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 0 0 6px 6px;
     width: 100%;
-    /* Ajusta ao tamanho do input pai */
 }
 
 .sugestao-item {
@@ -1101,9 +1224,84 @@ textarea {
         padding: 1rem;
     }
 
+    .formulario-textos {
+        text-align: center;
+    }
+
+    .toast {
+        width: 90%;
+        font-size: 0.9rem;
+        padding: 15px 20px;
+        border-radius: 12px;
+        top: 20px;
+    }
+
+    .toast.show {
+        top: 30px;
+    }
+
+    #linha-mobile {
+        display: block;
+        width: 80%;
+        height: 3px;
+        background-color: #B20000;
+        margin: 10px auto auto auto;
+        border: none;
+    }
+
+    #laboratorio-div {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+        font-weight: bold;
+        gap: 10px;
+    }
+
     .painel-lateral {
         display: none;
+    }
 
+    .kit-item-grid {
+        display: grid !important;
+        grid-template-columns: 1fr 60px auto !important;
+        gap: 10px !important;
+        align-items: center !important;
+    }
+
+    .input-wrapper {
+        grid-column: 1 / -1 !important;
+        width: 100% !important;
+    }
+
+    .kit-item-grid input[type="text"] {
+        width: 100% !important;
+    }
+
+
+    .kit-item-grid input[type="number"] {
+        width: 100% !important;
+        margin: 0 !important;
+    }
+
+    .item-unidade {
+        width: 100% !important;
+        height: 40px !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .btn-remove-icon {
+        width: auto !important;
+        padding: 0 15px !important;
+        height: 40px !important;
+    }
+
+    .btn-remove-icon:hover {
+        background: #c62828;
+        color: #fff;
     }
 
     .nav-bar {
@@ -1135,7 +1333,6 @@ textarea {
         padding: 30px 20px;
     }
 
-
     #container-principal {
         flex-direction: column;
         align-items: center;
@@ -1164,7 +1361,6 @@ textarea {
         gap: 15px;
     }
 
-
     .secao-estoque {
         width: 100%;
         min-width: unset;
@@ -1188,12 +1384,19 @@ textarea {
     }
 }
 
-
 @media (max-width: 480px) {
 
     .btn-solicitar,
     .btn-limpar {
         width: 100%;
+        height: 40px;
+        font-weight: 100;
+        white-space: nowrap;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.95rem;
+        padding: 0 10px;
     }
 
     .kit-section {
